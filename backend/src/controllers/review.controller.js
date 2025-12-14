@@ -34,23 +34,12 @@ export async function createReview(req, res) {
       return res.status(400).json({ error: "Product not found in this order" });
     }
 
-    let review;
-    // check if review already exists
-    const existingReview = await Review.findOne({ productId, userId: user._id });
-    if (existingReview) {
-      // update existing review
-      existingReview.rating = rating;
-      existingReview.orderId = orderId;
-      review = await existingReview.save();
-    } else {
-      // create new review
-      review = await Review.create({
-        productId,
-        userId: user._id,
-        orderId,
-        rating,
-      });
-    }
+    // atomic update or create
+    const review = await Review.findOneAndUpdate(
+      { productId, userId: user._id },
+      { rating, orderId, productId, userId: user._id },
+      { new: true, upsert: true, runValidators: true }
+    );
 
     // update the product rating with atomic aggregation
     const reviews = await Review.find({ productId });
