@@ -12,6 +12,10 @@ const cartItemSchema = new mongoose.Schema({
     min: 1,
     default: 1,
   },
+  selectedUnit: {
+    type: String,
+    default: null,
+  },
 });
 
 const cartSchema = new mongoose.Schema(

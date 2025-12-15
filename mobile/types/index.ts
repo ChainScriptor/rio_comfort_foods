@@ -8,6 +8,8 @@ export interface Product {
   images: string[];
   averageRating: number;
   totalReviews: number;
+  unitType?: "pieces" | "kg" | "liters";
+  unitOptions?: string[];
   createdAt: string;
   updatedAt: string;
 }
@@ -90,6 +92,7 @@ export interface CartItem {
   _id: string;
   product: Product;
   quantity: number;
+  selectedUnit?: string;
 }
 
 export interface Cart {

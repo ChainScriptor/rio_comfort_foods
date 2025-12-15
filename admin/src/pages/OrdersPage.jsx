@@ -132,6 +132,11 @@ function OrdersPage() {
                   font-size: 11pt;
                   line-height: 1.5;
                   border-bottom: 1px dotted #ccc;
+                  color: #000000;
+                }
+                .print-order-line span {
+                  font-weight: bold;
+                  color: #000000;
                 }
                 .print-header {
                   margin-bottom: 1cm;
@@ -167,9 +172,13 @@ function OrdersPage() {
                 
                 return (
                   <div key={order._id} className="print-order-line">
-                    <span style={{ fontWeight: "bold" }}>{order.shippingAddress.fullName}</span>
+                    <span style={{ fontWeight: "bold", color: "#000000" }}>
+                      {order.shippingAddress.fullName}
+                    </span>
                     {" | "}
-                    <span>{orderItemsText}</span>
+                    <span style={{ fontWeight: "bold", color: "#000000" }}>
+                      {orderItemsText}
+                    </span>
                   </div>
                 );
               })}

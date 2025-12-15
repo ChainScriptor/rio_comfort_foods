@@ -42,17 +42,19 @@ const RatingModal = ({
                   <Ionicons name="star" size={32} color="#FFD700" />
                 </View>
                 <Text className="text-text-primary text-2xl font-bold mb-1">
-                  Rate Your Products
+                  Αξιολογήστε τα Προϊόντα σας
                 </Text>
                 <Text className="text-text-secondary text-center text-sm">
-                  Rate each product from your order
+                  Αξιολογήστε κάθε προϊόν από την παραγγελία σας
                 </Text>
               </View>
 
               <ScrollView className="mb-4">
-                {order?.orderItems.map((item, index) => {
-                  const productId = item.product._id;
-                  const currentRating = productRatings[productId] || 0;
+                {order?.orderItems
+                  .filter((item) => item.product && item.product._id)
+                  .map((item, index) => {
+                    const productId = item.product!._id;
+                    const currentRating = productRatings[productId] || 0;
 
                   return (
                     <View
@@ -74,7 +76,7 @@ const RatingModal = ({
                             {item.name}
                           </Text>
                           <Text className="text-text-secondary text-xs mt-1">
-                            Qty: {item.quantity} • ${item.price.toFixed(2)}
+                            Ποσ: {item.quantity} • ${item.price.toFixed(2)}
                           </Text>
                         </View>
                       </View>
@@ -110,7 +112,7 @@ const RatingModal = ({
                   {isSubmitting ? (
                     <ActivityIndicator size="small" color="#121212" />
                   ) : (
-                    <Text className="text-background font-bold text-base">Submit All Ratings</Text>
+                    <Text className="text-background font-bold text-base">Υποβολή Όλων των Αξιολογήσεων</Text>
                   )}
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -119,7 +121,7 @@ const RatingModal = ({
                   onPress={onClose}
                   disabled={isSubmitting}
                 >
-                  <Text className="text-text-secondary font-bold text-base">Cancel</Text>
+                  <Text className="text-text-secondary font-bold text-base">Ακύρωση</Text>
                 </TouchableOpacity>
               </View>
             </View>

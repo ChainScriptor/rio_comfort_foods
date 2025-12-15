@@ -26,7 +26,7 @@ const AddressSelectionModal = ({
         <View className="bg-background rounded-t-3xl h-1/2">
           {/* Modal Header */}
           <View className="flex-row items-center justify-between p-6 border-b border-surface">
-            <Text className="text-text-primary text-2xl font-bold">Select Address</Text>
+            <Text className="text-text-primary text-2xl font-bold">Επιλογή Διεύθυνσης</Text>
             <TouchableOpacity onPress={onClose} className="bg-surface rounded-full p-2">
               <Ionicons name="close" size={24} color="#FFFFFF" />
             </TouchableOpacity>
@@ -59,7 +59,7 @@ const AddressSelectionModal = ({
                           </Text>
                           {address.isDefault && (
                             <View className="bg-primary/20 rounded-full px-3 py-1">
-                              <Text className="text-primary text-sm font-semibold">Default</Text>
+                              <Text className="text-primary text-sm font-semibold">Προεπιλογή</Text>
                             </View>
                           )}
                         </View>
@@ -101,7 +101,7 @@ const AddressSelectionModal = ({
                 ) : (
                   <>
                     <Text className="text-background font-bold text-lg mr-2">
-                      Continue to Payment
+                      Send the Order
                     </Text>
                     <Ionicons name="arrow-forward" size={20} color="#121212" />
                   </>

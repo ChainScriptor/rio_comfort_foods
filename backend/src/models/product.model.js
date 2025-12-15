@@ -41,6 +41,15 @@ const productSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    unitType: {
+      type: String,
+      enum: ["pieces", "kg", "liters"],
+      default: "pieces",
+    },
+    unitOptions: {
+      type: [String],
+      default: [],
+    },
   },
   { timestamps: true }
 );

@@ -13,7 +13,10 @@ function ProductsPage() {
     price: "",
     stock: "",
     description: "",
+    unitType: "pieces",
+    unitOptions: [],
   });
+  const [unitOptionInput, setUnitOptionInput] = useState("");
   const [images, setImages] = useState([]);
   const [imagePreviews, setImagePreviews] = useState([]);
 
@@ -66,7 +69,10 @@ function ProductsPage() {
       price: "",
       stock: "",
       description: "",
+      unitType: "pieces",
+      unitOptions: [],
     });
+    setUnitOptionInput("");
     setImages([]);
     setImagePreviews([]);
   };
@@ -79,6 +85,8 @@ function ProductsPage() {
       price: product.price.toString(),
       stock: product.stock.toString(),
       description: product.description,
+      unitType: product.unitType || "pieces",
+      unitOptions: product.unitOptions || [],
     });
     setImagePreviews(product.images);
     setShowModal(true);
@@ -111,6 +119,8 @@ function ProductsPage() {
     formDataToSend.append("price", formData.price);
     formDataToSend.append("stock", formData.stock);
     formDataToSend.append("category", formData.category);
+    formDataToSend.append("unitType", formData.unitType);
+    formDataToSend.append("unitOptions", JSON.stringify(formData.unitOptions));
 
     // only append new images if they were selected
     if (images.length > 0) images.forEach((image) => formDataToSend.append("images", image));
@@ -300,6 +310,87 @@ function ProductsPage() {
                 required
               />
             </div>
+
+            <div className="form-control">
+              <label className="label">
+                <span>Unit Type</span>
+              </label>
+              <select
+                className="select select-bordered"
+                value={formData.unitType}
+                onChange={(e) => setFormData({ ...formData, unitType: e.target.value, unitOptions: [] })}
+                required
+              >
+                <option value="pieces">Τεμάχια</option>
+                <option value="kg">Κιλά</option>
+                <option value="liters">Λίτρα</option>
+              </select>
+            </div>
+
+            {formData.unitType !== "pieces" && (
+              <div className="form-control">
+                <label className="label">
+                  <span>Unit Options (e.g., 1 λίτρο, 5 λίτρα, 25 λίτρα)</span>
+                </label>
+                <div className="flex gap-2 mb-2">
+                  <input
+                    type="text"
+                    placeholder="Προσθήκη επιλογής..."
+                    className="input input-bordered flex-1"
+                    value={unitOptionInput}
+                    onChange={(e) => setUnitOptionInput(e.target.value)}
+                    onKeyPress={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        if (unitOptionInput.trim() && !formData.unitOptions.includes(unitOptionInput.trim())) {
+                          setFormData({
+                            ...formData,
+                            unitOptions: [...formData.unitOptions, unitOptionInput.trim()],
+                          });
+                          setUnitOptionInput("");
+                        }
+                      }
+                    }}
+                  />
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={() => {
+                      if (unitOptionInput.trim() && !formData.unitOptions.includes(unitOptionInput.trim())) {
+                        setFormData({
+                          ...formData,
+                          unitOptions: [...formData.unitOptions, unitOptionInput.trim()],
+                        });
+                        setUnitOptionInput("");
+                      }
+                    }}
+                  >
+                    Προσθήκη
+                  </button>
+                </div>
+                {formData.unitOptions.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {formData.unitOptions.map((option, index) => (
+                      <div key={index} className="badge badge-primary badge-lg gap-2">
+                        {option}
+                        <button
+                          type="button"
+                          className="btn btn-xs btn-circle btn-ghost"
+                          onClick={() => {
+                            setFormData({
+                              ...formData,
+                              unitOptions: formData.unitOptions.filter((_, i) => i !== index),
+                            });
+                          }}
+                        >
+                          ×
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
 
             <div className="form-control">
               <label className="label">

@@ -8,8 +8,8 @@ interface ErrorStateProps {
 }
 
 export function ErrorState({
-  title = "Something went wrong",
-  description = "Please check your connection and try again",
+  title = "Κάτι πήγε στραβά",
+  description = "Παρακαλώ ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά",
   onRetry,
 }: ErrorStateProps) {
   return (
@@ -19,7 +19,7 @@ export function ErrorState({
       <Text className="text-text-secondary text-center mt-2">{description}</Text>
       {onRetry && (
         <TouchableOpacity onPress={onRetry} className="mt-4 bg-primary px-6 py-3 rounded-xl">
-          <Text className="text-background font-semibold">Try Again</Text>
+          <Text className="text-background font-semibold">Δοκιμή Ξανά</Text>
         </TouchableOpacity>
       )}
     </View>

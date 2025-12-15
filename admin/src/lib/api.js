@@ -69,3 +69,10 @@ export const categoryApi = {
     return data;
   },
 };
+
+export const reviewApi = {
+  getAll: async () => {
+    const { data } = await axiosInstance.get("/admin/reviews");
+    return data;
+  },
+};

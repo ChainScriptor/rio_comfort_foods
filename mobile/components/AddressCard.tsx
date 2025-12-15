@@ -28,7 +28,7 @@ export default function AddressCard({
         </View>
         {address.isDefault && (
           <View className="bg-primary px-3 py-1 rounded-full">
-            <Text className="text-background text-xs font-bold">Default</Text>
+            <Text className="text-background text-xs font-bold">Προεπιλογή</Text>
           </View>
         )}
       </View>
@@ -47,7 +47,7 @@ export default function AddressCard({
           onPress={() => onEdit(address)}
           disabled={isUpdatingAddress}
         >
-          <Text className="text-primary font-bold">Edit</Text>
+          <Text className="text-primary font-bold">Επεξεργασία</Text>
         </TouchableOpacity>
         <TouchableOpacity
           className="flex-1 bg-red-500/20 py-3 rounded-xl items-center"
@@ -55,7 +55,7 @@ export default function AddressCard({
           onPress={() => onDelete(address._id, address.label)}
           disabled={isDeletingAddress}
         >
-          <Text className="text-red-500 font-bold">Delete</Text>
+          <Text className="text-red-500 font-bold">Διαγραφή</Text>
         </TouchableOpacity>
       </View>
     </View>

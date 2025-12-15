@@ -3,13 +3,23 @@ import { Product } from "../models/product.model.js";
 import { Order } from "../models/order.model.js";
 import { User } from "../models/user.model.js";
 import { Category } from "../models/category.model.js";
+import { Review } from "../models/review.model.js";
 
 export async function createProduct(req, res) {
   try {
-    const { name, description, price, stock, category } = req.body;
+    const { name, description, price, stock, category, unitType, unitOptions } = req.body;
 
     if (!name || !description || !price || !stock || !category) {
       return res.status(400).json({ message: "All fields are required" });
+    }
+
+    let parsedUnitOptions = [];
+    if (unitOptions) {
+      try {
+        parsedUnitOptions = typeof unitOptions === "string" ? JSON.parse(unitOptions) : unitOptions;
+      } catch (e) {
+        parsedUnitOptions = [];
+      }
     }
 
     if (!req.files || req.files.length === 0) {
@@ -37,6 +47,8 @@ export async function createProduct(req, res) {
       stock: parseInt(stock),
       category,
       images: imageUrls,
+      unitType: unitType || "pieces",
+      unitOptions: parsedUnitOptions,
     });
 
     res.status(201).json(product);
@@ -60,7 +72,7 @@ export async function getAllProducts(_, res) {
 export async function updateProduct(req, res) {
   try {
     const { id } = req.params;
-    const { name, description, price, stock, category } = req.body;
+    const { name, description, price, stock, category, unitType, unitOptions } = req.body;
 
     const product = await Product.findById(id);
     if (!product) {
@@ -72,6 +84,16 @@ export async function updateProduct(req, res) {
     if (price !== undefined) product.price = parseFloat(price);
     if (stock !== undefined) product.stock = parseInt(stock);
     if (category) product.category = category;
+    if (unitType !== undefined) product.unitType = unitType;
+    if (unitOptions !== undefined) {
+      let parsedUnitOptions = [];
+      try {
+        parsedUnitOptions = typeof unitOptions === "string" ? JSON.parse(unitOptions) : unitOptions;
+      } catch (e) {
+        parsedUnitOptions = [];
+      }
+      product.unitOptions = parsedUnitOptions;
+    }
 
     // handle image updates if new images are uploaded
     if (req.files && req.files.length > 0) {
@@ -352,5 +374,20 @@ export const deleteCategory = async (req, res) => {
   } catch (error) {
     console.error("Error deleting category:", error);
     res.status(500).json({ message: "Failed to delete category" });
+  }
+};
+
+export const getAllReviews = async (req, res) => {
+  try {
+    const reviews = await Review.find()
+      .populate("productId", "name images")
+      .populate("userId", "name email")
+      .populate("orderId", "_id")
+      .sort({ createdAt: -1 });
+
+    res.status(200).json({ reviews });
+  } catch (error) {
+    console.error("Error fetching reviews:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 };

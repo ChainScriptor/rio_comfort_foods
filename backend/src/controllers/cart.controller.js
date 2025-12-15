@@ -24,12 +24,17 @@ export async function getCart(req, res) {
 
 export async function addToCart(req, res) {
   try {
-    const { productId, quantity = 1 } = req.body;
+    const { productId, quantity = 1, selectedUnit } = req.body;
 
     // validate product exists and has stock
     const product = await Product.findById(productId);
     if (!product) {
       return res.status(404).json({ error: "Product not found" });
+    }
+
+    // Validate unit selection if product has unit options
+    if (product.unitOptions && product.unitOptions.length > 0 && !selectedUnit) {
+      return res.status(400).json({ error: "Unit selection is required for this product" });
     }
 
     if (product.stock < quantity) {
@@ -48,8 +53,13 @@ export async function addToCart(req, res) {
       });
     }
 
-    // check if item already in the cart
-    const existingItem = cart.items.find((item) => item.product.toString() === productId);
+    // check if item already in the cart with same unit
+    const existingItem = cart.items.find(
+      (item) => 
+        item.product.toString() === productId && 
+        item.selectedUnit === selectedUnit
+    );
+    
     if (existingItem) {
       // increment quantity by 1
       const newQuantity = existingItem.quantity + 1;
@@ -59,7 +69,11 @@ export async function addToCart(req, res) {
       existingItem.quantity = newQuantity;
     } else {
       // add new item
-      cart.items.push({ product: productId, quantity });
+      cart.items.push({ 
+        product: productId, 
+        quantity,
+        selectedUnit: selectedUnit || undefined,
+      });
     }
 
     await cart.save();

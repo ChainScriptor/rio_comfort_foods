@@ -44,10 +44,10 @@ const CartScreen = () => {
   };
 
   const handleRemoveItem = (productId: string, productName: string) => {
-    Alert.alert("Remove Item", `Remove ${productName} from cart?`, [
-      { text: "Cancel", style: "cancel" },
+    Alert.alert("Αφαίρεση Προϊόντος", `Αφαίρεση ${productName} από το καλάθι;`, [
+      { text: "Ακύρωση", style: "cancel" },
       {
-        text: "Remove",
+        text: "Αφαίρεση",
         style: "destructive",
         onPress: () => removeFromCart(productId),
       },
@@ -60,9 +60,9 @@ const CartScreen = () => {
     // check if user has addresses
     if (!addresses || addresses.length === 0) {
       Alert.alert(
-        "No Address",
-        "Please add a shipping address in your profile before checking out.",
-        [{ text: "OK" }]
+        "Χωρίς Διεύθυνση",
+        "Παρακαλώ προσθέστε μια διεύθυνση αποστολής στο προφίλ σας πριν από την ολοκλήρωση της παραγγελίας.",
+        [{ text: "Εντάξει" }]
       );
       return;
     }
@@ -112,8 +112,8 @@ const CartScreen = () => {
         itemCount: cartItems.length,
       });
 
-      Alert.alert("Success", "Your order has been placed! The admin will process it soon.", [
-        { text: "OK", onPress: () => {} },
+      Alert.alert("Επιτυχία", "Η παραγγελία σας ολοκληρώθηκε! Ο διαχειριστής θα την επεξεργαστεί σύντομα.", [
+        { text: "Εντάξει", onPress: () => {} },
       ]);
       clearCart();
     } catch (error: any) {
@@ -123,8 +123,8 @@ const CartScreen = () => {
         itemCount: cartItems.length,
       });
 
-      const errorMessage = error.response?.data?.error || "Failed to create order";
-      Alert.alert("Error", errorMessage);
+      const errorMessage = error.response?.data?.error || "Αποτυχία δημιουργίας παραγγελίας";
+      Alert.alert("Σφάλμα", errorMessage);
     } finally {
       setOrderLoading(false);
     }
@@ -136,7 +136,7 @@ const CartScreen = () => {
 
   return (
     <SafeScreen>
-      <Text className="px-6 pb-5 text-text-primary text-3xl font-bold tracking-tight">Cart</Text>
+      <Text className="px-6 pb-5 text-text-primary text-3xl font-bold tracking-tight">Καλάθι</Text>
 
       <ScrollView
         className="flex-1"
@@ -168,12 +168,17 @@ const CartScreen = () => {
                     >
                       {item.product.name}
                     </Text>
+                    {item.selectedUnit && (
+                      <Text className="text-text-secondary text-sm mt-1">
+                        {item.selectedUnit}
+                      </Text>
+                    )}
                     <View className="flex-row items-center mt-2">
                       <Text className="text-primary font-bold text-2xl">
                         ${(item.product.price * item.quantity).toFixed(2)}
                       </Text>
                       <Text className="text-text-secondary text-sm ml-2">
-                        ${item.product.price.toFixed(2)} each
+                        ${item.product.price.toFixed(2)} το καθένα
                       </Text>
                     </View>
                   </View>
@@ -236,7 +241,7 @@ const CartScreen = () => {
           <View className="flex-row items-center">
             <Ionicons name="cart" size={20} color="#FFD700" />
             <Text className="text-text-secondary ml-2">
-              {cartItemCount} {cartItemCount === 1 ? "item" : "items"}
+              {cartItemCount} {cartItemCount === 1 ? "προϊόν" : "προϊόντα"}
             </Text>
           </View>
           <View className="flex-row items-center">
@@ -256,7 +261,7 @@ const CartScreen = () => {
               <ActivityIndicator size="small" color="#121212" />
             ) : (
               <>
-                <Text className="text-background font-bold text-lg mr-2">Place Order</Text>
+                <Text className="text-background font-bold text-lg mr-2">Ολοκλήρωση Παραγγελίας</Text>
                 <Ionicons name="arrow-forward" size={20} color="#121212" />
               </>
             )}
@@ -280,7 +285,7 @@ function LoadingUI() {
   return (
     <View className="flex-1 bg-background items-center justify-center">
       <ActivityIndicator size="large" color="#FFD700" />
-      <Text className="text-text-secondary mt-4">Loading cart...</Text>
+      <Text className="text-text-secondary mt-4">Φόρτωση καλαθιού...</Text>
     </View>
   );
 }
@@ -289,9 +294,9 @@ function ErrorUI() {
   return (
     <View className="flex-1 bg-background items-center justify-center px-6">
       <Ionicons name="alert-circle-outline" size={64} color="#FF6B6B" />
-      <Text className="text-text-primary font-semibold text-xl mt-4">Failed to load cart</Text>
+      <Text className="text-text-primary font-semibold text-xl mt-4">Αποτυχία φόρτωσης καλαθιού</Text>
       <Text className="text-text-secondary text-center mt-2">
-        Please check your connection and try again
+        Παρακαλώ ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά
       </Text>
     </View>
   );
@@ -301,13 +306,13 @@ function EmptyUI() {
   return (
     <View className="flex-1 bg-background">
       <View className="px-6 pt-16 pb-5">
-        <Text className="text-text-primary text-3xl font-bold tracking-tight">Cart</Text>
+        <Text className="text-text-primary text-3xl font-bold tracking-tight">Καλάθι</Text>
       </View>
       <View className="flex-1 items-center justify-center px-6">
         <Ionicons name="cart-outline" size={80} color="#666" />
-        <Text className="text-text-primary font-semibold text-xl mt-4">Your cart is empty</Text>
+        <Text className="text-text-primary font-semibold text-xl mt-4">Το καλάθι σας είναι άδειο</Text>
         <Text className="text-text-secondary text-center mt-2">
-          Add some products to get started
+          Προσθέστε προϊόντα για να ξεκινήσετε
         </Text>
       </View>
     </View>

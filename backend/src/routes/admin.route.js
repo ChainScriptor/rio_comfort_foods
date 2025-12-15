@@ -12,6 +12,7 @@ import {
   createCategory,
   updateCategory,
   deleteCategory,
+  getAllReviews,
 } from "../controllers/admin.controller.js";
 import { adminOnly, protectRoute } from "../middleware/auth.middleware.js";
 import { upload } from "../middleware/multer.middleware.js";
@@ -38,6 +39,9 @@ router.get("/categories", getAllCategories);
 router.post("/categories", upload.single("image"), createCategory);
 router.put("/categories/:id", upload.single("image"), updateCategory);
 router.delete("/categories/:id", deleteCategory);
+
+// Review routes
+router.get("/reviews", getAllReviews);
 
 // PUT: Used for full resource replacement, updating the entire resource
 // PATCH: Used for partial resource updates, updating a specific part of the resource

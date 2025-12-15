@@ -13,10 +13,10 @@ function WishlistScreen() {
   const { addToCart, isAddingToCart } = useCart();
 
   const handleRemoveFromWishlist = (productId: string, productName: string) => {
-    Alert.alert("Remove from wishlist", `Remove ${productName} from wishlist`, [
-      { text: "Cancel", style: "cancel" },
+    Alert.alert("Αφαίρεση από λίστα επιθυμιών", `Αφαίρεση ${productName} από τη λίστα επιθυμιών`, [
+      { text: "Ακύρωση", style: "cancel" },
       {
-        text: "Remove",
+        text: "Αφαίρεση",
         style: "destructive",
 
         onPress: () => removeFromWishlist(productId),
@@ -28,9 +28,9 @@ function WishlistScreen() {
     addToCart(
       { productId, quantity: 1 },
       {
-        onSuccess: () => Alert.alert("Success", `${productName} added to cart!`),
+        onSuccess: () => Alert.alert("Επιτυχία", `${productName} προστέθηκε στο καλάθι!`),
         onError: (error: any) => {
-          Alert.alert("Error", error?.response?.data?.error || "Failed to add to cart");
+          Alert.alert("Σφάλμα", error?.response?.data?.error || "Αποτυχία προσθήκης στο καλάθι");
         },
       }
     );
@@ -46,9 +46,9 @@ function WishlistScreen() {
         <TouchableOpacity onPress={() => router.back()} className="mr-4">
           <Ionicons name="arrow-back" size={28} color="#FFFFFF" />
         </TouchableOpacity>
-        <Text className="text-text-primary text-2xl font-bold">Wishlist</Text>
+        <Text className="text-text-primary text-2xl font-bold">Λίστα Επιθυμιών</Text>
         <Text className="text-text-secondary text-sm ml-auto">
-          {wishlist.length} {wishlist.length === 1 ? "item" : "items"}
+          {wishlist.length} {wishlist.length === 1 ? "προϊόν" : "προϊόντα"}
         </Text>
       </View>
 
@@ -56,17 +56,17 @@ function WishlistScreen() {
         <View className="flex-1 items-center justify-center px-6">
           <Ionicons name="heart-outline" size={80} color="#666" />
           <Text className="text-text-primary font-semibold text-xl mt-4">
-            Your wishlist is empty
+            Η λίστα επιθυμιών σας είναι άδεια
           </Text>
           <Text className="text-text-secondary text-center mt-2">
-            Start adding products you love!
+            Ξεκινήστε να προσθέτετε προϊόντα που αγαπάτε!
           </Text>
           <TouchableOpacity
             className="bg-primary rounded-2xl px-8 py-4 mt-6"
             activeOpacity={0.8}
             onPress={() => router.push("/(tabs)")}
           >
-            <Text className="text-background font-bold text-base">Browse Products</Text>
+            <Text className="text-background font-bold text-base">Περιήγηση Προϊόντων</Text>
           </TouchableOpacity>
         </View>
       ) : (
@@ -102,13 +102,13 @@ function WishlistScreen() {
                       <View className="flex-row items-center">
                         <View className="w-2 h-2 bg-primary rounded-full mr-2" />
                         <Text className="text-primary text-sm font-semibold">
-                          {item.stock} in stock
+                          {item.stock} σε απόθεμα
                         </Text>
                       </View>
                     ) : (
                       <View className="flex-row items-center">
                         <View className="w-2 h-2 bg-red-500 rounded-full mr-2" />
-                        <Text className="text-red-500 text-sm font-semibold">Out of Stock</Text>
+                        <Text className="text-red-500 text-sm font-semibold">Εκτός Αποθέματος</Text>
                       </View>
                     )}
                   </View>
@@ -133,7 +133,7 @@ function WishlistScreen() {
                       {isAddingToCart ? (
                         <ActivityIndicator size="small" color="#121212" />
                       ) : (
-                        <Text className="text-background font-bold">Add to Cart</Text>
+                        <Text className="text-background font-bold">Προσθήκη στο Καλάθι</Text>
                       )}
                     </TouchableOpacity>
                   </View>
@@ -155,11 +155,11 @@ function LoadingUI() {
         <TouchableOpacity onPress={() => router.back()} className="mr-4">
           <Ionicons name="arrow-back" size={28} color="#FFFFFF" />
         </TouchableOpacity>
-        <Text className="text-text-primary text-2xl font-bold">Wishlist</Text>
+        <Text className="text-text-primary text-2xl font-bold">Λίστα Επιθυμιών</Text>
       </View>
       <View className="flex-1 items-center justify-center">
         <ActivityIndicator size="large" color="#FFD700" />
-        <Text className="text-text-secondary mt-4">Loading wishlist...</Text>
+        <Text className="text-text-secondary mt-4">Φόρτωση λίστας επιθυμιών...</Text>
       </View>
     </SafeScreen>
   );
@@ -172,15 +172,15 @@ function ErrorUI() {
         <TouchableOpacity onPress={() => router.back()} className="mr-4">
           <Ionicons name="arrow-back" size={28} color="#fff" />
         </TouchableOpacity>
-        <Text className="text-text-primary text-2xl font-bold">Wishlist</Text>
+        <Text className="text-text-primary text-2xl font-bold">Λίστα Επιθυμιών</Text>
       </View>
       <View className="flex-1 items-center justify-center px-6">
         <Ionicons name="alert-circle-outline" size={64} color="#FF6B6B" />
         <Text className="text-text-primary font-semibold text-xl mt-4">
-          Failed to load wishlist
+          Αποτυχία φόρτωσης λίστας επιθυμιών
         </Text>
         <Text className="text-text-secondary text-center mt-2">
-          Please check your connection and try again
+          Παρακαλώ ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά
         </Text>
       </View>
     </SafeScreen>

@@ -64,9 +64,9 @@ function AddressesScreen() {
   };
 
   const handleDeleteAddress = (addressId: string, label: string) => {
-    Alert.alert("Delete Address", `Are you sure you want to delete ${label}`, [
-      { text: "Cancel", style: "cancel" },
-      { text: "Delete", style: "destructive", onPress: () => deleteAddress(addressId) },
+    Alert.alert("Διαγραφή Διεύθυνσης", `Είστε σίγουροι ότι θέλετε να διαγράψετε την ${label}`, [
+      { text: "Ακύρωση", style: "cancel" },
+      { text: "Διαγραφή", style: "destructive", onPress: () => deleteAddress(addressId) },
     ]);
   };
 
@@ -80,7 +80,7 @@ function AddressesScreen() {
       !addressForm.zipCode ||
       !addressForm.phoneNumber
     ) {
-      Alert.alert("Error", "Please fill in all fields");
+      Alert.alert("Σφάλμα", "Παρακαλώ συμπληρώστε όλα τα πεδία");
       return;
     }
 
@@ -95,10 +95,10 @@ function AddressesScreen() {
           onSuccess: () => {
             setShowAddressForm(false);
             setEditingAddressId(null);
-            Alert.alert("Success", "Address updated successfully");
+            Alert.alert("Επιτυχία", "Η διεύθυνση ενημερώθηκε επιτυχώς");
           },
           onError: (error: any) => {
-            Alert.alert("Error", error?.response?.data?.error || "Failed to update address");
+            Alert.alert("Σφάλμα", error?.response?.data?.error || "Αποτυχία ενημέρωσης διεύθυνσης");
           },
         }
       );
@@ -107,10 +107,10 @@ function AddressesScreen() {
       addAddress(addressForm, {
         onSuccess: () => {
           setShowAddressForm(false);
-          Alert.alert("Success", "Address added successfully");
+          Alert.alert("Επιτυχία", "Η διεύθυνση προστέθηκε επιτυχώς");
         },
         onError: (error: any) => {
-          Alert.alert("Error", error?.response?.data?.error || "Failed to add address");
+          Alert.alert("Σφάλμα", error?.response?.data?.error || "Αποτυχία προσθήκης διεύθυνσης");
         },
       });
     }
@@ -131,16 +131,16 @@ function AddressesScreen() {
       {addresses.length === 0 ? (
         <View className="flex-1 items-center justify-center px-6">
           <Ionicons name="location-outline" size={80} color="#666" />
-          <Text className="text-text-primary font-semibold text-xl mt-4">No addresses yet</Text>
+          <Text className="text-text-primary font-semibold text-xl mt-4">Δεν υπάρχουν διευθύνσεις ακόμα</Text>
           <Text className="text-text-secondary text-center mt-2">
-            Add your first delivery address
+            Προσθέστε την πρώτη σας διεύθυνση αποστολής
           </Text>
           <TouchableOpacity
             className="bg-primary rounded-2xl px-8 py-4 mt-6"
             activeOpacity={0.8}
             onPress={handleAddAddress}
           >
-            <Text className="text-background font-bold text-base">Add Address</Text>
+            <Text className="text-background font-bold text-base">Προσθήκη Διεύθυνσης</Text>
           </TouchableOpacity>
         </View>
       ) : (
@@ -168,7 +168,7 @@ function AddressesScreen() {
             >
               <View className="flex-row items-center">
                 <Ionicons name="add-circle-outline" size={24} color="#121212" />
-                <Text className="text-background font-bold text-base ml-2">Add New Address</Text>
+                <Text className="text-background font-bold text-base ml-2">Προσθήκη Νέας Διεύθυνσης</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -197,10 +197,10 @@ function ErrorUI() {
       <View className="flex-1 items-center justify-center px-6">
         <Ionicons name="alert-circle-outline" size={64} color="#FF6B6B" />
         <Text className="text-text-primary font-semibold text-xl mt-4">
-          Failed to load addresses
+          Αποτυχία φόρτωσης διευθύνσεων
         </Text>
         <Text className="text-text-secondary text-center mt-2">
-          Please check your connection and try again
+          Παρακαλώ ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά
         </Text>
       </View>
     </SafeScreen>
@@ -213,7 +213,7 @@ function LoadingUI() {
       <AddressesHeader />
       <View className="flex-1 items-center justify-center px-6">
         <ActivityIndicator size="large" color="#FFD700" />
-        <Text className="text-text-secondary mt-4">Loading addresses...</Text>
+        <Text className="text-text-secondary mt-4">Φόρτωση διευθύνσεων...</Text>
       </View>
     </SafeScreen>
   );

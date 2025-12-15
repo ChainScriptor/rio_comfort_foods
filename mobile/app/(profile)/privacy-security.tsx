@@ -25,23 +25,23 @@ function PrivacyAndSecurityScreen() {
     {
       id: "password",
       icon: "lock-closed-outline",
-      title: "Change Password",
-      description: "Update your account password",
+      title: "Αλλαγή Κωδικού",
+      description: "Ενημέρωση του κωδικού πρόσβασης του λογαριασμού σας",
       type: "navigation",
     },
     {
       id: "two-factor",
       icon: "shield-checkmark-outline",
-      title: "Two-Factor Authentication",
-      description: "Add an extra layer of security",
+      title: "Διπλή Επαλήθευση",
+      description: "Προσθήκη επιπλέον επιπέδου ασφάλειας",
       type: "toggle",
       value: twoFactorEnabled,
     },
     {
       id: "biometric",
       icon: "finger-print-outline",
-      title: "Biometric Login",
-      description: "Use Face ID or Touch ID",
+      title: "Βιομετρική Σύνδεση",
+      description: "Χρήση Face ID ή Touch ID",
       type: "toggle",
       value: biometricEnabled,
     },
@@ -51,16 +51,16 @@ function PrivacyAndSecurityScreen() {
     {
       id: "push",
       icon: "notifications-outline",
-      title: "Push Notifications",
-      description: "Receive push notifications",
+      title: "Push Ειδοποιήσεις",
+      description: "Λήψη push ειδοποιήσεων",
       type: "toggle",
       value: pushNotifications,
     },
     {
       id: "email",
       icon: "mail-outline",
-      title: "Email Notifications",
-      description: "Receive order updates via email",
+      title: "Email Ειδοποιήσεις",
+      description: "Λήψη ενημερώσεων παραγγελιών μέσω email",
       type: "toggle",
       value: emailNotifications,
     },
@@ -68,15 +68,15 @@ function PrivacyAndSecurityScreen() {
       id: "marketing",
       icon: "megaphone-outline",
       title: "Marketing Emails",
-      description: "Receive promotional emails",
+      description: "Λήψη προωθητικών emails",
       type: "toggle",
       value: marketingEmails,
     },
     {
       id: "data",
       icon: "analytics-outline",
-      title: "Share Usage Data",
-      description: "Help us improve the app",
+      title: "Κοινοποίηση Δεδομένων Χρήσης",
+      description: "Βοηθήστε μας να βελτιώσουμε την εφαρμογή",
       type: "toggle",
       value: shareData,
     },
@@ -86,20 +86,20 @@ function PrivacyAndSecurityScreen() {
     {
       id: "activity",
       icon: "time-outline",
-      title: "Account Activity",
-      description: "View recent login activity",
+      title: "Δραστηριότητα Λογαριασμού",
+      description: "Προβολή πρόσφατης δραστηριότητας σύνδεσης",
     },
     {
       id: "devices",
       icon: "phone-portrait-outline",
-      title: "Connected Devices",
-      description: "Manage devices with access",
+      title: "Συνδεδεμένες Συσκευές",
+      description: "Διαχείριση συσκευών με πρόσβαση",
     },
     {
       id: "data-download",
       icon: "download-outline",
-      title: "Download Your Data",
-      description: "Get a copy of your data",
+      title: "Λήψη Δεδομένων σας",
+      description: "Λάβετε ένα αντίγραφο των δεδομένων σας",
     },
   ];
 
@@ -133,7 +133,7 @@ function PrivacyAndSecurityScreen() {
         <TouchableOpacity onPress={() => router.back()} className="mr-4">
           <Ionicons name="arrow-back" size={28} color="#fff" />
         </TouchableOpacity>
-        <Text className="text-text-primary text-2xl font-bold">Privacy & Security</Text>
+        <Text className="text-text-primary text-2xl font-bold">Απόρρητο & Ασφάλεια</Text>
       </View>
 
       <ScrollView
@@ -143,7 +143,7 @@ function PrivacyAndSecurityScreen() {
       >
         {/* SECURITY SETTING */}
         <View className="px-6 pt-6">
-          <Text className="text-text-primary text-lg font-bold mb-4">Security</Text>
+          <Text className="text-text-primary text-lg font-bold mb-4">Ασφάλεια</Text>
 
           {securitySettings.map((setting) => (
             <TouchableOpacity
@@ -182,7 +182,7 @@ function PrivacyAndSecurityScreen() {
 
         {/* Privacy Section */}
         <View className="px-6 pt-4">
-          <Text className="text-text-primary text-lg font-bold mb-4">Privacy</Text>
+          <Text className="text-text-primary text-lg font-bold mb-4">Απόρρητο</Text>
 
           {privacySettings.map((setting) => (
             <View key={setting.id}>
@@ -211,7 +211,7 @@ function PrivacyAndSecurityScreen() {
 
         {/* ACCOUNT SECTION */}
         <View className="px-6 pt-4">
-          <Text className="text-text-primary text-lg font-bold mb-4">Account</Text>
+          <Text className="text-text-primary text-lg font-bold mb-4">Λογαριασμός</Text>
 
           {accountSettings.map((setting) => (
             <TouchableOpacity
@@ -246,8 +246,8 @@ function PrivacyAndSecurityScreen() {
                 <Ionicons name="trash-outline" size={24} color="#EF4444" />
               </View>
               <View>
-                <Text className="text-red-500 font-bold text-base mb-1">Delete Account</Text>
-                <Text className="text-text-secondary text-sm">Permanently delete your account</Text>
+                <Text className="text-red-500 font-bold text-base mb-1">Διαγραφή Λογαριασμού</Text>
+                <Text className="text-text-secondary text-sm">Οριστική διαγραφή του λογαριασμού σας</Text>
               </View>
             </View>
             <Ionicons name="chevron-forward" size={20} color="#EF4444" />
@@ -259,8 +259,7 @@ function PrivacyAndSecurityScreen() {
           <View className="bg-primary/10 rounded-2xl p-4 flex-row">
             <Ionicons name="information-circle-outline" size={24} color="#FFD700" />
             <Text className="text-text-secondary text-sm ml-3 flex-1">
-              We take your privacy seriously. Your data is encrypted and stored securely. You can
-              manage your privacy settings at any time.
+              Παίρνουμε το απόρρητό σας σοβαρά. Τα δεδομένα σας είναι κρυπτογραφημένα και αποθηκευμένα με ασφάλεια. Μπορείτε να διαχειριστείτε τις ρυθμίσεις απορρήτου σας ανά πάσα στιγμή.
             </Text>
           </View>
         </View>

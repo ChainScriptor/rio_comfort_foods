@@ -25,8 +25,10 @@ function OrdersScreen() {
     // init ratings for all product to 0 - resettin the state for each product
     const initialRatings: { [key: string]: number } = {};
     order.orderItems.forEach((item) => {
-      const productId = item.product._id;
-      initialRatings[productId] = 0;
+      if (item.product && item.product._id) {
+        const productId = item.product._id;
+        initialRatings[productId] = 0;
+      }
     });
     setProductRatings(initialRatings);
   };
@@ -37,27 +39,30 @@ function OrdersScreen() {
     // check if all products have been rated
     const allRated = Object.values(productRatings).every((rating) => rating > 0);
     if (!allRated) {
-      Alert.alert("Error", "Please rate all products");
+      Alert.alert("Σφάλμα", "Παρακαλώ αξιολογήστε όλα τα προϊόντα");
       return;
     }
 
     try {
       await Promise.all(
-        selectedOrder.orderItems.map((item) => {
-          createReviewAsync({
-            productId: item.product._id,
-            orderId: selectedOrder._id,
-            rating: productRatings[item.product._id],
-          });
-        })
+        selectedOrder.orderItems
+          .filter((item) => item.product && item.product._id)
+          .map((item) => {
+            const productId = item.product!._id;
+            createReviewAsync({
+              productId: productId,
+              orderId: selectedOrder._id,
+              rating: productRatings[productId],
+            });
+          })
       );
 
-      Alert.alert("Success", "Thank you for rating all products!");
+      Alert.alert("Επιτυχία", "Ευχαριστούμε για την αξιολόγηση όλων των προϊόντων!");
       setShowRatingModal(false);
       setSelectedOrder(null);
       setProductRatings({});
     } catch (error: any) {
-      Alert.alert("Error", error?.response?.data?.error || "Failed to submit rating");
+      Alert.alert("Σφάλμα", error?.response?.data?.error || "Αποτυχία υποβολής αξιολόγησης");
     }
   };
 
@@ -68,7 +73,7 @@ function OrdersScreen() {
         <TouchableOpacity onPress={() => router.back()} className="mr-4">
           <Ionicons name="arrow-back" size={28} color="#FFFFFF" />
         </TouchableOpacity>
-        <Text className="text-text-primary text-2xl font-bold">My Orders</Text>
+        <Text className="text-text-primary text-2xl font-bold">Οι Παραγγελίες Μου</Text>
       </View>
 
       {isLoading ? (
@@ -110,7 +115,7 @@ function OrdersScreen() {
 
                     <View className="flex-1 ml-4">
                       <Text className="text-text-primary font-bold text-base mb-1">
-                        Order #{order._id.slice(-8).toUpperCase()}
+                        Παραγγελία #{order._id.slice(-8).toUpperCase()}
                       </Text>
                       <Text className="text-text-secondary text-sm mb-2">
                         {formatDate(order.createdAt)}
@@ -142,7 +147,7 @@ function OrdersScreen() {
 
                   <View className="border-t border-background-lighter pt-3 flex-row justify-between items-center">
                     <View>
-                      <Text className="text-text-secondary text-xs mb-1">{totalItems} items</Text>
+                      <Text className="text-text-secondary text-xs mb-1">{totalItems} {totalItems === 1 ? "προϊόν" : "προϊόντα"}</Text>
                       <Text className="text-primary font-bold text-xl">
                         ${order.totalPrice.toFixed(2)}
                       </Text>
@@ -152,7 +157,7 @@ function OrdersScreen() {
                       (order.hasReviewed ? (
                         <View className="bg-primary/20 px-5 py-3 rounded-full flex-row items-center">
                           <Ionicons name="checkmark-circle" size={18} color="#FFD700" />
-                          <Text className="text-primary font-bold text-sm ml-2">Reviewed</Text>
+                          <Text className="text-primary font-bold text-sm ml-2">Αξιολογημένο</Text>
                         </View>
                       ) : (
                         <TouchableOpacity
@@ -162,7 +167,7 @@ function OrdersScreen() {
                         >
                           <Ionicons name="star" size={18} color="#121212" />
                           <Text className="text-background font-bold text-sm ml-2">
-                            Leave Rating
+                            Αξιολόγηση
                           </Text>
                         </TouchableOpacity>
                       ))}
@@ -194,7 +199,7 @@ function LoadingUI() {
   return (
     <View className="flex-1 items-center justify-center">
       <ActivityIndicator size="large" color="#FFD700" />
-      <Text className="text-text-secondary mt-4">Loading orders...</Text>
+      <Text className="text-text-secondary mt-4">Φόρτωση παραγγελιών...</Text>
     </View>
   );
 }
@@ -203,9 +208,9 @@ function ErrorUI() {
   return (
     <View className="flex-1 items-center justify-center px-6">
       <Ionicons name="alert-circle-outline" size={64} color="#FF6B6B" />
-      <Text className="text-text-primary font-semibold text-xl mt-4">Failed to load orders</Text>
+      <Text className="text-text-primary font-semibold text-xl mt-4">Αποτυχία φόρτωσης παραγγελιών</Text>
       <Text className="text-text-secondary text-center mt-2">
-        Please check your connection and try again
+        Παρακαλώ ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά
       </Text>
     </View>
   );
@@ -215,9 +220,9 @@ function EmptyUI() {
   return (
     <View className="flex-1 items-center justify-center px-6">
       <Ionicons name="receipt-outline" size={80} color="#666" />
-      <Text className="text-text-primary font-semibold text-xl mt-4">No orders yet</Text>
+      <Text className="text-text-primary font-semibold text-xl mt-4">Δεν υπάρχουν παραγγελίες ακόμα</Text>
       <Text className="text-text-secondary text-center mt-2">
-        Your order history will appear here
+        Το ιστορικό των παραγγελιών σας θα εμφανιστεί εδώ
       </Text>
     </View>
   );

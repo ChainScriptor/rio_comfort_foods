@@ -7,10 +7,10 @@ import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 
 const MENU_ITEMS = [
-  { id: 1, icon: "person-outline", title: "Edit Profile", color: "#3B82F6", action: "/profile" },
-  { id: 2, icon: "list-outline", title: "Orders", color: "#10B981", action: "/orders" },
-  { id: 3, icon: "location-outline", title: "Addresses", color: "#F59E0B", action: "/addresses" },
-  { id: 4, icon: "heart-outline", title: "Wishlist", color: "#EF4444", action: "/wishlist" },
+  { id: 1, icon: "person-outline", title: "Επεξεργασία Προφίλ", color: "#3B82F6", action: "/profile" },
+  { id: 2, icon: "list-outline", title: "Παραγγελίες", color: "#10B981", action: "/orders" },
+  { id: 3, icon: "location-outline", title: "Διευθύνσεις", color: "#F59E0B", action: "/addresses" },
+  { id: 4, icon: "heart-outline", title: "Λίστα Επιθυμιών", color: "#EF4444", action: "/wishlist" },
 ] as const;
 
 const ProfileScreen = () => {
@@ -49,7 +49,7 @@ const ProfileScreen = () => {
                   {user?.firstName} {user?.lastName}
                 </Text>
                 <Text className="text-text-secondary text-sm">
-                  {user?.emailAddresses?.[0]?.emailAddress || "No email"}
+                  {user?.emailAddresses?.[0]?.emailAddress || "Χωρίς email"}
                 </Text>
               </View>
             </View>
@@ -85,7 +85,7 @@ const ProfileScreen = () => {
           >
             <View className="flex-row items-center">
               <Ionicons name="notifications-outline" size={22} color="#FFFFFF" />
-              <Text className="text-text-primary font-semibold ml-3">Notifications</Text>
+              <Text className="text-text-primary font-semibold ml-3">Ειδοποιήσεις</Text>
             </View>
             <Ionicons name="chevron-forward" size={20} color="#666" />
           </TouchableOpacity>
@@ -100,7 +100,7 @@ const ProfileScreen = () => {
           >
             <View className="flex-row items-center">
               <Ionicons name="shield-checkmark-outline" size={22} color="#FFFFFF" />
-              <Text className="text-text-primary font-semibold ml-3">Privacy & Security</Text>
+              <Text className="text-text-primary font-semibold ml-3">Απόρρητο & Ασφάλεια</Text>
             </View>
             <Ionicons name="chevron-forward" size={20} color="#666" />
           </TouchableOpacity>
@@ -113,7 +113,7 @@ const ProfileScreen = () => {
           onPress={() => signOut()}
         >
           <Ionicons name="log-out-outline" size={22} color="#EF4444" />
-          <Text className="text-red-500 font-bold text-base ml-2">Sign Out</Text>
+          <Text className="text-red-500 font-bold text-base ml-2">Αποσύνδεση</Text>
         </TouchableOpacity>
 
         <Text className="mx-6 mb-3 text-center text-text-secondary text-xs">Version 1.0.0</Text>

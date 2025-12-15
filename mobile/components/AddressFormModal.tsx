@@ -55,7 +55,7 @@ const AddressFormModal = ({
           {/* HEADER */}
           <View className="px-6 py-5 border-b border-surface flex-row items-center justify-between">
             <Text className="text-text-primary text-2xl font-bold">
-              {isEditing ? "Edit Address" : "Add New Address"}
+              {isEditing ? "Επεξεργασία Διεύθυνσης" : "Προσθήκη Νέας Διεύθυνσης"}
             </Text>
             <TouchableOpacity onPress={onClose}>
               <Ionicons name="close" size={28} color="#FFFFFF" />
@@ -70,10 +70,10 @@ const AddressFormModal = ({
             <View className="p-6">
               {/* LABEL INPUT */}
               <View className="mb-5">
-                <Text className="text-text-primary font-semibold mb-2">Label</Text>
+                <Text className="text-text-primary font-semibold mb-2">Ετικέτα</Text>
                 <TextInput
                   className="bg-surface text-text-primary p-4 rounded-2xl text-base"
-                  placeholder="e.g., Home, Work, Office"
+                  placeholder="π.χ., Σπίτι, Εργασία, Γραφείο"
                   placeholderTextColor="#666"
                   value={addressForm.label}
                   onChangeText={(text) => onFormChange({ ...addressForm, label: text })}
@@ -82,10 +82,10 @@ const AddressFormModal = ({
 
               {/* NAME INPUT */}
               <View className="mb-5">
-                <Text className="text-text-primary font-semibold mb-2">Full Name</Text>
+                <Text className="text-text-primary font-semibold mb-2">Πλήρες Όνομα</Text>
                 <TextInput
                   className="bg-surface text-text-primary px-4 py-4 rounded-2xl text-base"
-                  placeholder="Enter your full name"
+                  placeholder="Εισάγετε το πλήρες όνομά σας"
                   placeholderTextColor="#666"
                   value={addressForm.fullName}
                   onChangeText={(text) => onFormChange({ ...addressForm, fullName: text })}
@@ -94,10 +94,10 @@ const AddressFormModal = ({
 
               {/* Address Input */}
               <View className="mb-5">
-                <Text className="text-text-primary font-semibold mb-2">Street Address</Text>
+                <Text className="text-text-primary font-semibold mb-2">Οδός</Text>
                 <TextInput
                   className="bg-surface text-text-primary px-4 py-4 rounded-2xl text-base"
-                  placeholder="Street address, apt/suite number"
+                  placeholder="Οδός, αριθμός, όροφος"
                   placeholderTextColor="#666"
                   value={addressForm.streetAddress}
                   onChangeText={(text) => onFormChange({ ...addressForm, streetAddress: text })}
@@ -107,10 +107,10 @@ const AddressFormModal = ({
 
               {/* City Input */}
               <View className="mb-5">
-                <Text className="text-text-primary font-semibold mb-2">City</Text>
+                <Text className="text-text-primary font-semibold mb-2">Πόλη</Text>
                 <TextInput
                   className="bg-surface text-text-primary px-4 py-4 rounded-2xl text-base"
-                  placeholder="e.g., New York"
+                  placeholder="π.χ., Αθήνα"
                   placeholderTextColor="#666"
                   value={addressForm.city}
                   onChangeText={(text) => onFormChange({ ...addressForm, city: text })}
@@ -119,10 +119,10 @@ const AddressFormModal = ({
 
               {/* State Input */}
               <View className="mb-5">
-                <Text className="text-text-primary font-semibold mb-2">State</Text>
+                <Text className="text-text-primary font-semibold mb-2">Νομός</Text>
                 <TextInput
                   className="bg-surface text-text-primary px-4 py-4 rounded-2xl text-base"
-                  placeholder="e.g., NY"
+                  placeholder="π.χ., Αττική"
                   placeholderTextColor="#666"
                   value={addressForm.state}
                   onChangeText={(text) => onFormChange({ ...addressForm, state: text })}
@@ -131,10 +131,10 @@ const AddressFormModal = ({
 
               {/* ZIP Code Input */}
               <View className="mb-5">
-                <Text className="text-text-primary font-semibold mb-2">ZIP Code</Text>
+                <Text className="text-text-primary font-semibold mb-2">Ταχυδρομικός Κώδικας</Text>
                 <TextInput
                   className="bg-surface text-text-primary px-4 py-4 rounded-2xl text-base"
-                  placeholder="e.g., 10001"
+                  placeholder="π.χ., 10431"
                   placeholderTextColor="#666"
                   value={addressForm.zipCode}
                   onChangeText={(text) => onFormChange({ ...addressForm, zipCode: text })}
@@ -144,10 +144,10 @@ const AddressFormModal = ({
 
               {/* Phone Input */}
               <View className="mb-5">
-                <Text className="text-text-primary font-semibold mb-2">Phone Number</Text>
+                <Text className="text-text-primary font-semibold mb-2">Τηλέφωνο</Text>
                 <TextInput
                   className="bg-surface text-text-primary px-4 py-4 rounded-2xl text-base"
-                  placeholder="+1 (555) 123-4567"
+                  placeholder="π.χ., 2101234567"
                   placeholderTextColor="#666"
                   value={addressForm.phoneNumber}
                   onChangeText={(text) => onFormChange({ ...addressForm, phoneNumber: text })}
@@ -157,7 +157,7 @@ const AddressFormModal = ({
 
               {/* Default Address Toggle */}
               <View className="bg-surface rounded-2xl p-4 flex-row items-center justify-between mb-6">
-                <Text className="text-text-primary font-semibold">Set as default address</Text>
+                <Text className="text-text-primary font-semibold">Ορισμός ως προεπιλεγμένη διεύθυνση</Text>
                 <Switch
                   value={addressForm.isDefault}
                   onValueChange={(value) => onFormChange({ ...addressForm, isDefault: value })}
@@ -176,7 +176,7 @@ const AddressFormModal = ({
                   <ActivityIndicator size="small" color="#121212" />
                 ) : (
                   <Text className="text-background font-bold text-lg">
-                    {isEditing ? "Save Changes" : "Add Address"}
+                    {isEditing ? "Αποθήκευση Αλλαγών" : "Προσθήκη Διεύθυνσης"}
                   </Text>
                 )}
               </TouchableOpacity>

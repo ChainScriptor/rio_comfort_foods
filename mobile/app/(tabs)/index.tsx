@@ -9,7 +9,7 @@ import { View, Text, ScrollView, TouchableOpacity, TextInput, Image, ActivityInd
 
 const ShopScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState("Όλα");
 
   const { data: products, isLoading, isError } = useProducts();
   const { data: categories = [], isLoading: categoriesLoading, isError: categoriesError, error: categoriesErrorDetails } = useCategories();
@@ -26,7 +26,7 @@ const ShopScreen = () => {
 
   // Build categories list with "All" option
   const displayCategories = useMemo(() => {
-    const allOption = { name: "All", icon: "grid-outline" as const };
+    const allOption = { name: "Όλα", icon: "grid-outline" as const };
     const categoryOptions = categories.map((cat) => ({
       name: cat.name,
       icon: cat.icon,
@@ -41,7 +41,7 @@ const ShopScreen = () => {
     let filtered = products;
 
     // filtering by category
-    if (selectedCategory !== "All") {
+    if (selectedCategory !== "Όλα") {
       filtered = filtered.filter((product) => product.category === selectedCategory);
     }
 
@@ -66,8 +66,8 @@ const ShopScreen = () => {
         <View className="px-6 pb-4 pt-6">
           <View className="flex-row items-center justify-between mb-6">
             <View>
-              <Text className="text-text-primary text-3xl font-bold tracking-tight">Shop</Text>
-              <Text className="text-text-secondary text-sm mt-1">Browse all products</Text>
+              <Text className="text-text-primary text-3xl font-bold tracking-tight">Κατάστημα</Text>
+              <Text className="text-text-secondary text-sm mt-1">Περιήγηση σε όλα τα προϊόντα</Text>
             </View>
 
             <TouchableOpacity className="bg-surface/50 p-3 rounded-full" activeOpacity={0.7}>
@@ -79,7 +79,7 @@ const ShopScreen = () => {
           <View className="bg-surface flex-row items-center px-5 py-4 rounded-2xl">
             <Ionicons color={"#666"} size={22} name="search" />
             <TextInput
-              placeholder="Search for products"
+              placeholder="Αναζήτηση προϊόντων"
               placeholderTextColor={"#666"}
               className="flex-1 ml-3 text-base text-text-primary"
               value={searchQuery}
@@ -97,18 +97,18 @@ const ShopScreen = () => {
           ) : categoriesError ? (
             <View className="px-6 py-4 items-center">
               <Text className="text-text-secondary text-sm mb-2">
-                Failed to load categories
+                Αποτυχία φόρτωσης κατηγοριών
               </Text>
               {categoriesErrorDetails?.response?.status === 500 && (
                 <Text className="text-text-tertiary text-xs text-center">
-                  Server error. Please try again later.
+                  Σφάλμα διακομιστή. Παρακαλώ δοκιμάστε ξανά αργότερα.
                 </Text>
               )}
             </View>
           ) : displayCategories.length === 1 ? (
             <View className="px-6 py-4 items-center">
               <Text className="text-text-secondary text-sm">
-                No categories available
+                Δεν υπάρχουν διαθέσιμες κατηγορίες
               </Text>
             </View>
           ) : (
@@ -119,7 +119,7 @@ const ShopScreen = () => {
             >
               {displayCategories.map((category) => {
                 const isSelected = selectedCategory === category.name;
-                const isAllOption = category.name === "All";
+                const isAllOption = category.name === "Όλα";
                 return (
                   <TouchableOpacity
                     key={category.name}
@@ -161,8 +161,8 @@ const ShopScreen = () => {
 
         <View className="px-6 mb-6">
           <View className="flex-row items-center justify-between mb-4">
-            <Text className="text-text-primary text-lg font-bold">Products</Text>
-            <Text className="text-text-secondary text-sm">{filteredProducts.length} items</Text>
+            <Text className="text-text-primary text-lg font-bold">Προϊόντα</Text>
+            <Text className="text-text-secondary text-sm">{filteredProducts.length} {filteredProducts.length === 1 ? "προϊόν" : "προϊόντα"}</Text>
           </View>
 
           {/* PRODUCTS GRID */}

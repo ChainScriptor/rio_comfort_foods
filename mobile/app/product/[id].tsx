@@ -5,7 +5,7 @@ import useWishlist from "@/hooks/useWishlist";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { router, useLocalSearchParams } from "expo-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -28,15 +28,34 @@ const ProductDetailScreen = () => {
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [selectedUnitOption, setSelectedUnitOption] = useState<string | null>(null);
+
+  // Initialize selectedUnitOption when product loads
+  useEffect(() => {
+    if (product?.unitOptions && product.unitOptions.length > 0 && !selectedUnitOption) {
+      setSelectedUnitOption(product.unitOptions[0]);
+    }
+  }, [product]);
 
   const handleAddToCart = () => {
     if (!product) return;
+    
+    // If product has unit options and none is selected, show alert
+    if (product.unitOptions && product.unitOptions.length > 0 && !selectedUnitOption) {
+      Alert.alert("Επιλογή Απαιτείται", "Παρακαλώ επιλέξτε μια επιλογή μονάδας");
+      return;
+    }
+    
     addToCart(
-      { productId: product._id, quantity },
+      { 
+        productId: product._id, 
+        quantity,
+        selectedUnit: selectedUnitOption || undefined,
+      },
       {
-        onSuccess: () => Alert.alert("Success", `${product.name} added to cart!`),
+        onSuccess: () => Alert.alert("Επιτυχία", `${product.name} προστέθηκε στο καλάθι!`),
         onError: (error: any) => {
-          Alert.alert("Error", error?.response?.data?.error || "Failed to add to cart");
+          Alert.alert("Σφάλμα", error?.response?.data?.error || "Αποτυχία προσθήκης στο καλάθι");
         },
       }
     );
@@ -134,19 +153,19 @@ const ProductDetailScreen = () => {
               <Text className="text-text-primary font-bold ml-1 mr-2">
                 {product.averageRating.toFixed(1)}
               </Text>
-              <Text className="text-text-secondary text-sm">({product.totalReviews} reviews)</Text>
+              <Text className="text-text-secondary text-sm">({product.totalReviews} {product.totalReviews === 1 ? "αξιολόγηση" : "αξιολογήσεις"})</Text>
             </View>
             {inStock ? (
               <View className="ml-3 flex-row items-center">
                 <View className="w-2 h-2 bg-primary rounded-full mr-2" />
                 <Text className="text-primary font-semibold text-sm">
-                  {product.stock} in stock
+                  {product.stock} σε απόθεμα
                 </Text>
               </View>
             ) : (
               <View className="ml-3 flex-row items-center">
                 <View className="w-2 h-2 bg-red-500 rounded-full mr-2" />
-                <Text className="text-red-500 font-semibold text-sm">Out of Stock</Text>
+                <Text className="text-red-500 font-semibold text-sm">Εκτός Αποθέματος</Text>
               </View>
             )}
           </View>
@@ -156,9 +175,40 @@ const ProductDetailScreen = () => {
             <Text className="text-primary text-4xl font-bold">${product.price.toFixed(2)}</Text>
           </View>
 
+          {/* Unit Options (if not pieces) */}
+          {product.unitOptions && product.unitOptions.length > 0 && (
+            <View className="mb-6">
+              <Text className="text-text-primary text-lg font-bold mb-3">
+                Επιλογή {product.unitType === "kg" ? "Κιλών" : product.unitType === "liters" ? "Λίτρων" : ""}
+              </Text>
+              <View className="flex-row flex-wrap gap-3">
+                {product.unitOptions.map((option, index) => (
+                  <TouchableOpacity
+                    key={index}
+                    className={`px-4 py-3 rounded-xl border-2 ${
+                      selectedUnitOption === option
+                        ? "border-primary bg-primary/20"
+                        : "border-surface bg-surface"
+                    }`}
+                    onPress={() => setSelectedUnitOption(option)}
+                    activeOpacity={0.7}
+                  >
+                    <Text
+                      className={`font-semibold ${
+                        selectedUnitOption === option ? "text-primary" : "text-text-primary"
+                      }`}
+                    >
+                      {option}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            </View>
+          )}
+
           {/* Quantity */}
           <View className="mb-6">
-            <Text className="text-text-primary text-lg font-bold mb-3">Quantity</Text>
+            <Text className="text-text-primary text-lg font-bold mb-3">Ποσότητα</Text>
 
             <View className="flex-row items-center">
               <TouchableOpacity
@@ -187,13 +237,13 @@ const ProductDetailScreen = () => {
             </View>
 
             {quantity >= product.stock && inStock && (
-              <Text className="text-orange-500 text-sm mt-2">Maximum stock reached</Text>
+              <Text className="text-orange-500 text-sm mt-2">Επιτεύχθηκε το μέγιστο απόθεμα</Text>
             )}
           </View>
 
           {/* Description */}
           <View className="mb-8">
-            <Text className="text-text-primary text-lg font-bold mb-3">Description</Text>
+            <Text className="text-text-primary text-lg font-bold mb-3">Περιγραφή</Text>
             <Text className="text-text-secondary text-base leading-6">{product.description}</Text>
           </View>
         </View>
@@ -203,7 +253,7 @@ const ProductDetailScreen = () => {
       <View className="absolute bottom-0 left-0 right-0 bg-background/95 backdrop-blur-xl border-t border-surface px-6 py-4 pb-8">
         <View className="flex-row items-center gap-3">
           <View className="flex-1">
-            <Text className="text-text-secondary text-sm mb-1">Total Price</Text>
+            <Text className="text-text-secondary text-sm mb-1">Συνολική Τιμή</Text>
             <Text className="text-primary text-2xl font-bold">
               ${(product.price * quantity).toFixed(2)}
             </Text>
@@ -226,7 +276,7 @@ const ProductDetailScreen = () => {
                     !inStock ? "text-text-secondary" : "text-background"
                   }`}
                 >
-                  {!inStock ? "Out of Stock" : "Add to Cart"}
+                  {!inStock ? "Εκτός Αποθέματος" : "Προσθήκη στο Καλάθι"}
                 </Text>
               </>
             )}
@@ -244,15 +294,15 @@ function ErrorUI() {
     <SafeScreen>
       <View className="flex-1 items-center justify-center px-6">
         <Ionicons name="alert-circle-outline" size={64} color="#FF6B6B" />
-        <Text className="text-text-primary font-semibold text-xl mt-4">Product not found</Text>
+        <Text className="text-text-primary font-semibold text-xl mt-4">Το προϊόν δεν βρέθηκε</Text>
         <Text className="text-text-secondary text-center mt-2">
-          This product may have been removed or doesn&apos;t exist
+          Το προϊόν μπορεί να έχει αφαιρεθεί ή να μην υπάρχει
         </Text>
         <TouchableOpacity
           className="bg-primary rounded-2xl px-6 py-3 mt-6"
           onPress={() => router.back()}
         >
-          <Text className="text-background font-bold">Go Back</Text>
+          <Text className="text-background font-bold">Επιστροφή</Text>
         </TouchableOpacity>
       </View>
     </SafeScreen>
@@ -264,7 +314,7 @@ function LoadingUI() {
     <SafeScreen>
       <View className="flex-1 items-center justify-center">
         <ActivityIndicator size="large" color="#FFD700" />
-        <Text className="text-text-secondary mt-4">Loading product...</Text>
+        <Text className="text-text-secondary mt-4">Φόρτωση προϊόντος...</Text>
       </View>
     </SafeScreen>
   );

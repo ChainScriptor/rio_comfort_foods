@@ -8,6 +8,7 @@ import {
   ShoppingBagIcon,
   UsersIcon,
   TagIcon,
+  StarIcon,
 } from "lucide-react";
 
 // eslint-disable-next-line
@@ -17,6 +18,7 @@ export const NAVIGATION = [
   { name: "Categories", path: "/categories", icon: <TagIcon className="size-5" /> },
   { name: "Orders", path: "/orders", icon: <ClipboardListIcon className="size-5" /> },
   { name: "Customers", path: "/customers", icon: <UsersIcon className="size-5" /> },
+  { name: "Reviews", path: "/reviews", icon: <StarIcon className="size-5" /> },
 ];
 
 function Navbar() {
