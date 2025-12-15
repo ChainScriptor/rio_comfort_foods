@@ -3,7 +3,6 @@ import { useAddresses } from "@/hooks/useAddressess";
 import useCart from "@/hooks/useCart";
 import { useApi } from "@/lib/api";
 import { ActivityIndicator, Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
-import { useStripe } from "@stripe/stripe-react-native";
 import { useState } from "react";
 import { Address } from "@/types";
 import { Ionicons } from "@expo/vector-icons";
@@ -29,9 +28,7 @@ const CartScreen = () => {
   } = useCart();
   const { addresses } = useAddresses();
 
-  const { initPaymentSheet, presentPaymentSheet } = useStripe();
-
-  const [paymentLoading, setPaymentLoading] = useState(false);
+  const [orderLoading, setOrderLoading] = useState(false);
   const [addressModalVisible, setAddressModalVisible] = useState(false);
 
   const cartItems = cart?.items || [];
@@ -74,10 +71,10 @@ const CartScreen = () => {
     setAddressModalVisible(true);
   };
 
-  const handleProceedWithPayment = async (selectedAddress: Address) => {
+  const handleProceedWithOrder = async (selectedAddress: Address) => {
     setAddressModalVisible(false);
 
-    // log chechkout initiated
+    // log checkout initiated
     Sentry.logger.info("Checkout initiated", {
       itemCount: cartItemCount,
       total: total.toFixed(2),
@@ -85,11 +82,20 @@ const CartScreen = () => {
     });
 
     try {
-      setPaymentLoading(true);
+      setOrderLoading(true);
 
-      // create payment intent with cart items and shipping address
-      const { data } = await api.post("/payment/create-intent", {
-        cartItems,
+      // Prepare order items from cart
+      const orderItems = cartItems.map((item) => ({
+        product: item.product._id,
+        name: item.product.name,
+        price: item.product.price,
+        quantity: item.quantity,
+        image: item.product.images[0],
+      }));
+
+      // Create order directly without payment
+      await api.post("/orders", {
+        orderItems,
         shippingAddress: {
           fullName: selectedAddress.fullName,
           streetAddress: selectedAddress.streetAddress,
@@ -98,59 +104,29 @@ const CartScreen = () => {
           zipCode: selectedAddress.zipCode,
           phoneNumber: selectedAddress.phoneNumber,
         },
+        totalPrice: total,
       });
 
-      const { error: initError } = await initPaymentSheet({
-        paymentIntentClientSecret: data.clientSecret,
-        merchantDisplayName: "Your Store Name",
+      Sentry.logger.info("Order created successfully", {
+        total: total.toFixed(2),
+        itemCount: cartItems.length,
       });
 
-      if (initError) {
-        Sentry.logger.error("Payment sheet init failed", {
-          errorCode: initError.code,
-          errorMessage: initError.message,
-          cartTotal: total,
-          itemCount: cartItems.length,
-        });
-
-        Alert.alert("Error", initError.message);
-        setPaymentLoading(false);
-        return;
-      }
-
-      // present payment sheet
-      const { error: presentError } = await presentPaymentSheet();
-
-      if (presentError) {
-        Sentry.logger.error("Payment cancelled", {
-          errorCode: presentError.code,
-          errorMessage: presentError.message,
-          cartTotal: total,
-          itemCount: cartItems.length,
-        });
-
-        Alert.alert("Payment cancelled", presentError.message);
-      } else {
-        Sentry.logger.info("Payment successful", {
-          total: total.toFixed(2),
-          itemCount: cartItems.length,
-        });
-
-        Alert.alert("Success", "Your payment was successful! Your order is being processed.", [
-          { text: "OK", onPress: () => {} },
-        ]);
-        clearCart();
-      }
-    } catch (error) {
-      Sentry.logger.error("Payment failed", {
+      Alert.alert("Success", "Your order has been placed! The admin will process it soon.", [
+        { text: "OK", onPress: () => {} },
+      ]);
+      clearCart();
+    } catch (error: any) {
+      Sentry.logger.error("Order creation failed", {
         error: error instanceof Error ? error.message : "Unknown error",
         cartTotal: total,
         itemCount: cartItems.length,
       });
 
-      Alert.alert("Error", "Failed to process payment");
+      const errorMessage = error.response?.data?.error || "Failed to create order";
+      Alert.alert("Error", errorMessage);
     } finally {
-      setPaymentLoading(false);
+      setOrderLoading(false);
     }
   };
 
@@ -258,7 +234,7 @@ const CartScreen = () => {
         {/* Quick Stats */}
         <View className="flex-row items-center justify-between mb-4">
           <View className="flex-row items-center">
-            <Ionicons name="cart" size={20} color="#1DB954" />
+            <Ionicons name="cart" size={20} color="#FFD700" />
             <Text className="text-text-secondary ml-2">
               {cartItemCount} {cartItemCount === 1 ? "item" : "items"}
             </Text>
@@ -273,14 +249,14 @@ const CartScreen = () => {
           className="bg-primary rounded-2xl overflow-hidden"
           activeOpacity={0.9}
           onPress={handleCheckout}
-          disabled={paymentLoading}
+          disabled={orderLoading}
         >
           <View className="py-5 flex-row items-center justify-center">
-            {paymentLoading ? (
+            {orderLoading ? (
               <ActivityIndicator size="small" color="#121212" />
             ) : (
               <>
-                <Text className="text-background font-bold text-lg mr-2">Checkout</Text>
+                <Text className="text-background font-bold text-lg mr-2">Place Order</Text>
                 <Ionicons name="arrow-forward" size={20} color="#121212" />
               </>
             )}
@@ -291,8 +267,8 @@ const CartScreen = () => {
       <AddressSelectionModal
         visible={addressModalVisible}
         onClose={() => setAddressModalVisible(false)}
-        onProceed={handleProceedWithPayment}
-        isProcessing={paymentLoading}
+        onProceed={handleProceedWithOrder}
+        isProcessing={orderLoading}
       />
     </SafeScreen>
   );
@@ -303,7 +279,7 @@ export default CartScreen;
 function LoadingUI() {
   return (
     <View className="flex-1 bg-background items-center justify-center">
-      <ActivityIndicator size="large" color="#00D9FF" />
+      <ActivityIndicator size="large" color="#FFD700" />
       <Text className="text-text-secondary mt-4">Loading cart...</Text>
     </View>
   );

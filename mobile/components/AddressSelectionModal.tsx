@@ -36,7 +36,7 @@ const AddressSelectionModal = ({
           <ScrollView className="flex-1 p-6">
             {addressesLoading ? (
               <View className="py-8">
-                <ActivityIndicator size="large" color="#00D9FF" />
+                <ActivityIndicator size="large" color="#FFD700" />
               </View>
             ) : (
               <View className="gap-4">

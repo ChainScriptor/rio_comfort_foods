@@ -151,7 +151,7 @@ function OrdersScreen() {
                     {order.status === "delivered" &&
                       (order.hasReviewed ? (
                         <View className="bg-primary/20 px-5 py-3 rounded-full flex-row items-center">
-                          <Ionicons name="checkmark-circle" size={18} color="#1DB954" />
+                          <Ionicons name="checkmark-circle" size={18} color="#FFD700" />
                           <Text className="text-primary font-bold text-sm ml-2">Reviewed</Text>
                         </View>
                       ) : (
@@ -193,7 +193,7 @@ export default OrdersScreen;
 function LoadingUI() {
   return (
     <View className="flex-1 items-center justify-center">
-      <ActivityIndicator size="large" color="#00D9FF" />
+      <ActivityIndicator size="large" color="#FFD700" />
       <Text className="text-text-secondary mt-4">Loading orders...</Text>
     </View>
   );

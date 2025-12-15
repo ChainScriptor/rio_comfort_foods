@@ -5,7 +5,7 @@ interface LoadingStateProps {
   color?: string;
 }
 
-const LoadingState = ({ message = "Loading...", color = "#00D9FF" }: LoadingStateProps) => {
+const LoadingState = ({ message = "Loading...", color = "#FFD700" }: LoadingStateProps) => {
   return (
     <View className="flex-1 bg-background items-center justify-center">
       <ActivityIndicator size={"large"} color={color} />

@@ -15,29 +15,35 @@ import orderRoutes from "./routes/order.route.js";
 import reviewRoutes from "./routes/review.route.js";
 import productRoutes from "./routes/product.route.js";
 import cartRoutes from "./routes/cart.route.js";
-import paymentRoutes from "./routes/payment.route.js";
 
 const app = express();
 
 const __dirname = path.resolve();
 
-// special handling: Stripe webhook needs raw body BEFORE any body parsing middleware
-// apply raw body parser conditionally only to webhook endpoint
-app.use(
-  "/api/payment",
-  (req, res, next) => {
-    if (req.originalUrl === "/api/payment/webhook") {
-      express.raw({ type: "application/json" })(req, res, next);
-    } else {
-      express.json()(req, res, next); // parse json for non-webhook routes
-    }
-  },
-  paymentRoutes
-);
-
 app.use(express.json());
 app.use(clerkMiddleware()); // adds auth object under the req => req.auth
-app.use(cors({ origin: ENV.CLIENT_URL, credentials: true })); // credentials: true allows the browser to send the cookies to the server with the request
+
+// CORS configuration - handle both with and without trailing slash
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    // Normalize both origins by removing trailing slash for comparison
+    const normalizedOrigin = origin.replace(/\/$/, '');
+    const allowedOrigin = ENV.CLIENT_URL ? ENV.CLIENT_URL.replace(/\/$/, '') : '';
+    
+    // Check if origin matches (handles trailing slash differences)
+    if (normalizedOrigin === allowedOrigin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 app.use("/api/inngest", serve({ client: inngest, functions }));
 

@@ -13,7 +13,7 @@ export async function createOrder(req, res) {
 
     // validate products and stock
     for (const item of orderItems) {
-      const product = await Product.findById(item.product._id);
+      const product = await Product.findById(item.product);
       if (!product) {
         return res.status(404).json({ error: `Product ${item.name} not found` });
       }
@@ -22,18 +22,22 @@ export async function createOrder(req, res) {
       }
     }
 
+    // Create order without payment (paymentResult is optional)
     const order = await Order.create({
       user: user._id,
       clerkId: user.clerkId,
       orderItems,
       shippingAddress,
-      paymentResult,
+      paymentResult: paymentResult || {
+        id: `order-${Date.now()}`,
+        status: "pending",
+      },
       totalPrice,
     });
 
     // update product stock
     for (const item of orderItems) {
-      await Product.findByIdAndUpdate(item.product._id, {
+      await Product.findByIdAndUpdate(item.product, {
         $inc: { stock: -item.quantity },
       });
     }

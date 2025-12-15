@@ -7,12 +7,14 @@ import {
   PanelLeftIcon,
   ShoppingBagIcon,
   UsersIcon,
+  TagIcon,
 } from "lucide-react";
 
 // eslint-disable-next-line
 export const NAVIGATION = [
   { name: "Dashboard", path: "/dashboard", icon: <HomeIcon className="size-5" /> },
   { name: "Products", path: "/products", icon: <ShoppingBagIcon className="size-5" /> },
+  { name: "Categories", path: "/categories", icon: <TagIcon className="size-5" /> },
   { name: "Orders", path: "/orders", icon: <ClipboardListIcon className="size-5" /> },
   { name: "Customers", path: "/customers", icon: <UsersIcon className="size-5" /> },
 ];

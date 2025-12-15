@@ -153,7 +153,7 @@ function PrivacyAndSecurityScreen() {
             >
               <View className="flex-row items-center">
                 <View className="bg-primary/20 rounded-full w-12 h-12 items-center justify-center mr-4">
-                  <Ionicons name={setting.icon as any} size={24} color="#1DB954" />
+                  <Ionicons name={setting.icon as any} size={24} color="#FFD700" />
                 </View>
 
                 <View className="flex-1">
@@ -168,7 +168,7 @@ function PrivacyAndSecurityScreen() {
                     value={setting.value}
                     onValueChange={(value) => handleToggle(setting.id, value)}
                     thumbColor="#FFFFFF"
-                    trackColor={{ false: "#2A2A2A", true: "#1DB954" }}
+                    trackColor={{ false: "#2A2A2A", true: "#FFD700" }}
 
                     // ios_backgroundColor={"purple"}
                   />
@@ -189,7 +189,7 @@ function PrivacyAndSecurityScreen() {
               <View className="bg-surface rounded-2xl p-4 mb-3">
                 <View className="flex-row items-center">
                   <View className="bg-primary/20 rounded-full w-12 h-12 items-center justify-center mr-4">
-                    <Ionicons name={setting.icon as any} size={24} color="#1DB954" />
+                    <Ionicons name={setting.icon as any} size={24} color="#FFD700" />
                   </View>
                   <View className="flex-1">
                     <Text className="text-text-primary font-bold text-base mb-1">
@@ -200,7 +200,7 @@ function PrivacyAndSecurityScreen() {
                   <Switch
                     value={setting.value}
                     onValueChange={(value) => handleToggle(setting.id, value)}
-                    trackColor={{ false: "#2A2A2A", true: "#1DB954" }}
+                    trackColor={{ false: "#2A2A2A", true: "#FFD700" }}
                     thumbColor="#FFFFFF"
                   />
                 </View>
@@ -221,7 +221,7 @@ function PrivacyAndSecurityScreen() {
             >
               <View className="flex-row items-center">
                 <View className="bg-primary/20 rounded-full w-12 h-12 items-center justify-center mr-4">
-                  <Ionicons name={setting.icon as any} size={24} color="#1DB954" />
+                  <Ionicons name={setting.icon as any} size={24} color="#FFD700" />
                 </View>
                 <View className="flex-1">
                   <Text className="text-text-primary font-bold text-base mb-1">
@@ -257,7 +257,7 @@ function PrivacyAndSecurityScreen() {
         {/* INFO ALERT */}
         <View className="px-6 pt-6 pb-4">
           <View className="bg-primary/10 rounded-2xl p-4 flex-row">
-            <Ionicons name="information-circle-outline" size={24} color="#1DB954" />
+            <Ionicons name="information-circle-outline" size={24} color="#FFD700" />
             <Text className="text-text-secondary text-sm ml-3 flex-1">
               We take your privacy seriously. Your data is encrypted and stored securely. You can
               manage your privacy settings at any time.

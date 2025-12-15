@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PlusIcon, PencilIcon, Trash2Icon, XIcon, ImageIcon } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { productApi } from "../lib/api";
+import { productApi, categoryApi } from "../lib/api";
 import { getStockStatusBadge } from "../lib/utils";
 
 function ProductsPage() {
@@ -19,10 +19,16 @@ function ProductsPage() {
 
   const queryClient = useQueryClient();
 
-  // fetch some data
+  // fetch products
   const { data: products = [] } = useQuery({
     queryKey: ["products"],
     queryFn: productApi.getAll,
+  });
+
+  // fetch categories
+  const { data: categories = [] } = useQuery({
+    queryKey: ["categories"],
+    queryFn: categoryApi.getAll,
   });
 
   // creating, update, deleting
@@ -192,7 +198,12 @@ function ProductsPage() {
 
       {/* ADD/EDIT PRODUCT MODAL */}
 
-      <input type="checkbox" className="modal-toggle" checked={showModal} />
+      <input
+        type="checkbox"
+        className="modal-toggle"
+        checked={showModal}
+        onChange={(e) => setShowModal(e.target.checked)}
+      />
 
       <div className="modal">
         <div className="modal-box max-w-2xl">
@@ -234,10 +245,14 @@ function ProductsPage() {
                   required
                 >
                   <option value="">Select category</option>
-                  <option value="Electronics">Electronics</option>
-                  <option value="Accessories">Accessories</option>
-                  <option value="Fashion">Fashion</option>
-                  <option value="Sports">Sports</option>
+                  {categories
+                    .filter((cat) => cat.isActive)
+                    .map((category) => (
+                      <option key={category._id} value={category.name}>
+                        {category.icon && `${category.icon} `}
+                        {category.name}
+                      </option>
+                    ))}
                 </select>
               </div>
             </div>

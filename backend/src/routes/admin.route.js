@@ -8,6 +8,10 @@ import {
   updateOrderStatus,
   updateProduct,
   deleteProduct,
+  getAllCategories,
+  createCategory,
+  updateCategory,
+  deleteCategory,
 } from "../controllers/admin.controller.js";
 import { adminOnly, protectRoute } from "../middleware/auth.middleware.js";
 import { upload } from "../middleware/multer.middleware.js";
@@ -28,6 +32,12 @@ router.patch("/orders/:orderId/status", updateOrderStatus);
 router.get("/customers", getAllCustomers);
 
 router.get("/stats", getDashboardStats);
+
+// Category routes
+router.get("/categories", getAllCategories);
+router.post("/categories", upload.single("image"), createCategory);
+router.put("/categories/:id", upload.single("image"), updateCategory);
+router.delete("/categories/:id", deleteCategory);
 
 // PUT: Used for full resource replacement, updating the entire resource
 // PATCH: Used for partial resource updates, updating a specific part of the resource

@@ -7,9 +7,9 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#1DB954", // spotify green
-          light: "#1ED760",
-          dark: "#1AA34A",
+          DEFAULT: "#FFD700", // gold
+          light: "#FFE55C",
+          dark: "#DAA520",
         },
         background: {
           DEFAULT: "#121212", // dark background
@@ -26,7 +26,7 @@ module.exports = {
           tertiary: "#6A6A6A",
         },
         accent: {
-          DEFAULT: "#1DB954",
+          DEFAULT: "#FFD700", // gold
           red: "#F44336",
           yellow: "#FFC107",
         },

@@ -47,3 +47,25 @@ export const customerApi = {
     return data;
   },
 };
+
+export const categoryApi = {
+  getAll: async () => {
+    const { data } = await axiosInstance.get("/admin/categories");
+    return data;
+  },
+
+  create: async (categoryData) => {
+    const { data } = await axiosInstance.post("/admin/categories", categoryData);
+    return data;
+  },
+
+  update: async ({ id, categoryData }) => {
+    const { data } = await axiosInstance.put(`/admin/categories/${id}`, categoryData);
+    return data;
+  },
+
+  delete: async (categoryId) => {
+    const { data } = await axiosInstance.delete(`/admin/categories/${categoryId}`);
+    return data;
+  },
+};

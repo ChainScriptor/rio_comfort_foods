@@ -100,8 +100,8 @@ function WishlistScreen() {
 
                     {item.stock > 0 ? (
                       <View className="flex-row items-center">
-                        <View className="w-2 h-2 bg-green-500 rounded-full mr-2" />
-                        <Text className="text-green-500 text-sm font-semibold">
+                        <View className="w-2 h-2 bg-primary rounded-full mr-2" />
+                        <Text className="text-primary text-sm font-semibold">
                           {item.stock} in stock
                         </Text>
                       </View>
@@ -158,7 +158,7 @@ function LoadingUI() {
         <Text className="text-text-primary text-2xl font-bold">Wishlist</Text>
       </View>
       <View className="flex-1 items-center justify-center">
-        <ActivityIndicator size="large" color="#00D9FF" />
+        <ActivityIndicator size="large" color="#FFD700" />
         <Text className="text-text-secondary mt-4">Loading wishlist...</Text>
       </View>
     </SafeScreen>

@@ -138,8 +138,8 @@ const ProductDetailScreen = () => {
             </View>
             {inStock ? (
               <View className="ml-3 flex-row items-center">
-                <View className="w-2 h-2 bg-green-500 rounded-full mr-2" />
-                <Text className="text-green-500 font-semibold text-sm">
+                <View className="w-2 h-2 bg-primary rounded-full mr-2" />
+                <Text className="text-primary font-semibold text-sm">
                   {product.stock} in stock
                 </Text>
               </View>
@@ -263,7 +263,7 @@ function LoadingUI() {
   return (
     <SafeScreen>
       <View className="flex-1 items-center justify-center">
-        <ActivityIndicator size="large" color="#1DB954" />
+        <ActivityIndicator size="large" color="#FFD700" />
         <Text className="text-text-secondary mt-4">Loading product...</Text>
       </View>
     </SafeScreen>

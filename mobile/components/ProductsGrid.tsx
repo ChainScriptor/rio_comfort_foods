@@ -108,7 +108,7 @@ const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
   if (isLoading) {
     return (
       <View className="py-20 items-center justify-center">
-        <ActivityIndicator size="large" color="#00D9FF" />
+        <ActivityIndicator size="large" color="#FFD700" />
         <Text className="text-text-secondary mt-4">Loading products...</Text>
       </View>
     );
