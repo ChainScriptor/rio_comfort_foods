@@ -1,5 +1,4 @@
 import { useUser } from "@clerk/clerk-react";
-import { ShoppingBagIcon } from "lucide-react";
 import { Link, useLocation } from "react-router";
 import { NAVIGATION } from "./Navbar";
 
@@ -14,10 +13,10 @@ function Sidebar() {
       <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
         <div className="p-4 w-full">
           <div className="flex items-center gap-3">
-            <div className="size-10 bg-primary rounded-xl flex items-center justify-center shrink-0">
-              <ShoppingBagIcon className="w-6 h-6 text-primary-content" />
+            <div className="size-10 shrink-0 flex items-center justify-center">
+              <img src="/comfort.svg" alt="Comfort Foods Logo" className="w-full h-full object-contain" />
             </div>
-            <span className="text-xl font-bold is-drawer-close:hidden">Admin</span>
+            <span className="text-xl font-bold is-drawer-close:hidden">Comfort Foods</span>
           </div>
         </div>
 
