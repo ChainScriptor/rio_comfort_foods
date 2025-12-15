@@ -22,18 +22,68 @@ export async function createOrder(req, res) {
       }
     }
 
-    // Create order without payment (paymentResult is optional)
-    const order = await Order.create({
-      user: user._id,
+    // Check if there's an existing order from the same customer today
+    const todayStart = new Date();
+    todayStart.setHours(0, 0, 0, 0);
+    const todayEnd = new Date();
+    todayEnd.setHours(23, 59, 59, 999);
+
+    const existingOrder = await Order.findOne({
       clerkId: user.clerkId,
-      orderItems,
-      shippingAddress,
-      paymentResult: paymentResult || {
-        id: `order-${Date.now()}`,
-        status: "pending",
+      createdAt: {
+        $gte: todayStart,
+        $lte: todayEnd,
       },
-      totalPrice,
+      status: "pending", // Only merge with pending orders
     });
+
+    let order;
+    if (existingOrder) {
+      // Merge new items into existing order
+      // Check for duplicate products and update quantities
+      const updatedOrderItems = [...existingOrder.orderItems];
+      
+      for (const newItem of orderItems) {
+        const existingItemIndex = updatedOrderItems.findIndex(
+          (item) => item.product.toString() === newItem.product.toString()
+        );
+        
+        if (existingItemIndex >= 0) {
+          // Product already exists, update quantity
+          updatedOrderItems[existingItemIndex].quantity += newItem.quantity;
+        } else {
+          // New product, add it
+          updatedOrderItems.push(newItem);
+        }
+      }
+
+      // Recalculate total price
+      let newTotalPrice = 0;
+      for (const item of updatedOrderItems) {
+        const product = await Product.findById(item.product);
+        if (product && product.price) {
+          newTotalPrice += product.price * item.quantity;
+        }
+      }
+
+      existingOrder.orderItems = updatedOrderItems;
+      existingOrder.totalPrice = newTotalPrice;
+      await existingOrder.save();
+      order = existingOrder;
+    } else {
+      // Create new order
+      order = await Order.create({
+        user: user._id,
+        clerkId: user.clerkId,
+        orderItems,
+        shippingAddress,
+        paymentResult: paymentResult || {
+          id: `order-${Date.now()}`,
+          status: "pending",
+        },
+        totalPrice,
+      });
+    }
 
     // update product stock
     for (const item of orderItems) {

@@ -1,19 +1,18 @@
 import useSocialAuth from "@/hooks/useSocialAuth";
-import { View, Text, Image, TouchableOpacity, ActivityIndicator } from "react-native";
+import { View, Text, Image, ImageBackground, TouchableOpacity, ActivityIndicator } from "react-native";
 
 const AuthScreen = () => {
   const { loadingStrategy, handleSocialAuth } = useSocialAuth();
 
   return (
-    <View className="px-8 flex-1 justify-center items-center bg-white">
-      {/* DEMO IMAGE */}
-      <Image
-        source={require("../../assets/images/auth-image.png")}
-        className="size-96"
-        resizeMode="contain"
-      />
-
-      <View className="gap-2 mt-3">
+    <ImageBackground
+      source={require("../../assets/images/comfort.png")}
+      className="flex-1"
+      resizeMode="cover"
+      style={{ width: "100%", height: "100%" }}
+    >
+      <View className="px-8 flex-1 justify-end items-center pb-20">
+        <View className="gap-2 w-full">
         {/* GOOGLE SIGN IN BTN */}
         <TouchableOpacity
           className="flex-row items-center justify-center bg-white border border-gray-300 rounded-full px-6 py-2"
@@ -63,16 +62,17 @@ const AuthScreen = () => {
             </View>
           )}
         </TouchableOpacity>
-      </View>
+        </View>
 
-      <Text className="text-center text-gray-500 text-xs leading-4 mt-6 px-2">
-        Με την εγγραφή, συμφωνείτε με τους <Text className="text-blue-500">Όρους</Text>
-        {" μας, την "}
-        <Text className="text-blue-500">Πολιτική Απορρήτου</Text>
-        {" και τη "}
-        <Text className="text-blue-500">Χρήση Cookies</Text>
-      </Text>
-    </View>
+        <Text className="text-center text-white text-xs leading-4 mt-6 px-2" style={{ textShadowColor: 'rgba(0, 0, 0, 0.75)', textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 3 }}>
+          Με την εγγραφή, συμφωνείτε με τους <Text className="text-blue-300" style={{ textShadowColor: 'rgba(0, 0, 0, 0.75)', textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 3 }}>Όρους</Text>
+          {" μας, την "}
+          <Text className="text-blue-300" style={{ textShadowColor: 'rgba(0, 0, 0, 0.75)', textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 3 }}>Πολιτική Απορρήτου</Text>
+          {" και τη "}
+          <Text className="text-blue-300" style={{ textShadowColor: 'rgba(0, 0, 0, 0.75)', textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 3 }}>Χρήση Cookies</Text>
+        </Text>
+      </View>
+    </ImageBackground>
   );
 };
 

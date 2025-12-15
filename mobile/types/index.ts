@@ -2,7 +2,7 @@ export interface Product {
   _id: string;
   name: string;
   description: string;
-  price: number;
+  price?: number;
   stock: number;
   category: string;
   images: string[];
@@ -10,6 +10,7 @@ export interface Product {
   totalReviews: number;
   unitType?: "pieces" | "kg" | "liters";
   unitOptions?: string[];
+  showPrice?: boolean;
   createdAt: string;
   updatedAt: string;
 }

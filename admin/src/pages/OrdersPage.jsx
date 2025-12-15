@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { orderApi } from "../lib/api";
-import { formatDate } from "../lib/utils";
+import { formatDate, formatTime, formatDateTime } from "../lib/utils";
 import { PrinterIcon, CalendarIcon, EyeIcon, XIcon, PackageIcon } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -160,6 +160,9 @@ function OrdersPage() {
               <p style={{ fontSize: "10pt", color: "#666", marginBottom: "0.2cm" }}>
                 Date: {selectedDate ? formatDate(selectedDate) : "All Dates"}
               </p>
+              <p style={{ fontSize: "9pt", color: "#999", marginBottom: "0.2cm" }}>
+                Generated: {formatDateTime(new Date().toISOString())}
+              </p>
               <p style={{ fontSize: "10pt", color: "#666" }}>
                 Total Orders: {orders.length}
               </p>
@@ -178,6 +181,10 @@ function OrdersPage() {
                     {" | "}
                     <span style={{ fontWeight: "bold", color: "#000000" }}>
                       {orderItemsText}
+                    </span>
+                    {" | "}
+                    <span style={{ fontSize: "9pt", color: "#666" }}>
+                      {formatTime(order.createdAt)}
                     </span>
                   </div>
                 );
@@ -281,7 +288,10 @@ function OrdersPage() {
                         </td>
 
                         <td>
-                          <span className="text-sm opacity-60">{formatDate(order.createdAt)}</span>
+                          <div className="text-sm">
+                            <div className="opacity-60">{formatDate(order.createdAt)}</div>
+                            <div className="opacity-40 text-xs">{formatTime(order.createdAt)}</div>
+                          </div>
                         </td>
                       </tr>
                     );

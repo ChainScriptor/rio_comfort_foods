@@ -15,6 +15,7 @@ function ProductsPage() {
     description: "",
     unitType: "pieces",
     unitOptions: [],
+    showPrice: true,
   });
   const [unitOptionInput, setUnitOptionInput] = useState("");
   const [images, setImages] = useState([]);
@@ -71,6 +72,7 @@ function ProductsPage() {
       description: "",
       unitType: "pieces",
       unitOptions: [],
+      showPrice: true,
     });
     setUnitOptionInput("");
     setImages([]);
@@ -82,11 +84,12 @@ function ProductsPage() {
     setFormData({
       name: product.name,
       category: product.category,
-      price: product.price.toString(),
+      price: product.price ? product.price.toString() : "",
       stock: product.stock.toString(),
       description: product.description,
       unitType: product.unitType || "pieces",
       unitOptions: product.unitOptions || [],
+      showPrice: product.showPrice !== undefined ? product.showPrice : true,
     });
     setImagePreviews(product.images);
     setShowModal(true);
@@ -116,11 +119,14 @@ function ProductsPage() {
     const formDataToSend = new FormData();
     formDataToSend.append("name", formData.name);
     formDataToSend.append("description", formData.description);
-    formDataToSend.append("price", formData.price);
+    if (formData.price) {
+      formDataToSend.append("price", formData.price);
+    }
     formDataToSend.append("stock", formData.stock);
     formDataToSend.append("category", formData.category);
     formDataToSend.append("unitType", formData.unitType);
     formDataToSend.append("unitOptions", JSON.stringify(formData.unitOptions));
+    formDataToSend.append("showPrice", formData.showPrice.toString());
 
     // only append new images if they were selected
     if (images.length > 0) images.forEach((image) => formDataToSend.append("images", image));
@@ -170,14 +176,22 @@ function ProductsPage() {
                       <div className={`badge ${status.class}`}>{status.text}</div>
                     </div>
                     <div className="flex items-center gap-6 mt-4">
-                      <div>
-                        <p className="text-xs text-base-content/70">Price</p>
-                        <p className="font-bold text-lg">${product.price}</p>
-                      </div>
+                      {product.price && (
+                        <div>
+                          <p className="text-xs text-base-content/70">Price</p>
+                          <p className="font-bold text-lg">${product.price}</p>
+                        </div>
+                      )}
                       <div>
                         <p className="text-xs text-base-content/70">Stock</p>
                         <p className="font-bold text-lg">{product.stock} units</p>
                       </div>
+                      {product.showPrice !== undefined && (
+                        <div>
+                          <p className="text-xs text-base-content/70">Show Price</p>
+                          <p className="font-bold text-sm">{product.showPrice ? "✓ Yes" : "✗ No"}</p>
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -271,6 +285,7 @@ function ProductsPage() {
               <div className="form-control">
                 <label className="label">
                   <span>Price ($)</span>
+                  <span className="label-text-alt text-base-content/70">Optional</span>
                 </label>
                 <input
                   type="number"
@@ -279,7 +294,6 @@ function ProductsPage() {
                   className="input input-bordered"
                   value={formData.price}
                   onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                  required
                 />
               </div>
 
@@ -296,6 +310,23 @@ function ProductsPage() {
                   required
                 />
               </div>
+            </div>
+
+            <div className="form-control">
+              <label className="label cursor-pointer justify-start gap-3">
+                <input
+                  type="checkbox"
+                  className="checkbox checkbox-primary"
+                  checked={formData.showPrice}
+                  onChange={(e) => setFormData({ ...formData, showPrice: e.target.checked })}
+                />
+                <span className="label-text">Εμφάνιση Τιμής στο Mobile</span>
+              </label>
+              <label className="label">
+                <span className="label-text-alt text-base-content/70">
+                  Αν ενεργοποιηθεί, η τιμή θα εμφανίζεται στο mobile app
+                </span>
+              </label>
             </div>
 
             <div className="form-control flex flex-col gap-2">

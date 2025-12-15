@@ -173,14 +173,16 @@ const CartScreen = () => {
                         {item.selectedUnit}
                       </Text>
                     )}
-                    <View className="flex-row items-center mt-2">
-                      <Text className="text-primary font-bold text-2xl">
-                        ${(item.product.price * item.quantity).toFixed(2)}
-                      </Text>
-                      <Text className="text-text-secondary text-sm ml-2">
-                        ${item.product.price.toFixed(2)} το καθένα
-                      </Text>
-                    </View>
+                    {item.product.showPrice !== false && item.product.price && (
+                      <View className="flex-row items-center mt-2">
+                        <Text className="text-primary font-bold text-2xl">
+                          ${(item.product.price * item.quantity).toFixed(2)}
+                        </Text>
+                        <Text className="text-text-secondary text-sm ml-2">
+                          ${item.product.price.toFixed(2)} το καθένα
+                        </Text>
+                      </View>
+                    )}
                   </View>
 
                   <View className="flex-row items-center mt-3">

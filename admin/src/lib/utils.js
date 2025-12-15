@@ -33,3 +33,20 @@ export const formatDate = (dateString) => {
     year: "numeric",
   });
 };
+
+export const formatTime = (dateString) => {
+  if (!dateString) return "";
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return "";
+
+  return new Date(dateString).toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+};
+
+export const formatDateTime = (dateString) => {
+  if (!dateString) return "";
+  return `${formatDate(dateString)} ${formatTime(dateString)}`;
+};

@@ -171,9 +171,11 @@ const ProductDetailScreen = () => {
           </View>
 
           {/* Price */}
-          <View className="flex-row items-center mb-6">
-            <Text className="text-primary text-4xl font-bold">${product.price.toFixed(2)}</Text>
-          </View>
+          {product.showPrice !== false && product.price && (
+            <View className="flex-row items-center mb-6">
+              <Text className="text-primary text-4xl font-bold">${product.price.toFixed(2)}</Text>
+            </View>
+          )}
 
           {/* Unit Options (if not pieces) */}
           {product.unitOptions && product.unitOptions.length > 0 && (
@@ -252,13 +254,18 @@ const ProductDetailScreen = () => {
       {/* Bottom Action Bar */}
       <View className="absolute bottom-0 left-0 right-0 bg-background/95 backdrop-blur-xl border-t border-surface px-6 py-4 pb-8">
         <View className="flex-row items-center gap-3">
-          <View className="flex-1">
-            <Text className="text-text-secondary text-sm mb-1">Συνολική Τιμή</Text>
-            <Text className="text-primary text-2xl font-bold">
-              ${(product.price * quantity).toFixed(2)}
-            </Text>
-          </View>
+          {product.showPrice !== false && product.price && (
+            <View className="flex-1">
+              <Text className="text-text-secondary text-sm mb-1">Συνολική Τιμή</Text>
+              <Text className="text-primary text-2xl font-bold">
+                ${(product.price * quantity).toFixed(2)}
+              </Text>
+            </View>
+          )}
           <TouchableOpacity
+            className={`rounded-2xl px-8 py-4 flex-row items-center ${
+              !inStock ? "bg-surface" : "bg-primary"
+            } ${product.showPrice !== false && product.price ? "" : "flex-1"}`}
             className={`rounded-2xl px-8 py-4 flex-row items-center ${
               !inStock ? "bg-surface" : "bg-primary"
             }`}

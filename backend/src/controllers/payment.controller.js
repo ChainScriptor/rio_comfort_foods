@@ -114,34 +114,89 @@ export async function handleWebhook(req, res) {
       const { userId, clerkId, orderItems, shippingAddress, totalPrice } = paymentIntent.metadata;
 
       // Check if order already exists (prevent duplicates)
-      const existingOrder = await Order.findOne({ "paymentResult.id": paymentIntent.id });
-      if (existingOrder) {
+      const existingOrderByPayment = await Order.findOne({ "paymentResult.id": paymentIntent.id });
+      if (existingOrderByPayment) {
         console.log("Order already exists for payment:", paymentIntent.id);
         return res.json({ received: true });
       }
 
-      // create order
-      const order = await Order.create({
-        user: userId,
+      const parsedOrderItems = JSON.parse(orderItems);
+      const parsedShippingAddress = JSON.parse(shippingAddress);
+
+      // Check if there's an existing order from the same customer today
+      const todayStart = new Date();
+      todayStart.setHours(0, 0, 0, 0);
+      const todayEnd = new Date();
+      todayEnd.setHours(23, 59, 59, 999);
+
+      const existingOrder = await Order.findOne({
         clerkId,
-        orderItems: JSON.parse(orderItems),
-        shippingAddress: JSON.parse(shippingAddress),
-        paymentResult: {
-          id: paymentIntent.id,
-          status: "succeeded",
+        createdAt: {
+          $gte: todayStart,
+          $lte: todayEnd,
         },
-        totalPrice: parseFloat(totalPrice),
+        status: "pending", // Only merge with pending orders
       });
 
+      let order;
+      if (existingOrder) {
+        // Merge new items into existing order
+        const updatedOrderItems = [...existingOrder.orderItems];
+        
+        for (const newItem of parsedOrderItems) {
+          const existingItemIndex = updatedOrderItems.findIndex(
+            (item) => item.product.toString() === newItem.product.toString()
+          );
+          
+          if (existingItemIndex >= 0) {
+            // Product already exists, update quantity
+            updatedOrderItems[existingItemIndex].quantity += newItem.quantity;
+          } else {
+            // New product, add it
+            updatedOrderItems.push(newItem);
+          }
+        }
+
+        // Recalculate total price
+        let newTotalPrice = 0;
+        for (const item of updatedOrderItems) {
+          const product = await Product.findById(item.product);
+          if (product && product.price) {
+            newTotalPrice += product.price * item.quantity;
+          }
+        }
+
+        existingOrder.orderItems = updatedOrderItems;
+        existingOrder.totalPrice = newTotalPrice;
+        existingOrder.paymentResult = {
+          id: paymentIntent.id,
+          status: "succeeded",
+        };
+        await existingOrder.save();
+        order = existingOrder;
+      } else {
+        // Create new order
+        order = await Order.create({
+          user: userId,
+          clerkId,
+          orderItems: parsedOrderItems,
+          shippingAddress: parsedShippingAddress,
+          paymentResult: {
+            id: paymentIntent.id,
+            status: "succeeded",
+          },
+          totalPrice: parseFloat(totalPrice),
+        });
+      }
+
       // update product stock
-      const items = JSON.parse(orderItems);
-      for (const item of items) {
+      for (const item of parsedOrderItems) {
         await Product.findByIdAndUpdate(item.product, {
           $inc: { stock: -item.quantity },
         });
       }
 
-      console.log("Order created successfully:", order._id);
+      console.log("Order created/updated successfully:", order._id);
     } catch (error) {
       console.error("Error creating order from webhook:", error);
     }

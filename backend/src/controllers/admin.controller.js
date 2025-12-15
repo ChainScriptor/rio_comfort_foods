@@ -7,10 +7,10 @@ import { Review } from "../models/review.model.js";
 
 export async function createProduct(req, res) {
   try {
-    const { name, description, price, stock, category, unitType, unitOptions } = req.body;
+    const { name, description, price, stock, category, unitType, unitOptions, showPrice } = req.body;
 
-    if (!name || !description || !price || !stock || !category) {
-      return res.status(400).json({ message: "All fields are required" });
+    if (!name || !description || !stock || !category) {
+      return res.status(400).json({ message: "Name, description, stock, and category are required" });
     }
 
     let parsedUnitOptions = [];
@@ -43,12 +43,13 @@ export async function createProduct(req, res) {
     const product = await Product.create({
       name,
       description,
-      price: parseFloat(price),
+      price: price ? parseFloat(price) : undefined,
       stock: parseInt(stock),
       category,
       images: imageUrls,
       unitType: unitType || "pieces",
       unitOptions: parsedUnitOptions,
+      showPrice: showPrice !== undefined ? showPrice === "true" || showPrice === true : true,
     });
 
     res.status(201).json(product);
@@ -72,7 +73,7 @@ export async function getAllProducts(_, res) {
 export async function updateProduct(req, res) {
   try {
     const { id } = req.params;
-    const { name, description, price, stock, category, unitType, unitOptions } = req.body;
+    const { name, description, price, stock, category, unitType, unitOptions, showPrice } = req.body;
 
     const product = await Product.findById(id);
     if (!product) {
@@ -81,7 +82,11 @@ export async function updateProduct(req, res) {
 
     if (name) product.name = name;
     if (description) product.description = description;
-    if (price !== undefined) product.price = parseFloat(price);
+    if (price !== undefined && price !== "") {
+      product.price = parseFloat(price);
+    } else if (price === "") {
+      product.price = undefined;
+    }
     if (stock !== undefined) product.stock = parseInt(stock);
     if (category) product.category = category;
     if (unitType !== undefined) product.unitType = unitType;
@@ -93,6 +98,9 @@ export async function updateProduct(req, res) {
         parsedUnitOptions = [];
       }
       product.unitOptions = parsedUnitOptions;
+    }
+    if (showPrice !== undefined) {
+      product.showPrice = showPrice === "true" || showPrice === true;
     }
 
     // handle image updates if new images are uploaded
