@@ -12,6 +12,13 @@ export interface Product {
   updatedAt: string;
 }
 
+export interface Category {
+  _id: string;
+  name: string;
+  icon?: string;
+  image?: string;
+}
+
 export interface User {
   _id: string;
   clerkId: string;

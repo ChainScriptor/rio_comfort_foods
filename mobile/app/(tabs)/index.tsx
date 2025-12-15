@@ -1,24 +1,39 @@
 import ProductsGrid from "@/components/ProductsGrid";
 import SafeScreen from "@/components/SafeScreen";
 import useProducts from "@/hooks/useProducts";
+import useCategories from "@/hooks/useCategories";
 
 import { Ionicons } from "@expo/vector-icons";
 import { useMemo, useState } from "react";
-import { View, Text, ScrollView, TouchableOpacity, TextInput, Image } from "react-native";
-
-const CATEGORIES = [
-  { name: "All", icon: "grid-outline" as const },
-  { name: "Electronics", image: require("@/assets/images/electronics.png") },
-  { name: "Fashion", image: require("@/assets/images/fashion.png") },
-  { name: "Sports", image: require("@/assets/images/sports.png") },
-  { name: "Books", image: require("@/assets/images/books.png") },
-];
+import { View, Text, ScrollView, TouchableOpacity, TextInput, Image, ActivityIndicator } from "react-native";
 
 const ShopScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const { data: products, isLoading, isError } = useProducts();
+  const { data: categories = [], isLoading: categoriesLoading, isError: categoriesError, error: categoriesErrorDetails } = useCategories();
+
+  // Debug logging
+  if (categories.length > 0) {
+    console.log("✅ Categories in ShopScreen:", categories);
+  }
+  if (categoriesError) {
+    console.error("❌ Categories error in ShopScreen:", categoriesErrorDetails);
+    console.error("Error response:", categoriesErrorDetails?.response?.data);
+    console.error("Error status:", categoriesErrorDetails?.response?.status);
+  }
+
+  // Build categories list with "All" option
+  const displayCategories = useMemo(() => {
+    const allOption = { name: "All", icon: "grid-outline" as const };
+    const categoryOptions = categories.map((cat) => ({
+      name: cat.name,
+      icon: cat.icon,
+      image: cat.image,
+    }));
+    return [allOption, ...categoryOptions];
+  }, [categories]);
 
   const filteredProducts = useMemo(() => {
     if (!products) return [];
@@ -75,32 +90,62 @@ const ShopScreen = () => {
 
         {/* CATEGORY FILTER */}
         <View className="mb-6">
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ paddingHorizontal: 20 }}
-          >
-            {CATEGORIES.map((category) => {
-              const isSelected = selectedCategory === category.name;
-              return (
-                <TouchableOpacity
-                  key={category.name}
-                  onPress={() => setSelectedCategory(category.name)}
-                  className={`mr-3 rounded-2xl size-20 overflow-hidden items-center justify-center ${isSelected ? "bg-primary" : "bg-surface"}`}
-                >
-                  {category.icon ? (
-                    <Ionicons
-                      name={category.icon}
-                      size={36}
-                      color={isSelected ? "#121212" : "#fff"}
-                    />
-                  ) : (
-                    <Image source={category.image} className="size-12" resizeMode="contain" />
-                  )}
-                </TouchableOpacity>
-              );
-            })}
-          </ScrollView>
+          {categoriesLoading ? (
+            <View className="px-6 py-4 items-center">
+              <ActivityIndicator size="small" color="#FFD700" />
+            </View>
+          ) : categoriesError ? (
+            <View className="px-6 py-4 items-center">
+              <Text className="text-text-secondary text-sm mb-2">
+                Failed to load categories
+              </Text>
+              {categoriesErrorDetails?.response?.status === 500 && (
+                <Text className="text-text-tertiary text-xs text-center">
+                  Server error. Please try again later.
+                </Text>
+              )}
+            </View>
+          ) : displayCategories.length === 1 ? (
+            <View className="px-6 py-4 items-center">
+              <Text className="text-text-secondary text-sm">
+                No categories available
+              </Text>
+            </View>
+          ) : (
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={{ paddingHorizontal: 20 }}
+            >
+              {displayCategories.map((category) => {
+                const isSelected = selectedCategory === category.name;
+                const isAllOption = category.name === "All";
+                return (
+                  <TouchableOpacity
+                    key={category.name}
+                    onPress={() => setSelectedCategory(category.name)}
+                    className={`mr-3 rounded-2xl size-20 overflow-hidden items-center justify-center ${isSelected ? "bg-primary" : "bg-surface"}`}
+                  >
+                    {isAllOption && category.icon ? (
+                      <Ionicons
+                        name={category.icon}
+                        size={36}
+                        color={isSelected ? "#121212" : "#fff"}
+                      />
+                    ) : category.image ? (
+                      <Image 
+                        source={{ uri: category.image }} 
+                        className="size-12 rounded-xl" 
+                        resizeMode="cover"
+                      />
+                    ) : category.icon ? (
+                      <Text className="text-3xl">{category.icon}</Text>
+                    ) : null}
+                  </TouchableOpacity>
+                );
+              })}
+            </ScrollView>
+          )}
         </View>
 
         <View className="px-6 mb-6">
