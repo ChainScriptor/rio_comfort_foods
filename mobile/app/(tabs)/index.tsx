@@ -124,19 +124,30 @@ const ShopScreen = () => {
                   <TouchableOpacity
                     key={category.name}
                     onPress={() => setSelectedCategory(category.name)}
-                    className={`mr-3 rounded-2xl size-20 overflow-hidden items-center justify-center ${isSelected ? "bg-primary" : "bg-surface"}`}
+                    className={`mr-3 rounded-2xl size-20 overflow-hidden items-center justify-center relative border-2 ${
+                      isSelected ? "border-primary" : "border-transparent"
+                    } ${
+                      isAllOption 
+                        ? (isSelected ? "bg-primary" : "bg-surface")
+                        : (!category.image ? (isSelected ? "bg-primary" : "bg-surface") : "")
+                    }`}
                   >
-                    {isAllOption && category.icon ? (
+                    {category.image && !isAllOption ? (
+                      <>
+                        <Image 
+                          source={{ uri: category.image }} 
+                          className="absolute inset-0 w-full h-full"
+                          resizeMode="cover"
+                        />
+                        {category.icon && (
+                          <Text className="text-3xl relative z-10">{category.icon}</Text>
+                        )}
+                      </>
+                    ) : isAllOption && category.icon ? (
                       <Ionicons
                         name={category.icon}
                         size={36}
                         color={isSelected ? "#121212" : "#fff"}
-                      />
-                    ) : category.image ? (
-                      <Image 
-                        source={{ uri: category.image }} 
-                        className="size-12 rounded-xl" 
-                        resizeMode="cover"
                       />
                     ) : category.icon ? (
                       <Text className="text-3xl">{category.icon}</Text>
