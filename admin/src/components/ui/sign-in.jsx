@@ -40,8 +40,8 @@ const TestimonialCard = ({ testimonial, delay }) => (
 // --- MAIN COMPONENT ---
 
 export const SignInPage = ({
-  title = <span className="font-light text-base-content tracking-tighter">Welcome</span>,
-  description = "Access your account and continue your journey with us",
+  title = <span className="font-light text-base-content tracking-tighter">Καλώς ήρθατε</span>,
+  description = "Συνδεθείτε στον λογαριασμό σας και συνεχίστε μαζί μας",
   heroImageSrc,
   testimonials = [],
   onSignIn,
@@ -63,17 +63,17 @@ export const SignInPage = ({
 
             <form className="space-y-5" onSubmit={onSignIn}>
               <div className="animate-element animate-delay-300">
-                <label className="text-sm font-medium text-base-content/70">Email Address</label>
+                <label className="text-sm font-medium text-base-content/70">Διεύθυνση Email</label>
                 <GlassInputWrapper>
-                  <input name="email" type="email" placeholder="Enter your email address" className="w-full bg-transparent text-sm p-4 rounded-2xl focus:outline-none" />
+                  <input name="email" type="email" placeholder="Πληκτρολογήστε το email σας" className="w-full bg-transparent text-sm p-4 rounded-2xl focus:outline-none" />
                 </GlassInputWrapper>
               </div>
 
               <div className="animate-element animate-delay-400">
-                <label className="text-sm font-medium text-base-content/70">Password</label>
+                <label className="text-sm font-medium text-base-content/70">Κωδικός πρόσβασης</label>
                 <GlassInputWrapper>
                   <div className="relative">
-                    <input name="password" type={showPassword ? 'text' : 'password'} placeholder="Enter your password" className="w-full bg-transparent text-sm p-4 pr-12 rounded-2xl focus:outline-none" />
+                    <input name="password" type={showPassword ? 'text' : 'password'} placeholder="Πληκτρολογήστε τον κωδικό σας" className="w-full bg-transparent text-sm p-4 pr-12 rounded-2xl focus:outline-none" />
                     <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 right-3 flex items-center">
                       {showPassword ? <EyeOff className="w-5 h-5 text-base-content/60 hover:text-base-content transition-colors" /> : <Eye className="w-5 h-5 text-base-content/60 hover:text-base-content transition-colors" />}
                     </button>
@@ -84,35 +84,35 @@ export const SignInPage = ({
               <div className="animate-element animate-delay-500 flex items-center justify-between text-sm">
                 <label className="flex items-center gap-3 cursor-pointer">
                   <input type="checkbox" name="rememberMe" className="checkbox checkbox-sm" />
-                  <span className="text-base-content/90">Keep me signed in</span>
+                  <span className="text-base-content/90">Διατήρηση σύνδεσης</span>
                 </label>
-                <a href="#" onClick={(e) => { e.preventDefault(); onResetPassword?.(); }} className="hover:underline text-primary transition-colors">Reset password</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); onResetPassword?.(); }} className="hover:underline text-primary transition-colors">Επαναφορά κωδικού</a>
               </div>
 
               <button type="submit" className="animate-element animate-delay-600 w-full rounded-2xl bg-primary py-4 font-medium text-primary-content hover:bg-primary/90 transition-colors">
-                Sign In
+                Σύνδεση
               </button>
             </form>
 
             <div className="animate-element animate-delay-700 relative flex items-center justify-center">
               <span className="w-full border-t border-base-content/20"></span>
-              <span className="px-4 text-sm text-base-content/70 bg-base-100 absolute">Or continue with</span>
+              <span className="px-4 text-sm text-base-content/70 bg-base-100 absolute">Ή συνεχίστε με</span>
             </div>
 
             <button onClick={onGoogleSignIn} className="animate-element animate-delay-800 w-full flex items-center justify-center gap-3 border border-base-content/20 rounded-2xl py-4 hover:bg-base-200 transition-colors">
                 <GoogleIcon />
-                Continue with Google
+                Συνέχεια με Google
             </button>
 
             {onAppleSignIn && (
               <button onClick={onAppleSignIn} className="animate-element animate-delay-850 w-full flex items-center justify-center gap-3 border border-base-content/20 rounded-2xl py-4 hover:bg-base-200 transition-colors">
                 <AppleIcon />
-                Continue with Apple
+                Συνέχεια με Apple
               </button>
             )}
 
             <p className="animate-element animate-delay-900 text-center text-sm text-base-content/70">
-              New to our platform? <a href="#" onClick={(e) => { e.preventDefault(); onCreateAccount?.(); }} className="text-primary hover:underline transition-colors">Create Account</a>
+              Νέος στην πλατφόρμα; <a href="#" onClick={(e) => { e.preventDefault(); onCreateAccount?.(); }} className="text-primary hover:underline transition-colors">Δημιουργία λογαριασμού</a>
             </p>
           </div>
         </div>

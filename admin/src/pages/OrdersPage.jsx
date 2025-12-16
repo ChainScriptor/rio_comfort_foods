@@ -161,7 +161,7 @@ function OrdersPage() {
                 Date: {selectedDate ? formatDate(selectedDate) : "All Dates"}
               </p>
               <p style={{ fontSize: "9pt", color: "#999", marginBottom: "0.2cm" }}>
-                Generated: {formatDateTime(new Date().toISOString())}
+                Generated: {formatDate(new Date().toISOString())}
               </p>
               <p style={{ fontSize: "10pt", color: "#666" }}>
                 Total Orders: {orders.length}
@@ -181,10 +181,6 @@ function OrdersPage() {
                     {" | "}
                     <span style={{ fontWeight: "bold", color: "#000000" }}>
                       {orderItemsText}
-                    </span>
-                    {" | "}
-                    <span style={{ fontSize: "9pt", color: "#666" }}>
-                      {formatTime(order.createdAt)}
                     </span>
                   </div>
                 );

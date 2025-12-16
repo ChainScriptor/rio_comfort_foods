@@ -184,11 +184,55 @@ export async function getAllCustomers(_, res) {
   }
 }
 
-export async function getDashboardStats(_, res) {
+export async function getDashboardStats(req, res) {
   try {
-    const totalOrders = await Order.countDocuments();
+    const { period = "all", month, year } = req.query; // period: 'week', 'month', 'year', 'all', 'custom'
+    
+    // Calculate date range based on period
+    let startDate = null;
+    let endDate = null;
+    const now = new Date();
+    
+    switch (period) {
+      case "week":
+        startDate = new Date(now);
+        startDate.setDate(now.getDate() - 7);
+        break;
+      case "month":
+        startDate = new Date(now);
+        startDate.setMonth(now.getMonth() - 1);
+        break;
+      case "year":
+        startDate = new Date(now);
+        startDate.setFullYear(now.getFullYear() - 1);
+        break;
+      case "custom":
+        // Custom month/year selection
+        if (month && year) {
+          const monthNum = parseInt(month, 10) - 1; // JavaScript months are 0-indexed
+          const yearNum = parseInt(year, 10);
+          startDate = new Date(yearNum, monthNum, 1);
+          endDate = new Date(yearNum, monthNum + 1, 0, 23, 59, 59, 999); // Last day of month
+        }
+        break;
+      default:
+        startDate = null; // all time
+    }
 
+    // Build match filter for orders
+    let orderMatchFilter = {};
+    if (startDate && endDate) {
+      orderMatchFilter = { createdAt: { $gte: startDate, $lte: endDate } };
+    } else if (startDate) {
+      orderMatchFilter = { createdAt: { $gte: startDate } };
+    }
+    
+    // Get orders count for the period
+    const totalOrders = await Order.countDocuments(orderMatchFilter);
+
+    // Get revenue for the period
     const revenueResult = await Order.aggregate([
+      { $match: orderMatchFilter },
       {
         $group: {
           _id: null,
@@ -199,7 +243,16 @@ export async function getDashboardStats(_, res) {
 
     const totalRevenue = revenueResult[0]?.total || 0;
 
-    const totalCustomers = await User.countDocuments();
+    // For customers, filter by registration date if period is specified
+    let customerMatchFilter = {};
+    if (startDate && endDate) {
+      customerMatchFilter = { createdAt: { $gte: startDate, $lte: endDate } };
+    } else if (startDate) {
+      customerMatchFilter = { createdAt: { $gte: startDate } };
+    }
+    const totalCustomers = await User.countDocuments(customerMatchFilter);
+    
+    // Products are not time-based, so always count all
     const totalProducts = await Product.countDocuments();
 
     res.status(200).json({
@@ -207,6 +260,7 @@ export async function getDashboardStats(_, res) {
       totalOrders,
       totalCustomers,
       totalProducts,
+      period,
     });
   } catch (error) {
     console.error("Error fetching dashboard stats:", error);

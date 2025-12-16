@@ -27,7 +27,7 @@ function LoginPage() {
       }
     } catch (error) {
       console.error("Sign in error:", error);
-      alert(error?.errors?.[0]?.message || "Failed to sign in. Please try again.");
+      alert(error?.errors?.[0]?.message || "Η σύνδεση απέτυχε. Παρακαλώ δοκιμάστε ξανά.");
     }
   };
 
@@ -42,7 +42,7 @@ function LoginPage() {
       });
     } catch (error) {
       console.error("Google sign in error:", error);
-      alert("Failed to sign in with Google. Please try again.");
+      alert("Αποτυχία σύνδεσης με Google. Παρακαλώ δοκιμάστε ξανά.");
     }
   };
 
@@ -57,26 +57,26 @@ function LoginPage() {
       });
     } catch (error) {
       console.error("Apple sign in error:", error);
-      alert("Failed to sign in with Apple. Please try again.");
+      alert("Αποτυχία σύνδεσης με Apple. Παρακαλώ δοκιμάστε ξανά.");
     }
   };
 
   const handleResetPassword = () => {
     // Clerk handles password reset through their UI
     // You can redirect to Clerk's password reset page or show a modal
-    alert("Password reset functionality - redirect to Clerk password reset");
+    alert("Επαναφορά κωδικού πρόσβασης - ανακατεύθυνση στη σελίδα επαναφοράς του Clerk");
   };
 
   const handleCreateAccount = () => {
     // Redirect to sign up page or show sign up modal
-    alert("Create account functionality - redirect to sign up page");
+    alert("Δημιουργία λογαριασμού - ανακατεύθυνση στη σελίδα εγγραφής");
   };
 
   return (
     <div className="bg-base-100 text-base-content">
       <SignInPage
-        title={<span className="font-light text-base-content tracking-tighter">Welcome to Comfort Foods</span>}
-        description="Access your admin account and manage your e-commerce platform"
+        title={<span className="font-light text-base-content tracking-tighter">Καλώς ήρθατε στο Comfort Foods</span>}
+        description="Συνδεθείτε στον λογαριασμό διαχείρισης και διαχειριστείτε την πλατφόρμα e‑commerce"
         heroImageSrc="/download.svg"
         testimonials={[]}
         onSignIn={handleSignIn}

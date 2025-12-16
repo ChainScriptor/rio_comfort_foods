@@ -11,14 +11,13 @@ import {
   StarIcon,
 } from "lucide-react";
 
-// eslint-disable-next-line
 export const NAVIGATION = [
-  { name: "Dashboard", path: "/dashboard", icon: <HomeIcon className="size-5" /> },
-  { name: "Products", path: "/products", icon: <ShoppingBagIcon className="size-5" /> },
-  { name: "Categories", path: "/categories", icon: <TagIcon className="size-5" /> },
-  { name: "Orders", path: "/orders", icon: <ClipboardListIcon className="size-5" /> },
-  { name: "Customers", path: "/customers", icon: <UsersIcon className="size-5" /> },
-  { name: "Reviews", path: "/reviews", icon: <StarIcon className="size-5" /> },
+  { name: "Πίνακας Ελέγχου", path: "/dashboard", icon: <HomeIcon className="size-5" /> },
+  { name: "Προϊόντα", path: "/products", icon: <ShoppingBagIcon className="size-5" /> },
+  { name: "Κατηγορίες", path: "/categories", icon: <TagIcon className="size-5" /> },
+  { name: "Παραγγελίες", path: "/orders", icon: <ClipboardListIcon className="size-5" /> },
+  { name: "Πελάτες", path: "/customers", icon: <UsersIcon className="size-5" /> },
+  { name: "Αξιολογήσεις", path: "/reviews", icon: <StarIcon className="size-5" /> },
 ];
 
 function Navbar() {
@@ -32,7 +31,7 @@ function Navbar() {
 
       <div className="flex-1 px-4">
         <h1 className="text-xl font-bold">
-          {NAVIGATION.find((item) => item.path === location.pathname)?.name || "Dashboard"}
+          {NAVIGATION.find((item) => item.path === location.pathname)?.name || "Πίνακας Ελέγχου"}
         </h1>
       </div>
 

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { PlusIcon, PencilIcon, Trash2Icon, XIcon, ImageIcon } from "lucide-react";
+import { useState, useMemo } from "react";
+import { PlusIcon, PencilIcon, Trash2Icon, XIcon, ImageIcon, SearchIcon, FilterIcon } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { productApi, categoryApi } from "../lib/api";
 import { getStockStatusBadge } from "../lib/utils";
@@ -7,6 +7,8 @@ import { getStockStatusBadge } from "../lib/utils";
 function ProductsPage() {
   const [showModal, setShowModal] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     category: "",
@@ -138,87 +140,179 @@ function ProductsPage() {
     }
   };
 
+  // Filter products based on category and search query
+  const filteredProducts = useMemo(() => {
+    let filtered = products;
+
+    // Filter by category
+    if (selectedCategory) {
+      filtered = filtered.filter((product) => product.category === selectedCategory);
+    }
+
+    // Filter by search query (search in name, description, and category)
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase().trim();
+      filtered = filtered.filter(
+        (product) =>
+          product.name.toLowerCase().includes(query) ||
+          product.description?.toLowerCase().includes(query) ||
+          product.category?.toLowerCase().includes(query)
+      );
+    }
+
+    return filtered;
+  }, [products, selectedCategory, searchQuery]);
+
   return (
     <div className="space-y-6">
       {/* HEADER */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">Products</h1>
-          <p className="text-base-content/70 mt-1">Manage your product inventory</p>
+          <h1 className="text-2xl font-bold">Προϊόντα</h1>
+          <p className="text-base-content/70 mt-1">Διαχείριση αποθέματος προϊόντων</p>
         </div>
         <button onClick={() => setShowModal(true)} className="btn btn-primary gap-2">
           <PlusIcon className="w-5 h-5" />
-          Add Product
+          Προσθήκη Προϊόντος
         </button>
       </div>
 
+      {/* FILTERS AND SEARCH */}
+      <div className="card bg-base-100 shadow-xl">
+        <div className="card-body">
+          <div className="flex flex-col md:flex-row gap-4">
+            {/* Search Bar */}
+            <div className="form-control flex-1">
+              <label className="label">
+                <span className="label-text flex items-center gap-2">
+                  <SearchIcon className="w-4 h-4" />
+                  Αναζήτηση Προϊόντων
+                </span>
+              </label>
+              <input
+                type="text"
+                placeholder="Αναζήτηση με όνομα, περιγραφή ή κατηγορία..."
+                className="input input-bordered w-full"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+
+            {/* Category Filter */}
+            <div className="form-control md:w-64">
+              <label className="label">
+                <span className="label-text flex items-center gap-2">
+                  <FilterIcon className="w-4 h-4" />
+                  Φίλτρο Κατηγορίας
+                </span>
+              </label>
+              <select
+                className="select select-bordered w-full"
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+              >
+                <option value="">Όλες οι Κατηγορίες</option>
+                {categories
+                  .filter((cat) => cat.isActive)
+                  .map((category) => (
+                    <option key={category._id} value={category.name}>
+                      {category.icon && `${category.icon} `}
+                      {category.name}
+                    </option>
+                  ))}
+              </select>
+            </div>
+          </div>
+
+          {/* Results Count */}
+          <div className="text-sm text-base-content/70 mt-2">
+            Εμφάνιση {filteredProducts.length} από {products.length} προϊόντα
+            {selectedCategory && ` στην κατηγορία "${selectedCategory}"`}
+            {searchQuery && ` με αναζήτηση "${searchQuery}"`}
+          </div>
+        </div>
+      </div>
+
       {/* PRODUCTS GRID */}
-      <div className="grid grid-cols-1 gap-4">
-        {products?.map((product) => {
-          const status = getStockStatusBadge(product.stock);
+      {filteredProducts.length === 0 ? (
+        <div className="card bg-base-100 shadow-xl">
+          <div className="card-body text-center py-12">
+            <p className="text-xl font-semibold mb-2">Δεν βρέθηκαν προϊόντα</p>
+            <p className="text-base-content/70">
+              {searchQuery || selectedCategory
+                ? "Δοκιμάστε να αλλάξετε τα φίλτρα αναζήτησης"
+                : "Προσθέστε το πρώτο σας προϊόν"}
+            </p>
+          </div>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 gap-4">
+          {filteredProducts.map((product) => {
+            const status = getStockStatusBadge(product.stock);
 
-          return (
-            <div key={product._id} className="card bg-base-100 shadow-xl">
-              <div className="card-body">
-                <div className="flex items-center gap-6">
-                  <div className="avatar">
-                    <div className="w-20 rounded-xl">
-                      <img src={product.images[0]} alt={product.name} />
-                    </div>
-                  </div>
-
-                  <div className="flex-1">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <h3 className="card-title">{product.name}</h3>
-                        <p className="text-base-content/70 text-sm">{product.category}</p>
+            return (
+              <div key={product._id} className="card bg-base-100 shadow-xl">
+                <div className="card-body">
+                  <div className="flex items-center gap-6">
+                    <div className="avatar">
+                      <div className="w-20 rounded-xl">
+                        <img src={product.images[0]} alt={product.name} />
                       </div>
-                      <div className={`badge ${status.class}`}>{status.text}</div>
                     </div>
-                    <div className="flex items-center gap-6 mt-4">
-                      {product.price && (
-                        <div>
-                          <p className="text-xs text-base-content/70">Price</p>
-                          <p className="font-bold text-lg">${product.price}</p>
-                        </div>
-                      )}
-                      <div>
-                        <p className="text-xs text-base-content/70">Stock</p>
-                        <p className="font-bold text-lg">{product.stock} units</p>
-                      </div>
-                      {product.showPrice !== undefined && (
-                        <div>
-                          <p className="text-xs text-base-content/70">Show Price</p>
-                          <p className="font-bold text-sm">{product.showPrice ? "✓ Yes" : "✗ No"}</p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
 
-                  <div className="card-actions">
-                    <button
-                      className="btn btn-square btn-ghost"
-                      onClick={() => handleEdit(product)}
-                    >
-                      <PencilIcon className="w-5 h-5" />
-                    </button>
-                    <button
-                      className="btn btn-square btn-ghost text-error"
-                      onClick={() => deleteProductMutation.mutate(product._id)}
-                    >
-                      {deleteProductMutation.isPending ? (
-                        <span className="loading loading-spinner"></span>
-                      ) : (
-                        <Trash2Icon className="w-5 h-5" />
-                      )}
-                    </button>
+                    <div className="flex-1">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <h3 className="card-title">{product.name}</h3>
+                          <p className="text-base-content/70 text-sm">{product.category}</p>
+                        </div>
+                        <div className={`badge ${status.class}`}>{status.text}</div>
+                      </div>
+                      <div className="flex items-center gap-6 mt-4">
+                        {product.price && (
+                          <div>
+                            <p className="text-xs text-base-content/70">Τιμή</p>
+                            <p className="font-bold text-lg">${product.price}</p>
+                          </div>
+                        )}
+                        <div>
+                          <p className="text-xs text-base-content/70">Απόθεμα</p>
+                          <p className="font-bold text-lg">{product.stock} τεμάχια</p>
+                        </div>
+                        {product.showPrice !== undefined && (
+                          <div>
+                            <p className="text-xs text-base-content/70">Εμφάνιση Τιμής</p>
+                            <p className="font-bold text-sm">{product.showPrice ? "✓ Ναι" : "✗ Όχι"}</p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="card-actions">
+                      <button
+                        className="btn btn-square btn-ghost"
+                        onClick={() => handleEdit(product)}
+                      >
+                        <PencilIcon className="w-5 h-5" />
+                      </button>
+                      <button
+                        className="btn btn-square btn-ghost text-error"
+                        onClick={() => deleteProductMutation.mutate(product._id)}
+                      >
+                        {deleteProductMutation.isPending ? (
+                          <span className="loading loading-spinner"></span>
+                        ) : (
+                          <Trash2Icon className="w-5 h-5" />
+                        )}
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      )}
 
       {/* ADD/EDIT PRODUCT MODAL */}
 
@@ -233,7 +327,7 @@ function ProductsPage() {
         <div className="modal-box max-w-2xl">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-bold text-2xl">
-              {editingProduct ? "Edit Product" : "Add New Product"}
+              {editingProduct ? "Επεξεργασία Προϊόντος" : "Προσθήκη Νέου Προϊόντος"}
             </h3>
 
             <button onClick={closeModal} className="btn btn-sm btn-circle btn-ghost">
@@ -469,7 +563,7 @@ function ProductsPage() {
                 className="btn"
                 disabled={createProductMutation.isPending || updateProductMutation.isPending}
               >
-                Cancel
+                Ακύρωση
               </button>
 
               <button
@@ -480,9 +574,9 @@ function ProductsPage() {
                 {createProductMutation.isPending || updateProductMutation.isPending ? (
                   <span className="loading loading-spinner"></span>
                 ) : editingProduct ? (
-                  "Update Product"
+                  "Ενημέρωση Προϊόντος"
                 ) : (
-                  "Add Product"
+                  "Προσθήκη Προϊόντος"
                 )}
               </button>
             </div>

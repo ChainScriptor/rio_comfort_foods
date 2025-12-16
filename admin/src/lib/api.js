@@ -35,8 +35,10 @@ export const orderApi = {
 };
 
 export const statsApi = {
-  getDashboard: async () => {
-    const { data } = await axiosInstance.get("/admin/stats");
+  getDashboard: async (params = { period: "all" }) => {
+    const { data } = await axiosInstance.get("/admin/stats", {
+      params,
+    });
     return data;
   },
 };
