@@ -24,10 +24,16 @@ const ShopScreen = () => {
     console.error("Error status:", categoriesErrorDetails?.response?.status);
   }
 
-  // Build categories list with "All" option
+  // Build categories list with "All" option, sorted by order
   const displayCategories = useMemo(() => {
     const allOption = { name: "Όλα", icon: "grid-outline" as const };
-    const categoryOptions = categories.map((cat) => ({
+    // Sort categories by order field (ascending), then by creation date if order is the same
+    const sortedCategories = [...categories].sort((a, b) => {
+      const orderA = a.order ?? 999; // Categories without order go to the end
+      const orderB = b.order ?? 999;
+      return orderA - orderB;
+    });
+    const categoryOptions = sortedCategories.map((cat) => ({
       name: cat.name,
       icon: cat.icon,
       image: cat.image,

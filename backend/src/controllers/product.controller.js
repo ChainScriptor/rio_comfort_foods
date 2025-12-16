@@ -25,17 +25,18 @@ export async function getCategories(req, res) {
       throw new Error("Category model is not available");
     }
     
-    // First, try to get all categories to see if the model works
-    const allCategories = await Category.find().sort({ name: 1 });
+    // First, try to get all categories sorted by custom order (for mobile display)
+    const allCategories = await Category.find().sort({ order: 1, createdAt: -1 });
     console.log("📦 All categories found:", allCategories.length);
     
     // Filter active categories (handle cases where isActive might be undefined)
     const categories = allCategories
-      .filter(cat => cat.isActive !== false)
-      .map(cat => ({
+      .filter((cat) => cat.isActive !== false)
+      .map((cat) => ({
         name: cat.name,
         icon: cat.icon || "",
         image: cat.image || "",
+        order: cat.order ?? 0,
       }));
     
     console.log("✅ Active categories:", categories.length);

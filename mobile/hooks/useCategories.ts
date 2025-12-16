@@ -6,6 +6,7 @@ export interface Category {
   name: string;
   icon?: string;
   image?: string;
+  order?: number;
 }
 
 const useCategories = () => {

@@ -129,6 +129,37 @@ function CategoriesPage() {
   const activeCategories = categories.filter((cat) => cat.isActive).length;
   const inactiveCategories = categories.filter((cat) => !cat.isActive).length;
 
+  // Sort categories by custom order (fallback to created order)
+  const sortedCategories = [...categories].sort((a, b) => {
+    const orderA = a.order ?? 0;
+    const orderB = b.order ?? 0;
+    if (orderA === orderB) {
+      return (a.createdAt || "").localeCompare(b.createdAt || "");
+    }
+    return orderA - orderB;
+  });
+
+  const handleReorder = (category, direction) => {
+    const currentIndex = sortedCategories.findIndex((cat) => cat._id === category._id);
+    if (currentIndex === -1) return;
+
+    const newIndex = direction === "up" ? currentIndex - 1 : currentIndex + 1;
+    if (newIndex < 0 || newIndex >= sortedCategories.length) return;
+
+    // Create a new array with swapped positions
+    const reordered = [...sortedCategories];
+    const [moved] = reordered.splice(currentIndex, 1);
+    reordered.splice(newIndex, 0, moved);
+
+    // Persist new order to backend (sequential order values)
+    reordered.forEach((cat, index) => {
+      updateCategoryMutation.mutate({
+        id: cat._id,
+        categoryData: { order: index },
+      });
+    });
+  };
+
   return (
     <div className="space-y-6">
       {/* HEADER */}
@@ -178,7 +209,7 @@ function CategoriesPage() {
 
       {/* CATEGORIES GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {categories?.map((category) => (
+        {sortedCategories?.map((category, index) => (
           <div
             key={category._id}
             className={`card bg-base-100 shadow-lg hover:shadow-xl transition-all duration-300 border-2 ${
@@ -219,23 +250,46 @@ function CategoriesPage() {
 
               {/* Status Badge */}
               <div className="flex items-center justify-between mt-auto pt-3 border-t border-base-300">
-                <div
-                  className={`badge badge-lg gap-1.5 ${
+                <div className="flex items-center gap-2">
+                  <div className="badge badge-outline badge-sm">
+                    Θέση: {index + 1}
+                  </div>
+                  <div
+                    className={`badge badge-lg gap-1.5 ${
                     category.isActive
                       ? "badge-success"
                       : "badge-error"
                   }`}
-                >
-                  {category.isActive ? (
-                    <CheckCircle2Icon className="w-3.5 h-3.5" />
-                  ) : (
-                    <XCircleIcon className="w-3.5 h-3.5" />
-                  )}
-                  {category.isActive ? "Active" : "Inactive"}
+                  >
+                    {category.isActive ? (
+                      <CheckCircle2Icon className="w-3.5 h-3.5" />
+                    ) : (
+                      <XCircleIcon className="w-3.5 h-3.5" />
+                    )}
+                    {category.isActive ? "Active" : "Inactive"}
+                  </div>
                 </div>
 
                 {/* Action Buttons */}
                 <div className="flex items-center gap-1">
+                  {/* Reorder buttons */}
+                  <button
+                    className="btn btn-xs btn-square btn-ghost"
+                    onClick={() => handleReorder(category, "up")}
+                    title="Μετακίνηση επάνω"
+                    disabled={index === 0}
+                  >
+                    ↑
+                  </button>
+                  <button
+                    className="btn btn-xs btn-square btn-ghost"
+                    onClick={() => handleReorder(category, "down")}
+                    title="Μετακίνηση κάτω"
+                    disabled={index === sortedCategories.length - 1}
+                  >
+                    ↓
+                  </button>
+
                   <button
                     className="btn btn-sm btn-square btn-ghost hover:btn-primary transition-colors"
                     onClick={() => handleEdit(category)}

@@ -298,7 +298,8 @@ export const deleteProduct = async (req, res) => {
 // Category Controllers
 export const getAllCategories = async (req, res) => {
   try {
-    const categories = await Category.find().sort({ createdAt: -1 });
+    // sort by custom order first, then by creation date as a fallback
+    const categories = await Category.find().sort({ order: 1, createdAt: -1 });
     res.status(200).json(categories);
   } catch (error) {
     console.error("Error fetching categories:", error);
@@ -330,11 +331,16 @@ export const createCategory = async (req, res) => {
       imageUrl = uploadResult.secure_url;
     }
 
+    // find current max order to append new category at the end
+    const lastCategory = await Category.findOne().sort({ order: -1 });
+    const nextOrder = (lastCategory?.order ?? 0) + 1;
+
     const category = await Category.create({
       name: name.trim(),
       description: description || "",
       icon: icon || "",
       image: imageUrl,
+      order: nextOrder,
     });
 
     res.status(201).json(category);
@@ -350,7 +356,7 @@ export const createCategory = async (req, res) => {
 export const updateCategory = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, description, icon, isActive } = req.body;
+    const { name, description, icon, isActive, order } = req.body;
 
     const category = await Category.findById(id);
     if (!category) {
@@ -369,6 +375,9 @@ export const updateCategory = async (req, res) => {
     if (description !== undefined) category.description = description;
     if (icon !== undefined) category.icon = icon;
     if (isActive !== undefined) category.isActive = isActive;
+    if (order !== undefined && !Number.isNaN(Number(order))) {
+      category.order = Number(order);
+    }
 
     // Handle image update if new image is uploaded
     if (req.file) {
