@@ -1,7 +1,161 @@
 import { useState } from "react";
-import { PlusIcon, PencilIcon, Trash2Icon, XIcon, TagIcon, CheckCircle2Icon, XCircleIcon, ImageIcon } from "lucide-react";
+import { PlusIcon, PencilIcon, Trash2Icon, XIcon, TagIcon, CheckCircle2Icon, XCircleIcon, ImageIcon, MoveIcon } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { categoryApi } from "../lib/api";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+
+// Sortable Category Row Component
+function SortableCategoryRow({ category, index, onEdit, onDelete, onToggleActive, isDeleting, isUpdating }) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: category._id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+  };
+
+  return (
+    <tr
+      ref={setNodeRef}
+      style={style}
+      className={`group hover:bg-base-200/50 transition-colors ${
+        !category.isActive ? "opacity-60" : ""
+      } ${isDragging ? "z-50" : ""}`}
+    >
+      <td>
+        <div
+          {...attributes}
+          {...listeners}
+          className="cursor-grab active:cursor-grabbing p-1 rounded hover:bg-base-300 transition-colors inline-flex"
+          title="Σύρετε για να αλλάξετε τη σειρά"
+        >
+          <MoveIcon className="w-4 h-4 text-base-content/40" />
+        </div>
+      </td>
+      
+      <td>
+        <div className="flex items-center gap-3">
+          {/* Image/Icon */}
+          <div className="flex-shrink-0">
+            {category.image ? (
+              <div className="w-10 h-10 rounded-lg overflow-hidden border border-base-300">
+                <img 
+                  src={category.image} 
+                  alt={category.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ) : category.icon ? (
+              <div className="w-10 h-10 rounded-lg bg-base-200 flex items-center justify-center text-xl border border-base-300">
+                {category.icon}
+              </div>
+            ) : (
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+                <TagIcon className="w-5 h-5 text-primary" />
+              </div>
+            )}
+          </div>
+          
+          <div className="min-w-0">
+            <div className="font-semibold truncate">{category.name}</div>
+            {category.description && (
+              <div className="text-xs text-base-content/60 truncate max-w-xs">
+                {category.description}
+              </div>
+            )}
+          </div>
+        </div>
+      </td>
+
+      <td>
+        <div className="badge badge-outline badge-sm">#{index + 1}</div>
+      </td>
+
+      <td>
+        <div
+          className={`badge badge-sm gap-1 ${
+            category.isActive
+              ? "badge-success"
+              : "badge-error"
+          }`}
+        >
+          {category.isActive ? (
+            <CheckCircle2Icon className="w-3 h-3" />
+          ) : (
+            <XCircleIcon className="w-3 h-3" />
+          )}
+          {category.isActive ? "Ενεργή" : "Ανενεργή"}
+        </div>
+      </td>
+
+      <td>
+        <div className="flex items-center gap-1">
+          <button
+            className={`btn btn-xs ${
+              category.isActive
+                ? "btn-outline btn-error"
+                : "btn-outline btn-success"
+            }`}
+            onClick={() => onToggleActive(category)}
+            disabled={isUpdating}
+            title={category.isActive ? "Απενεργοποίηση" : "Ενεργοποίηση"}
+          >
+            {isUpdating ? (
+              <span className="loading loading-spinner loading-xs"></span>
+            ) : category.isActive ? (
+              <XCircleIcon className="w-3 h-3" />
+            ) : (
+              <CheckCircle2Icon className="w-3 h-3" />
+            )}
+          </button>
+
+          <button
+            className="btn btn-xs btn-square btn-ghost hover:btn-primary"
+            onClick={() => onEdit(category)}
+            title="Επεξεργασία"
+          >
+            <PencilIcon className="w-3 h-3" />
+          </button>
+          
+          <button
+            className="btn btn-xs btn-square btn-ghost hover:btn-error"
+            onClick={() => onDelete(category)}
+            disabled={isDeleting}
+            title="Διαγραφή"
+          >
+            {isDeleting ? (
+              <span className="loading loading-spinner loading-xs"></span>
+            ) : (
+              <Trash2Icon className="w-3 h-3" />
+            )}
+          </button>
+        </div>
+      </td>
+    </tr>
+  );
+}
 
 function CategoriesPage() {
   const [showModal, setShowModal] = useState(false);
@@ -86,7 +240,7 @@ function CategoriesPage() {
     e.preventDefault();
 
     if (!formData.name.trim()) {
-      return alert("Category name is required");
+      return alert("Το όνομα κατηγορίας είναι υποχρεωτικό");
     }
 
     const formDataToSend = new FormData();
@@ -111,7 +265,7 @@ function CategoriesPage() {
   };
 
   const handleDelete = (category) => {
-    if (window.confirm(`Are you sure you want to delete "${category.name}"?`)) {
+    if (window.confirm(`Είστε σίγουροι ότι θέλετε να διαγράψετε την "${category.name}";`)) {
       deleteCategoryMutation.mutate(category._id);
     }
   };
@@ -139,221 +293,132 @@ function CategoriesPage() {
     return orderA - orderB;
   });
 
-  const handleReorder = (category, direction) => {
-    const currentIndex = sortedCategories.findIndex((cat) => cat._id === category._id);
-    if (currentIndex === -1) return;
+  // Drag and Drop Handlers
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
 
-    const newIndex = direction === "up" ? currentIndex - 1 : currentIndex + 1;
-    if (newIndex < 0 || newIndex >= sortedCategories.length) return;
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
 
-    // Create a new array with swapped positions
-    const reordered = [...sortedCategories];
-    const [moved] = reordered.splice(currentIndex, 1);
-    reordered.splice(newIndex, 0, moved);
+    if (active.id !== over?.id) {
+      const oldIndex = sortedCategories.findIndex((cat) => cat._id === active.id);
+      const newIndex = sortedCategories.findIndex((cat) => cat._id === over.id);
 
-    // Persist new order to backend (sequential order values)
-    reordered.forEach((cat, index) => {
-      updateCategoryMutation.mutate({
-        id: cat._id,
-        categoryData: { order: index },
+      const reordered = arrayMove(sortedCategories, oldIndex, newIndex);
+
+      // Persist new order to backend (sequential order values)
+      reordered.forEach((cat, index) => {
+        updateCategoryMutation.mutate({
+          id: cat._id,
+          categoryData: { order: index },
+        });
       });
-    });
+    }
   };
 
   return (
     <div className="space-y-6">
       {/* HEADER */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <h1 className="text-3xl font-bold flex items-center gap-2">
-            <TagIcon className="w-8 h-8 text-primary" />
-            Categories
+          <h1 className="text-2xl font-bold flex items-center gap-2">
+            <TagIcon className="w-6 h-6 text-primary" />
+            Κατηγορίες
           </h1>
-          <p className="text-base-content/70 mt-1">Manage and organize your product categories</p>
+          <p className="text-sm text-base-content/70 mt-1">Σύρετε τις γραμμές για να αλλάξετε τη σειρά</p>
         </div>
         <button 
           onClick={() => setShowModal(true)} 
-          className="btn btn-primary gap-2 shadow-lg hover:shadow-xl transition-all"
+          className="btn btn-primary btn-sm gap-2"
         >
-          <PlusIcon className="w-5 h-5" />
-          Add Category
+          <PlusIcon className="w-4 h-4" />
+          Προσθήκη Κατηγορίας
         </button>
       </div>
 
-      {/* STATS CARDS */}
+      {/* COMPACT STATS */}
       {categories.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="stat bg-base-200 rounded-xl shadow-md">
-            <div className="stat-figure text-primary">
-              <TagIcon className="w-8 h-8" />
-            </div>
-            <div className="stat-title">Total Categories</div>
-            <div className="stat-value text-primary">{categories.length}</div>
+        <div className="flex items-center gap-4 text-sm">
+          <div className="badge badge-primary badge-lg gap-2">
+            <TagIcon className="w-4 h-4" />
+            {categories.length} {categories.length === 1 ? "Κατηγορία" : "Κατηγορίες"}
           </div>
-          <div className="stat bg-base-200 rounded-xl shadow-md">
-            <div className="stat-figure text-success">
-              <CheckCircle2Icon className="w-8 h-8" />
-            </div>
-            <div className="stat-title">Active</div>
-            <div className="stat-value text-success">{activeCategories}</div>
+          <div className="badge badge-success badge-lg gap-2">
+            <CheckCircle2Icon className="w-4 h-4" />
+            {activeCategories} Ενεργές
           </div>
-          <div className="stat bg-base-200 rounded-xl shadow-md">
-            <div className="stat-figure text-error">
-              <XCircleIcon className="w-8 h-8" />
-            </div>
-            <div className="stat-title">Inactive</div>
-            <div className="stat-value text-error">{inactiveCategories}</div>
+          <div className="badge badge-error badge-lg gap-2">
+            <XCircleIcon className="w-4 h-4" />
+            {inactiveCategories} Ανενεργές
           </div>
         </div>
       )}
 
-      {/* CATEGORIES GRID */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {sortedCategories?.map((category, index) => (
-          <div
-            key={category._id}
-            className={`card bg-base-100 shadow-lg hover:shadow-xl transition-all duration-300 border-2 ${
-              category.isActive ? "border-primary/20" : "border-base-300 opacity-75"
-            }`}
-          >
-            <div className="card-body p-5">
-              {/* Image/Icon and Name Section */}
-              <div className="flex items-start justify-between mb-3">
-                <div className="flex items-center gap-3 flex-1 min-w-0">
-                  {category.image ? (
-                    <div className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 border-2 border-base-300">
-                      <img 
-                        src={category.image} 
-                        alt={category.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  ) : category.icon ? (
-                    <div className="text-4xl flex-shrink-0">{category.icon}</div>
-                  ) : (
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <TagIcon className="w-6 h-6 text-primary" />
-                    </div>
-                  )}
-                  <div className="flex-1 min-w-0">
-                    <h3 className="card-title text-lg font-bold truncate">{category.name}</h3>
-                  </div>
-                </div>
-              </div>
-
-              {/* Description */}
-              {category.description && (
-                <p className="text-base-content/60 text-sm mb-4 line-clamp-2">
-                  {category.description}
-                </p>
-              )}
-
-              {/* Status Badge */}
-              <div className="flex items-center justify-between mt-auto pt-3 border-t border-base-300">
-                <div className="flex items-center gap-2">
-                  <div className="badge badge-outline badge-sm">
-                    Θέση: {index + 1}
-                  </div>
-                  <div
-                    className={`badge badge-lg gap-1.5 ${
-                    category.isActive
-                      ? "badge-success"
-                      : "badge-error"
-                  }`}
-                  >
-                    {category.isActive ? (
-                      <CheckCircle2Icon className="w-3.5 h-3.5" />
-                    ) : (
-                      <XCircleIcon className="w-3.5 h-3.5" />
-                    )}
-                    {category.isActive ? "Active" : "Inactive"}
-                  </div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex items-center gap-1">
-                  {/* Reorder buttons */}
-                  <button
-                    className="btn btn-xs btn-square btn-ghost"
-                    onClick={() => handleReorder(category, "up")}
-                    title="Μετακίνηση επάνω"
-                    disabled={index === 0}
-                  >
-                    ↑
-                  </button>
-                  <button
-                    className="btn btn-xs btn-square btn-ghost"
-                    onClick={() => handleReorder(category, "down")}
-                    title="Μετακίνηση κάτω"
-                    disabled={index === sortedCategories.length - 1}
-                  >
-                    ↓
-                  </button>
-
-                  <button
-                    className="btn btn-sm btn-square btn-ghost hover:btn-primary transition-colors"
-                    onClick={() => handleEdit(category)}
-                    title="Edit category"
-                  >
-                    <PencilIcon className="w-4 h-4" />
-                  </button>
-                  <button
-                    className="btn btn-sm btn-square btn-ghost hover:btn-error transition-colors"
-                    onClick={() => handleDelete(category)}
-                    disabled={deleteCategoryMutation.isPending}
-                    title="Delete category"
-                  >
-                    {deleteCategoryMutation.isPending ? (
-                      <span className="loading loading-spinner loading-xs"></span>
-                    ) : (
-                      <Trash2Icon className="w-4 h-4" />
-                    )}
-                  </button>
-                </div>
-              </div>
-
-              {/* Toggle Button */}
-              <button
-                className={`btn btn-sm w-full mt-2 ${
-                  category.isActive
-                    ? "btn-outline btn-error"
-                    : "btn-outline btn-success"
-                }`}
-                onClick={() => handleToggleActive(category)}
-                disabled={updateCategoryMutation.isPending}
-              >
-                {updateCategoryMutation.isPending ? (
-                  <span className="loading loading-spinner loading-xs"></span>
-                ) : category.isActive ? (
-                  <>
-                    <XCircleIcon className="w-4 h-4" />
-                    Deactivate
-                  </>
-                ) : (
-                  <>
-                    <CheckCircle2Icon className="w-4 h-4" />
-                    Activate
-                  </>
-                )}
-              </button>
-            </div>
+      {/* CATEGORIES TABLE WITH DRAG AND DROP */}
+      {categories.length === 0 ? (
+        <div className="flex flex-col items-center justify-center py-12 bg-base-200 rounded-xl">
+          <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+            <TagIcon className="w-8 h-8 text-primary" />
           </div>
-        ))}
-      </div>
-
-      {categories.length === 0 && (
-        <div className="flex flex-col items-center justify-center py-16 bg-base-200 rounded-2xl">
-          <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-            <TagIcon className="w-12 h-12 text-primary" />
-          </div>
-          <h3 className="text-xl font-bold mb-2">No categories yet</h3>
-          <p className="text-base-content/70 mb-6 text-center max-w-md">
-            Get started by creating your first category. Categories help organize your products and make them easier to find.
+          <h3 className="text-lg font-bold mb-2">Δεν υπάρχουν κατηγορίες ακόμη</h3>
+          <p className="text-base-content/70 mb-4 text-center max-w-md text-sm">
+            Ξεκινήστε δημιουργώντας την πρώτη σας κατηγορία.
           </p>
-          <button onClick={() => setShowModal(true)} className="btn btn-primary gap-2">
-            <PlusIcon className="w-5 h-5" />
-            Create Your First Category
+          <button onClick={() => setShowModal(true)} className="btn btn-primary btn-sm gap-2">
+            <PlusIcon className="w-4 h-4" />
+            Δημιουργία Κατηγορίας
           </button>
+        </div>
+      ) : (
+        <div className="card bg-base-100 shadow-xl">
+          <div className="card-body p-4">
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+            >
+              <SortableContext
+                items={sortedCategories.map((cat) => cat._id)}
+                strategy={verticalListSortingStrategy}
+              >
+                <div className="overflow-x-auto">
+                  <table className="table table-zebra">
+                    <thead>
+                      <tr>
+                        <th className="w-10"></th>
+                        <th>Κατηγορία</th>
+                        <th className="w-20">Θέση</th>
+                        <th className="w-24">Κατάσταση</th>
+                        <th className="w-32">Ενέργειες</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {sortedCategories.map((category, index) => (
+                        <SortableCategoryRow
+                          key={category._id}
+                          category={category}
+                          index={index}
+                          onEdit={handleEdit}
+                          onDelete={handleDelete}
+                          onToggleActive={handleToggleActive}
+                          isDeleting={deleteCategoryMutation.isPending}
+                          isUpdating={updateCategoryMutation.isPending}
+                        />
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </SortableContext>
+            </DndContext>
+          </div>
         </div>
       )}
 
@@ -379,12 +444,12 @@ function CategoriesPage() {
               </div>
               <div>
                 <h3 className="font-bold text-2xl">
-                  {editingCategory ? "Edit Category" : "Add New Category"}
+                  {editingCategory ? "Επεξεργασία Κατηγορίας" : "Προσθήκη Νέας Κατηγορίας"}
                 </h3>
                 <p className="text-sm text-base-content/60">
                   {editingCategory
-                    ? "Update category information"
-                    : "Create a new category for your products"}
+                    ? "Ενημέρωση πληροφοριών κατηγορίας"
+                    : "Δημιουργία νέας κατηγορίας για τα προϊόντα σας"}
                 </p>
               </div>
             </div>
@@ -401,11 +466,11 @@ function CategoriesPage() {
               {/* Category Name */}
               <div className="form-control md:col-span-2">
                 <label className="label">
-                  <span className="label-text font-semibold">Category Name *</span>
+                  <span className="label-text font-semibold">Όνομα Κατηγορίας *</span>
                 </label>
                 <input
                   type="text"
-                  placeholder="e.g., Electronics, Fashion, Sports"
+                  placeholder="π.χ., Ηλεκτρονικά, Μόδα, Αθλητικά"
                   className="input input-bordered input-lg focus:input-primary transition-colors"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -416,11 +481,11 @@ function CategoriesPage() {
               {/* Image Upload */}
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text font-semibold flex items-center gap-2">
+                    <span className="label-text font-semibold flex items-center gap-2">
                     <ImageIcon className="w-4 h-4" />
-                    Category Image
+                    Εικόνα Κατηγορίας
                   </span>
-                  <span className="label-text-alt text-primary">Optional</span>
+                  <span className="label-text-alt text-primary">Προαιρετικό</span>
                 </label>
                 <div className="flex flex-col gap-3">
                   {(imagePreview || (editingCategory && editingCategory.image)) && (
@@ -441,21 +506,21 @@ function CategoriesPage() {
                     />
                     {editingCategory && !image && (
                       <p className="text-xs text-base-content/60 mt-2 text-center">
-                        Leave empty to keep current image
+                        Αφήστε κενό για να διατηρήσετε την τρέχουσα εικόνα
                       </p>
                     )}
                   </div>
                 </div>
                 <label className="label">
-                  <span className="label-text-alt">Upload an image or use emoji icon below</span>
+                  <span className="label-text-alt">Ανεβάστε μια εικόνα ή χρησιμοποιήστε emoji εικονίδιο παρακάτω</span>
                 </label>
               </div>
 
               {/* Icon Preview and Input */}
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text font-semibold">Icon (Emoji)</span>
-                  <span className="label-text-alt text-primary">Optional</span>
+                  <span className="label-text font-semibold">Εικονίδιο (Emoji)</span>
+                  <span className="label-text-alt text-primary">Προαιρετικό</span>
                 </label>
                 <div className="flex items-center gap-3">
                   <div className="w-16 h-16 rounded-xl bg-base-200 flex items-center justify-center text-3xl border-2 border-dashed border-base-300">
@@ -474,8 +539,8 @@ function CategoriesPage() {
                 <label className="label">
                   <span className="label-text-alt">
                     {imagePreview || (editingCategory && editingCategory.image)
-                      ? "Image takes priority over emoji"
-                      : "Add an emoji to make your category stand out"}
+                      ? "Η εικόνα έχει προτεραιότητα έναντι του emoji"
+                      : "Προσθέστε ένα emoji για να ξεχωρίσει η κατηγορία σας"}
                   </span>
                 </label>
               </div>
@@ -484,12 +549,12 @@ function CategoriesPage() {
               {editingCategory && (
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text font-semibold">Status</span>
+                    <span className="label-text font-semibold">Κατάσταση</span>
                   </label>
                   <div className="flex items-center gap-4 p-4 bg-base-200 rounded-xl">
                     <label className="label cursor-pointer flex-1">
                       <span className="label-text">
-                        {editingCategory.isActive ? "Active" : "Inactive"}
+                        {editingCategory.isActive ? "Ενεργή" : "Ανενεργή"}
                       </span>
                       <input
                         type="checkbox"
@@ -513,7 +578,7 @@ function CategoriesPage() {
                       ) : (
                         <XCircleIcon className="w-4 h-4 mr-1" />
                       )}
-                      {editingCategory.isActive ? "Active" : "Inactive"}
+                      {editingCategory.isActive ? "Ενεργή" : "Ανενεργή"}
                     </div>
                   </div>
                 </div>
@@ -522,12 +587,12 @@ function CategoriesPage() {
               {/* Description */}
               <div className="form-control md:col-span-2">
                 <label className="label">
-                  <span className="label-text font-semibold">Description</span>
-                  <span className="label-text-alt text-primary">Optional</span>
+                  <span className="label-text font-semibold">Περιγραφή</span>
+                  <span className="label-text-alt text-primary">Προαιρετικό</span>
                 </label>
                 <textarea
                   className="textarea textarea-bordered h-32 focus:textarea-primary transition-colors"
-                  placeholder="Enter a brief description of this category..."
+                  placeholder="Εισάγετε μια σύντομη περιγραφή αυτής της κατηγορίας..."
                   value={formData.description}
                   onChange={(e) => {
                     if (e.target.value.length <= 500) {
@@ -540,7 +605,7 @@ function CategoriesPage() {
                   <span className={`label-text-alt ${
                     formData.description.length > 450 ? "text-warning" : ""
                   }`}>
-                    {formData.description.length}/500 characters
+                    {formData.description.length}/500 χαρακτήρες
                   </span>
                 </div>
               </div>
@@ -549,7 +614,7 @@ function CategoriesPage() {
             {/* Preview Card */}
             {(formData.name || formData.icon || imagePreview || (editingCategory && editingCategory.image)) && (
               <div className="bg-base-200 rounded-xl p-4 border-2 border-dashed border-primary/30">
-                <p className="text-sm font-semibold mb-3 text-base-content/70">Preview:</p>
+                <p className="text-sm font-semibold mb-3 text-base-content/70">Προεπισκόπηση:</p>
                 <div className="card bg-base-100 shadow-md">
                   <div className="card-body p-4">
                     <div className="flex items-center gap-3">
@@ -570,7 +635,7 @@ function CategoriesPage() {
                       )}
                       <div className="flex-1">
                         <h4 className="font-bold text-lg">
-                          {formData.name || "Category Name"}
+                          {formData.name || "Όνομα Κατηγορίας"}
                         </h4>
                         {formData.description && (
                           <p className="text-sm text-base-content/60 mt-1 line-clamp-2">
@@ -592,7 +657,7 @@ function CategoriesPage() {
                 className="btn btn-ghost"
                 disabled={createCategoryMutation.isPending || updateCategoryMutation.isPending}
               >
-                Cancel
+                Ακύρωση
               </button>
 
               <button
@@ -603,17 +668,17 @@ function CategoriesPage() {
                 {createCategoryMutation.isPending || updateCategoryMutation.isPending ? (
                   <>
                     <span className="loading loading-spinner"></span>
-                    {editingCategory ? "Updating..." : "Creating..."}
+                    {editingCategory ? "Ενημέρωση..." : "Δημιουργία..."}
                   </>
                 ) : editingCategory ? (
                   <>
                     <PencilIcon className="w-4 h-4" />
-                    Update Category
+                    Ενημέρωση Κατηγορίας
                   </>
                 ) : (
                   <>
                     <PlusIcon className="w-4 h-4" />
-                    Add Category
+                    Προσθήκη Κατηγορίας
                   </>
                 )}
               </button>
@@ -621,7 +686,7 @@ function CategoriesPage() {
           </form>
         </div>
         <form method="dialog" className="modal-backdrop">
-          <button onClick={closeModal}>close</button>
+          <button onClick={closeModal}>κλείσιμο</button>
         </form>
       </div>
     </div>
@@ -629,4 +694,3 @@ function CategoriesPage() {
 }
 
 export default CategoriesPage;
-

@@ -28,7 +28,6 @@ function WishlistScreen() {
     addToCart(
       { productId, quantity: 1 },
       {
-        onSuccess: () => Alert.alert("Επιτυχία", `${productName} προστέθηκε στο καλάθι!`),
         onError: (error: any) => {
           Alert.alert("Σφάλμα", error?.response?.data?.error || "Αποτυχία προσθήκης στο καλάθι");
         },

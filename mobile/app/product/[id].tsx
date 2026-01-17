@@ -53,7 +53,6 @@ const ProductDetailScreen = () => {
         selectedUnit: selectedUnitOption || undefined,
       },
       {
-        onSuccess: () => Alert.alert("Επιτυχία", `${product.name} προστέθηκε στο καλάθι!`),
         onError: (error: any) => {
           Alert.alert("Σφάλμα", error?.response?.data?.error || "Αποτυχία προσθήκης στο καλάθι");
         },

@@ -99,7 +99,7 @@ function ProductsPage() {
 
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
-    if (files.length > 3) return alert("Maximum 3 images allowed");
+    if (files.length > 3) return alert("Επιτρέπονται μέχρι 3 εικόνες");
 
     // revoke previous blob URLs to free memory
     imagePreviews.forEach((url) => {
@@ -115,7 +115,7 @@ function ProductsPage() {
 
     // for new products, require images
     if (!editingProduct && imagePreviews.length === 0) {
-      return alert("Please upload at least one image");
+      return alert("Παρακαλώ ανεβάστε τουλάχιστον μία εικόνα");
     }
 
     const formDataToSend = new FormData();
@@ -339,12 +339,12 @@ function ProductsPage() {
             <div className="grid grid-cols-2 gap-4">
               <div className="form-control">
                 <label className="label">
-                  <span>Product Name</span>
+                  <span>Όνομα Προϊόντος</span>
                 </label>
 
                 <input
                   type="text"
-                  placeholder="Enter product name"
+                  placeholder="Εισάγετε όνομα προϊόντος"
                   className="input input-bordered"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -354,7 +354,7 @@ function ProductsPage() {
 
               <div className="form-control">
                 <label className="label">
-                  <span>Category</span>
+                  <span>Κατηγορία</span>
                 </label>
                 <select
                   className="select select-bordered"
@@ -362,7 +362,7 @@ function ProductsPage() {
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                   required
                 >
-                  <option value="">Select category</option>
+                  <option value="">Επιλέξτε κατηγορία</option>
                   {categories
                     .filter((cat) => cat.isActive)
                     .map((category) => (
@@ -378,8 +378,8 @@ function ProductsPage() {
             <div className="grid grid-cols-2 gap-4">
               <div className="form-control">
                 <label className="label">
-                  <span>Price ($)</span>
-                  <span className="label-text-alt text-base-content/70">Optional</span>
+                  <span>Τιμή ($)</span>
+                  <span className="label-text-alt text-base-content/70">Προαιρετικό</span>
                 </label>
                 <input
                   type="number"
@@ -393,7 +393,7 @@ function ProductsPage() {
 
               <div className="form-control">
                 <label className="label">
-                  <span>Stock</span>
+                  <span>Απόθεμα</span>
                 </label>
                 <input
                   type="number"
@@ -425,11 +425,11 @@ function ProductsPage() {
 
             <div className="form-control flex flex-col gap-2">
               <label className="label">
-                <span>Description</span>
+                <span>Περιγραφή</span>
               </label>
               <textarea
                 className="textarea textarea-bordered h-24 w-full"
-                placeholder="Enter product description"
+                placeholder="Εισάγετε περιγραφή προϊόντος"
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 required
@@ -438,7 +438,7 @@ function ProductsPage() {
 
             <div className="form-control">
               <label className="label">
-                <span>Unit Type</span>
+                <span>Τύπος Μονάδας</span>
               </label>
               <select
                 className="select select-bordered"
@@ -455,7 +455,7 @@ function ProductsPage() {
             {formData.unitType !== "pieces" && (
               <div className="form-control">
                 <label className="label">
-                  <span>Unit Options (e.g., 1 λίτρο, 5 λίτρα, 25 λίτρα)</span>
+                  <span>Επιλογές Μονάδας (π.χ., 1 λίτρο, 5 λίτρα, 25 λίτρα)</span>
                 </label>
                 <div className="flex gap-2 mb-2">
                   <input
@@ -521,9 +521,9 @@ function ProductsPage() {
               <label className="label">
                 <span className="label-text font-semibold text-base flex items-center gap-2">
                   <ImageIcon className="h-5 w-5" />
-                  Product Images
+                  Εικόνες Προϊόντος
                 </span>
-                <span className="label-text-alt text-xs opacity-60">Max 3 images</span>
+                <span className="label-text-alt text-xs opacity-60">Μέγιστο 3 εικόνες</span>
               </label>
 
               <div className="bg-base-200 rounded-xl p-4 border-2 border-dashed border-base-300 hover:border-primary transition-colors">
@@ -538,7 +538,7 @@ function ProductsPage() {
 
                 {editingProduct && (
                   <p className="text-xs text-base-content/60 mt-2 text-center">
-                    Leave empty to keep current images
+                    Αφήστε κενό για να διατηρήσετε τις τρέχουσες εικόνες
                   </p>
                 )}
               </div>
@@ -548,7 +548,7 @@ function ProductsPage() {
                   {imagePreviews.map((preview, index) => (
                     <div key={index} className="avatar">
                       <div className="w-20 rounded-lg">
-                        <img src={preview} alt={`Preview ${index + 1}`} />
+                        <img src={preview} alt={`Προεπισκόπηση ${index + 1}`} />
                       </div>
                     </div>
                   ))}

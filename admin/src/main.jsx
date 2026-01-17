@@ -6,6 +6,7 @@ import App from "./App.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { ClerkProvider } from "@clerk/clerk-react";
+import { elGR } from "@clerk/localizations";
 import { BrowserRouter } from "react-router";
 import * as Sentry from "@sentry/react";
 
@@ -34,7 +35,7 @@ Sentry.init({
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+      <ClerkProvider publishableKey={PUBLISHABLE_KEY} localization={elGR}>
         <QueryClientProvider client={queryClient}>
           <App />
         </QueryClientProvider>

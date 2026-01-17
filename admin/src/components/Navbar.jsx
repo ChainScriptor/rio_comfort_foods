@@ -25,7 +25,7 @@ function Navbar() {
 
   return (
     <div className="navbar w-full bg-base-300">
-      <label htmlFor="my-drawer" className="btn btn-square btn-ghost" aria-label="open sidebar">
+      <label htmlFor="my-drawer" className="btn btn-square btn-ghost" aria-label="άνοιγμα πλευρικού μενού">
         <PanelLeftIcon className="size-5" />
       </label>
 

@@ -67,8 +67,8 @@ function ReviewsPage() {
     <div className="p-6">
       {/* Header */}
       <div className="mb-6">
-        <h2 className="text-3xl font-bold mb-2">Product Reviews</h2>
-        <p className="text-base-content/60">View and manage all product reviews</p>
+        <h2 className="text-3xl font-bold mb-2">Αξιολογήσεις Προϊόντων</h2>
+        <p className="text-base-content/60">Προβολή και διαχείριση όλων των αξιολογήσεων προϊόντων</p>
       </div>
 
       {/* Stats Cards */}
@@ -76,7 +76,7 @@ function ReviewsPage() {
         <div className="bg-base-200 rounded-xl p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-base-content/60 mb-1">Total Reviews</p>
+              <p className="text-sm text-base-content/60 mb-1">Συνολικές Αξιολογήσεις</p>
               <p className="text-2xl font-bold">{allReviews.length}</p>
             </div>
             <div className="bg-primary/20 rounded-full p-3">
@@ -88,7 +88,7 @@ function ReviewsPage() {
         <div className="bg-base-200 rounded-xl p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-base-content/60 mb-1">Average Rating</p>
+              <p className="text-sm text-base-content/60 mb-1">Μέση Αξιολόγηση</p>
               <p className="text-2xl font-bold">
                 {allReviews.length > 0
                   ? (allReviews.reduce((sum, r) => sum + r.rating, 0) / allReviews.length).toFixed(1)
@@ -104,7 +104,7 @@ function ReviewsPage() {
         <div className="bg-base-200 rounded-xl p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-base-content/60 mb-1">5 Star Reviews</p>
+              <p className="text-sm text-base-content/60 mb-1">Αξιολογήσεις 5 Αστέρια</p>
               <p className="text-2xl font-bold">
                 {allReviews.filter((r) => r.rating === 5).length}
               </p>
@@ -118,7 +118,7 @@ function ReviewsPage() {
         <div className="bg-base-200 rounded-xl p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-base-content/60 mb-1">1 Star Reviews</p>
+              <p className="text-sm text-base-content/60 mb-1">Αξιολογήσεις 1 Αστέρι</p>
               <p className="text-2xl font-bold">
                 {allReviews.filter((r) => r.rating === 1).length}
               </p>
@@ -136,7 +136,7 @@ function ReviewsPage() {
           <div className="flex-1">
             <input
               type="text"
-              placeholder="Search by product name or customer..."
+              placeholder="Αναζήτηση με όνομα προϊόντος ή πελάτη..."
               className="input input-bordered w-full"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -148,12 +148,12 @@ function ReviewsPage() {
               value={ratingFilter}
               onChange={(e) => setRatingFilter(e.target.value)}
             >
-              <option value="all">All Ratings</option>
-              <option value="5">5 Stars</option>
-              <option value="4">4 Stars</option>
-              <option value="3">3 Stars</option>
-              <option value="2">2 Stars</option>
-              <option value="1">1 Star</option>
+              <option value="all">Όλες οι Αξιολογήσεις</option>
+              <option value="5">5 Αστέρια</option>
+              <option value="4">4 Αστέρια</option>
+              <option value="3">3 Αστέρια</option>
+              <option value="2">2 Αστέρια</option>
+              <option value="1">1 Αστέρι</option>
             </select>
           </div>
         </div>
@@ -163,11 +163,11 @@ function ReviewsPage() {
       {reviews.length === 0 ? (
         <div className="bg-base-200 rounded-xl p-12 text-center">
           <StarIcon className="size-16 mx-auto mb-4 text-base-content/30" />
-          <h3 className="text-xl font-semibold mb-2">No reviews found</h3>
+          <h3 className="text-xl font-semibold mb-2">Δεν βρέθηκαν αξιολογήσεις</h3>
           <p className="text-base-content/60">
             {searchQuery || ratingFilter !== "all"
-              ? "Try adjusting your filters"
-              : "No reviews have been submitted yet"}
+              ? "Δοκιμάστε να προσαρμόσετε τα φίλτρα σας"
+              : "Δεν έχουν υποβληθεί αξιολογήσεις ακόμη"}
           </p>
         </div>
       ) : (
@@ -189,7 +189,7 @@ function ReviewsPage() {
                       <div className="flex items-center gap-2 mb-2">
                         <PackageIcon className="size-4 text-primary" />
                         <h3 className="font-bold text-lg">
-                          {review.productId?.name || "Unknown Product"}
+                          {review.productId?.name || "Άγνωστο Προϊόν"}
                         </h3>
                       </div>
                       {renderStars(review.rating)}
@@ -203,7 +203,7 @@ function ReviewsPage() {
                     <UserIcon className="size-4 text-primary" />
                     <div>
                       <p className="font-semibold">
-                        {review.userId?.name || "Unknown User"}
+                        {review.userId?.name || "Άγνωστος Χρήστης"}
                       </p>
                       <p className="text-sm text-base-content/60">
                         {review.userId?.email || ""}

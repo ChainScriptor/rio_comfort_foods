@@ -33,7 +33,7 @@ function LoginPage() {
 
   const handleGoogleSignIn = async () => {
     if (!signIn) return;
-    
+
     try {
       await signIn.authenticateWithRedirect({
         strategy: "oauth_google",
@@ -48,7 +48,7 @@ function LoginPage() {
 
   const handleAppleSignIn = async () => {
     if (!signIn) return;
-    
+
     try {
       await signIn.authenticateWithRedirect({
         strategy: "oauth_apple",
@@ -75,7 +75,7 @@ function LoginPage() {
   return (
     <div className="bg-base-100 text-base-content">
       <SignInPage
-        title={<span className="font-light text-base-content tracking-tighter">Καλώς ήρθατε στο Comfort Foods</span>}
+        title={<span className="font-light text-base-content tracking-tighter">Καλώς ήρθατε στην Comfort Foods</span>}
         description="Συνδεθείτε στον λογαριασμό διαχείρισης και διαχειριστείτε την πλατφόρμα e‑commerce"
         heroImageSrc="/download.svg"
         testimonials={[]}

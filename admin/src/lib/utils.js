@@ -1,5 +1,18 @@
 export const capitalizeText = (text) => {
   if (!text) return text;
+  
+  // Translate order statuses to Greek
+  const statusTranslations = {
+    pending: "Σε Αναμονή",
+    shipped: "Στάλθηκε",
+    delivered: "Παραδόθηκε",
+  };
+  
+  const lowerText = text.toLowerCase();
+  if (statusTranslations[lowerText]) {
+    return statusTranslations[lowerText];
+  }
+  
   return text.charAt(0).toUpperCase() + text.slice(1);
 };
 
@@ -17,9 +30,9 @@ export const getOrderStatusBadge = (status) => {
 };
 
 export const getStockStatusBadge = (stock) => {
-  if (stock === 0) return { text: "Out of Stock", class: "badge-error" };
-  if (stock < 20) return { text: "Low Stock", class: "badge-warning" };
-  return { text: "In Stock", class: "badge-success" };
+  if (stock === 0) return { text: "Εκτός Αποθέματος", class: "badge-error" };
+  if (stock < 20) return { text: "Χαμηλό Απόθεμα", class: "badge-warning" };
+  return { text: "Σε Απόθεμα", class: "badge-success" };
 };
 
 export const formatDate = (dateString) => {
@@ -27,7 +40,7 @@ export const formatDate = (dateString) => {
   const date = new Date(dateString);
   if (isNaN(date.getTime())) return "";
 
-  return new Date(dateString).toLocaleDateString("en-US", {
+  return new Date(dateString).toLocaleDateString("el-GR", {
     month: "short",
     day: "numeric",
     year: "numeric",
@@ -39,7 +52,7 @@ export const formatTime = (dateString) => {
   const date = new Date(dateString);
   if (isNaN(date.getTime())) return "";
 
-  return new Date(dateString).toLocaleTimeString("en-US", {
+  return new Date(dateString).toLocaleTimeString("el-GR", {
     hour: "2-digit",
     minute: "2-digit",
     hour12: false,
@@ -49,4 +62,18 @@ export const formatTime = (dateString) => {
 export const formatDateTime = (dateString) => {
   if (!dateString) return "";
   return `${formatDate(dateString)} ${formatTime(dateString)}`;
+};
+
+export const formatDateWithDayName = (dateString) => {
+  if (!dateString) return "";
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return "";
+
+  const days = ["Κυριακή", "Δευτέρα", "Τρίτη", "Τετάρτη", "Πέμπτη", "Παρασκευή", "Σάββατο"];
+  const dayName = days[date.getDay()];
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear().toString().slice(-2);
+
+  return `[${dayName} ${day}/${month}/${year}]`;
 };

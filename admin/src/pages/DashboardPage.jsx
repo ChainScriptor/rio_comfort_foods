@@ -32,6 +32,8 @@ function DashboardPage() {
   const { data: ordersData, isLoading: ordersLoading } = useQuery({
     queryKey: ["orders"],
     queryFn: orderApi.getAll,
+    refetchInterval: 5000, // Auto-refetch every 5 seconds
+    refetchIntervalInBackground: true, // Continue refetching even when tab is in background
   });
 
   // Build query params for API
@@ -45,6 +47,8 @@ function DashboardPage() {
   const { data: statsData, isLoading: statsLoading } = useQuery({
     queryKey: ["dashboardStats", selectedPeriod, selectedMonth, selectedYear],
     queryFn: () => statsApi.getDashboard(getQueryParams()),
+    refetchInterval: 5000, // Auto-refetch every 5 seconds
+    refetchIntervalInBackground: true, // Continue refetching even when tab is in background
   });
 
   // it would be better to send the last 5 items from the api, instead of slicing it here
@@ -54,7 +58,7 @@ function DashboardPage() {
   const statsCards = [
     {
       name: "Συνολικά Έσοδα",
-      value: statsLoading ? "..." : `$${statsData?.totalRevenue?.toFixed(2) || 0}`,
+      value: "-",
       icon: <DollarSignIcon className="size-8" />,
     },
     {
@@ -212,7 +216,7 @@ function DashboardPage() {
                         <div>
                           <div className="font-medium">{order.shippingAddress.fullName}</div>
                           <div className="text-sm opacity-60">
-                            {order.orderItems.length} item(s)
+                            {order.orderItems.length} {order.orderItems.length === 1 ? 'προϊόν' : 'προϊόντα'}
                           </div>
                         </div>
                       </td>
@@ -220,12 +224,12 @@ function DashboardPage() {
                       <td>
                         <div className="text-sm">
                           {order.orderItems[0]?.name}
-                          {order.orderItems.length > 1 && ` +${order.orderItems.length - 1} more`}
+                          {order.orderItems.length > 1 && ` +${order.orderItems.length - 1} ακόμη`}
                         </div>
                       </td>
 
                       <td>
-                        <span className="font-semibold">${order.totalPrice.toFixed(2)}</span>
+                        <span className="font-semibold">-</span>
                       </td>
 
                       <td>

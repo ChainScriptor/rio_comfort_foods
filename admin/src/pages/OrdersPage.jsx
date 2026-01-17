@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { orderApi } from "../lib/api";
-import { formatDate, formatTime, formatDateTime } from "../lib/utils";
+import { formatDate, formatTime, formatDateTime, formatDateWithDayName } from "../lib/utils";
 import { PrinterIcon, CalendarIcon, EyeIcon, XIcon, PackageIcon } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -13,6 +13,8 @@ function OrdersPage() {
   const { data: ordersData, isLoading } = useQuery({
     queryKey: ["orders"],
     queryFn: orderApi.getAll,
+    refetchInterval: 5000, // Auto-refetch every 5 seconds
+    refetchIntervalInBackground: true, // Continue refetching even when tab is in background
   });
 
   const updateStatusMutation = useMutation({
@@ -32,7 +34,7 @@ function OrdersPage() {
   // Filter orders by selected date
   const orders = useMemo(() => {
     if (!selectedDate) return allOrders;
-    
+
     const selected = new Date(selectedDate);
     selected.setHours(0, 0, 0, 0);
     const nextDay = new Date(selected);
@@ -57,8 +59,8 @@ function OrdersPage() {
       {/* HEADER */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex flex-col gap-2">
-          <h1 className="text-2xl font-bold">Orders</h1>
-          <p className="text-base-content/70">Manage customer orders</p>
+          <h1 className="text-2xl font-bold">Παραγγελίες</h1>
+          <p className="text-base-content/70">Διαχείριση παραγγελιών πελατών</p>
         </div>
 
         {/* DATE FILTER & PRINT */}
@@ -66,7 +68,7 @@ function OrdersPage() {
           <div className="form-control">
             <label className="label">
               <CalendarIcon className="w-4 h-4 mr-2" />
-              <span className="label-text text-sm">Filter by Date</span>
+              <span className="label-text text-sm">Φίλτρο κατά Ημερομηνία</span>
             </label>
             <div className="flex gap-2">
               <input
@@ -79,9 +81,9 @@ function OrdersPage() {
                 <button
                   onClick={() => setSelectedDate("")}
                   className="btn btn-ghost btn-sm"
-                  title="Show all dates"
+                  title="Εμφάνιση όλων των ημερομηνιών"
                 >
-                  All
+                  Όλες
                 </button>
               )}
             </div>
@@ -92,7 +94,7 @@ function OrdersPage() {
             disabled={orders.length === 0}
           >
             <PrinterIcon className="w-4 h-4" />
-            Print
+            Εκτύπωση
           </button>
         </div>
       </div>
@@ -153,38 +155,150 @@ function OrdersPage() {
             `}
           </style>
           <div className="print-only">
-            <div className="print-header">
-              <h2 style={{ fontSize: "18pt", fontWeight: "bold", marginBottom: "0.3cm" }}>
-                Orders Report
-              </h2>
-              <p style={{ fontSize: "10pt", color: "#666", marginBottom: "0.2cm" }}>
-                Date: {selectedDate ? formatDate(selectedDate) : "All Dates"}
-              </p>
-              <p style={{ fontSize: "9pt", color: "#999", marginBottom: "0.2cm" }}>
-                Generated: {formatDate(new Date().toISOString())}
-              </p>
-              <p style={{ fontSize: "10pt", color: "#666" }}>
-                Total Orders: {orders.length}
-              </p>
-            </div>
             <div style={{ marginTop: "0.8cm" }}>
-              {orders.map((order, index) => {
-                const orderItemsText = order.orderItems
-                  .map((item) => `${item.name} (x${item.quantity})`)
-                  .join(", ");
-                
-                return (
-                  <div key={order._id} className="print-order-line">
-                    <span style={{ fontWeight: "bold", color: "#000000" }}>
-                      {order.shippingAddress.fullName}
-                    </span>
-                    {" | "}
-                    <span style={{ fontWeight: "bold", color: "#000000" }}>
-                      {orderItemsText}
-                    </span>
-                  </div>
-                );
-              })}
+              {(() => {
+                // Group orders by date (day starts at 7:00 AM)
+                const ordersByDate = {};
+                orders.forEach((order) => {
+                  const orderDate = new Date(order.createdAt);
+                  // Shift time by 7 hours to make day start at 7:00 AM
+                  const shiftedDate = new Date(orderDate);
+                  shiftedDate.setHours(shiftedDate.getHours() - 7);
+                  // Set to start of day (which is now 7:00 AM of the original day)
+                  shiftedDate.setHours(0, 0, 0, 0);
+                  const dateKey = shiftedDate.toISOString().split('T')[0];
+
+                  if (!ordersByDate[dateKey]) {
+                    ordersByDate[dateKey] = [];
+                  }
+                  ordersByDate[dateKey].push(order);
+                });
+
+                const dateKeys = Object.keys(ordersByDate).sort();
+
+                return dateKeys.map((dateKey, dateIndex) => {
+                  const dateOrders = ordersByDate[dateKey];
+
+                  // Calculate the display date (shifted date + 7 hours = actual date for display)
+                  const displayDate = new Date(dateKey);
+                  displayDate.setHours(7, 0, 0, 0);
+
+                  // Count orders per customer for this date
+                  const customerOrderCount = {};
+                  dateOrders.forEach((order) => {
+                    const customerName = order.shippingAddress.fullName;
+                    if (!customerOrderCount[customerName]) {
+                      customerOrderCount[customerName] = 0;
+                    }
+                    customerOrderCount[customerName]++;
+                  });
+
+                  // Track current count per customer
+                  const customerCurrentCount = {};
+
+                  return (
+                    <div key={dateKey} style={{ marginBottom: "1cm", pageBreakInside: "avoid" }}>
+                      {/* Date - show only once per date group */}
+                      <div style={{ fontSize: "12pt", fontWeight: "bold", color: "#000000", backgroundColor: "#FFFF00", padding: "0.1cm 0.2cm", display: "inline-block", marginBottom: "0.5cm" }}>
+                        Ημερομηνία {formatDateWithDayName(displayDate.toISOString())}
+                      </div>
+
+                      {/* All orders for this date */}
+                      {dateOrders.map((order, orderIndex) => {
+                        // Group order items by category (shop)
+                        const itemsByCategory = {};
+                        order.orderItems.forEach((item) => {
+                          const category = item.category || item.product?.category || "Άλλη Κατηγορία";
+                          if (!itemsByCategory[category]) {
+                            itemsByCategory[category] = [];
+                          }
+                          itemsByCategory[category].push(item);
+                        });
+
+                        const categories = Object.keys(itemsByCategory);
+                        const customerName = order.shippingAddress.fullName;
+
+                        // Increment count for this customer
+                        if (!customerCurrentCount[customerName]) {
+                          customerCurrentCount[customerName] = 0;
+                        }
+                        customerCurrentCount[customerName]++;
+
+                        // Determine if this is a supplementary order
+                        const isSupplementary = customerOrderCount[customerName] > 1;
+                        const supplementaryNumber = customerCurrentCount[customerName] - 1;
+                        const displayName = isSupplementary
+                          ? `${customerName} - συμπληρωματική ${supplementaryNumber}`
+                          : customerName;
+
+                        return (
+                          <div key={order._id} style={{ marginBottom: "0.4cm" }}>
+                            {/* Products grouped by category */}
+                            {categories.map((category, catIndex) => {
+                              const firstItem = itemsByCategory[category][0];
+                              const remainingItems = itemsByCategory[category].slice(1);
+
+                              // Helper function to get unit label
+                              const getUnitLabel = (item) => {
+                                const unitType = item.product?.unitType || "pieces";
+                                if (unitType === "kg") return "kg";
+                                if (unitType === "liters") return "συσκευασία";
+                                return "τμχ"; // pieces
+                              };
+
+                              return (
+                                <div key={category} style={{ marginBottom: "0.4cm" }}>
+                                  {/* Customer Name with first product on same line */}
+                                  <div style={{ fontSize: "12pt", fontWeight: "bold", color: "#000000", marginBottom: "0.1cm" }}>
+                                    <span style={{ backgroundColor: "#FFFF00", padding: "0.1cm 0.2cm", display: "inline-block" }}>
+                                      {displayName}
+                                    </span>
+                                    <span style={{ marginLeft: "0.3cm" }}>
+                                      -  ({getUnitLabel(firstItem)}: {firstItem.quantity}) {firstItem.name}
+                                    </span>
+                                  </div>
+                                  {/* Remaining products */}
+                                  {remainingItems.map((item, itemIndex) => (
+                                    <div
+                                      key={itemIndex}
+                                      style={{
+                                        fontSize: "11pt",
+                                        fontWeight: "bold",
+                                        color: "#000000",
+                                        paddingLeft: "0.5cm",
+                                        marginBottom: "0.1cm"
+                                      }}
+                                    >
+                                      -  ({getUnitLabel(item)}: {item.quantity}) {item.name}
+                                    </div>
+                                  ))}
+                                  {/* Separator line after each category */}
+                                  {catIndex < categories.length - 1 && (
+                                    <div style={{
+                                      borderTop: "2px solid #000000",
+                                      marginTop: "0.3cm",
+                                      marginBottom: "0.3cm"
+                                    }}></div>
+                                  )}
+                                </div>
+                              );
+                            })}
+
+                            {/* Separator line after each order (except last order of last date) */}
+                            {!(dateIndex === dateKeys.length - 1 && orderIndex === dateOrders.length - 1) && (
+                              <div style={{
+                                borderTop: "2px solid #000000",
+                                marginTop: "0.3cm",
+                                marginBottom: "0.3cm"
+                              }}></div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  );
+                });
+              })()}
             </div>
           </div>
         </>
@@ -200,101 +314,101 @@ function OrdersPage() {
           ) : orders.length === 0 ? (
             <div className="text-center py-12 text-base-content/60">
               <p className="text-xl font-semibold mb-2">
-                {selectedDate ? "No orders for selected date" : "No orders yet"}
+                {selectedDate ? "Δεν υπάρχουν παραγγελίες για την επιλεγμένη ημερομηνία" : "Δεν υπάρχουν παραγγελίες ακόμη"}
               </p>
               <p className="text-sm">
                 {selectedDate
-                  ? "Try selecting a different date"
-                  : "Orders will appear here once customers make purchases"}
+                  ? "Δοκιμάστε να επιλέξετε διαφορετική ημερομηνία"
+                  : "Οι παραγγελίες θα εμφανίζονται εδώ μόλις οι πελάτες κάνουν αγορές"}
               </p>
             </div>
           ) : (
             <>
               <div className="mb-4 text-sm text-base-content/70 print:hidden">
-                Showing {orders.length} order{orders.length !== 1 ? "s" : ""} for{" "}
-                {selectedDate ? formatDate(selectedDate) : "all dates"}
+                Εμφάνιση {orders.length} {orders.length === 1 ? "παραγγελίας" : "παραγγελιών"} για{" "}
+                {selectedDate ? formatDate(selectedDate) : "όλες τις ημερομηνίες"}
               </div>
-            <div className="overflow-x-auto">
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th>Order ID</th>
-                    <th>Customer</th>
-                    <th>Items</th>
-                    <th>Total</th>
-                    <th>Status</th>
-                    <th>Date</th>
-                  </tr>
-                </thead>
+              <div className="overflow-x-auto">
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>Κωδικός Παραγγελίας</th>
+                      <th>Πελάτης</th>
+                      <th>Προϊόντα</th>
+                      <th>Σύνολο</th>
+                      <th>Κατάσταση</th>
+                      <th>Ημερομηνία</th>
+                    </tr>
+                  </thead>
 
-                <tbody>
-                  {orders.map((order) => {
-                    const totalQuantity = order.orderItems.reduce(
-                      (sum, item) => sum + item.quantity,
-                      0
-                    );
+                  <tbody>
+                    {orders.map((order) => {
+                      const totalQuantity = order.orderItems.reduce(
+                        (sum, item) => sum + item.quantity,
+                        0
+                      );
 
-                    return (
-                      <tr key={order._id}>
-                        <td>
-                          <span className="font-medium">#{order._id.slice(-8).toUpperCase()}</span>
-                        </td>
+                      return (
+                        <tr key={order._id}>
+                          <td>
+                            <span className="font-medium">#{order._id.slice(-8).toUpperCase()}</span>
+                          </td>
 
-                        <td>
-                          <div className="font-medium">{order.shippingAddress.fullName}</div>
-                          <div className="text-sm opacity-60">
-                            {order.shippingAddress.city}, {order.shippingAddress.state}
-                          </div>
-                        </td>
-
-                        <td>
-                          <div className="flex items-center gap-2">
-                            <div>
-                              <div className="font-medium">{totalQuantity} items</div>
-                              <div className="text-sm opacity-60">
-                                {order.orderItems[0]?.name}
-                                {order.orderItems.length > 1 && ` +${order.orderItems.length - 1} more`}
-                              </div>
+                          <td>
+                            <div className="font-medium">{order.shippingAddress.fullName}</div>
+                            <div className="text-sm opacity-60">
+                              {order.shippingAddress.city}, {order.shippingAddress.state}
                             </div>
-                            <button
-                              onClick={() => setSelectedOrder(order)}
-                              className="btn btn-ghost btn-xs btn-square"
-                              title="View order details"
+                          </td>
+
+                          <td>
+                            <div className="flex items-center gap-2">
+                              <div>
+                                <div className="font-medium">{totalQuantity} {totalQuantity === 1 ? 'προϊόν' : 'προϊόντα'}</div>
+                                <div className="text-sm opacity-60">
+                                  {order.orderItems[0]?.name}
+                                  {order.orderItems.length > 1 && ` +${order.orderItems.length - 1} ακόμη`}
+                                </div>
+                              </div>
+                              <button
+                                onClick={() => setSelectedOrder(order)}
+                                className="btn btn-ghost btn-xs btn-square"
+                                title="Προβολή λεπτομερειών παραγγελίας"
+                              >
+                                <EyeIcon className="w-4 h-4" />
+                              </button>
+                            </div>
+                          </td>
+
+                          <td>
+                            <span className="font-semibold">-</span>
+                          </td>
+
+                          <td>
+                            <select
+                              value={order.status}
+                              onChange={(e) => handleStatusChange(order._id, e.target.value)}
+                              className="select select-sm"
+                              disabled={updateStatusMutation.isPending}
                             >
-                              <EyeIcon className="w-4 h-4" />
-                            </button>
-                          </div>
-                        </td>
+                              <option value="pending">Σε Αναμονή</option>
+                              <option value="shipped">Στάλθηκε</option>
+                              <option value="delivered">Παραδόθηκε</option>
+                            </select>
+                          </td>
 
-                        <td>
-                          <span className="font-semibold">${order.totalPrice.toFixed(2)}</span>
-                        </td>
-
-                        <td>
-                          <select
-                            value={order.status}
-                            onChange={(e) => handleStatusChange(order._id, e.target.value)}
-                            className="select select-sm"
-                            disabled={updateStatusMutation.isPending}
-                          >
-                            <option value="pending">Pending</option>
-                            <option value="shipped">Shipped</option>
-                            <option value="delivered">Delivered</option>
-                          </select>
-                        </td>
-
-                        <td>
-                          <div className="text-sm">
-                            <div className="opacity-60">{formatDate(order.createdAt)}</div>
-                            <div className="opacity-40 text-xs">{formatTime(order.createdAt)}</div>
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+                          <td>
+                            <div className="text-sm">
+                              <div className="opacity-60">{formatDate(order.createdAt)}</div>
+                              <div className="opacity-40 text-xs">{formatTime(order.createdAt)}</div>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </>
           )}
         </div>
@@ -318,10 +432,10 @@ function OrdersPage() {
                 <div>
                   <h3 className="font-bold text-2xl flex items-center gap-2">
                     <PackageIcon className="w-6 h-6" />
-                    Order Details
+                    Λεπτομέρειες Παραγγελίας
                   </h3>
                   <p className="text-sm text-base-content/60 mt-1">
-                    Order #{selectedOrder._id.slice(-8).toUpperCase()}
+                    Παραγγελία #{selectedOrder._id.slice(-8).toUpperCase()}
                   </p>
                 </div>
                 <button
@@ -334,18 +448,18 @@ function OrdersPage() {
 
               {/* CUSTOMER INFO */}
               <div className="bg-base-200 rounded-xl p-4 mb-4">
-                <h4 className="font-semibold mb-3">Customer Information</h4>
+                <h4 className="font-semibold mb-3">Πληροφορίες Πελάτη</h4>
                 <div className="grid grid-cols-2 gap-3 text-sm">
                   <div>
-                    <span className="text-base-content/60">Name:</span>
+                    <span className="text-base-content/60">Όνομα:</span>
                     <span className="ml-2 font-medium">{selectedOrder.shippingAddress.fullName}</span>
                   </div>
                   <div>
-                    <span className="text-base-content/60">Phone:</span>
+                    <span className="text-base-content/60">Τηλέφωνο:</span>
                     <span className="ml-2 font-medium">{selectedOrder.shippingAddress.phoneNumber}</span>
                   </div>
                   <div className="col-span-2">
-                    <span className="text-base-content/60">Address:</span>
+                    <span className="text-base-content/60">Διεύθυνση:</span>
                     <span className="ml-2 font-medium">
                       {selectedOrder.shippingAddress.streetAddress}, {selectedOrder.shippingAddress.city}, {selectedOrder.shippingAddress.state} {selectedOrder.shippingAddress.zipCode}
                     </span>
@@ -355,7 +469,7 @@ function OrdersPage() {
 
               {/* ORDER ITEMS */}
               <div className="mb-4">
-                <h4 className="font-semibold mb-3">Order Items</h4>
+                <h4 className="font-semibold mb-3">Προϊόντα Παραγγελίας</h4>
                 <div className="space-y-3">
                   {selectedOrder.orderItems.map((item, index) => (
                     <div
@@ -370,10 +484,10 @@ function OrdersPage() {
                       <div className="flex-1">
                         <h5 className="font-semibold">{item.name}</h5>
                         <div className="flex items-center gap-4 mt-1 text-sm text-base-content/70">
-                          <span>Quantity: {item.quantity}</span>
-                          <span>Price: ${item.price.toFixed(2)}</span>
+                          <span>Ποσότητα: {item.quantity}</span>
+                          <span>Τιμή: -</span>
                           <span className="font-semibold text-base-content">
-                            Subtotal: ${(item.price * item.quantity).toFixed(2)}
+                            Υποσύνολο: -
                           </span>
                         </div>
                       </div>
@@ -385,44 +499,41 @@ function OrdersPage() {
               {/* ORDER SUMMARY */}
               <div className="border-t border-base-300 pt-4">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-base-content/70">Subtotal:</span>
-                  <span className="font-medium">
-                    ${(selectedOrder.totalPrice * 0.95).toFixed(2)}
-                  </span>
+                  <span className="text-base-content/70">Υποσύνολο:</span>
+                  <span className="font-medium">-</span>
                 </div>
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-base-content/70">Tax (5%):</span>
-                  <span className="font-medium">
-                    ${(selectedOrder.totalPrice * 0.05).toFixed(2)}
-                  </span>
+                  <span className="text-base-content/70">Φόρος (5%):</span>
+                  <span className="font-medium">-</span>
                 </div>
                 <div className="flex justify-between items-center text-lg font-bold pt-2 border-t border-base-300">
-                  <span>Total:</span>
-                  <span>${selectedOrder.totalPrice.toFixed(2)}</span>
+                  <span>Σύνολο:</span>
+                  <span>-</span>
                 </div>
               </div>
 
               {/* ORDER STATUS & DATE */}
               <div className="mt-4 flex items-center justify-between text-sm">
                 <div>
-                  <span className="text-base-content/70">Status:</span>
-                  <span className={`ml-2 badge ${
-                    selectedOrder.status === "delivered" ? "badge-success" :
+                  <span className="text-base-content/70">Κατάσταση:</span>
+                  <span className={`ml-2 badge ${selectedOrder.status === "delivered" ? "badge-success" :
                     selectedOrder.status === "shipped" ? "badge-info" :
-                    "badge-warning"
-                  }`}>
-                    {selectedOrder.status.charAt(0).toUpperCase() + selectedOrder.status.slice(1)}
+                      "badge-warning"
+                    }`}>
+                    {selectedOrder.status === "delivered" ? "Παραδόθηκε" :
+                      selectedOrder.status === "shipped" ? "Στάλθηκε" :
+                        "Σε Αναμονή"}
                   </span>
                 </div>
                 <div>
-                  <span className="text-base-content/70">Order Date:</span>
+                  <span className="text-base-content/70">Ημερομηνία Παραγγελίας:</span>
                   <span className="ml-2 font-medium">{formatDate(selectedOrder.createdAt)}</span>
                 </div>
               </div>
 
               <div className="modal-action">
                 <button onClick={() => setSelectedOrder(null)} className="btn">
-                  Close
+                  Κλείσιμο
                 </button>
               </div>
             </>

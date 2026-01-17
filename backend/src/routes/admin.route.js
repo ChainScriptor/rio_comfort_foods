@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   createProduct,
   getAllCustomers,
+  deleteCustomer,
   getAllOrders,
   getAllProducts,
   getDashboardStats,
@@ -31,6 +32,7 @@ router.get("/orders", getAllOrders);
 router.patch("/orders/:orderId/status", updateOrderStatus);
 
 router.get("/customers", getAllCustomers);
+router.delete("/customers/:id", deleteCustomer);
 
 router.get("/stats", getDashboardStats);
 

@@ -48,6 +48,10 @@ export const customerApi = {
     const { data } = await axiosInstance.get("/admin/customers");
     return data;
   },
+  delete: async (customerId) => {
+    const { data } = await axiosInstance.delete(`/admin/customers/${customerId}`);
+    return data;
+  },
 };
 
 export const categoryApi = {

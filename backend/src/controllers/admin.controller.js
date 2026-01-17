@@ -184,6 +184,31 @@ export async function getAllCustomers(_, res) {
   }
 }
 
+export async function deleteCustomer(req, res) {
+  try {
+    const { id } = req.params;
+
+    const customer = await User.findById(id);
+    if (!customer) {
+      return res.status(404).json({ message: "Customer not found" });
+    }
+
+    // Check if customer has any orders
+    const ordersCount = await Order.countDocuments({ user: id });
+    if (ordersCount > 0) {
+      return res.status(400).json({
+        message: `Cannot delete customer. They have ${ordersCount} order(s). Please handle those orders first.`,
+      });
+    }
+
+    await User.findByIdAndDelete(id);
+    res.status(200).json({ message: "Customer deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting customer:", error);
+    res.status(500).json({ message: "Failed to delete customer" });
+  }
+}
+
 export async function getDashboardStats(req, res) {
   try {
     const { period = "all", month, year } = req.query; // period: 'week', 'month', 'year', 'all', 'custom'
