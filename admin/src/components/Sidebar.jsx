@@ -11,12 +11,9 @@ function Sidebar() {
       <label htmlFor="my-drawer" aria-label="κλείσιμο πλευρικού μενού" className="drawer-overlay"></label>
 
       <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
-        <div className="p-4 w-full">
-          <div className="flex items-center gap-3">
-            <div className="size-10 shrink-0 flex items-center justify-center">
-              <img src="/comfort.svg" alt="Λογότυπο Comfort Foods" className="w-full h-full object-contain" />
-            </div>
-            <span className="text-xl font-bold is-drawer-close:hidden">Comfort Foods</span>
+        <div className="w-full">
+          <div className="w-full flex items-center justify-center">
+            <img src="/comfort1.svg" alt="Λογότυπο Comfort Foods" className="w-full h-auto object-contain" />
           </div>
         </div>
 
