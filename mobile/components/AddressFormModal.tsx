@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -14,7 +15,7 @@ import SafeScreen from "./SafeScreen";
 import { Ionicons } from "@expo/vector-icons";
 
 interface AddressFormData {
-  label: string;
+  storeLocation: string;
   fullName: string;
   streetAddress: string;
   city: string;
@@ -35,6 +36,14 @@ interface AddressFormModalProps {
   onFormChange: (form: AddressFormData) => void;
 }
 
+const STORE_LOCATIONS = [
+  "Θεσσαλονίκη",
+  "Χαλκιδική Πρώτο Πόδι",
+  "Χαλκιδική Δεύτερο Πόδι",
+  "Χαλκιδική Τρίτο Πόδι",
+  "Άλλο",
+] as const;
+
 const AddressFormModal = ({
   addressForm,
   isAddingAddress,
@@ -45,6 +54,8 @@ const AddressFormModal = ({
   onSave,
   visible,
 }: AddressFormModalProps) => {
+  const [showLocationDropdown, setShowLocationDropdown] = useState(false);
+
   return (
     <Modal visible={visible} animationType="slide" transparent onRequestClose={onClose}>
       <KeyboardAvoidingView
@@ -68,24 +79,48 @@ const AddressFormModal = ({
             showsVerticalScrollIndicator={false}
           >
             <View className="p-6">
-              {/* LABEL INPUT */}
+              {/* STORE LOCATION DROPDOWN */}
               <View className="mb-5">
-                <Text className="text-text-primary font-semibold mb-2">Ετικέτα</Text>
-                <TextInput
-                  className="bg-surface text-text-primary p-4 rounded-2xl text-base"
-                  placeholder="π.χ., Σπίτι, Εργασία, Γραφείο"
-                  placeholderTextColor="#666"
-                  value={addressForm.label}
-                  onChangeText={(text) => onFormChange({ ...addressForm, label: text })}
-                />
+                <Text className="text-text-primary font-semibold mb-2">Περιοχή Καταστήματος</Text>
+                <TouchableOpacity
+                  className="bg-surface text-text-primary p-4 rounded-2xl flex-row items-center justify-between"
+                  onPress={() => setShowLocationDropdown(!showLocationDropdown)}
+                  activeOpacity={0.7}
+                >
+                  <Text className={`text-base ${addressForm.storeLocation ? "text-text-primary" : "text-text-secondary"}`}>
+                    {addressForm.storeLocation || "Επιλέξτε περιοχή..."}
+                  </Text>
+                  <Ionicons
+                    name={showLocationDropdown ? "chevron-up" : "chevron-down"}
+                    size={20}
+                    color="#FFFFFF"
+                  />
+                </TouchableOpacity>
+                {showLocationDropdown && (
+                  <View className="bg-surface rounded-2xl mt-2 border border-surface-variant">
+                    {STORE_LOCATIONS.map((location) => (
+                      <TouchableOpacity
+                        key={location}
+                        className="px-4 py-3 border-b border-surface-variant last:border-b-0"
+                        onPress={() => {
+                          onFormChange({ ...addressForm, storeLocation: location });
+                          setShowLocationDropdown(false);
+                        }}
+                        activeOpacity={0.7}
+                      >
+                        <Text className="text-text-primary text-base">{location}</Text>
+                      </TouchableOpacity>
+                    ))}
+                  </View>
+                )}
               </View>
 
               {/* NAME INPUT */}
               <View className="mb-5">
-                <Text className="text-text-primary font-semibold mb-2">Πλήρες Όνομα</Text>
+                <Text className="text-text-primary font-semibold mb-2">Πλήρες Όνομα Καταστήματος</Text>
                 <TextInput
                   className="bg-surface text-text-primary px-4 py-4 rounded-2xl text-base"
-                  placeholder="Εισάγετε το πλήρες όνομά σας"
+                  placeholder="Εισάγετε το πλήρες όνομα του καταστήματος"
                   placeholderTextColor="#666"
                   value={addressForm.fullName}
                   onChangeText={(text) => onFormChange({ ...addressForm, fullName: text })}

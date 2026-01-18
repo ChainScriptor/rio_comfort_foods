@@ -60,7 +60,6 @@ export async function createReview(req, res) {
 
     res.status(201).json({ message: "Review submitted successfully", review });
   } catch (error) {
-    console.error("Error in createReview controller:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 }
@@ -92,7 +91,6 @@ export async function deleteReview(req, res) {
 
     res.status(200).json({ message: "Review deleted successfully" });
   } catch (error) {
-    console.error("Error in deleteReview controller:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 }

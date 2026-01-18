@@ -36,7 +36,7 @@ export interface User {
 
 export interface Address {
   _id: string;
-  label: string;
+  storeLocation: "Θεσσαλονίκη" | "Χαλκιδική Πρώτο Πόδι" | "Χαλκιδική Δεύτερο Πόδι" | "Χαλκιδική Τρίτο Πόδι" | "Άλλο";
   fullName: string;
   streetAddress: string;
   city: string;
@@ -52,6 +52,7 @@ export interface Order {
   clerkId: string;
   orderItems: OrderItem[];
   shippingAddress: {
+    storeLocation: "Θεσσαλονίκη" | "Χαλκιδική Πρώτο Πόδι" | "Χαλκιδική Δεύτερο Πόδι" | "Χαλκιδική Τρίτο Πόδι" | "Άλλο";
     fullName: string;
     streetAddress: string;
     city: string;
@@ -65,6 +66,8 @@ export interface Order {
   };
   totalPrice: number;
   status: "pending" | "shipped" | "delivered";
+  deliveryDate?: string;
+  comments?: string;
   hasReviewed: boolean;
   createdAt: string;
   updatedAt: string;
@@ -77,6 +80,7 @@ export interface OrderItem {
   price: number;
   quantity: number;
   image: string;
+  selectedUnit?: string;
 }
 
 export interface Review {

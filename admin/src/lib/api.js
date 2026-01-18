@@ -32,6 +32,18 @@ export const orderApi = {
     const { data } = await axiosInstance.patch(`/admin/orders/${orderId}/status`, { status });
     return data;
   },
+
+  updateDeliveryDate: async ({ orderId, deliveryDate }) => {
+    const { data } = await axiosInstance.patch(`/admin/orders/${orderId}/delivery-date`, { deliveryDate });
+    return data;
+  },
+};
+
+export const inviteApi = {
+  inviteCustomer: async ({ email, customerId }) => {
+    const { data } = await axiosInstance.post("/admin/invite", { email, customerId });
+    return data;
+  },
 };
 
 export const statsApi = {
@@ -79,6 +91,28 @@ export const categoryApi = {
 export const reviewApi = {
   getAll: async () => {
     const { data } = await axiosInstance.get("/admin/reviews");
+    return data;
+  },
+};
+
+export const bannerApi = {
+  getAll: async () => {
+    const { data } = await axiosInstance.get("/admin/banners");
+    return data;
+  },
+
+  create: async (formData) => {
+    const { data } = await axiosInstance.post("/admin/banners", formData);
+    return data;
+  },
+
+  update: async ({ id, formData }) => {
+    const { data } = await axiosInstance.put(`/admin/banners/${id}`, formData);
+    return data;
+  },
+
+  delete: async (bannerId) => {
+    const { data } = await axiosInstance.delete(`/admin/banners/${bannerId}`);
     return data;
   },
 };

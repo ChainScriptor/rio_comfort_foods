@@ -25,9 +25,19 @@ const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
 
   const { isAddingToCart, addToCart } = useCart();
 
-  const handleAddToCart = (productId: string, productName: string) => {
+  const handleAddToCart = (product: Product) => {
+    // If product has unit options, redirect to product page to select unit
+    if (product.unitOptions && product.unitOptions.length > 0) {
+      router.push(`/product/${product._id}`);
+      return;
+    }
+    
     addToCart(
-      { productId, quantity: 1 },
+      { 
+        productId: product._id, 
+        quantity: 1,
+        selectedUnit: undefined, // No unit selection needed
+      },
       {
         onError: (error: any) => {
           Alert.alert("Error", error?.response?.data?.error || "Failed to add to cart");
@@ -90,7 +100,7 @@ const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
           <TouchableOpacity
             className="bg-primary rounded-full w-8 h-8 items-center justify-center"
             activeOpacity={0.7}
-            onPress={() => handleAddToCart(product._id, product.name)}
+            onPress={() => handleAddToCart(product)}
             disabled={isAddingToCart}
           >
             {isAddingToCart ? (

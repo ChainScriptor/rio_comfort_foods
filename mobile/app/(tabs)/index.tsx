@@ -2,10 +2,11 @@ import ProductsGrid from "@/components/ProductsGrid";
 import SafeScreen from "@/components/SafeScreen";
 import useProducts from "@/hooks/useProducts";
 import useCategories from "@/hooks/useCategories";
+import useBanners from "@/hooks/useBanners";
 
 import { Ionicons } from "@expo/vector-icons";
 import { useMemo, useState } from "react";
-import { View, Text, ScrollView, TouchableOpacity, TextInput, Image, ActivityIndicator } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity, TextInput, Image, ActivityIndicator, Linking } from "react-native";
 
 const ShopScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -13,16 +14,7 @@ const ShopScreen = () => {
 
   const { data: products, isLoading, isError } = useProducts();
   const { data: categories = [], isLoading: categoriesLoading, isError: categoriesError, error: categoriesErrorDetails } = useCategories();
-
-  // Debug logging
-  if (categories.length > 0) {
-    console.log("✅ Categories in ShopScreen:", categories);
-  }
-  if (categoriesError) {
-    console.error("❌ Categories error in ShopScreen:", categoriesErrorDetails);
-    console.error("Error response:", categoriesErrorDetails?.response?.data);
-    console.error("Error status:", categoriesErrorDetails?.response?.status);
-  }
+  const { data: banners = [] } = useBanners();
 
   // Build categories list with "All" option, sorted by order
   const displayCategories = useMemo(() => {
@@ -92,6 +84,39 @@ const ShopScreen = () => {
               onChangeText={setSearchQuery}
             />
           </View>
+
+          {/* BANNER */}
+          {banners.length > 0 && (
+            <View className="mt-4">
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{ paddingRight: 24 }}
+                pagingEnabled={false}
+                snapToInterval={0}
+              >
+                {banners.map((banner) => (
+                  <TouchableOpacity
+                    key={banner._id}
+                    className="mr-3 rounded-2xl overflow-hidden bg-background"
+                    activeOpacity={banner.linkUrl ? 0.7 : 1}
+                    onPress={() => {
+                      if (banner.linkUrl) {
+                        Linking.openURL(banner.linkUrl);
+                      }
+                    }}
+                    disabled={!banner.linkUrl}
+                  >
+                    <Image
+                      source={{ uri: banner.imageUrl }}
+                      style={{ width: 320, height: 160, backgroundColor: "#121212" }}
+                      resizeMode="cover"
+                    />
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+            </View>
+          )}
         </View>
 
         {/* CATEGORY FILTER */}

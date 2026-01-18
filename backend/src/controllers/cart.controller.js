@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { Cart } from "../models/cart.model.js";
 import { Product } from "../models/product.model.js";
 
@@ -17,7 +18,6 @@ export async function getCart(req, res) {
 
     res.status(200).json({ cart });
   } catch (error) {
-    console.error("Error in getCart controller:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 }
@@ -53,26 +53,53 @@ export async function addToCart(req, res) {
       });
     }
 
+    // Normalize selectedUnit for comparison (treat null, undefined, and empty string as equivalent)
+    let normalizedSelectedUnit = selectedUnit ? String(selectedUnit).trim() : null;
+    if (normalizedSelectedUnit === "") {
+      normalizedSelectedUnit = null;
+    }
+
+    // Convert productId to ObjectId for proper comparison
+    const productIdObj = new mongoose.Types.ObjectId(productId);
+
     // check if item already in the cart with same unit
     const existingItem = cart.items.find(
-      (item) => 
-        item.product.toString() === productId && 
-        item.selectedUnit === selectedUnit
+      (item) => {
+        // Compare product IDs - handle both ObjectId and string cases
+        let productMatches = false;
+        const itemProductIdStr = item.product?.toString ? item.product.toString() : String(item.product);
+        const requestProductIdStr = productIdObj.toString();
+
+        if (item.product instanceof mongoose.Types.ObjectId) {
+          productMatches = item.product.equals(productIdObj);
+        } else {
+          productMatches = itemProductIdStr === requestProductIdStr;
+        }
+
+        // Normalize item's selectedUnit
+        const itemUnit = item.selectedUnit ? String(item.selectedUnit).trim() : null;
+        const normalizedItemUnit = itemUnit === "" ? null : itemUnit;
+
+        // Compare both productId and selectedUnit
+        const unitMatches = normalizedItemUnit === normalizedSelectedUnit;
+
+        return productMatches && unitMatches;
+      }
     );
-    
+
     if (existingItem) {
-      // increment quantity by 1
-      const newQuantity = existingItem.quantity + 1;
+      // increment quantity by the requested quantity (not just 1)
+      const newQuantity = existingItem.quantity + quantity;
       if (product.stock < newQuantity) {
         return res.status(400).json({ error: "Insufficient stock" });
       }
       existingItem.quantity = newQuantity;
     } else {
       // add new item
-      cart.items.push({ 
-        product: productId, 
+      cart.items.push({
+        product: productId,
         quantity,
-        selectedUnit: selectedUnit || undefined,
+        selectedUnit: normalizedSelectedUnit,
       });
     }
 
@@ -80,7 +107,6 @@ export async function addToCart(req, res) {
 
     res.status(200).json({ message: "Item added to cart", cart });
   } catch (error) {
-    console.error("Error in addToCart controller:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 }
@@ -88,7 +114,7 @@ export async function addToCart(req, res) {
 export async function updateCartItem(req, res) {
   try {
     const { productId } = req.params;
-    const { quantity } = req.body;
+    const { quantity, selectedUnit } = req.body;
 
     if (quantity < 1) {
       return res.status(400).json({ error: "Quantity must be at least 1" });
@@ -99,7 +125,22 @@ export async function updateCartItem(req, res) {
       return res.status(404).json({ error: "Cart not found" });
     }
 
-    const itemIndex = cart.items.findIndex((item) => item.product.toString() === productId);
+    // Normalize selectedUnit
+    let normalizedSelectedUnit = selectedUnit ? String(selectedUnit).trim() : null;
+    if (normalizedSelectedUnit === "") {
+      normalizedSelectedUnit = null;
+    }
+
+    // Find the item based on productId AND selectedUnit
+    const itemIndex = cart.items.findIndex((item) => {
+      const productMatches = item.product.toString() === productId;
+      const itemUnit = item.selectedUnit ? String(item.selectedUnit).trim() : null;
+      const normalizedItemUnit = itemUnit === "" ? null : itemUnit;
+      const unitMatches = normalizedItemUnit === normalizedSelectedUnit;
+
+      return productMatches && unitMatches;
+    });
+
     if (itemIndex === -1) {
       return res.status(404).json({ error: "Item not found in cart" });
     }
@@ -119,7 +160,6 @@ export async function updateCartItem(req, res) {
 
     res.status(200).json({ message: "Cart updated successfully", cart });
   } catch (error) {
-    console.error("Error in updateCartItem controller:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 }
@@ -127,18 +167,34 @@ export async function updateCartItem(req, res) {
 export async function removeFromCart(req, res) {
   try {
     const { productId } = req.params;
+    const { selectedUnit } = req.body; // Get selectedUnit from body
 
     const cart = await Cart.findOne({ clerkId: req.user.clerkId });
     if (!cart) {
       return res.status(404).json({ error: "Cart not found" });
     }
 
-    cart.items = cart.items.filter((item) => item.product.toString() !== productId);
+    // Normalize selectedUnit
+    let normalizedSelectedUnit = selectedUnit ? String(selectedUnit).trim() : null;
+    if (normalizedSelectedUnit === "") {
+      normalizedSelectedUnit = null;
+    }
+
+    // Remove only the item that matches both productId AND selectedUnit
+    cart.items = cart.items.filter((item) => {
+      const productMatches = item.product.toString() === productId;
+      const itemUnit = item.selectedUnit ? String(item.selectedUnit).trim() : null;
+      const normalizedItemUnit = itemUnit === "" ? null : itemUnit;
+      const unitMatches = normalizedItemUnit === normalizedSelectedUnit;
+
+      // Keep the item if it does NOT match both
+      return !(productMatches && unitMatches);
+    });
+
     await cart.save();
 
     res.status(200).json({ message: "Item removed from cart", cart });
   } catch (error) {
-    console.error("Error in removeFromCart controller:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 }
@@ -155,7 +211,6 @@ export const clearCart = async (req, res) => {
 
     res.status(200).json({ message: "Cart cleared", cart });
   } catch (error) {
-    console.error("Error in clearCart controller:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 };

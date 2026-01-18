@@ -23,7 +23,7 @@ function AddressesScreen() {
   const [showAddressForm, setShowAddressForm] = useState(false);
   const [editingAddressId, setEditingAddressId] = useState<string | null>(null);
   const [addressForm, setAddressForm] = useState({
-    label: "",
+    storeLocation: "",
     fullName: "",
     streetAddress: "",
     city: "",
@@ -37,7 +37,7 @@ function AddressesScreen() {
     setShowAddressForm(true);
     setEditingAddressId(null);
     setAddressForm({
-      label: "",
+      storeLocation: "",
       fullName: "",
       streetAddress: "",
       city: "",
@@ -52,7 +52,7 @@ function AddressesScreen() {
     setShowAddressForm(true);
     setEditingAddressId(address._id);
     setAddressForm({
-      label: address.label,
+      storeLocation: address.storeLocation,
       fullName: address.fullName,
       streetAddress: address.streetAddress,
       city: address.city,
@@ -63,8 +63,8 @@ function AddressesScreen() {
     });
   };
 
-  const handleDeleteAddress = (addressId: string, label: string) => {
-    Alert.alert("Διαγραφή Διεύθυνσης", `Είστε σίγουροι ότι θέλετε να διαγράψετε την ${label}`, [
+  const handleDeleteAddress = (addressId: string, storeLocation: string) => {
+    Alert.alert("Διαγραφή Διεύθυνσης", `Είστε σίγουροι ότι θέλετε να διαγράψετε την διεύθυνση ${storeLocation}`, [
       { text: "Ακύρωση", style: "cancel" },
       { text: "Διαγραφή", style: "destructive", onPress: () => deleteAddress(addressId) },
     ]);

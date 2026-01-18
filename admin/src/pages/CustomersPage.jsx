@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { customerApi } from "../lib/api";
 import { formatDate } from "../lib/utils";
 import { TrashIcon, MapPinIcon, XIcon } from "lucide-react";
+import InviteCustomerForm from "../components/InviteCustomerForm";
 
 function CustomersPage() {
   const queryClient = useQueryClient();
@@ -18,6 +19,10 @@ function CustomersPage() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["customers"] });
       setSelectedCustomer(null);
+    },
+    onError: (error) => {
+      const errorMessage = error.response?.data?.message || error.response?.data?.error || "Αποτυχία διαγραφής πελάτη";
+      alert(errorMessage);
     },
   });
 
@@ -38,6 +43,9 @@ function CustomersPage() {
           {customers.length} {customers.length === 1 ? "πελάτης" : "πελάτες"} εγγεγραμμένοι
         </p>
       </div>
+
+      {/* INVITE CUSTOMER FORM */}
+      <InviteCustomerForm />
 
       {/* CUSTOMERS TABLE */}
       <div className="card bg-base-100 shadow-xl">
@@ -69,22 +77,52 @@ function CustomersPage() {
                   {customers.map((customer) => (
                     <tr key={customer._id}>
                       <td className="flex items-center gap-3">
-                        <div className="avatar placeholder">
-                          <div className="bg-primary text-primary-content rounded-full w-12">
-                            <img
-                              src={customer.imageUrl}
-                              alt={customer.name}
-                              className="w-12 h-12 rounded-full"
-                            />
-                          </div>
-                        </div>
-                        <div className="font-semibold">{customer.name}</div>
+                        {customer.isPendingInvitation ? (
+                          <div className="font-semibold text-base-content/70">{customer.name}</div>
+                        ) : (
+                          <>
+                            <div className="avatar placeholder">
+                              <div className="bg-primary text-primary-content rounded-full w-12">
+                                <img
+                                  src={customer.imageUrl}
+                                  alt={customer.name}
+                                  className="w-12 h-12 rounded-full"
+                                />
+                              </div>
+                            </div>
+                            <div className="font-semibold">{customer.name}</div>
+                          </>
+                        )}
                       </td>
 
                       <td>{customer.email}</td>
 
                       <td>
-                        {customer.addresses && customer.addresses.length > 0 ? (
+                        {customer.invitationStatus ? (
+                          <div
+                            className={`badge ${
+                              customer.invitationStatus === "approved"
+                                ? "badge-success"
+                                : customer.invitationStatus === "pending"
+                                ? "badge-warning"
+                                : "badge-error"
+                            }`}
+                          >
+                            {customer.invitationStatus === "approved"
+                              ? "Εγκεκριμένη"
+                              : customer.invitationStatus === "pending"
+                              ? "Εκκρεμής"
+                              : "Απορριφθείσα"}
+                          </div>
+                        ) : (
+                          <span className="text-sm opacity-60">-</span>
+                        )}
+                      </td>
+
+                      <td>
+                        {customer.isPendingInvitation ? (
+                          <span className="text-sm opacity-60">-</span>
+                        ) : customer.addresses && customer.addresses.length > 0 ? (
                           <button
                             onClick={() => setSelectedCustomer(customer)}
                             className="btn btn-ghost btn-sm gap-2"
@@ -98,9 +136,13 @@ function CustomersPage() {
                       </td>
 
                       <td>
-                        <div className="badge badge-ghost">
-                          {customer.wishlist?.length || 0} {customer.wishlist?.length === 1 ? 'προϊόν' : 'προϊόντα'}
-                        </div>
+                        {customer.isPendingInvitation ? (
+                          <span className="text-sm opacity-60">-</span>
+                        ) : (
+                          <div className="badge badge-ghost">
+                            {customer.wishlist?.length || 0} {customer.wishlist?.length === 1 ? 'προϊόν' : 'προϊόντα'}
+                          </div>
+                        )}
                       </td>
 
                       <td>
@@ -108,14 +150,18 @@ function CustomersPage() {
                       </td>
 
                       <td>
-                        <button
-                          onClick={() => handleDeleteCustomer(customer._id, customer.name)}
-                          className="btn btn-error btn-sm btn-square"
-                          disabled={deleteCustomerMutation.isPending}
-                          title="Διαγραφή πελάτη"
-                        >
-                          <TrashIcon className="w-4 h-4" />
-                        </button>
+                        {customer.isPendingInvitation ? (
+                          <span className="text-sm opacity-60">-</span>
+                        ) : (
+                          <button
+                            onClick={() => handleDeleteCustomer(customer._id, customer.name)}
+                            className="btn btn-error btn-sm btn-square"
+                            disabled={deleteCustomerMutation.isPending}
+                            title="Διαγραφή πελάτη"
+                          >
+                            <TrashIcon className="w-4 h-4" />
+                          </button>
+                        )}
                       </td>
                     </tr>
                   ))}

@@ -9,7 +9,7 @@ const stripe = new Stripe(ENV.STRIPE_SECRET_KEY);
 
 export async function createPaymentIntent(req, res) {
   try {
-    const { cartItems, shippingAddress } = req.body;
+    const { cartItems, shippingAddress, deliveryDate, comments } = req.body;
     const user = req.user;
 
     // Validate cart items
@@ -83,13 +83,14 @@ export async function createPaymentIntent(req, res) {
         orderItems: JSON.stringify(validatedItems),
         shippingAddress: JSON.stringify(shippingAddress),
         totalPrice: total.toFixed(2),
+        deliveryDate: deliveryDate || "",
+        comments: comments || "",
       },
       // in the webhooks section we will use this metadata
     });
 
     res.status(200).json({ clientSecret: paymentIntent.client_secret });
   } catch (error) {
-    console.error("Error creating payment intent:", error);
     res.status(500).json({ error: "Failed to create payment intent" });
   }
 }
@@ -101,14 +102,12 @@ export async function handleWebhook(req, res) {
   try {
     event = stripe.webhooks.constructEvent(req.body, sig, ENV.STRIPE_WEBHOOK_SECRET);
   } catch (err) {
-    console.error("Webhook signature verification failed:", err.message);
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
   if (event.type === "payment_intent.succeeded") {
     const paymentIntent = event.data.object;
 
-    console.log("Payment succeeded:", paymentIntent.id);
 
     try {
       const { userId, clerkId, orderItems, shippingAddress, totalPrice } = paymentIntent.metadata;
@@ -116,20 +115,29 @@ export async function handleWebhook(req, res) {
       // Check if order already exists (prevent duplicates)
       const existingOrderByPayment = await Order.findOne({ "paymentResult.id": paymentIntent.id });
       if (existingOrderByPayment) {
-        console.log("Order already exists for payment:", paymentIntent.id);
         return res.json({ received: true });
       }
 
       const parsedOrderItems = JSON.parse(orderItems);
       const parsedShippingAddress = JSON.parse(shippingAddress);
 
-      // Check if there's an existing order from the same customer today
+      // Helper function to compare shipping addresses
+      const compareShippingAddresses = (addr1, addr2) => {
+        return (
+          addr1.streetAddress === addr2.streetAddress &&
+          addr1.city === addr2.city &&
+          addr1.zipCode === addr2.zipCode &&
+          addr1.state === addr2.state
+        );
+      };
+
+      // Check if there's an existing order from the same customer today with the SAME shipping address
       const todayStart = new Date();
       todayStart.setHours(0, 0, 0, 0);
       const todayEnd = new Date();
       todayEnd.setHours(23, 59, 59, 999);
 
-      const existingOrder = await Order.findOne({
+      const existingOrders = await Order.find({
         clerkId,
         createdAt: {
           $gte: todayStart,
@@ -138,9 +146,14 @@ export async function handleWebhook(req, res) {
         status: "pending", // Only merge with pending orders
       });
 
+      // Find order with matching shipping address
+      const existingOrder = existingOrders.find((order) =>
+        compareShippingAddresses(order.shippingAddress, parsedShippingAddress)
+      );
+
       let order;
       if (existingOrder) {
-        // Merge new items into existing order
+        // Merge new items into existing order (same address)
         const updatedOrderItems = [...existingOrder.orderItems];
         
         for (const newItem of parsedOrderItems) {
@@ -172,10 +185,49 @@ export async function handleWebhook(req, res) {
           id: paymentIntent.id,
           status: "succeeded",
         };
+        
+        // Merge comments if provided (append new comments to existing ones)
+        const metadataComments = paymentIntent.metadata.comments;
+        if (metadataComments && metadataComments.trim()) {
+          if (existingOrder.comments && existingOrder.comments.trim()) {
+            // Both old and new comments exist, combine them with separator
+            existingOrder.comments = `${existingOrder.comments}\n\n--- Νέα Σχόλια ---\n${metadataComments}`;
+          } else {
+            // Only new comments exist
+            existingOrder.comments = metadataComments;
+          }
+        }
+        
         await existingOrder.save();
         order = existingOrder;
       } else {
-        // Create new order
+        // Calculate default delivery date (tomorrow if after 7 AM, today otherwise) if not provided
+        // Note: deliveryDate and comments should be in paymentIntent.metadata if needed
+        const metadataDeliveryDate = paymentIntent.metadata.deliveryDate;
+        const metadataComments = paymentIntent.metadata.comments;
+        
+        const now = new Date();
+        const isAfter7AM = now.getHours() >= 7;
+        
+        let finalDeliveryDate = null;
+        if (metadataDeliveryDate) {
+          finalDeliveryDate = new Date(metadataDeliveryDate);
+        } else {
+          if (isAfter7AM) {
+            // After 7 AM, default to tomorrow at noon
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            tomorrow.setHours(12, 0, 0, 0);
+            finalDeliveryDate = tomorrow;
+          } else {
+            // Before 7 AM, default to today at noon
+            const today = new Date();
+            today.setHours(12, 0, 0, 0);
+            finalDeliveryDate = today;
+          }
+        }
+
+        // Create new order (different address or no existing order)
         order = await Order.create({
           user: userId,
           clerkId,
@@ -186,6 +238,8 @@ export async function handleWebhook(req, res) {
             status: "succeeded",
           },
           totalPrice: parseFloat(totalPrice),
+          deliveryDate: finalDeliveryDate,
+          comments: metadataComments || null,
         });
       }
 
@@ -196,9 +250,7 @@ export async function handleWebhook(req, res) {
         });
       }
 
-      console.log("Order created/updated successfully:", order._id);
     } catch (error) {
-      console.error("Error creating order from webhook:", error);
     }
   }
 

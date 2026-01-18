@@ -6,6 +6,7 @@ export const capitalizeText = (text) => {
     pending: "Σε Αναμονή",
     shipped: "Στάλθηκε",
     delivered: "Παραδόθηκε",
+    cancelled: "Ακυρώθηκε",
   };
   
   const lowerText = text.toLowerCase();
@@ -24,6 +25,8 @@ export const getOrderStatusBadge = (status) => {
       return "badge-info";
     case "pending":
       return "badge-warning";
+    case "cancelled":
+      return "badge-error";
     default:
       return "badge-ghost";
   }

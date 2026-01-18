@@ -4,9 +4,18 @@ import { formatDate, formatTime, formatDateTime, formatDateWithDayName } from ".
 import { PrinterIcon, CalendarIcon, EyeIcon, XIcon, PackageIcon } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
+const STORE_LOCATIONS = [
+  "Θεσσαλονίκη",
+  "Χαλκιδική Πρώτο Πόδι",
+  "Χαλκιδική Δεύτερο Πόδι",
+  "Χαλκιδική Τρίτο Πόδι",
+  "Άλλο",
+];
+
 function OrdersPage() {
   const queryClient = useQueryClient();
   const [selectedDate, setSelectedDate] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
   const [showPrintView, setShowPrintView] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
 
@@ -25,26 +34,52 @@ function OrdersPage() {
     },
   });
 
+  const updateDeliveryDateMutation = useMutation({
+    mutationFn: orderApi.updateDeliveryDate,
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["orders"] });
+      queryClient.invalidateQueries({ queryKey: ["dashboardStats"] });
+      // Update selectedOrder to reflect the change
+      if (selectedOrder && data.order) {
+        setSelectedOrder(data.order);
+      }
+    },
+  });
+
   const handleStatusChange = (orderId, newStatus) => {
     updateStatusMutation.mutate({ orderId, status: newStatus });
   };
 
   const allOrders = ordersData?.orders || [];
 
-  // Filter orders by selected date
+  // Filter orders by selected date and location (use deliveryDate if available, otherwise createdAt)
+  // Exclude cancelled orders from the list
   const orders = useMemo(() => {
-    if (!selectedDate) return allOrders;
+    let filteredOrders = allOrders.filter((order) => order.status !== "cancelled");
+    
+    // Filter by location if selected
+    if (selectedLocation) {
+      filteredOrders = filteredOrders.filter(
+        (order) => order.shippingAddress?.storeLocation === selectedLocation
+      );
+    }
+    
+    // Filter by date if selected
+    if (selectedDate) {
+      const selected = new Date(selectedDate);
+      selected.setHours(0, 0, 0, 0);
+      const nextDay = new Date(selected);
+      nextDay.setDate(nextDay.getDate() + 1);
 
-    const selected = new Date(selectedDate);
-    selected.setHours(0, 0, 0, 0);
-    const nextDay = new Date(selected);
-    nextDay.setDate(nextDay.getDate() + 1);
+      filteredOrders = filteredOrders.filter((order) => {
+        // Use deliveryDate if available, otherwise fall back to createdAt
+        const orderDate = new Date(order.deliveryDate || order.createdAt);
+        return orderDate >= selected && orderDate < nextDay;
+      });
+    }
 
-    return allOrders.filter((order) => {
-      const orderDate = new Date(order.createdAt);
-      return orderDate >= selected && orderDate < nextDay;
-    });
-  }, [allOrders, selectedDate]);
+    return filteredOrders;
+  }, [allOrders, selectedDate, selectedLocation]);
 
   const handlePrint = () => {
     setShowPrintView(true);
@@ -84,6 +119,35 @@ function OrdersPage() {
                   title="Εμφάνιση όλων των ημερομηνιών"
                 >
                   Όλες
+                </button>
+              )}
+            </div>
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <PackageIcon className="w-4 h-4 mr-2" />
+              <span className="label-text text-sm">Φίλτρο κατά Περιοχή</span>
+            </label>
+            <div className="flex gap-2">
+              <select
+                value={selectedLocation}
+                onChange={(e) => setSelectedLocation(e.target.value)}
+                className="select select-bordered select-sm"
+              >
+                <option value="">Όλες οι περιοχές</option>
+                {STORE_LOCATIONS.map((location) => (
+                  <option key={location} value={location}>
+                    {location}
+                  </option>
+                ))}
+              </select>
+              {selectedLocation && (
+                <button
+                  onClick={() => setSelectedLocation("")}
+                  className="btn btn-ghost btn-sm"
+                  title="Εμφάνιση όλων των περιοχών"
+                >
+                  <XIcon className="w-4 h-4" />
                 </button>
               )}
             </div>
@@ -157,16 +221,14 @@ function OrdersPage() {
           <div className="print-only">
             <div style={{ marginTop: "0.8cm" }}>
               {(() => {
-                // Group orders by date (day starts at 7:00 AM)
+                // Group orders by delivery date (use deliveryDate if available, otherwise createdAt)
                 const ordersByDate = {};
                 orders.forEach((order) => {
-                  const orderDate = new Date(order.createdAt);
-                  // Shift time by 7 hours to make day start at 7:00 AM
-                  const shiftedDate = new Date(orderDate);
-                  shiftedDate.setHours(shiftedDate.getHours() - 7);
-                  // Set to start of day (which is now 7:00 AM of the original day)
-                  shiftedDate.setHours(0, 0, 0, 0);
-                  const dateKey = shiftedDate.toISOString().split('T')[0];
+                  // Use deliveryDate if available, otherwise fall back to createdAt
+                  const orderDate = new Date(order.deliveryDate || order.createdAt);
+                  // Set to start of day for grouping
+                  orderDate.setHours(0, 0, 0, 0);
+                  const dateKey = orderDate.toISOString().split('T')[0];
 
                   if (!ordersByDate[dateKey]) {
                     ordersByDate[dateKey] = [];
@@ -179,22 +241,38 @@ function OrdersPage() {
                 return dateKeys.map((dateKey, dateIndex) => {
                   const dateOrders = ordersByDate[dateKey];
 
-                  // Calculate the display date (shifted date + 7 hours = actual date for display)
+                  // Calculate the display date from the dateKey (which is already the correct date)
                   const displayDate = new Date(dateKey);
-                  displayDate.setHours(7, 0, 0, 0);
+                  displayDate.setHours(0, 0, 0, 0);
 
-                  // Count orders per customer for this date
-                  const customerOrderCount = {};
+                  // Helper function to create address key for grouping
+                  const getAddressKey = (address) => {
+                    return `${address.streetAddress}|${address.city}|${address.zipCode}|${address.state}`;
+                  };
+
+                  // Group orders by shipping address
+                  const ordersByAddress = {};
                   dateOrders.forEach((order) => {
-                    const customerName = order.shippingAddress.fullName;
-                    if (!customerOrderCount[customerName]) {
-                      customerOrderCount[customerName] = 0;
+                    const addressKey = getAddressKey(order.shippingAddress);
+                    if (!ordersByAddress[addressKey]) {
+                      ordersByAddress[addressKey] = [];
                     }
-                    customerOrderCount[customerName]++;
+                    ordersByAddress[addressKey].push(order);
                   });
 
-                  // Track current count per customer
-                  const customerCurrentCount = {};
+                  // Sort orders by delivery date (or createdAt if no deliveryDate) within each address group
+                  Object.keys(ordersByAddress).forEach((addressKey) => {
+                    ordersByAddress[addressKey].sort((a, b) => {
+                      const dateA = new Date(a.deliveryDate || a.createdAt);
+                      const dateB = new Date(b.deliveryDate || b.createdAt);
+                      return dateA - dateB;
+                    });
+                  });
+
+                  // Flatten orders grouped by address, maintaining address grouping
+                  const sortedOrdersByAddress = Object.keys(ordersByAddress)
+                    .sort()
+                    .flatMap((addressKey) => ordersByAddress[addressKey]);
 
                   return (
                     <div key={dateKey} style={{ marginBottom: "1cm", pageBreakInside: "avoid" }}>
@@ -203,43 +281,32 @@ function OrdersPage() {
                         Ημερομηνία {formatDateWithDayName(displayDate.toISOString())}
                       </div>
 
-                      {/* All orders for this date */}
-                      {dateOrders.map((order, orderIndex) => {
-                        // Group order items by category (shop)
-                        const itemsByCategory = {};
-                        order.orderItems.forEach((item) => {
-                          const category = item.category || item.product?.category || "Άλλη Κατηγορία";
-                          if (!itemsByCategory[category]) {
-                            itemsByCategory[category] = [];
-                          }
-                          itemsByCategory[category].push(item);
-                        });
-
-                        const categories = Object.keys(itemsByCategory);
-                        const customerName = order.shippingAddress.fullName;
-
-                        // Increment count for this customer
-                        if (!customerCurrentCount[customerName]) {
-                          customerCurrentCount[customerName] = 0;
-                        }
-                        customerCurrentCount[customerName]++;
-
-                        // Determine if this is a supplementary order
-                        const isSupplementary = customerOrderCount[customerName] > 1;
-                        const supplementaryNumber = customerCurrentCount[customerName] - 1;
-                        const displayName = isSupplementary
-                          ? `${customerName} - συμπληρωματική ${supplementaryNumber}`
-                          : customerName;
-
+                      {/* All orders for this date, grouped by address */}
+                      {Object.keys(ordersByAddress).map((addressKey, addressGroupIndex) => {
+                        const addressOrders = ordersByAddress[addressKey];
+                        const firstOrder = addressOrders[0];
+                        const customerName = firstOrder.shippingAddress.fullName;
+                        
+                        // Count orders for this address (for supplementary numbering)
+                        const addressOrderCount = addressOrders.length;
+                        
                         return (
-                          <div key={order._id} style={{ marginBottom: "0.4cm" }}>
-                            {/* Products grouped by category */}
-                            {categories.map((category, catIndex) => {
-                              const firstItem = itemsByCategory[category][0];
-                              const remainingItems = itemsByCategory[category].slice(1);
+                          <div key={addressKey} style={{ marginBottom: addressGroupIndex < Object.keys(ordersByAddress).length - 1 ? "0.6cm" : "0" }}>
+                            {/* All orders for this address - display all products in sequence */}
+                            {addressOrders.map((order, orderIndex) => {
+                              // Determine if this is a supplementary order (multiple orders for same address on same day)
+                              const isSupplementary = addressOrderCount > 1 && orderIndex > 0;
+                              const supplementaryNumber = orderIndex;
+                              const displayName = isSupplementary
+                                ? `${customerName} - συμπληρωματική ${supplementaryNumber}`
+                                : customerName;
+
+                              // Collect all items from this order
+                              const allOrderItems = order.orderItems;
 
                               // Helper function to get unit label
                               const getUnitLabel = (item) => {
+                                if (item.selectedUnit) return item.selectedUnit;
                                 const unitType = item.product?.unitType || "pieces";
                                 if (unitType === "kg") return "kg";
                                 if (unitType === "liters") return "συσκευασία";
@@ -247,51 +314,59 @@ function OrdersPage() {
                               };
 
                               return (
-                                <div key={category} style={{ marginBottom: "0.4cm" }}>
+                                <div key={order._id} style={{ marginBottom: orderIndex < addressOrders.length - 1 ? "0.2cm" : "0" }}>
                                   {/* Customer Name with first product on same line */}
-                                  <div style={{ fontSize: "12pt", fontWeight: "bold", color: "#000000", marginBottom: "0.1cm" }}>
-                                    <span style={{ backgroundColor: "#FFFF00", padding: "0.1cm 0.2cm", display: "inline-block" }}>
-                                      {displayName}
-                                    </span>
-                                    <span style={{ marginLeft: "0.3cm" }}>
-                                      -  ({getUnitLabel(firstItem)}: {firstItem.quantity}) {firstItem.name}
-                                    </span>
-                                  </div>
-                                  {/* Remaining products */}
-                                  {remainingItems.map((item, itemIndex) => (
-                                    <div
-                                      key={itemIndex}
-                                      style={{
-                                        fontSize: "11pt",
-                                        fontWeight: "bold",
-                                        color: "#000000",
-                                        paddingLeft: "0.5cm",
-                                        marginBottom: "0.1cm"
-                                      }}
-                                    >
-                                      -  ({getUnitLabel(item)}: {item.quantity}) {item.name}
-                                    </div>
-                                  ))}
-                                  {/* Separator line after each category */}
-                                  {catIndex < categories.length - 1 && (
-                                    <div style={{
-                                      borderTop: "2px solid #000000",
-                                      marginTop: "0.3cm",
-                                      marginBottom: "0.3cm"
-                                    }}></div>
+                                  {allOrderItems.length > 0 && (
+                                    <>
+                                      <div style={{ fontSize: "12pt", fontWeight: "bold", color: "#000000", marginBottom: "0.1cm" }}>
+                                        <span style={{ backgroundColor: "#FFFF00", padding: "0.1cm 0.2cm", display: "inline-block" }}>
+                                          {displayName}
+                                        </span>
+                                        <span style={{ marginLeft: "0.3cm" }}>
+                                          -  ({getUnitLabel(allOrderItems[0])}: {allOrderItems[0].quantity}) {allOrderItems[0].name}
+                                        </span>
+                                        {/* Delivery Date */}
+                                        {order.deliveryDate && (
+                                          <span style={{ marginLeft: "0.3cm", fontSize: "10pt", color: "#666" }}>
+                                            [Παραλαβή: {formatDate(order.deliveryDate)}]
+                                          </span>
+                                        )}
+                                      </div>
+                                      {/* Remaining products from this order */}
+                                      {allOrderItems.slice(1).map((item, itemIndex) => (
+                                        <div
+                                          key={`${order._id}-${itemIndex}`}
+                                          style={{
+                                            fontSize: "11pt",
+                                            fontWeight: "bold",
+                                            color: "#000000",
+                                            paddingLeft: "0.5cm",
+                                            marginBottom: "0.1cm"
+                                          }}
+                                        >
+                                          -  ({getUnitLabel(item)}: {item.quantity}) {item.name}
+                                        </div>
+                                      ))}
+                                      {/* Comments */}
+                                      {order.comments && (
+                                        <div
+                                          style={{
+                                            fontSize: "10pt",
+                                            fontStyle: "italic",
+                                            color: "#666",
+                                            paddingLeft: "0.5cm",
+                                            marginTop: "0.1cm",
+                                            marginBottom: "0.1cm"
+                                          }}
+                                        >
+                                          💬 {order.comments}
+                                        </div>
+                                      )}
+                                    </>
                                   )}
                                 </div>
                               );
                             })}
-
-                            {/* Separator line after each order (except last order of last date) */}
-                            {!(dateIndex === dateKeys.length - 1 && orderIndex === dateOrders.length - 1) && (
-                              <div style={{
-                                borderTop: "2px solid #000000",
-                                marginTop: "0.3cm",
-                                marginBottom: "0.3cm"
-                              }}></div>
-                            )}
                           </div>
                         );
                       })}
@@ -359,6 +434,11 @@ function OrdersPage() {
                             <div className="text-sm opacity-60">
                               {order.shippingAddress.city}, {order.shippingAddress.state}
                             </div>
+                            {order.comments && (
+                              <div className="text-xs mt-1 italic font-semibold text-warning bg-warning/20 px-2 py-1 rounded">
+                                💬 {order.comments}
+                              </div>
+                            )}
                           </td>
 
                           <td>
@@ -394,6 +474,7 @@ function OrdersPage() {
                               <option value="pending">Σε Αναμονή</option>
                               <option value="shipped">Στάλθηκε</option>
                               <option value="delivered">Παραδόθηκε</option>
+                              <option value="cancelled">Ακυρώθηκε</option>
                             </select>
                           </td>
 
@@ -464,6 +545,37 @@ function OrdersPage() {
                       {selectedOrder.shippingAddress.streetAddress}, {selectedOrder.shippingAddress.city}, {selectedOrder.shippingAddress.state} {selectedOrder.shippingAddress.zipCode}
                     </span>
                   </div>
+                  <div className="col-span-2">
+                    <div className="flex items-center gap-3">
+                      <span className="text-base-content/60">Ημερομηνία Παραλαβής:</span>
+                      <input
+                        type="date"
+                        value={selectedOrder.deliveryDate ? new Date(selectedOrder.deliveryDate).toISOString().split('T')[0] : ''}
+                        onChange={(e) => {
+                          if (e.target.value) {
+                            const newDate = new Date(e.target.value);
+                            updateDeliveryDateMutation.mutate({
+                              orderId: selectedOrder._id,
+                              deliveryDate: newDate.toISOString(),
+                            });
+                          }
+                        }}
+                        className="input input-bordered input-sm"
+                        disabled={updateDeliveryDateMutation.isPending}
+                      />
+                      {updateDeliveryDateMutation.isPending && (
+                        <span className="loading loading-spinner loading-sm"></span>
+                      )}
+                    </div>
+                  </div>
+                  {selectedOrder.comments && (
+                    <div className="col-span-2">
+                      <span className="text-base-content/60">Σχόλια:</span>
+                      <div className="mt-1 text-sm font-semibold text-warning bg-warning/20 px-3 py-2 rounded italic">
+                        💬 {selectedOrder.comments}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -516,12 +628,15 @@ function OrdersPage() {
               <div className="mt-4 flex items-center justify-between text-sm">
                 <div>
                   <span className="text-base-content/70">Κατάσταση:</span>
-                  <span className={`ml-2 badge ${selectedOrder.status === "delivered" ? "badge-success" :
+                  <span className={`ml-2 badge ${
+                    selectedOrder.status === "delivered" ? "badge-success" :
                     selectedOrder.status === "shipped" ? "badge-info" :
-                      "badge-warning"
-                    }`}>
+                    selectedOrder.status === "cancelled" ? "badge-error" :
+                    "badge-warning"
+                  }`}>
                     {selectedOrder.status === "delivered" ? "Παραδόθηκε" :
                       selectedOrder.status === "shipped" ? "Στάλθηκε" :
+                      selectedOrder.status === "cancelled" ? "Ακυρώθηκε" :
                         "Σε Αναμονή"}
                   </span>
                 </div>

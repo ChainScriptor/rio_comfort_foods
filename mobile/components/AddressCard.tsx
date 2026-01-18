@@ -5,7 +5,7 @@ import { Address } from "@/types";
 interface AddressCardProps {
   address: Address;
   onEdit: (address: Address) => void;
-  onDelete: (addressId: string, label: string) => void;
+  onDelete: (addressId: string, storeLocation: string) => void;
   isUpdatingAddress: boolean;
   isDeletingAddress: boolean;
 }
@@ -24,7 +24,7 @@ export default function AddressCard({
           <View className="bg-primary/20 rounded-full w-12 h-12 items-center justify-center mr-3">
             <Ionicons name="location" size={24} color="#FFD700" />
           </View>
-          <Text className="text-text-primary font-bold text-lg">{address.label}</Text>
+          <Text className="text-text-primary font-bold text-lg">{address.storeLocation}</Text>
         </View>
         {address.isDefault && (
           <View className="bg-primary px-3 py-1 rounded-full">
@@ -52,7 +52,7 @@ export default function AddressCard({
         <TouchableOpacity
           className="flex-1 bg-red-500/20 py-3 rounded-xl items-center"
           activeOpacity={0.7}
-          onPress={() => onDelete(address._id, address.label)}
+          onPress={() => onDelete(address._id, address.storeLocation)}
           disabled={isDeletingAddress}
         >
           <Text className="text-red-500 font-bold">Διαγραφή</Text>

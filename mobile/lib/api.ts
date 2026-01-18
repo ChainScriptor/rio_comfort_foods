@@ -3,10 +3,12 @@ import axios from "axios";
 import { useEffect } from "react";
 
 // Production API URL
-const API_URL = "https://riocomfortfoods-oksxz.sevalla.app/api";
+// const API_URL = "https://riocomfortfoods-oksxz.sevalla.app/api";
 
-// For local development (simulator only)
-// const API_URL = "http://localhost:3000/api";
+// For local development
+// For physical device: use your computer's local IP
+// For simulator/emulator: use "http://localhost:3000/api"
+const API_URL = "http://192.168.1.13:3000/api";
 
 const api = axios.create({
   baseURL: API_URL,

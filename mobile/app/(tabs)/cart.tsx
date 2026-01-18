@@ -7,7 +7,6 @@ import { useState } from "react";
 import { Address } from "@/types";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
-import OrderSummary from "@/components/OrderSummary";
 import AddressSelectionModal from "@/components/AddressSelectionModal";
 
 import * as Sentry from "@sentry/react-native";
@@ -37,19 +36,19 @@ const CartScreen = () => {
   const tax = subtotal * 0.08; // 8% tax
   const total = subtotal + shipping + tax;
 
-  const handleQuantityChange = (productId: string, currentQuantity: number, change: number) => {
+  const handleQuantityChange = (productId: string, currentQuantity: number, change: number, selectedUnit?: string) => {
     const newQuantity = currentQuantity + change;
     if (newQuantity < 1) return;
-    updateQuantity({ productId, quantity: newQuantity });
+    updateQuantity({ productId, quantity: newQuantity, selectedUnit });
   };
 
-  const handleRemoveItem = (productId: string, productName: string) => {
+  const handleRemoveItem = (productId: string, productName: string, selectedUnit?: string) => {
     Alert.alert("Αφαίρεση Προϊόντος", `Αφαίρεση ${productName} από το καλάθι;`, [
       { text: "Ακύρωση", style: "cancel" },
       {
         text: "Αφαίρεση",
         style: "destructive",
-        onPress: () => removeFromCart(productId),
+        onPress: () => removeFromCart({ productId, selectedUnit }),
       },
     ]);
   };
@@ -71,7 +70,11 @@ const CartScreen = () => {
     setAddressModalVisible(true);
   };
 
-  const handleProceedWithOrder = async (selectedAddress: Address) => {
+  const handleProceedWithOrder = async (
+    selectedAddress: Address,
+    deliveryDate?: Date,
+    comments?: string
+  ) => {
     setAddressModalVisible(false);
 
     // log checkout initiated
@@ -93,6 +96,7 @@ const CartScreen = () => {
           price: item.product!.price ?? 0,
           quantity: item.quantity,
           image: item.product!.images[0],
+          selectedUnit: item.selectedUnit || undefined,
         }));
 
       // Create order directly without payment
@@ -107,6 +111,8 @@ const CartScreen = () => {
           phoneNumber: selectedAddress.phoneNumber,
         },
         totalPrice: total,
+        deliveryDate: deliveryDate ? deliveryDate.toISOString() : undefined,
+        comments: comments || undefined,
       });
 
       Sentry.logger.info("Order created successfully", {
@@ -193,7 +199,7 @@ const CartScreen = () => {
                       <TouchableOpacity
                         className="bg-background-lighter rounded-full w-9 h-9 items-center justify-center"
                         activeOpacity={0.7}
-                        onPress={() => handleQuantityChange(item.product!._id, item.quantity, -1)}
+                        onPress={() => handleQuantityChange(item.product!._id, item.quantity, -1, item.selectedUnit)}
                         disabled={isUpdating}
                       >
                         {isUpdating ? (
@@ -210,7 +216,7 @@ const CartScreen = () => {
                       <TouchableOpacity
                         className="bg-primary rounded-full w-9 h-9 items-center justify-center"
                         activeOpacity={0.7}
-                        onPress={() => handleQuantityChange(item.product!._id, item.quantity, 1)}
+                        onPress={() => handleQuantityChange(item.product!._id, item.quantity, 1, item.selectedUnit)}
                         disabled={isUpdating}
                       >
                         {isUpdating ? (
@@ -223,7 +229,7 @@ const CartScreen = () => {
                       <TouchableOpacity
                         className="ml-auto bg-red-500/10 rounded-full w-9 h-9 items-center justify-center"
                         activeOpacity={0.7}
-                        onPress={() => handleRemoveItem(item.product!._id, item.product!.name)}
+                        onPress={() => handleRemoveItem(item.product!._id, item.product!.name, item.selectedUnit)}
                         disabled={isRemoving}
                       >
                         <Ionicons name="trash-outline" size={18} color="#EF4444" />
@@ -234,8 +240,6 @@ const CartScreen = () => {
               </View>
             ))}
         </View>
-
-        <OrderSummary subtotal={subtotal} shipping={shipping} tax={tax} total={total} />
       </ScrollView>
 
       <View
@@ -243,15 +247,12 @@ const CartScreen = () => {
        border-surface pt-4 pb-32 px-6"
       >
         {/* Quick Stats */}
-        <View className="flex-row items-center justify-between mb-4">
+        <View className="flex-row items-center justify-center mb-4">
           <View className="flex-row items-center">
             <Ionicons name="cart" size={20} color="#FFD700" />
-            <Text className="text-text-secondary ml-2">
+            <Text className="text-text-primary font-bold text-xl ml-2">
               {cartItemCount} {cartItemCount === 1 ? "προϊόν" : "προϊόντα"}
             </Text>
-          </View>
-          <View className="flex-row items-center">
-            <Text className="text-text-primary font-bold text-xl">${total.toFixed(2)}</Text>
           </View>
         </View>
 
@@ -278,7 +279,7 @@ const CartScreen = () => {
       <AddressSelectionModal
         visible={addressModalVisible}
         onClose={() => setAddressModalVisible(false)}
-        onProceed={handleProceedWithOrder}
+        onProceed={(address, deliveryDate, comments) => handleProceedWithOrder(address, deliveryDate, comments)}
         isProcessing={orderLoading}
       />
     </SafeScreen>

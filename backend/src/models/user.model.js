@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
 
 const addressSchema = new mongoose.Schema({
-  label: {
+  storeLocation: {
     type: String,
+    enum: ["Θεσσαλονίκη", "Χαλκιδική Πρώτο Πόδι", "Χαλκιδική Δεύτερο Πόδι", "Χαλκιδική Τρίτο Πόδι", "Άλλο"],
     required: true,
   },
   fullName: {

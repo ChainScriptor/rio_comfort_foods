@@ -4,13 +4,26 @@ import useWishlist from "@/hooks/useWishlist";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { router } from "expo-router";
-import { ActivityIndicator, Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { useState, useMemo } from "react";
+import { ActivityIndicator, Alert, ScrollView, Text, TouchableOpacity, View, TextInput } from "react-native";
 
 function WishlistScreen() {
   const { wishlist, isLoading, isError, removeFromWishlist, isRemovingFromWishlist } =
     useWishlist();
 
   const { addToCart, isAddingToCart } = useCart();
+  
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Filter wishlist based on search query
+  const filteredWishlist = useMemo(() => {
+    if (!wishlist) return [];
+    if (!searchQuery.trim()) return wishlist;
+    
+    return wishlist.filter((item) =>
+      item.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }, [wishlist, searchQuery]);
 
   const handleRemoveFromWishlist = (productId: string, productName: string) => {
     Alert.alert("Αφαίρεση από λίστα επιθυμιών", `Αφαίρεση ${productName} από τη λίστα επιθυμιών`, [
@@ -24,9 +37,13 @@ function WishlistScreen() {
     ]);
   };
 
-  const handleAddToCart = (productId: string, productName: string) => {
+  const handleAddToCart = (productId: string, productName: string, selectedUnit?: string) => {
     addToCart(
-      { productId, quantity: 1 },
+      { 
+        productId, 
+        quantity: 1,
+        selectedUnit: selectedUnit || undefined,
+      },
       {
         onError: (error: any) => {
           Alert.alert("Σφάλμα", error?.response?.data?.error || "Αποτυχία προσθήκης στο καλάθι");
@@ -51,6 +68,31 @@ function WishlistScreen() {
         </Text>
       </View>
 
+      {/* SEARCH BAR */}
+      {wishlist.length > 0 && (
+        <View className="px-6 pt-4 pb-2">
+          <View className="bg-surface flex-row items-center px-5 py-4 rounded-2xl">
+            <Ionicons color={"#666"} size={22} name="search" />
+            <TextInput
+              placeholder="Αναζήτηση στη λίστα επιθυμιών"
+              placeholderTextColor={"#666"}
+              className="flex-1 ml-3 text-base text-text-primary"
+              value={searchQuery}
+              onChangeText={setSearchQuery}
+            />
+            {searchQuery.length > 0 && (
+              <TouchableOpacity
+                onPress={() => setSearchQuery("")}
+                className="ml-2"
+                activeOpacity={0.7}
+              >
+                <Ionicons name="close-circle" size={20} color={"#666"} />
+              </TouchableOpacity>
+            )}
+          </View>
+        </View>
+      )}
+
       {wishlist.length === 0 ? (
         <View className="flex-1 items-center justify-center px-6">
           <Ionicons name="heart-outline" size={80} color="#666" />
@@ -74,8 +116,19 @@ function WishlistScreen() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingBottom: 100 }}
         >
-          <View className="px-6 py-4">
-            {wishlist.map((item) => (
+          {filteredWishlist.length === 0 && searchQuery.trim() ? (
+            <View className="py-20 items-center justify-center px-6">
+              <Ionicons name="search-outline" size={64} color="#666" />
+              <Text className="text-text-primary font-semibold text-xl mt-4">
+                Δεν βρέθηκαν προϊόντα
+              </Text>
+              <Text className="text-text-secondary text-center mt-2">
+                Δοκίμαστε να αλλάξετε τους όρους αναζήτησης
+              </Text>
+            </View>
+          ) : (
+            <View className="px-6 py-4">
+              {filteredWishlist.map((item) => (
               <TouchableOpacity
                 key={item._id}
                 className="bg-surface rounded-3xl overflow-hidden mb-3"
@@ -93,22 +146,10 @@ function WishlistScreen() {
                     <Text className="text-text-primary font-bold text-base mb-2" numberOfLines={2}>
                       {item.name}
                     </Text>
-                    <Text className="text-primary font-bold text-xl mb-2">
-                      ${item.price.toFixed(2)}
-                    </Text>
-
-                    {item.stock > 0 ? (
-                      <View className="flex-row items-center">
-                        <View className="w-2 h-2 bg-primary rounded-full mr-2" />
-                        <Text className="text-primary text-sm font-semibold">
-                          {item.stock} σε απόθεμα
-                        </Text>
-                      </View>
-                    ) : (
-                      <View className="flex-row items-center">
-                        <View className="w-2 h-2 bg-red-500 rounded-full mr-2" />
-                        <Text className="text-red-500 text-sm font-semibold">Εκτός Αποθέματος</Text>
-                      </View>
+                    {item.showPrice !== false && item.price != null && (
+                      <Text className="text-primary font-bold text-xl mb-2">
+                        ${item.price.toFixed(2)}
+                      </Text>
                     )}
                   </View>
 
@@ -126,7 +167,7 @@ function WishlistScreen() {
                     <TouchableOpacity
                       className="bg-primary rounded-xl py-3 items-center"
                       activeOpacity={0.8}
-                      onPress={() => handleAddToCart(item._id, item.name)}
+                      onPress={() => handleAddToCart(item._id, item.name, undefined)}
                       disabled={isAddingToCart}
                     >
                       {isAddingToCart ? (
@@ -138,8 +179,9 @@ function WishlistScreen() {
                   </View>
                 )}
               </TouchableOpacity>
-            ))}
-          </View>
+              ))}
+            </View>
+          )}
         </ScrollView>
       )}
     </SafeScreen>

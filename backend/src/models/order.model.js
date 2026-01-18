@@ -24,9 +24,18 @@ const orderItemSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  selectedUnit: {
+    type: String,
+    default: null,
+  },
 });
 
 const shippingAddressSchema = new mongoose.Schema({
+  storeLocation: {
+    type: String,
+    enum: ["Θεσσαλονίκη", "Χαλκιδική Πρώτο Πόδι", "Χαλκιδική Δεύτερο Πόδι", "Χαλκιδική Τρίτο Πόδι", "Άλλο"],
+    required: true,
+  },
   fullName: {
     type: String,
     required: true,
@@ -80,8 +89,16 @@ const orderSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["pending", "shipped", "delivered"],
+      enum: ["pending", "shipped", "delivered", "cancelled"],
       default: "pending",
+    },
+    deliveryDate: {
+      type: Date,
+      default: null, // Will be set to next day if not provided
+    },
+    comments: {
+      type: String,
+      default: null,
     },
     deliveredAt: {
       type: Date,

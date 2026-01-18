@@ -4,6 +4,11 @@ import { Order } from "../models/order.model.js";
 import { User } from "../models/user.model.js";
 import { Category } from "../models/category.model.js";
 import { Review } from "../models/review.model.js";
+import { Banner } from "../models/banner.model.js";
+import { createClerkClient } from "@clerk/backend";
+import { ENV } from "../config/env.js";
+
+const clerkClient = createClerkClient({ secretKey: ENV.CLERK_SECRET_KEY });
 
 export async function createProduct(req, res) {
   try {
@@ -54,7 +59,6 @@ export async function createProduct(req, res) {
 
     res.status(201).json(product);
   } catch (error) {
-    console.error("Error creating product", error);
     res.status(500).json({ message: "Internal server error" });
   }
 }
@@ -65,7 +69,6 @@ export async function getAllProducts(_, res) {
     const products = await Product.find().sort({ createdAt: -1 });
     res.status(200).json(products);
   } catch (error) {
-    console.error("Error fetching products:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 }
@@ -122,7 +125,6 @@ export async function updateProduct(req, res) {
     await product.save();
     res.status(200).json(product);
   } catch (error) {
-    console.error("Error updating products:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 }
@@ -136,7 +138,6 @@ export async function getAllOrders(_, res) {
 
     res.status(200).json({ orders });
   } catch (error) {
-    console.error("Error in getAllOrders controller:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 }
@@ -146,7 +147,7 @@ export async function updateOrderStatus(req, res) {
     const { orderId } = req.params;
     const { status } = req.body;
 
-    if (!["pending", "shipped", "delivered"].includes(status)) {
+    if (!["pending", "shipped", "delivered", "cancelled"].includes(status)) {
       return res.status(400).json({ error: "Invalid status" });
     }
 
@@ -169,7 +170,34 @@ export async function updateOrderStatus(req, res) {
 
     res.status(200).json({ message: "Order status updated successfully", order });
   } catch (error) {
-    console.error("Error in updateOrderStatus controller:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+export async function updateOrderDeliveryDate(req, res) {
+  try {
+    const { orderId } = req.params;
+    const { deliveryDate } = req.body;
+
+    if (!deliveryDate) {
+      return res.status(400).json({ error: "Delivery date is required" });
+    }
+
+    const order = await Order.findById(orderId);
+    if (!order) {
+      return res.status(404).json({ error: "Order not found" });
+    }
+
+    const newDeliveryDate = new Date(deliveryDate);
+    if (isNaN(newDeliveryDate.getTime())) {
+      return res.status(400).json({ error: "Invalid delivery date format" });
+    }
+
+    order.deliveryDate = newDeliveryDate;
+    await order.save();
+
+    res.status(200).json({ message: "Order delivery date updated successfully", order });
+  } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }
 }
@@ -177,9 +205,81 @@ export async function updateOrderStatus(req, res) {
 export async function getAllCustomers(_, res) {
   try {
     const customers = await User.find().sort({ createdAt: -1 }); // latest user first
-    res.status(200).json({ customers });
+
+    // Fetch all invitations from Clerk
+    let invitationsMap = new Map();
+    let pendingInvitationsWithoutCustomer = [];
+    try {
+      const invitations = await clerkClient.invitations.getInvitationList({
+        limit: 500, // Get all invitations
+      });
+
+      // Get all customer emails
+      const customerEmails = new Set(customers.map((c) => c.email));
+
+      // Create a map of email -> latest invitation status
+      if (invitations.data && invitations.data.length > 0) {
+        invitations.data.forEach((inv) => {
+          const email = inv.emailAddress;
+          // Keep the most recent invitation for each email
+          if (!invitationsMap.has(email) || new Date(inv.createdAt) > new Date(invitationsMap.get(email).createdAt)) {
+            invitationsMap.set(email, {
+              status: inv.status, // pending, accepted, revoked
+              createdAt: inv.createdAt,
+            });
+          }
+
+          // Collect pending invitations that don't have a customer yet
+          if (inv.status === "pending" && !customerEmails.has(email)) {
+            pendingInvitationsWithoutCustomer.push({
+              email: email,
+              invitationId: inv.id,
+              createdAt: inv.createdAt,
+              publicMetadata: inv.publicMetadata,
+            });
+          }
+        });
+      }
+    } catch (invError) {
+      // Continue without invitation status if Clerk API fails
+    }
+
+    // Add invitation status to each customer
+    const customersWithInvitations = customers.map((customer) => {
+      const invitationInfo = invitationsMap.get(customer.email);
+      return {
+        ...customer.toObject(),
+        invitationStatus: invitationInfo
+          ? invitationInfo.status === "accepted"
+            ? "approved"
+            : invitationInfo.status === "revoked"
+            ? "rejected"
+            : "pending"
+          : null, // null means no invitation found (user registered without invitation or invitation expired)
+      };
+    });
+
+    // Add pending invitations without customers as "virtual" customers
+    const pendingCustomers = pendingInvitationsWithoutCustomer.map((inv) => ({
+      _id: `pending_${inv.invitationId}`,
+      name: "Εκκρεμής Πρόσκληση",
+      email: inv.email,
+      invitationStatus: "pending",
+      addresses: [],
+      wishlist: [],
+      createdAt: inv.createdAt,
+      isPendingInvitation: true,
+      invitationId: inv.invitationId,
+      customerId: inv.publicMetadata?.customerId || null,
+    }));
+
+    // Combine customers and pending invitations, sort by createdAt
+    const allCustomers = [...customersWithInvitations, ...pendingCustomers].sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
+
+    res.status(200).json({ customers: allCustomers });
   } catch (error) {
-    console.error("Error fetching customers:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 }
@@ -193,18 +293,16 @@ export async function deleteCustomer(req, res) {
       return res.status(404).json({ message: "Customer not found" });
     }
 
-    // Check if customer has any orders
-    const ordersCount = await Order.countDocuments({ user: id });
-    if (ordersCount > 0) {
-      return res.status(400).json({
-        message: `Cannot delete customer. They have ${ordersCount} order(s). Please handle those orders first.`,
-      });
-    }
+    // Update all pending orders to "cancelled" status when customer is deleted
+    await Order.updateMany(
+      { user: id, status: "pending" },
+      { status: "cancelled" }
+    );
 
+    // Delete the customer
     await User.findByIdAndDelete(id);
     res.status(200).json({ message: "Customer deleted successfully" });
   } catch (error) {
-    console.error("Error deleting customer:", error);
     res.status(500).json({ message: "Failed to delete customer" });
   }
 }
@@ -288,7 +386,6 @@ export async function getDashboardStats(req, res) {
       period,
     });
   } catch (error) {
-    console.error("Error fetching dashboard stats:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 }
@@ -315,7 +412,6 @@ export const deleteProduct = async (req, res) => {
     await Product.findByIdAndDelete(id);
     res.status(200).json({ message: "Product deleted successfully" });
   } catch (error) {
-    console.error("Error deleting product:", error);
     res.status(500).json({ message: "Failed to delete product" });
   }
 };
@@ -327,7 +423,6 @@ export const getAllCategories = async (req, res) => {
     const categories = await Category.find().sort({ order: 1, createdAt: -1 });
     res.status(200).json(categories);
   } catch (error) {
-    console.error("Error fetching categories:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -370,7 +465,6 @@ export const createCategory = async (req, res) => {
 
     res.status(201).json(category);
   } catch (error) {
-    console.error("Error creating category:", error);
     if (error.code === 11000) {
       return res.status(400).json({ message: "Category already exists" });
     }
@@ -414,7 +508,6 @@ export const updateCategory = async (req, res) => {
             await cloudinary.uploader.destroy(publicId);
           }
         } catch (error) {
-          console.error("Error deleting old category image:", error);
         }
       }
 
@@ -428,7 +521,6 @@ export const updateCategory = async (req, res) => {
     await category.save();
     res.status(200).json(category);
   } catch (error) {
-    console.error("Error updating category:", error);
     if (error.code === 11000) {
       return res.status(400).json({ message: "Category name already exists" });
     }
@@ -461,14 +553,12 @@ export const deleteCategory = async (req, res) => {
           await cloudinary.uploader.destroy(publicId);
         }
       } catch (error) {
-        console.error("Error deleting category image:", error);
       }
     }
 
     await Category.findByIdAndDelete(id);
     res.status(200).json({ message: "Category deleted successfully" });
   } catch (error) {
-    console.error("Error deleting category:", error);
     res.status(500).json({ message: "Failed to delete category" });
   }
 };
@@ -483,7 +573,183 @@ export const getAllReviews = async (req, res) => {
 
     res.status(200).json({ reviews });
   } catch (error) {
-    console.error("Error fetching reviews:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
+export async function inviteCustomer(req, res) {
+  try {
+    const { email, customerId } = req.body;
+
+    if (!email || !customerId) {
+      return res.status(400).json({ error: "Email and customerId are required" });
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ error: "Invalid email format" });
+    }
+
+    // Check for existing pending invitations for this email
+    try {
+      const existingInvitations = await clerkClient.invitations.getInvitationList({
+        status: "pending",
+        limit: 100,
+      });
+
+      // Find pending invitations for this email
+      const pendingInvitations = existingInvitations.data?.filter(
+        (inv) => inv.emailAddress === email
+      );
+
+      // Revoke all pending invitations for this email
+      if (pendingInvitations && pendingInvitations.length > 0) {
+        for (const pendingInv of pendingInvitations) {
+          try {
+            await clerkClient.invitations.revokeInvitation({
+              invitationId: pendingInv.id,
+            });
+          } catch (revokeError) {
+            // Continue with other invitations even if one fails
+          }
+        }
+      }
+    } catch (checkError) {
+      // Continue with creating new invitation even if check fails
+    }
+
+    // Create invitation using Clerk
+    // redirectUrl: Web sign-up page that accepts invitation token
+    // After sign-up, user will be redirected to /welcome page
+    const backendUrl =
+      process.env.BACKEND_URL ||
+      (ENV.NODE_ENV === "production"
+        ? "https://riocomfortfoods-oksxz.sevalla.app"
+        : `http://localhost:${ENV.PORT || 3000}`);
+    const redirectUrl = `${backendUrl}/sign-up`;
+
+    const invitation = await clerkClient.invitations.createInvitation({
+      emailAddress: email,
+      publicMetadata: {
+        customerId: customerId,
+      },
+      redirectUrl: redirectUrl,
+    });
+
+
+    res.status(201).json({
+      message: "Invitation sent successfully",
+      invitation: {
+        id: invitation.id,
+        emailAddress: invitation.emailAddress,
+        status: invitation.status,
+      },
+    });
+  } catch (error) {
+
+    // Handle Clerk-specific errors
+    if (error.errors) {
+      const clerkError = error.errors[0];
+      const errorMessage =
+        clerkError?.message || "Failed to create invitation";
+
+      // Provide more helpful error message for duplicate invitations
+      if (clerkError?.code === "duplicate_record") {
+        return res.status(400).json({
+          error:
+            "Υπάρχει ήδη pending invitation για αυτό το email. Παρακαλώ δοκιμάστε ξανά σε λίγα δευτερόλεπτα ή revoke την προηγούμενη πρόσκληση από το Clerk Dashboard.",
+        });
+      }
+
+      return res.status(400).json({ error: errorMessage });
+    }
+
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+// Banner CRUD operations
+export async function getAllBanners(_, res) {
+  try {
+    // Check if Banner model is available
+    if (!Banner) {
+      return res.status(500).json({ error: "Banner model not loaded" });
+    }
+    
+    const banners = await Banner.find().sort({ order: 1, createdAt: -1 });
+    res.status(200).json({ banners });
+  } catch (error) {
+    res.status(500).json({ 
+      error: "Internal server error",
+      message: error.message 
+    });
+  }
+}
+
+export async function createBanner(req, res) {
+  try {
+    const { linkUrl, isActive, order } = req.body;
+
+    if (!req.file) {
+      return res.status(400).json({ message: "Image is required" });
+    }
+
+    const uploadResult = await cloudinary.uploader.upload(req.file.path, {
+      folder: "banners",
+    });
+
+    const banner = await Banner.create({
+      imageUrl: uploadResult.secure_url,
+      linkUrl: linkUrl || null,
+      isActive: isActive !== undefined ? isActive === "true" || isActive === true : true,
+      order: order ? parseInt(order) : 0,
+    });
+
+    res.status(201).json(banner);
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+export async function updateBanner(req, res) {
+  try {
+    const { id } = req.params;
+    const { linkUrl, isActive, order } = req.body;
+
+    const banner = await Banner.findById(id);
+    if (!banner) {
+      return res.status(404).json({ message: "Banner not found" });
+    }
+
+    // If new image is uploaded, update it
+    if (req.file) {
+      const uploadResult = await cloudinary.uploader.upload(req.file.path, {
+        folder: "banners",
+      });
+      banner.imageUrl = uploadResult.secure_url;
+    }
+
+    if (linkUrl !== undefined) banner.linkUrl = linkUrl || null;
+    if (isActive !== undefined) banner.isActive = isActive === "true" || isActive === true;
+    if (order !== undefined) banner.order = parseInt(order);
+
+    await banner.save();
+    res.status(200).json(banner);
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+export async function deleteBanner(req, res) {
+  try {
+    const { id } = req.params;
+    const banner = await Banner.findByIdAndDelete(id);
+    if (!banner) {
+      return res.status(404).json({ message: "Banner not found" });
+    }
+    res.status(200).json({ message: "Banner deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to delete banner" });
+  }
+}

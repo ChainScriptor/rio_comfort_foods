@@ -15,6 +15,8 @@ import orderRoutes from "./routes/order.route.js";
 import reviewRoutes from "./routes/review.route.js";
 import productRoutes from "./routes/product.route.js";
 import cartRoutes from "./routes/cart.route.js";
+import inviteRoutes from "./routes/invite.route.js";
+import authRoutes from "./routes/auth.route.js";
 
 const app = express();
 
@@ -45,6 +47,9 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+// Serve static files from admin/public (for logo, etc.)
+app.use(express.static(path.join(__dirname, "../admin/public")));
+
 app.use("/api/inngest", serve({ client: inngest, functions }));
 
 app.use("/api/admin", adminRoutes);
@@ -53,6 +58,8 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
+app.use("/invite", inviteRoutes);
+app.use("/", authRoutes);
 
 app.get("/api/health", (req, res) => {
   res.status(200).json({ message: "Success" });
@@ -70,7 +77,6 @@ if (ENV.NODE_ENV === "production") {
 const startServer = async () => {
   await connectDB();
   app.listen(ENV.PORT, () => {
-    console.log("Server is up and running");
   });
 };
 

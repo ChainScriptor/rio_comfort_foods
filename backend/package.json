@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node --watch src/server.js",
     "start": "node src/server.js",
-    "seed:products": "node src/seeds/index.js"
+    "seed:products": "node src/seeds/index.js",
+    "upload:logo": "node scripts/upload-logo-to-cloudinary.js"
   },
   "keywords": [],
   "author": "",

@@ -1,5 +1,6 @@
 import { Product } from "../models/product.model.js";
 import { Category } from "../models/category.model.js";
+import { Banner } from "../models/banner.model.js";
 
 export async function getProductById(req, res) {
   try {
@@ -10,16 +11,12 @@ export async function getProductById(req, res) {
 
     res.status(200).json(product);
   } catch (error) {
-    console.error("Error fetching product:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 }
 
 export async function getCategories(req, res) {
   try {
-    console.log("🔍 Fetching categories...");
-    console.log("Category model:", Category ? "loaded" : "NOT loaded");
-    
     // Check if Category model is available
     if (!Category) {
       throw new Error("Category model is not available");
@@ -27,7 +24,6 @@ export async function getCategories(req, res) {
     
     // First, try to get all categories sorted by custom order (for mobile display)
     const allCategories = await Category.find().sort({ order: 1, createdAt: -1 });
-    console.log("📦 All categories found:", allCategories.length);
     
     // Filter active categories (handle cases where isActive might be undefined)
     const categories = allCategories
@@ -39,19 +35,28 @@ export async function getCategories(req, res) {
         order: cat.order ?? 0,
       }));
     
-    console.log("✅ Active categories:", categories.length);
-    console.log("Categories:", JSON.stringify(categories, null, 2));
-    
     res.status(200).json(categories);
   } catch (error) {
-    console.error("❌ Error fetching categories:", error);
-    console.error("Error name:", error.name);
-    console.error("Error message:", error.message);
-    console.error("Error stack:", error.stack);
     res.status(500).json({ 
       message: "Internal server error",
       error: error.message,
       stack: process.env.NODE_ENV === "development" ? error.stack : undefined
+    });
+  }
+}
+
+export async function getBanners(req, res) {
+  try {
+    // Get only active banners, sorted by order
+    const banners = await Banner.find({ isActive: true })
+      .sort({ order: 1, createdAt: -1 })
+      .select("imageUrl linkUrl order");
+    
+    res.status(200).json(banners);
+  } catch (error) {
+    res.status(500).json({ 
+      message: "Internal server error",
+      error: error.message,
     });
   }
 }

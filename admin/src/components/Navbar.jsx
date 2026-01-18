@@ -9,12 +9,14 @@ import {
   UsersIcon,
   TagIcon,
   StarIcon,
+  ImageIcon,
 } from "lucide-react";
 
 export const NAVIGATION = [
   { name: "Πίνακας Ελέγχου", path: "/dashboard", icon: <HomeIcon className="size-5" /> },
   { name: "Προϊόντα", path: "/products", icon: <ShoppingBagIcon className="size-5" /> },
   { name: "Κατηγορίες", path: "/categories", icon: <TagIcon className="size-5" /> },
+  { name: "Banners", path: "/banners", icon: <ImageIcon className="size-5" /> },
   { name: "Παραγγελίες", path: "/orders", icon: <ClipboardListIcon className="size-5" /> },
   { name: "Πελάτες", path: "/customers", icon: <UsersIcon className="size-5" /> },
   { name: "Αξιολογήσεις", path: "/reviews", icon: <StarIcon className="size-5" /> },

@@ -39,16 +39,35 @@ const useCart = () => {
   });
 
   const updateQuantityMutation = useMutation({
-    mutationFn: async ({ productId, quantity }: { productId: string; quantity: number }) => {
-      const { data } = await api.put<{ cart: Cart }>(`/cart/${productId}`, { quantity });
+    mutationFn: async ({ 
+      productId, 
+      quantity, 
+      selectedUnit 
+    }: { 
+      productId: string; 
+      quantity: number;
+      selectedUnit?: string;
+    }) => {
+      const { data } = await api.put<{ cart: Cart }>(`/cart/${productId}`, { 
+        quantity,
+        selectedUnit,
+      });
       return data.cart;
     },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["cart"] }),
   });
 
   const removeFromCartMutation = useMutation({
-    mutationFn: async (productId: string) => {
-      const { data } = await api.delete<{ cart: Cart }>(`/cart/${productId}`);
+    mutationFn: async ({ 
+      productId, 
+      selectedUnit 
+    }: { 
+      productId: string;
+      selectedUnit?: string;
+    }) => {
+      const { data } = await api.delete<{ cart: Cart }>(`/cart/${productId}`, {
+        data: { selectedUnit },
+      });
       return data.cart;
     },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["cart"] }),

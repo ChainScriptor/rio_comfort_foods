@@ -218,6 +218,11 @@ function DashboardPage() {
                           <div className="text-sm opacity-60">
                             {order.orderItems.length} {order.orderItems.length === 1 ? 'προϊόν' : 'προϊόντα'}
                           </div>
+                          {order.comments && (
+                            <div className="text-xs mt-1 italic font-semibold text-warning bg-warning/20 px-2 py-1 rounded">
+                              💬 {order.comments}
+                            </div>
+                          )}
                         </div>
                       </td>
 

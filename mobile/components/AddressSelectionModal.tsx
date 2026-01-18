@@ -2,12 +2,13 @@ import { useAddresses } from "@/hooks/useAddressess";
 import { Address } from "@/types";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
-import { View, Text, Modal, TouchableOpacity, ScrollView, ActivityIndicator } from "react-native";
+import { View, Text, Modal, TouchableOpacity, ScrollView, ActivityIndicator, TextInput, Platform, Keyboard, TouchableWithoutFeedback } from "react-native";
+import DateTimePicker from "@react-native-community/datetimepicker";
 
 interface AddressSelectionModalProps {
   visible: boolean;
   onClose: () => void;
-  onProceed: (address: Address) => void;
+  onProceed: (address: Address, deliveryDate?: Date, comments?: string) => void;
   isProcessing: boolean;
 }
 
@@ -19,21 +20,90 @@ const AddressSelectionModal = ({
 }: AddressSelectionModalProps) => {
   const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
   const { addresses, isLoading: addressesLoading } = useAddresses();
+  
+  // Check if current time is after 7:00 AM
+  const isAfter7AM = () => {
+    const now = new Date();
+    return now.getHours() >= 7;
+  };
+
+  // Calculate tomorrow's date as default
+  const getTomorrow = () => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(12, 0, 0, 0); // Set to noon
+    return tomorrow;
+  };
+
+  // Get minimum date for picker (tomorrow if after 7 AM, today otherwise)
+  const getMinimumDate = () => {
+    if (isAfter7AM()) {
+      // After 7 AM, minimum date is tomorrow
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      tomorrow.setHours(0, 0, 0, 0);
+      return tomorrow;
+    } else {
+      // Before 7 AM, minimum date is today
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      return today;
+    }
+  };
+
+  // Get default delivery date (tomorrow if after 7 AM, today otherwise)
+  const getDefaultDeliveryDate = () => {
+    if (isAfter7AM()) {
+      return getTomorrow();
+    } else {
+      const today = new Date();
+      today.setHours(12, 0, 0, 0); // Set to noon
+      return today;
+    }
+  };
+  
+  const [deliveryDate, setDeliveryDate] = useState<Date>(getDefaultDeliveryDate());
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [comments, setComments] = useState("");
+
+  // Reset when modal closes
+  const handleClose = () => {
+    setSelectedAddress(null);
+    setDeliveryDate(getTomorrow());
+    setComments("");
+    setShowDatePicker(false);
+    onClose();
+  };
 
   return (
     <Modal visible={visible} animationType="slide" transparent={true} onRequestClose={onClose}>
-      <View className="flex-1 bg-black/50 justify-end">
-        <View className="bg-background rounded-t-3xl h-1/2">
+      <View className="flex-1 bg-black/50">
+        <TouchableOpacity 
+          activeOpacity={1} 
+          onPress={() => {
+            Keyboard.dismiss();
+            handleClose();
+          }}
+          className="flex-1"
+        />
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View className="bg-background rounded-t-3xl" style={{ height: "85%", maxHeight: 700 }}>
           {/* Modal Header */}
           <View className="flex-row items-center justify-between p-6 border-b border-surface">
             <Text className="text-text-primary text-2xl font-bold">Επιλογή Διεύθυνσης</Text>
-            <TouchableOpacity onPress={onClose} className="bg-surface rounded-full p-2">
+            <TouchableOpacity onPress={handleClose} className="bg-surface rounded-full p-2">
               <Ionicons name="close" size={24} color="#FFFFFF" />
             </TouchableOpacity>
           </View>
 
           {/* ADDRESSES LIST */}
-          <ScrollView className="flex-1 p-6">
+          <ScrollView 
+            className="flex-1" 
+            contentContainerStyle={{ padding: 24, paddingBottom: 16 }}
+            showsVerticalScrollIndicator={true}
+            nestedScrollEnabled={true}
+            keyboardShouldPersistTaps="handled"
+          >
             {addressesLoading ? (
               <View className="py-8">
                 <ActivityIndicator size="large" color="#FFD700" />
@@ -49,7 +119,12 @@ const AddressSelectionModal = ({
                         : "border-background-lighter"
                     }`}
                     activeOpacity={0.7}
-                    onPress={() => setSelectedAddress(address)}
+                    onPress={() => {
+                      setSelectedAddress(address);
+                      // Reset delivery date and comments when selecting new address
+                      setDeliveryDate(getDefaultDeliveryDate());
+                      setComments("");
+                    }}
                   >
                     <View className="flex-row items-start justify-between">
                       <View className="flex-1">
@@ -86,12 +161,102 @@ const AddressSelectionModal = ({
             )}
           </ScrollView>
 
+          {/* DELIVERY DATE & COMMENTS SECTION */}
+          {selectedAddress && (
+            <View className="px-6 py-4 border-t border-surface">
+              {/* Delivery Date */}
+              <View className="mb-4">
+                <Text className="text-text-primary font-bold text-base mb-2">
+                  Ημερομηνία Παραλαβής
+                </Text>
+                <TouchableOpacity
+                  className="bg-surface rounded-2xl p-4 flex-row items-center justify-between"
+                  activeOpacity={0.7}
+                  onPress={() => setShowDatePicker(true)}
+                >
+                  <View className="flex-row items-center">
+                    <Ionicons name="calendar-outline" size={20} color="#FFD700" />
+                    <Text className="text-text-primary font-semibold ml-3">
+                      {deliveryDate.toLocaleDateString("el-GR", {
+                        weekday: "long",
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </Text>
+                  </View>
+                  <Ionicons name="chevron-forward" size={20} color="#666" />
+                </TouchableOpacity>
+                
+                {showDatePicker && Platform.OS !== "web" && (
+                  <DateTimePicker
+                    value={deliveryDate}
+                    mode="date"
+                    display={Platform.OS === "ios" ? "spinner" : "default"}
+                    minimumDate={getMinimumDate()}
+                    onChange={(event, selectedDate) => {
+                      if (Platform.OS === "android") {
+                        setShowDatePicker(false);
+                      }
+                      if (selectedDate) {
+                        setDeliveryDate(selectedDate);
+                      }
+                    }}
+                  />
+                )}
+                {showDatePicker && Platform.OS === "web" && (
+                  <View className="mt-2">
+                    <input
+                      type="date"
+                      value={deliveryDate.toISOString().split("T")[0]}
+                      min={getMinimumDate().toISOString().split("T")[0]}
+                      onChange={(e) => {
+                        if (e.target.value) {
+                          setDeliveryDate(new Date(e.target.value));
+                          setShowDatePicker(false);
+                        }
+                      }}
+                      style={{
+                        width: "100%",
+                        padding: "12px",
+                        borderRadius: "16px",
+                        backgroundColor: "#1E1E1E",
+                        color: "#FFFFFF",
+                        border: "none",
+                      }}
+                    />
+                  </View>
+                )}
+              </View>
+
+              {/* Comments */}
+              <View className="mb-4">
+                <Text className="text-text-primary font-bold text-base mb-2">
+                  Σχόλια (Προαιρετικό)
+                </Text>
+                <TextInput
+                  className="bg-surface rounded-2xl p-4 text-text-primary min-h-[100px]"
+                  placeholder="Προσθέστε σχόλια για την παραγγελία σας..."
+                  placeholderTextColor="#666"
+                  multiline
+                  numberOfLines={4}
+                  value={comments}
+                  onChangeText={setComments}
+                  textAlignVertical="top"
+                  blurOnSubmit={true}
+                />
+              </View>
+            </View>
+          )}
+
           <View className="p-6 border-t border-surface">
             <TouchableOpacity
               className="bg-primary rounded-2xl py-5"
               activeOpacity={0.9}
               onPress={() => {
-                if (selectedAddress) onProceed(selectedAddress);
+                if (selectedAddress) {
+                  onProceed(selectedAddress, deliveryDate, comments.trim() || undefined);
+                }
               }}
               disabled={!selectedAddress || isProcessing}
             >
@@ -101,7 +266,7 @@ const AddressSelectionModal = ({
                 ) : (
                   <>
                     <Text className="text-background font-bold text-lg mr-2">
-                      Send the Order
+                      Ολοκλήρωση Παραγγελίας
                     </Text>
                     <Ionicons name="arrow-forward" size={20} color="#121212" />
                   </>
@@ -109,7 +274,8 @@ const AddressSelectionModal = ({
               </View>
             </TouchableOpacity>
           </View>
-        </View>
+          </View>
+        </TouchableWithoutFeedback>
       </View>
     </Modal>
   );

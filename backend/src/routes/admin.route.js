@@ -7,6 +7,7 @@ import {
   getAllProducts,
   getDashboardStats,
   updateOrderStatus,
+  updateOrderDeliveryDate,
   updateProduct,
   deleteProduct,
   getAllCategories,
@@ -14,6 +15,11 @@ import {
   updateCategory,
   deleteCategory,
   getAllReviews,
+  inviteCustomer,
+  getAllBanners,
+  createBanner,
+  updateBanner,
+  deleteBanner,
 } from "../controllers/admin.controller.js";
 import { adminOnly, protectRoute } from "../middleware/auth.middleware.js";
 import { upload } from "../middleware/multer.middleware.js";
@@ -30,9 +36,11 @@ router.delete("/products/:id", deleteProduct);
 
 router.get("/orders", getAllOrders);
 router.patch("/orders/:orderId/status", updateOrderStatus);
+router.patch("/orders/:orderId/delivery-date", updateOrderDeliveryDate);
 
 router.get("/customers", getAllCustomers);
 router.delete("/customers/:id", deleteCustomer);
+router.post("/invite", inviteCustomer);
 
 router.get("/stats", getDashboardStats);
 
@@ -44,6 +52,12 @@ router.delete("/categories/:id", deleteCategory);
 
 // Review routes
 router.get("/reviews", getAllReviews);
+
+// Banner routes
+router.get("/banners", getAllBanners);
+router.post("/banners", upload.single("image"), createBanner);
+router.put("/banners/:id", upload.single("image"), updateBanner);
+router.delete("/banners/:id", deleteBanner);
 
 // PUT: Used for full resource replacement, updating the entire resource
 // PATCH: Used for partial resource updates, updating a specific part of the resource

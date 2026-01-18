@@ -17,7 +17,6 @@ const useCategories = () => {
     queryFn: async () => {
       try {
         const { data } = await api.get<Category[]>("/products/categories");
-        console.log("📦 Categories loaded:", data);
         return data;
       } catch (error: any) {
         console.error("❌ Error fetching categories:", error);
