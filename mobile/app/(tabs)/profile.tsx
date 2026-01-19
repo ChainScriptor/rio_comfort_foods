@@ -122,11 +122,26 @@ const ProfileScreen = () => {
           <TouchableOpacity
             className="flex-row items-center justify-between py-2"
             activeOpacity={0.7}
-            onPress={() => router.push("/privacy-security")}
+            onPress={() => router.push("/(profile)/privacy-security")}
           >
             <View className="flex-row items-center">
               <Ionicons name="shield-checkmark-outline" size={22} color="#FFFFFF" />
               <Text className="text-text-primary font-semibold ml-3">Απόρρητο & Ασφάλεια</Text>
+            </View>
+            <Ionicons name="chevron-forward" size={20} color="#666" />
+          </TouchableOpacity>
+        </View>
+
+        {/* PRIVACY POLICY LINK */}
+        <View className="mb-3 mx-6 bg-surface rounded-2xl p-4">
+          <TouchableOpacity
+            className="flex-row items-center justify-between py-2"
+            activeOpacity={0.7}
+            onPress={() => router.push("/privacy")}
+          >
+            <View className="flex-row items-center">
+              <Ionicons name="document-text-outline" size={22} color="#FFFFFF" />
+              <Text className="text-text-primary font-semibold ml-3">Πολιτική Απορρήτου</Text>
             </View>
             <Ionicons name="chevron-forward" size={20} color="#666" />
           </TouchableOpacity>

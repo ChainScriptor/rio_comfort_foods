@@ -86,7 +86,7 @@ export default function EditProfileScreen() {
       } as any);
 
       const token = await getToken();
-      const baseURL = api.defaults.baseURL || "http://192.168.1.13:3000/api";
+      const baseURL = api.defaults.baseURL || "https://riocomfortfoodsapi-yelm3.sevalla.app/api";
       const response = await fetch(`${baseURL}/users/profile/image`, {
         method: "POST",
         body: formData,
