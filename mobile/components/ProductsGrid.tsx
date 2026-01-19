@@ -84,13 +84,6 @@ const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
           {product.name}
         </Text>
 
-        <View className="flex-row items-center mb-2">
-          <Ionicons name="star" size={12} color="#FFC107" />
-          <Text className="text-text-primary text-xs font-semibold ml-1">
-            {product.averageRating.toFixed(1)}
-          </Text>
-          <Text className="text-text-secondary text-xs ml-1">({product.totalReviews})</Text>
-        </View>
 
         <View className="flex-row items-center justify-between">
           {product.showPrice !== false && product.price && (

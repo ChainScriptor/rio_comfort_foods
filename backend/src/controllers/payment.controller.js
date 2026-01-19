@@ -27,10 +27,6 @@ export async function createPaymentIntent(req, res) {
         return res.status(404).json({ error: `Product ${item.product.name} not found` });
       }
 
-      if (product.stock < item.quantity) {
-        return res.status(400).json({ error: `Insufficient stock for ${product.name}` });
-      }
-
       subtotal += product.price * item.quantity;
       validatedItems.push({
         product: product._id.toString(),
@@ -240,13 +236,6 @@ export async function handleWebhook(req, res) {
           totalPrice: parseFloat(totalPrice),
           deliveryDate: finalDeliveryDate,
           comments: metadataComments || null,
-        });
-      }
-
-      // update product stock
-      for (const item of parsedOrderItems) {
-        await Product.findByIdAndUpdate(item.product, {
-          $inc: { stock: -item.quantity },
         });
       }
 

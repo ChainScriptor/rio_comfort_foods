@@ -20,6 +20,7 @@ import {
   createBanner,
   updateBanner,
   deleteBanner,
+  updateCustomerAddress,
 } from "../controllers/admin.controller.js";
 import { adminOnly, protectRoute } from "../middleware/auth.middleware.js";
 import { upload } from "../middleware/multer.middleware.js";
@@ -40,6 +41,7 @@ router.patch("/orders/:orderId/delivery-date", updateOrderDeliveryDate);
 
 router.get("/customers", getAllCustomers);
 router.delete("/customers/:id", deleteCustomer);
+router.put("/customers/:customerId/addresses/:addressId", updateCustomerAddress);
 router.post("/invite", inviteCustomer);
 
 router.get("/stats", getDashboardStats);

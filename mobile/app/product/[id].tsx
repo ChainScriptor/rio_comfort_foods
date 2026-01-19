@@ -63,8 +63,6 @@ const ProductDetailScreen = () => {
   if (isLoading) return <LoadingUI />;
   if (isError || !product) return <ErrorUI />;
 
-  const inStock = product.stock > 0;
-
   return (
     <SafeScreen>
       {/* HEADER */}
@@ -145,29 +143,6 @@ const ProductDetailScreen = () => {
           {/* Product Name */}
           <Text className="text-text-primary text-3xl font-bold mb-3">{product.name}</Text>
 
-          {/* Rating & Reviews */}
-          <View className="flex-row items-center mb-4">
-            <View className="flex-row items-center bg-surface px-3 py-2 rounded-full">
-              <Ionicons name="star" size={16} color="#FFC107" />
-              <Text className="text-text-primary font-bold ml-1 mr-2">
-                {product.averageRating.toFixed(1)}
-              </Text>
-              <Text className="text-text-secondary text-sm">({product.totalReviews} {product.totalReviews === 1 ? "αξιολόγηση" : "αξιολογήσεις"})</Text>
-            </View>
-            {inStock ? (
-              <View className="ml-3 flex-row items-center">
-                <View className="w-2 h-2 bg-primary rounded-full mr-2" />
-                <Text className="text-primary font-semibold text-sm">
-                  {product.stock} σε απόθεμα
-                </Text>
-              </View>
-            ) : (
-              <View className="ml-3 flex-row items-center">
-                <View className="w-2 h-2 bg-red-500 rounded-full mr-2" />
-                <Text className="text-red-500 font-semibold text-sm">Εκτός Αποθέματος</Text>
-              </View>
-            )}
-          </View>
 
           {/* Price */}
           {product.showPrice !== false && product.price && (
@@ -216,30 +191,20 @@ const ProductDetailScreen = () => {
                 className="bg-surface rounded-full w-12 h-12 items-center justify-center"
                 onPress={() => setQuantity(Math.max(1, quantity - 1))}
                 activeOpacity={0.7}
-                disabled={!inStock}
               >
-                <Ionicons name="remove" size={24} color={inStock ? "#FFFFFF" : "#666"} />
+                <Ionicons name="remove" size={24} color="#FFFFFF" />
               </TouchableOpacity>
 
               <Text className="text-text-primary text-xl font-bold mx-6">{quantity}</Text>
 
               <TouchableOpacity
                 className="bg-primary rounded-full w-12 h-12 items-center justify-center"
-                onPress={() => setQuantity(Math.min(product.stock, quantity + 1))}
+                onPress={() => setQuantity(quantity + 1)}
                 activeOpacity={0.7}
-                disabled={!inStock || quantity >= product.stock}
               >
-                <Ionicons
-                  name="add"
-                  size={24}
-                  color={!inStock || quantity >= product.stock ? "#666" : "#121212"}
-                />
+                <Ionicons name="add" size={24} color="#121212" />
               </TouchableOpacity>
             </View>
-
-            {quantity >= product.stock && inStock && (
-              <Text className="text-orange-500 text-sm mt-2">Επιτεύχθηκε το μέγιστο απόθεμα</Text>
-            )}
           </View>
 
           {/* Description */}
@@ -262,27 +227,20 @@ const ProductDetailScreen = () => {
             </View>
           )}
           <TouchableOpacity
-            className={`rounded-2xl px-8 py-4 flex-row items-center ${
-              !inStock ? "bg-surface" : "bg-primary"
-            } ${product.showPrice !== false && product.price ? "" : "flex-1"}`}
-            className={`rounded-2xl px-8 py-4 flex-row items-center ${
-              !inStock ? "bg-surface" : "bg-primary"
+            className={`rounded-2xl px-8 py-4 flex-row items-center bg-primary ${
+              product.showPrice !== false && product.price ? "" : "flex-1"
             }`}
             activeOpacity={0.8}
             onPress={handleAddToCart}
-            disabled={!inStock || isAddingToCart}
+            disabled={isAddingToCart}
           >
             {isAddingToCart ? (
               <ActivityIndicator size="small" color="#121212" />
             ) : (
               <>
-                <Ionicons name="cart" size={24} color={!inStock ? "#666" : "#121212"} />
-                <Text
-                  className={`font-bold text-lg ml-2 ${
-                    !inStock ? "text-text-secondary" : "text-background"
-                  }`}
-                >
-                  {!inStock ? "Εκτός Αποθέματος" : "Προσθήκη στο Καλάθι"}
+                <Ionicons name="cart" size={24} color="#121212" />
+                <Text className="font-bold text-lg ml-2 text-background">
+                  Προσθήκη στο Καλάθι
                 </Text>
               </>
             )}

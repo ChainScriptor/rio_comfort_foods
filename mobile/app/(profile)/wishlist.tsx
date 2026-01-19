@@ -162,22 +162,20 @@ function WishlistScreen() {
                     <Ionicons name="trash-outline" size={20} color="#EF4444" />
                   </TouchableOpacity>
                 </View>
-                {item.stock > 0 && (
-                  <View className="px-4 pb-4">
-                    <TouchableOpacity
-                      className="bg-primary rounded-xl py-3 items-center"
-                      activeOpacity={0.8}
-                      onPress={() => handleAddToCart(item._id, item.name, undefined)}
-                      disabled={isAddingToCart}
-                    >
-                      {isAddingToCart ? (
-                        <ActivityIndicator size="small" color="#121212" />
-                      ) : (
-                        <Text className="text-background font-bold">Προσθήκη στο Καλάθι</Text>
-                      )}
-                    </TouchableOpacity>
-                  </View>
-                )}
+                <View className="px-4 pb-4">
+                  <TouchableOpacity
+                    className="bg-primary rounded-xl py-3 items-center"
+                    activeOpacity={0.8}
+                    onPress={() => handleAddToCart(item._id, item.name, undefined)}
+                    disabled={isAddingToCart}
+                  >
+                    {isAddingToCart ? (
+                      <ActivityIndicator size="small" color="#121212" />
+                    ) : (
+                      <Text className="text-background font-bold">Προσθήκη στο Καλάθι</Text>
+                    )}
+                  </TouchableOpacity>
+                </View>
               </TouchableOpacity>
               ))}
             </View>

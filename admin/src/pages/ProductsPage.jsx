@@ -2,7 +2,6 @@ import { useState, useMemo } from "react";
 import { PlusIcon, PencilIcon, Trash2Icon, XIcon, ImageIcon, SearchIcon, FilterIcon } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { productApi, categoryApi } from "../lib/api";
-import { getStockStatusBadge } from "../lib/utils";
 
 function ProductsPage() {
   const [showModal, setShowModal] = useState(false);
@@ -13,7 +12,6 @@ function ProductsPage() {
     name: "",
     category: "",
     price: "",
-    stock: "",
     description: "",
     unitType: "pieces",
     unitOptions: [],
@@ -70,7 +68,6 @@ function ProductsPage() {
       name: "",
       category: "",
       price: "",
-      stock: "",
       description: "",
       unitType: "pieces",
       unitOptions: [],
@@ -87,7 +84,6 @@ function ProductsPage() {
       name: product.name,
       category: product.category,
       price: product.price ? product.price.toString() : "",
-      stock: product.stock.toString(),
       description: product.description,
       unitType: product.unitType || "pieces",
       unitOptions: product.unitOptions || [],
@@ -124,7 +120,6 @@ function ProductsPage() {
     if (formData.price) {
       formDataToSend.append("price", formData.price);
     }
-    formDataToSend.append("stock", formData.stock);
     formDataToSend.append("category", formData.category);
     formDataToSend.append("unitType", formData.unitType);
     formDataToSend.append("unitOptions", JSON.stringify(formData.unitOptions));
@@ -248,8 +243,6 @@ function ProductsPage() {
       ) : (
         <div className="grid grid-cols-1 gap-4">
           {filteredProducts.map((product) => {
-            const status = getStockStatusBadge(product.stock);
-
             return (
               <div key={product._id} className="card bg-base-100 shadow-xl">
                 <div className="card-body">
@@ -266,7 +259,6 @@ function ProductsPage() {
                           <h3 className="card-title">{product.name}</h3>
                           <p className="text-base-content/70 text-sm">{product.category}</p>
                         </div>
-                        <div className={`badge ${status.class}`}>{status.text}</div>
                       </div>
                       <div className="flex items-center gap-6 mt-4">
                         {product.price && (
@@ -275,10 +267,6 @@ function ProductsPage() {
                             <p className="font-bold text-lg">${product.price}</p>
                           </div>
                         )}
-                        <div>
-                          <p className="text-xs text-base-content/70">Απόθεμα</p>
-                          <p className="font-bold text-lg">{product.stock} τεμάχια</p>
-                        </div>
                         {product.showPrice !== undefined && (
                           <div>
                             <p className="text-xs text-base-content/70">Εμφάνιση Τιμής</p>
@@ -391,19 +379,6 @@ function ProductsPage() {
                 />
               </div>
 
-              <div className="form-control">
-                <label className="label">
-                  <span>Απόθεμα</span>
-                </label>
-                <input
-                  type="number"
-                  placeholder="0"
-                  className="input input-bordered"
-                  value={formData.stock}
-                  onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
-                  required
-                />
-              </div>
             </div>
 
             <div className="form-control">

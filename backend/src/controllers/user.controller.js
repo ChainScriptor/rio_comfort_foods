@@ -61,6 +61,18 @@ export async function updateAddress(req, res) {
       return res.status(404).json({ error: "Address not found" });
     }
 
+    // Validate storeLocation if provided
+    const validStoreLocations = ["Θεσσαλονίκη", "Χαλκιδική Πρώτο Πόδι", "Χαλκιδική Δεύτερο Πόδι", "Χαλκιδική Τρίτο Πόδι", "Άλλο"];
+    if (storeLocation !== undefined && storeLocation !== null && storeLocation !== "") {
+      if (!validStoreLocations.includes(storeLocation)) {
+        return res.status(400).json({ error: `Invalid store location. Must be one of: ${validStoreLocations.join(", ")}` });
+      }
+      address.storeLocation = storeLocation;
+    } else if (!address.storeLocation) {
+      // If address doesn't have storeLocation and none is provided, set default
+      address.storeLocation = "Άλλο";
+    }
+
     // if this is set as default, unset all other defaults
     if (isDefault) {
       user.addresses.forEach((addr) => {
@@ -68,20 +80,32 @@ export async function updateAddress(req, res) {
       });
     }
 
-    address.storeLocation = storeLocation || address.storeLocation;
-    address.fullName = fullName || address.fullName;
-    address.streetAddress = streetAddress || address.streetAddress;
-    address.city = city || address.city;
-    address.state = state || address.state;
-    address.zipCode = zipCode || address.zipCode;
-    address.phoneNumber = phoneNumber || address.phoneNumber;
+    if (fullName !== undefined) address.fullName = fullName;
+    if (streetAddress !== undefined) address.streetAddress = streetAddress;
+    if (city !== undefined) address.city = city;
+    if (state !== undefined) address.state = state;
+    if (zipCode !== undefined) address.zipCode = zipCode;
+    if (phoneNumber !== undefined) address.phoneNumber = phoneNumber;
     address.isDefault = isDefault !== undefined ? isDefault : address.isDefault;
+
+    // Fix any other addresses that might be missing storeLocation (for backward compatibility)
+    user.addresses.forEach((addr) => {
+      if (!addr.storeLocation) {
+        // Set default value for old addresses without storeLocation
+        addr.storeLocation = "Άλλο";
+      }
+    });
 
     await user.save();
 
     res.status(200).json({ message: "Address updated successfully", addresses: user.addresses });
   } catch (error) {
     console.error("Error updating address:", error);
+    // Check if it's a validation error
+    if (error.name === "ValidationError") {
+      const errors = Object.values(error.errors).map((err) => err.message);
+      return res.status(400).json({ error: errors.join(", ") });
+    }
     res.status(500).json({ error: "Internal server error" });
   }
 }

@@ -26,7 +26,7 @@ export async function addToCart(req, res) {
   try {
     const { productId, quantity = 1, selectedUnit } = req.body;
 
-    // validate product exists and has stock
+    // validate product exists
     const product = await Product.findById(productId);
     if (!product) {
       return res.status(404).json({ error: "Product not found" });
@@ -35,10 +35,6 @@ export async function addToCart(req, res) {
     // Validate unit selection if product has unit options
     if (product.unitOptions && product.unitOptions.length > 0 && !selectedUnit) {
       return res.status(400).json({ error: "Unit selection is required for this product" });
-    }
-
-    if (product.stock < quantity) {
-      return res.status(400).json({ error: "Insufficient stock" });
     }
 
     let cart = await Cart.findOne({ clerkId: req.user.clerkId });
@@ -90,9 +86,6 @@ export async function addToCart(req, res) {
     if (existingItem) {
       // increment quantity by the requested quantity (not just 1)
       const newQuantity = existingItem.quantity + quantity;
-      if (product.stock < newQuantity) {
-        return res.status(400).json({ error: "Insufficient stock" });
-      }
       existingItem.quantity = newQuantity;
     } else {
       // add new item
@@ -145,14 +138,10 @@ export async function updateCartItem(req, res) {
       return res.status(404).json({ error: "Item not found in cart" });
     }
 
-    // check if product exists & validate stock
+    // check if product exists
     const product = await Product.findById(productId);
     if (!product) {
       return res.status(404).json({ error: "Product not found" });
-    }
-
-    if (product.stock < quantity) {
-      return res.status(400).json({ error: "Insufficient stock" });
     }
 
     cart.items[itemIndex].quantity = quantity;

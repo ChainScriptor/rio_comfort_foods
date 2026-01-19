@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { orderApi, statsApi } from "../lib/api";
-import { DollarSignIcon, PackageIcon, ShoppingBagIcon, UsersIcon, CalendarIcon } from "lucide-react";
+import { DollarSignIcon, PackageIcon, ShoppingBagIcon, UsersIcon, CalendarIcon, StarIcon } from "lucide-react";
 import { capitalizeText, formatDate, getOrderStatusBadge } from "../lib/utils";
 
 function DashboardPage() {
@@ -75,6 +75,11 @@ function DashboardPage() {
       name: "Συνολικά Προϊόντα",
       value: statsLoading ? "..." : statsData?.totalProducts || 0,
       icon: <PackageIcon className="size-8" />,
+    },
+    {
+      name: "Συνολικές Αξιολογήσεις",
+      value: statsLoading ? "..." : statsData?.totalReviews || 0,
+      icon: <StarIcon className="size-8" />,
     },
   ];
 

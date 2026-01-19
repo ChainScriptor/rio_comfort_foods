@@ -12,10 +12,10 @@ const clerkClient = createClerkClient({ secretKey: ENV.CLERK_SECRET_KEY });
 
 export async function createProduct(req, res) {
   try {
-    const { name, description, price, stock, category, unitType, unitOptions, showPrice } = req.body;
+    const { name, description, price, category, unitType, unitOptions, showPrice } = req.body;
 
-    if (!name || !description || !stock || !category) {
-      return res.status(400).json({ message: "Name, description, stock, and category are required" });
+    if (!name || !description || !category) {
+      return res.status(400).json({ message: "Name, description, and category are required" });
     }
 
     let parsedUnitOptions = [];
@@ -49,7 +49,6 @@ export async function createProduct(req, res) {
       name,
       description,
       price: price ? parseFloat(price) : undefined,
-      stock: parseInt(stock),
       category,
       images: imageUrls,
       unitType: unitType || "pieces",
@@ -76,7 +75,7 @@ export async function getAllProducts(_, res) {
 export async function updateProduct(req, res) {
   try {
     const { id } = req.params;
-    const { name, description, price, stock, category, unitType, unitOptions, showPrice } = req.body;
+    const { name, description, price, category, unitType, unitOptions, showPrice } = req.body;
 
     const product = await Product.findById(id);
     if (!product) {
@@ -90,7 +89,6 @@ export async function updateProduct(req, res) {
     } else if (price === "") {
       product.price = undefined;
     }
-    if (stock !== undefined) product.stock = parseInt(stock);
     if (category) product.category = category;
     if (unitType !== undefined) product.unitType = unitType;
     if (unitOptions !== undefined) {
@@ -377,12 +375,22 @@ export async function getDashboardStats(req, res) {
     
     // Products are not time-based, so always count all
     const totalProducts = await Product.countDocuments();
+    
+    // Get reviews count for the period
+    let reviewMatchFilter = {};
+    if (startDate && endDate) {
+      reviewMatchFilter = { createdAt: { $gte: startDate, $lte: endDate } };
+    } else if (startDate) {
+      reviewMatchFilter = { createdAt: { $gte: startDate } };
+    }
+    const totalReviews = await Review.countDocuments(reviewMatchFilter);
 
     res.status(200).json({
       totalRevenue,
       totalOrders,
       totalCustomers,
       totalProducts,
+      totalReviews,
       period,
     });
   } catch (error) {
@@ -573,6 +581,7 @@ export const getAllReviews = async (req, res) => {
 
     res.status(200).json({ reviews });
   } catch (error) {
+    console.error("Error fetching reviews:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -751,5 +760,74 @@ export async function deleteBanner(req, res) {
     res.status(200).json({ message: "Banner deleted successfully" });
   } catch (error) {
     res.status(500).json({ message: "Failed to delete banner" });
+  }
+}
+
+export async function updateCustomerAddress(req, res) {
+  try {
+    const { customerId, addressId } = req.params;
+    const { storeLocation, fullName, streetAddress, city, state, zipCode, phoneNumber, isDefault } = req.body;
+
+    const user = await User.findById(customerId);
+    if (!user) {
+      return res.status(404).json({ error: "Customer not found" });
+    }
+
+    const address = user.addresses.id(addressId);
+    if (!address) {
+      return res.status(404).json({ error: "Address not found" });
+    }
+
+    // Validate storeLocation if provided
+    const validStoreLocations = [
+      "Θεσσαλονίκη",
+      "Χαλκιδική Πρώτο Πόδι",
+      "Χαλκιδική Δεύτερο Πόδι",
+      "Χαλκιδική Τρίτο Πόδι",
+      "Άλλο",
+    ];
+    if (storeLocation !== undefined && storeLocation !== null && storeLocation !== "") {
+      if (!validStoreLocations.includes(storeLocation)) {
+        return res.status(400).json({ error: `Invalid store location. Must be one of: ${validStoreLocations.join(", ")}` });
+      }
+      address.storeLocation = storeLocation;
+    } else if (!address.storeLocation) {
+      // If address doesn't have storeLocation and none is provided, set default
+      address.storeLocation = "Άλλο";
+    }
+
+    // if this is set as default, unset all other defaults
+    if (isDefault) {
+      user.addresses.forEach((addr) => {
+        addr.isDefault = false;
+      });
+    }
+
+    if (fullName !== undefined) address.fullName = fullName;
+    if (streetAddress !== undefined) address.streetAddress = streetAddress;
+    if (city !== undefined) address.city = city;
+    if (state !== undefined) address.state = state;
+    if (zipCode !== undefined) address.zipCode = zipCode;
+    if (phoneNumber !== undefined) address.phoneNumber = phoneNumber;
+    address.isDefault = isDefault !== undefined ? isDefault : address.isDefault;
+
+    // Fix any other addresses that might be missing storeLocation (for backward compatibility)
+    user.addresses.forEach((addr) => {
+      if (!addr.storeLocation) {
+        // Set default value for old addresses without storeLocation
+        addr.storeLocation = "Άλλο";
+      }
+    });
+
+    await user.save();
+
+    res.status(200).json({ message: "Address updated successfully", addresses: user.addresses });
+  } catch (error) {
+    console.error("Error updating customer address:", error);
+    if (error.name === "ValidationError") {
+      const errors = Object.values(error.errors).map((err) => err.message);
+      return res.status(400).json({ error: errors.join(", ") });
+    }
+    res.status(500).json({ error: "Internal server error" });
   }
 }

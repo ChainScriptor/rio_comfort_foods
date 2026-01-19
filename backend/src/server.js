@@ -23,6 +23,28 @@ const app = express();
 const __dirname = path.resolve();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Request logging middleware for debugging
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`, {
+    body: req.body,
+    headers: req.headers.authorization ? { authorization: "Bearer ***" } : {},
+  });
+  
+  // Log response when it's sent
+  const originalSend = res.send;
+  res.send = function(data) {
+    console.log(`${new Date().toISOString()} - ${req.method} ${req.path} - Response sent:`, {
+      statusCode: res.statusCode,
+      dataLength: data ? data.length : 0,
+    });
+    return originalSend.call(this, data);
+  };
+  
+  next();
+});
+
 app.use(clerkMiddleware()); // adds auth object under the req => req.auth
 
 // CORS configuration - handle both with and without trailing slash

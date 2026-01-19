@@ -64,6 +64,10 @@ export const customerApi = {
     const { data } = await axiosInstance.delete(`/admin/customers/${customerId}`);
     return data;
   },
+  updateAddress: async ({ customerId, addressId, addressData }) => {
+    const { data } = await axiosInstance.put(`/admin/customers/${customerId}/addresses/${addressId}`, addressData);
+    return data;
+  },
 };
 
 export const categoryApi = {

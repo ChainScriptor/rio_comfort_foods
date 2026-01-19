@@ -11,6 +11,8 @@ function ReviewsPage() {
   const { data: reviewsData, isLoading } = useQuery({
     queryKey: ["reviews"],
     queryFn: reviewApi.getAll,
+    refetchInterval: 5000, // Auto-refetch every 5 seconds
+    refetchIntervalInBackground: true, // Continue refetching even when tab is in background
   });
 
   const allReviews = reviewsData?.reviews || [];

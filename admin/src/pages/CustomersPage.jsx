@@ -214,7 +214,7 @@ function CustomersPage() {
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex items-center gap-2">
                           <MapPinIcon className="w-5 h-5 text-primary" />
-                          <h4 className="font-semibold text-lg">{address.label}</h4>
+                          <h4 className="font-semibold text-lg">{address.storeLocation || address.label || "Διεύθυνση"}</h4>
                           {address.isDefault && (
                             <span className="badge badge-primary badge-sm">Προεπιλογή</span>
                           )}

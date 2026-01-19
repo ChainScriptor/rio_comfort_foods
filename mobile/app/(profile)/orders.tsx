@@ -12,7 +12,7 @@ import { useState } from "react";
 import { ActivityIndicator, Alert, ScrollView, Text, TouchableOpacity, View, Modal } from "react-native";
 
 function OrdersScreen() {
-  const { data: orders, isLoading, isError } = useOrders();
+  const { data: orders, isLoading, isError, refetch: refetchOrders } = useOrders();
   const { createReviewAsync, isCreatingReview } = useReviews();
   const { addToCart, clearCart, isAddingToCart } = useCart();
 
@@ -23,6 +23,18 @@ function OrdersScreen() {
   const [reorderItems, setReorderItems] = useState<Array<{ item: OrderItem; quantity: number }>>([]);
 
   const handleOpenRating = (order: Order) => {
+    // Prevent opening modal if order has already been reviewed
+    if (order.hasReviewed) {
+      Alert.alert("Ειδοποίηση", "Αυτή η παραγγελία έχει ήδη αξιολογηθεί");
+      return;
+    }
+    
+    // Prevent opening modal if a review is currently being submitted
+    if (isCreatingReview) {
+      Alert.alert("Ειδοποίηση", "Παρακαλώ περιμένετε να ολοκληρωθεί η υποβολή της αξιολόγησης");
+      return;
+    }
+    
     setShowRatingModal(true);
     setSelectedOrder(order);
 
@@ -48,25 +60,38 @@ function OrdersScreen() {
     }
 
     try {
-      await Promise.all(
-        selectedOrder.orderItems
-          .filter((item) => item.product && item.product._id)
-          .map((item) => {
-            const productId = item.product!._id;
-            createReviewAsync({
+      // Submit reviews one by one to better handle errors
+      const reviewPromises = selectedOrder.orderItems
+        .filter((item) => item.product && item.product._id)
+        .map(async (item) => {
+          const productId = item.product!._id;
+          try {
+            return await createReviewAsync({
               productId: productId,
               orderId: selectedOrder._id,
               rating: productRatings[productId],
             });
-          })
-      );
+          } catch (err: any) {
+            console.error(`Error submitting review for product ${productId}:`, err);
+            throw err;
+          }
+        });
+
+      await Promise.all(reviewPromises);
 
       Alert.alert("Επιτυχία", "Ευχαριστούμε για την αξιολόγηση όλων των προϊόντων!");
       setShowRatingModal(false);
       setSelectedOrder(null);
       setProductRatings({});
+      // Refetch orders to update hasReviewed status
+      await refetchOrders();
     } catch (error: any) {
-      Alert.alert("Σφάλμα", error?.response?.data?.error || "Αποτυχία υποβολής αξιολόγησης");
+      console.error("Review submission error:", error);
+      const errorMessage = 
+        error?.response?.data?.error || 
+        error?.message || 
+        (error?.code === "ERR_NETWORK" ? "Δεν ήταν δυνατή η σύνδεση με τον server. Ελέγξτε τη σύνδεσή σας." : "Αποτυχία υποβολής αξιολόγησης");
+      Alert.alert("Σφάλμα", errorMessage);
     }
   };
 
@@ -269,13 +294,20 @@ function OrdersScreen() {
                         </View>
                       ) : (
                         <TouchableOpacity
-                          className="bg-primary/20 px-4 py-3 rounded-xl flex-row items-center"
+                          className={`bg-primary/20 px-4 py-3 rounded-xl flex-row items-center ${
+                            isCreatingReview ? "opacity-50" : ""
+                          }`}
                           activeOpacity={0.7}
                           onPress={() => handleOpenRating(order)}
+                          disabled={isCreatingReview}
                         >
-                          <Ionicons name="star" size={18} color="#FFD700" />
+                          {isCreatingReview ? (
+                            <ActivityIndicator size="small" color="#FFD700" />
+                          ) : (
+                            <Ionicons name="star" size={18} color="#FFD700" />
+                          )}
                           <Text className="text-primary font-bold text-sm ml-2">
-                            Αξιολόγηση
+                            {isCreatingReview ? "Υποβολή..." : "Αξιολόγηση"}
                           </Text>
                         </TouchableOpacity>
                       )}

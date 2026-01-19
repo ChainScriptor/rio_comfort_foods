@@ -19,6 +19,7 @@ export const useReviews = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
       queryClient.invalidateQueries({ queryKey: ["orders"] });
+      queryClient.invalidateQueries({ queryKey: ["dashboardStats"] });
     },
   });
 

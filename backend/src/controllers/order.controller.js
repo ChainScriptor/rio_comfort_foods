@@ -28,14 +28,11 @@ export async function createOrder(req, res) {
       return res.status(400).json({ error: "All shipping address fields are required" });
     }
 
-    // validate products and stock
+    // validate products exist
     for (const item of orderItems) {
       const product = await Product.findById(item.product);
       if (!product) {
         return res.status(404).json({ error: `Product ${item.name} not found` });
-      }
-      if (product.stock < item.quantity) {
-        return res.status(400).json({ error: `Insufficient stock for ${product.name}` });
       }
     }
 
@@ -188,13 +185,6 @@ export async function createOrder(req, res) {
       });
     }
 
-    // update product stock
-    for (const item of orderItems) {
-      await Product.findByIdAndUpdate(item.product, {
-        $inc: { stock: -item.quantity },
-      });
-    }
-
     res.status(201).json({ message: "Order created successfully", order });
   } catch (error) {
     console.error("Error creating order:", error);
@@ -208,17 +198,27 @@ export async function getUserOrders(req, res) {
       .populate("orderItems.product")
       .sort({ createdAt: -1 });
 
-    // check if each order has been reviewed
-
+    // check if each order has been reviewed (all products in the order must have reviews)
     const orderIds = orders.map((order) => order._id);
     const reviews = await Review.find({ orderId: { $in: orderIds } });
-    const reviewedOrderIds = new Set(reviews.map((review) => review.orderId.toString()));
 
     const ordersWithReviewStatus = await Promise.all(
       orders.map(async (order) => {
+        // Get all product IDs from this order
+        const orderProductIds = order.orderItems.map((item) => item.product.toString());
+        
+        // Get all reviews for this order
+        const orderReviews = reviews.filter(
+          (review) => review.orderId.toString() === order._id.toString()
+        );
+        
+        // Check if all products in the order have been reviewed
+        const reviewedProductIds = new Set(orderReviews.map((review) => review.productId.toString()));
+        const allProductsReviewed = orderProductIds.every((productId) => reviewedProductIds.has(productId));
+        
         return {
           ...order.toObject(),
-          hasReviewed: reviewedOrderIds.has(order._id.toString()),
+          hasReviewed: allProductsReviewed && orderProductIds.length > 0,
         };
       })
     );

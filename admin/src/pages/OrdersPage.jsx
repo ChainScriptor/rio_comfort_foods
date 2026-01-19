@@ -228,9 +228,11 @@ function OrdersPage() {
                 orders.forEach((order) => {
                   // Use deliveryDate if available, otherwise fall back to createdAt
                   const orderDate = new Date(order.deliveryDate || order.createdAt);
-                  // Set to start of day for grouping
-                  orderDate.setHours(0, 0, 0, 0);
-                  const dateKey = orderDate.toISOString().split('T')[0];
+                  // Set to start of day in local timezone for grouping
+                  const year = orderDate.getFullYear();
+                  const month = String(orderDate.getMonth() + 1).padStart(2, '0');
+                  const day = String(orderDate.getDate()).padStart(2, '0');
+                  const dateKey = `${year}-${month}-${day}`;
 
                   if (!ordersByDate[dateKey]) {
                     ordersByDate[dateKey] = [];
@@ -244,8 +246,9 @@ function OrdersPage() {
                   const dateOrders = ordersByDate[dateKey];
 
                   // Calculate the display date from the dateKey (which is already the correct date)
-                  const displayDate = new Date(dateKey);
-                  displayDate.setHours(0, 0, 0, 0);
+                  // Parse dateKey (YYYY-MM-DD) as local date to avoid timezone issues
+                  const [year, month, day] = dateKey.split('-').map(Number);
+                  const displayDate = new Date(year, month - 1, day);
 
                   // Helper function to create address key for grouping
                   const getAddressKey = (address) => {
@@ -280,7 +283,7 @@ function OrdersPage() {
                     <div key={dateKey} style={{ marginBottom: "0.6cm", pageBreakInside: "auto" }}>
                       {/* Date - show only once per date group */}
                       <div style={{ fontSize: "12pt", fontWeight: "bold", color: "#000000", backgroundColor: "#FFFF00", padding: "0.1cm 0.2cm", display: "inline-block", marginBottom: "0.3cm", marginTop: dateIndex === 0 ? "0" : "0.4cm" }}>
-                        Ημερομηνία {formatDateWithDayName(displayDate.toISOString())}
+                        Ημερομηνία {formatDateWithDayName(displayDate)}
                       </div>
 
                       {/* All orders for this date, grouped by address */}
@@ -629,24 +632,34 @@ function OrdersPage() {
               </div>
 
               {/* ORDER STATUS & DATE */}
-              <div className="mt-4 flex items-center justify-between text-sm">
-                <div>
-                  <span className="text-base-content/70">Κατάσταση:</span>
-                  <span className={`ml-2 badge ${
-                    selectedOrder.status === "delivered" ? "badge-success" :
-                    selectedOrder.status === "shipped" ? "badge-info" :
-                    selectedOrder.status === "cancelled" ? "badge-error" :
-                    "badge-warning"
-                  }`}>
-                    {selectedOrder.status === "delivered" ? "Παραδόθηκε" :
-                      selectedOrder.status === "shipped" ? "Στάλθηκε" :
-                      selectedOrder.status === "cancelled" ? "Ακυρώθηκε" :
-                        "Σε Αναμονή"}
-                  </span>
+              <div className="mt-4 space-y-2 text-sm">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="text-base-content/70">Κατάσταση:</span>
+                    <span className={`ml-2 badge ${
+                      selectedOrder.status === "delivered" ? "badge-success" :
+                      selectedOrder.status === "shipped" ? "badge-info" :
+                      selectedOrder.status === "cancelled" ? "badge-error" :
+                      "badge-warning"
+                    }`}>
+                      {selectedOrder.status === "delivered" ? "Παραδόθηκε" :
+                        selectedOrder.status === "shipped" ? "Στάλθηκε" :
+                        selectedOrder.status === "cancelled" ? "Ακυρώθηκε" :
+                          "Σε Αναμονή"}
+                    </span>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-base-content/70">Ημερομηνία Παραγγελίας:</span>
-                  <span className="ml-2 font-medium">{formatDate(selectedOrder.createdAt)}</span>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="text-base-content/70">Ημερομηνία Παραγγελίας:</span>
+                    <span className="ml-2 font-medium">{formatDate(selectedOrder.createdAt)}</span>
+                  </div>
+                  {selectedOrder.deliveryDate && (
+                    <div>
+                      <span className="text-base-content/70">Ημερομηνία Παράδοσης:</span>
+                      <span className="ml-2 font-medium">{formatDate(selectedOrder.deliveryDate)}</span>
+                    </div>
+                  )}
                 </div>
               </div>
 

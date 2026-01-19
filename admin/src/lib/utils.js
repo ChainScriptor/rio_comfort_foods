@@ -67,9 +67,11 @@ export const formatDateTime = (dateString) => {
   return `${formatDate(dateString)} ${formatTime(dateString)}`;
 };
 
-export const formatDateWithDayName = (dateString) => {
-  if (!dateString) return "";
-  const date = new Date(dateString);
+export const formatDateWithDayName = (dateInput) => {
+  if (!dateInput) return "";
+  
+  // Handle both Date objects and date strings
+  const date = dateInput instanceof Date ? dateInput : new Date(dateInput);
   if (isNaN(date.getTime())) return "";
 
   const days = ["Κυριακή", "Δευτέρα", "Τρίτη", "Τετάρτη", "Πέμπτη", "Παρασκευή", "Σάββατο"];
