@@ -11,6 +11,23 @@ export async function createOrder(req, res) {
       return res.status(400).json({ error: "No order items" });
     }
 
+    // validate shipping address
+    if (!shippingAddress) {
+      return res.status(400).json({ error: "Shipping address is required" });
+    }
+
+    if (
+      !shippingAddress.storeLocation ||
+      !shippingAddress.fullName ||
+      !shippingAddress.streetAddress ||
+      !shippingAddress.city ||
+      !shippingAddress.state ||
+      !shippingAddress.zipCode ||
+      !shippingAddress.phoneNumber
+    ) {
+      return res.status(400).json({ error: "All shipping address fields are required" });
+    }
+
     // validate products and stock
     for (const item of orderItems) {
       const product = await Product.findById(item.product);
@@ -180,6 +197,7 @@ export async function createOrder(req, res) {
 
     res.status(201).json({ message: "Order created successfully", order });
   } catch (error) {
+    console.error("Error creating order:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 }

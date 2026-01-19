@@ -72,7 +72,7 @@ function AddressesScreen() {
 
   const handleSaveAddress = () => {
     if (
-      !addressForm.label ||
+      !addressForm.storeLocation ||
       !addressForm.fullName ||
       !addressForm.streetAddress ||
       !addressForm.city ||

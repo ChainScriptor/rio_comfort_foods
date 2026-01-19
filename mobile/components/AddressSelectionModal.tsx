@@ -130,7 +130,7 @@ const AddressSelectionModal = ({
                       <View className="flex-1">
                         <View className="flex-row items-center mb-3">
                           <Text className="text-primary font-bold text-lg mr-2">
-                            {address.label}
+                            {address.storeLocation}
                           </Text>
                           {address.isDefault && (
                             <View className="bg-primary/20 rounded-full px-3 py-1">

@@ -2,12 +2,12 @@ import { User } from "../models/user.model.js";
 
 export async function addAddress(req, res) {
   try {
-    const { label, fullName, streetAddress, city, state, zipCode, phoneNumber, isDefault } =
+    const { storeLocation, fullName, streetAddress, city, state, zipCode, phoneNumber, isDefault } =
       req.body;
 
     const user = req.user;
 
-    if (!fullName || !streetAddress || !city || !state || !zipCode) {
+    if (!storeLocation || !fullName || !streetAddress || !city || !state || !zipCode || !phoneNumber) {
       return res.status(400).json({ error: "Missing required address fields" });
     }
 
@@ -19,7 +19,7 @@ export async function addAddress(req, res) {
     }
 
     user.addresses.push({
-      label,
+      storeLocation,
       fullName,
       streetAddress,
       city,
@@ -33,6 +33,7 @@ export async function addAddress(req, res) {
 
     res.status(201).json({ message: "Address added successfully", addresses: user.addresses });
   } catch (error) {
+    console.error("Error adding address:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 }
@@ -49,7 +50,7 @@ export async function getAddresses(req, res) {
 
 export async function updateAddress(req, res) {
   try {
-    const { label, fullName, streetAddress, city, state, zipCode, phoneNumber, isDefault } =
+    const { storeLocation, fullName, streetAddress, city, state, zipCode, phoneNumber, isDefault } =
       req.body;
 
     const { addressId } = req.params;
@@ -67,7 +68,7 @@ export async function updateAddress(req, res) {
       });
     }
 
-    address.label = label || address.label;
+    address.storeLocation = storeLocation || address.storeLocation;
     address.fullName = fullName || address.fullName;
     address.streetAddress = streetAddress || address.streetAddress;
     address.city = city || address.city;
@@ -80,6 +81,7 @@ export async function updateAddress(req, res) {
 
     res.status(200).json({ message: "Address updated successfully", addresses: user.addresses });
   } catch (error) {
+    console.error("Error updating address:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 }

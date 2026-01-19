@@ -103,6 +103,7 @@ const CartScreen = () => {
       await api.post("/orders", {
         orderItems,
         shippingAddress: {
+          storeLocation: selectedAddress.storeLocation,
           fullName: selectedAddress.fullName,
           streetAddress: selectedAddress.streetAddress,
           city: selectedAddress.city,

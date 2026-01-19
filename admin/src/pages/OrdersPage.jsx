@@ -170,7 +170,7 @@ function OrdersPage() {
             {`
               @media print {
                 @page {
-                  margin: 1.5cm;
+                  margin: 0.5cm;
                   size: A4;
                 }
                 * {
@@ -189,6 +189,8 @@ function OrdersPage() {
                   top: 0;
                   width: 100%;
                   background: white;
+                  margin: 0;
+                  padding: 0;
                 }
                 .print-order-line {
                   page-break-inside: avoid;
@@ -219,7 +221,7 @@ function OrdersPage() {
             `}
           </style>
           <div className="print-only">
-            <div style={{ marginTop: "0.8cm" }}>
+            <div style={{ marginTop: "0", paddingTop: "0" }}>
               {(() => {
                 // Group orders by delivery date (use deliveryDate if available, otherwise createdAt)
                 const ordersByDate = {};
@@ -275,9 +277,9 @@ function OrdersPage() {
                     .flatMap((addressKey) => ordersByAddress[addressKey]);
 
                   return (
-                    <div key={dateKey} style={{ marginBottom: "1cm", pageBreakInside: "avoid" }}>
+                    <div key={dateKey} style={{ marginBottom: "0.6cm", pageBreakInside: "auto" }}>
                       {/* Date - show only once per date group */}
-                      <div style={{ fontSize: "12pt", fontWeight: "bold", color: "#000000", backgroundColor: "#FFFF00", padding: "0.1cm 0.2cm", display: "inline-block", marginBottom: "0.5cm" }}>
+                      <div style={{ fontSize: "12pt", fontWeight: "bold", color: "#000000", backgroundColor: "#FFFF00", padding: "0.1cm 0.2cm", display: "inline-block", marginBottom: "0.3cm", marginTop: dateIndex === 0 ? "0" : "0.4cm" }}>
                         Ημερομηνία {formatDateWithDayName(displayDate.toISOString())}
                       </div>
 
@@ -291,7 +293,7 @@ function OrdersPage() {
                         const addressOrderCount = addressOrders.length;
                         
                         return (
-                          <div key={addressKey} style={{ marginBottom: addressGroupIndex < Object.keys(ordersByAddress).length - 1 ? "0.6cm" : "0" }}>
+                          <div key={addressKey} style={{ marginBottom: addressGroupIndex < Object.keys(ordersByAddress).length - 1 ? "0.4cm" : "0" }}>
                             {/* All orders for this address - display all products in sequence */}
                             {addressOrders.map((order, orderIndex) => {
                               // Determine if this is a supplementary order (multiple orders for same address on same day)
@@ -318,19 +320,13 @@ function OrdersPage() {
                                   {/* Customer Name with first product on same line */}
                                   {allOrderItems.length > 0 && (
                                     <>
-                                      <div style={{ fontSize: "12pt", fontWeight: "bold", color: "#000000", marginBottom: "0.1cm" }}>
-                                        <span style={{ backgroundColor: "#FFFF00", padding: "0.1cm 0.2cm", display: "inline-block" }}>
+                                      <div style={{ fontSize: "12pt", fontWeight: "bold", color: "#000000", marginBottom: "0.1cm", display: "flex", alignItems: "flex-start" }}>
+                                        <span style={{ backgroundColor: "#FFFF00", padding: "0.1cm 0.2cm", display: "inline-block", minWidth: "4cm", flexShrink: 0 }}>
                                           {displayName}
                                         </span>
-                                        <span style={{ marginLeft: "0.3cm" }}>
+                                        <span style={{ marginLeft: "0.3cm", flex: "1" }}>
                                           -  ({getUnitLabel(allOrderItems[0])}: {allOrderItems[0].quantity}) {allOrderItems[0].name}
                                         </span>
-                                        {/* Delivery Date */}
-                                        {order.deliveryDate && (
-                                          <span style={{ marginLeft: "0.3cm", fontSize: "10pt", color: "#666" }}>
-                                            [Παραλαβή: {formatDate(order.deliveryDate)}]
-                                          </span>
-                                        )}
                                       </div>
                                       {/* Remaining products from this order */}
                                       {allOrderItems.slice(1).map((item, itemIndex) => (
@@ -340,11 +336,15 @@ function OrdersPage() {
                                             fontSize: "11pt",
                                             fontWeight: "bold",
                                             color: "#000000",
-                                            paddingLeft: "0.5cm",
-                                            marginBottom: "0.1cm"
+                                            marginBottom: "0.1cm",
+                                            display: "flex",
+                                            alignItems: "flex-start"
                                           }}
                                         >
-                                          -  ({getUnitLabel(item)}: {item.quantity}) {item.name}
+                                          <span style={{ minWidth: "4cm", flexShrink: 0 }}></span>
+                                          <span style={{ marginLeft: "0.3cm", flex: "1" }}>
+                                            -  ({getUnitLabel(item)}: {item.quantity}) {item.name}
+                                          </span>
                                         </div>
                                       ))}
                                       {/* Comments */}
@@ -354,12 +354,16 @@ function OrdersPage() {
                                             fontSize: "10pt",
                                             fontStyle: "italic",
                                             color: "#666",
-                                            paddingLeft: "0.5cm",
                                             marginTop: "0.1cm",
-                                            marginBottom: "0.1cm"
+                                            marginBottom: "0.1cm",
+                                            display: "flex",
+                                            alignItems: "flex-start"
                                           }}
                                         >
-                                          💬 {order.comments}
+                                          <span style={{ minWidth: "4cm", flexShrink: 0 }}></span>
+                                          <span style={{ marginLeft: "0.3cm", flex: "1" }}>
+                                            💬 {order.comments}
+                                          </span>
                                         </div>
                                       )}
                                     </>
