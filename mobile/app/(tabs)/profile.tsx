@@ -1,10 +1,13 @@
 import SafeScreen from "@/components/SafeScreen";
 import { useAuth, useUser } from "@clerk/clerk-expo";
+import { useFocusEffect } from "expo-router";
+import { useCallback } from "react";
 
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { Image } from "expo-image";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
+import { useProfile } from "@/hooks/useProfile";
 
 const MENU_ITEMS = [
   { id: 1, icon: "person-outline", title: "Επεξεργασία Προφίλ", color: "#3B82F6", action: "/profile" },
@@ -15,10 +18,26 @@ const MENU_ITEMS = [
 
 const ProfileScreen = () => {
   const { signOut } = useAuth();
-  const { user } = useUser();
+  const { user: clerkUser, isLoaded } = useUser();
+  const { data: profileData, refetch: refetchProfile } = useProfile();
+
+  // Reload user and profile when screen comes into focus to get latest data
+  useFocusEffect(
+    useCallback(() => {
+      if (isLoaded && clerkUser) {
+        clerkUser.reload().catch((error) => {
+          console.error("Error reloading user:", error);
+        });
+      }
+      refetchProfile();
+    }, [isLoaded, clerkUser, refetchProfile])
+  );
 
   const handleMenuPress = (action: (typeof MENU_ITEMS)[number]["action"]) => {
-    if (action === "/profile") return;
+    if (action === "/profile") {
+      router.push("/(profile)/edit-profile");
+      return;
+    }
     router.push(action);
   };
 
@@ -34,11 +53,18 @@ const ProfileScreen = () => {
           <View className="bg-surface rounded-3xl p-6">
             <View className="flex-row items-center">
               <View className="relative">
-                <Image
-                  source={user?.imageUrl}
-                  style={{ width: 80, height: 80, borderRadius: 40 }}
-                  transition={200}
-                />
+                {profileData?.imageUrl || clerkUser?.imageUrl ? (
+                  <Image
+                    source={profileData?.imageUrl || clerkUser?.imageUrl}
+                    style={{ width: 80, height: 80, borderRadius: 40 }}
+                    transition={200}
+                    contentFit="cover"
+                  />
+                ) : (
+                  <View className="bg-surface rounded-full w-20 h-20 items-center justify-center">
+                    <Ionicons name="person" size={40} color="#666" />
+                  </View>
+                )}
                 <View className="absolute -bottom-1 -right-1 bg-primary rounded-full size-7 items-center justify-center border-2 border-surface">
                   <Ionicons name="checkmark" size={16} color="#121212" />
                 </View>
@@ -46,10 +72,10 @@ const ProfileScreen = () => {
 
               <View className="flex-1 ml-4">
                 <Text className="text-text-primary text-2xl font-bold mb-1">
-                  {user?.firstName} {user?.lastName}
+                  {profileData?.name || `${clerkUser?.firstName || ""} ${clerkUser?.lastName || ""}`.trim() || "Χρήστης"}
                 </Text>
                 <Text className="text-text-secondary text-sm">
-                  {user?.emailAddresses?.[0]?.emailAddress || "Χωρίς email"}
+                  {clerkUser?.emailAddresses?.[0]?.emailAddress || "Χωρίς email"}
                 </Text>
               </View>
             </View>

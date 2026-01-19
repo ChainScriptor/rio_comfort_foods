@@ -61,13 +61,15 @@ const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
         />
 
         <TouchableOpacity
-          className="absolute top-3 right-3 bg-black/30 backdrop-blur-xl p-2 rounded-full"
+          className={`absolute top-3 right-3 backdrop-blur-xl p-2 rounded-full ${
+            isInWishlist(product._id) ? "bg-red-500/30" : "bg-black/30"
+          }`}
           activeOpacity={0.7}
           onPress={() => toggleWishlist(product._id)}
           disabled={isAddingToWishlist || isRemovingFromWishlist}
         >
           {isAddingToWishlist || isRemovingFromWishlist ? (
-            <ActivityIndicator size="small" color="#FFFFFF" />
+            <ActivityIndicator size="small" color={isInWishlist(product._id) ? "#FF6B6B" : "#FFFFFF"} />
           ) : (
             <Ionicons
               name={isInWishlist(product._id) ? "heart" : "heart-outline"}

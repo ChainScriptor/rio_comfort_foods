@@ -77,7 +77,7 @@ const ProductDetailScreen = () => {
 
         <TouchableOpacity
           className={`w-12 h-12 rounded-full items-center justify-center ${
-            isInWishlist(product._id) ? "bg-primary" : "bg-black/50 backdrop-blur-xl"
+            isInWishlist(product._id) ? "bg-red-500/20" : "bg-black/50 backdrop-blur-xl"
           }`}
           onPress={() => toggleWishlist(product._id)}
           disabled={isAddingToWishlist || isRemovingFromWishlist}
@@ -89,7 +89,7 @@ const ProductDetailScreen = () => {
             <Ionicons
               name={isInWishlist(product._id) ? "heart" : "heart-outline"}
               size={24}
-              color={isInWishlist(product._id) ? "#121212" : "#FFFFFF"}
+              color={isInWishlist(product._id) ? "#FF6B6B" : "#FFFFFF"}
             />
           )}
         </TouchableOpacity>

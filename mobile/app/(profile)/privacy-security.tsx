@@ -15,7 +15,6 @@ type SecurityOption = {
 
 function PrivacyAndSecurityScreen() {
   const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
-  const [biometricEnabled, setBiometricEnabled] = useState(true);
   const [pushNotifications, setPushNotifications] = useState(true);
   const [emailNotifications, setEmailNotifications] = useState(true);
   const [marketingEmails, setMarketingEmails] = useState(false);
@@ -36,14 +35,6 @@ function PrivacyAndSecurityScreen() {
       description: "Προσθήκη επιπλέον επιπέδου ασφάλειας",
       type: "toggle",
       value: twoFactorEnabled,
-    },
-    {
-      id: "biometric",
-      icon: "finger-print-outline",
-      title: "Βιομετρική Σύνδεση",
-      description: "Χρήση Face ID ή Touch ID",
-      type: "toggle",
-      value: biometricEnabled,
     },
   ];
 
@@ -108,9 +99,6 @@ function PrivacyAndSecurityScreen() {
       case "two-factor":
         setTwoFactorEnabled(value);
         break;
-      case "biometric":
-        setBiometricEnabled(value);
-        break;
       case "push":
         setPushNotifications(value);
         break;
@@ -169,8 +157,6 @@ function PrivacyAndSecurityScreen() {
                     onValueChange={(value) => handleToggle(setting.id, value)}
                     thumbColor="#FFFFFF"
                     trackColor={{ false: "#2A2A2A", true: "#FFD700" }}
-
-                    // ios_backgroundColor={"purple"}
                   />
                 ) : (
                   <Ionicons name="chevron-forward" size={20} color="#666" />

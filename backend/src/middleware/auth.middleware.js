@@ -14,16 +14,16 @@ export const protectRoute = [
 
       // Check if user exists in database first (for backward compatibility with existing users)
       const user = await User.findOne({ clerkId });
-      
+
       // If user doesn't exist in database, check if they have invitation
       if (!user) {
         try {
           const clerkUser = await clerkClient.users.getUser(clerkId);
           const hasInvitation = clerkUser.publicMetadata?.customerId != null;
-          
+
           if (!hasInvitation) {
-            return res.status(403).json({ 
-              message: "Access denied. Only invited users can access this application." 
+            return res.status(403).json({
+              message: "Access denied. Only invited users can access this application."
             });
           }
           // If they have invitation but no user in DB, return 404 (user will be created by Inngest)
@@ -32,7 +32,7 @@ export const protectRoute = [
           return res.status(500).json({ message: "Error verifying user access" });
         }
       }
-      
+
       // For existing users in database, allow access (backward compatibility)
       // For new users, they must have invitation (checked above)
 

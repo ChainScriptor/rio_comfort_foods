@@ -1,4 +1,5 @@
 import { User } from "../models/user.model.js";
+import cloudinary from "../config/cloudinary.js";
 
 export async function addAddress(req, res) {
   try {
@@ -169,6 +170,99 @@ export async function getWishlist(req, res) {
 
     res.status(200).json({ wishlist: user.wishlist });
   } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+export async function getProfile(req, res) {
+  try {
+    const user = req.user;
+
+    res.status(200).json({ 
+      user: {
+        name: user.name,
+        imageUrl: user.imageUrl,
+        firstName: user.name?.split(" ")[0] || "",
+        lastName: user.name?.split(" ").slice(1).join(" ") || "",
+      }
+    });
+  } catch (error) {
+    console.error("Error getting profile:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+export async function updateProfile(req, res) {
+  try {
+    const { firstName, lastName, imageUrl } = req.body;
+    const user = req.user;
+
+    // Update name if provided
+    if (firstName !== undefined || lastName !== undefined) {
+      const currentName = user.name || "";
+      const nameParts = currentName.split(" ");
+      const newFirstName = firstName !== undefined ? firstName : (nameParts[0] || "");
+      const newLastName = lastName !== undefined ? lastName : (nameParts.slice(1).join(" ") || "");
+      user.name = `${newFirstName} ${newLastName}`.trim();
+    }
+
+    // Update imageUrl if provided
+    if (imageUrl !== undefined) {
+      user.imageUrl = imageUrl;
+    }
+
+    await user.save();
+
+    res.status(200).json({ 
+      message: "Profile updated successfully", 
+      user: {
+        name: user.name,
+        imageUrl: user.imageUrl,
+        firstName: user.name?.split(" ")[0] || "",
+        lastName: user.name?.split(" ").slice(1).join(" ") || "",
+      }
+    });
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+export async function uploadProfileImage(req, res) {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: "No image file provided" });
+    }
+
+    const user = req.user;
+
+    // Delete old image from Cloudinary if exists
+    if (user.imageUrl) {
+      try {
+        const publicId = user.imageUrl.split("/").pop()?.split(".")[0];
+        if (publicId) {
+          await cloudinary.uploader.destroy(`profiles/${publicId}`);
+        }
+      } catch (error) {
+        console.error("Error deleting old image:", error);
+        // Continue even if deletion fails
+      }
+    }
+
+    // Upload new image to Cloudinary
+    const uploadResult = await cloudinary.uploader.upload(req.file.path, {
+      folder: "profiles",
+    });
+
+    user.imageUrl = uploadResult.secure_url;
+    await user.save();
+
+    res.status(200).json({ 
+      message: "Profile image uploaded successfully", 
+      imageUrl: uploadResult.secure_url 
+    });
+  } catch (error) {
+    console.error("Error uploading profile image:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 }

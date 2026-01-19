@@ -4,11 +4,15 @@ import {
   addToWishlist,
   deleteAddress,
   getAddresses,
+  getProfile,
   getWishlist,
   removeFromWishlist,
   updateAddress,
+  updateProfile,
+  uploadProfileImage,
 } from "../controllers/user.controller.js";
 import { protectRoute } from "../middleware/auth.middleware.js";
+import { upload } from "../middleware/multer.middleware.js";
 
 const router = Router();
 
@@ -24,5 +28,10 @@ router.delete("/addresses/:addressId", deleteAddress);
 router.post("/wishlist", addToWishlist);
 router.delete("/wishlist/:productId", removeFromWishlist);
 router.get("/wishlist", getWishlist);
+
+// profile routes
+router.get("/profile", getProfile);
+router.put("/profile", updateProfile);
+router.post("/profile/image", upload.single("image"), uploadProfileImage);
 
 export default router;
