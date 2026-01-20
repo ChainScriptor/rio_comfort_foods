@@ -4,6 +4,14 @@ import { MutationCache, QueryCache, QueryClient, QueryClientProvider } from "@ta
 import { ClerkProvider } from "@clerk/clerk-expo";
 import { tokenCache } from "@clerk/clerk-expo/token-cache";
 import * as Sentry from "@sentry/react-native";
+import { View, Text } from "react-native";
+
+// Get Clerk publishable key from environment variables
+const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
+
+if (!CLERK_PUBLISHABLE_KEY) {
+  console.error("Missing EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY environment variable");
+}
 
 Sentry.init({
   dsn: "https://fb6731b90610cc08333e6c16ffac5724@o4509813037137920.ingest.de.sentry.io/4510451611205712",
@@ -55,8 +63,24 @@ const queryClient = new QueryClient({
 });
 
 export default Sentry.wrap(function RootLayout() {
+  if (!CLERK_PUBLISHABLE_KEY) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center", padding: 20, backgroundColor: "#000" }}>
+        <Text style={{ color: "#ef4444", fontSize: 18, fontWeight: "bold", marginBottom: 10, textAlign: "center" }}>
+          Σφάλμα Ρύθμισης
+        </Text>
+        <Text style={{ color: "#fff", fontSize: 14, textAlign: "center" }}>
+          Το EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY δεν έχει οριστεί.
+        </Text>
+        <Text style={{ color: "#888", fontSize: 12, textAlign: "center", marginTop: 10 }}>
+          Παρακαλώ ελέγξτε το .env file.
+        </Text>
+      </View>
+    );
+  }
+
   return (
-    <ClerkProvider tokenCache={tokenCache}>
+    <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY} tokenCache={tokenCache}>
       <QueryClientProvider client={queryClient}>
         <Stack screenOptions={{ headerShown: false }} />
       </QueryClientProvider>
