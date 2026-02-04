@@ -14,12 +14,20 @@ import {
   ActivityIndicator,
   TouchableOpacity,
   ScrollView,
-  Dimensions,
+  useWindowDimensions,
+  Platform,
 } from "react-native";
 
-const { width } = Dimensions.get("window");
+const IMAGE_HEIGHT = 320;
+const WEB_MAX_IMAGE_WIDTH = 1200;
 
 const ProductDetailScreen = () => {
+  const { width: windowWidth } = useWindowDimensions();
+  const imageWidth =
+    Platform.OS === "web"
+      ? Math.min(windowWidth, WEB_MAX_IMAGE_WIDTH)
+      : windowWidth;
+
   const { id } = useLocalSearchParams<{ id: string }>();
   const { data: product, isError, isLoading } = useProduct(id);
   const { addToCart, isAddingToCart } = useCart();
@@ -102,21 +110,22 @@ const ProductDetailScreen = () => {
         contentContainerStyle={{ paddingBottom: 100 }}
       >
         {/* IMAGE GALLERY */}
-        <View className="relative">
+        <View className="relative" style={{ height: IMAGE_HEIGHT }} collapsable={false}>
           <ScrollView
             horizontal
             pagingEnabled
             showsHorizontalScrollIndicator={false}
             onScroll={(e) => {
-              const index = Math.round(e.nativeEvent.contentOffset.x / width);
+              const index = Math.round(e.nativeEvent.contentOffset.x / imageWidth);
               setSelectedImageIndex(index);
             }}
+            scrollEventThrottle={16}
           >
             {product.images.map((image: string, index: number) => (
-              <View key={index} style={{ width }}>
+              <View key={index} style={{ width: imageWidth, height: IMAGE_HEIGHT, overflow: "hidden" }}>
                 <Image
                   source={getOptimizedUrl(image) ?? image}
-                  style={{ width, height: 400 }}
+                  style={{ width: imageWidth, height: IMAGE_HEIGHT }}
                   contentFit="cover"
                   cachePolicy="disk"
                   transition={300}

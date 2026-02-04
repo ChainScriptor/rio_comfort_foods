@@ -4,17 +4,22 @@ import { MutationCache, QueryCache, QueryClient, QueryClientProvider } from "@ta
 import { ClerkProvider } from "@clerk/clerk-expo";
 import { tokenCache } from "@clerk/clerk-expo/token-cache";
 import * as Sentry from "@sentry/react-native";
-import { View, Text, Platform } from "react-native";
+import { View, Text, Platform, TouchableOpacity } from "react-native";
+import { useState, useEffect } from "react";
 
 // Prevent expo-font's 6000ms timeout (FontFaceObserver on web) from crashing the app.
-// Fonts will fall back to system; the app continues to run.
 if (typeof window !== "undefined") {
   window.addEventListener("unhandledrejection", (event) => {
-    const msg = event.reason?.message ?? "";
-    if (typeof msg === "string" && msg.includes("timeout exceeded")) {
+    const msg = String(event.reason?.message ?? "");
+    if (msg.includes("timeout exceeded")) {
       event.preventDefault();
       event.stopPropagation();
       console.warn("[expo-font] Font load timed out, using fallback fonts:", msg);
+    }
+    if (msg.includes("failed_to_load_clerk") || msg.includes("ClerkRuntimeError")) {
+      event.preventDefault();
+      event.stopPropagation();
+      window.dispatchEvent(new CustomEvent("clerk-load-error", { detail: event.reason }));
     }
   });
 }
@@ -75,7 +80,43 @@ const queryClient = new QueryClient({
   }),
 });
 
+function ClerkLoadErrorFallback({ onRetry }: { onRetry: () => void }) {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", padding: 24, backgroundColor: "#121212" }}>
+      <Text style={{ color: "#fff", fontSize: 18, fontWeight: "bold", marginBottom: 12, textAlign: "center" }}>
+        Δεν φορτώθηκε το Clerk
+      </Text>
+      <Text style={{ color: "#999", fontSize: 14, textAlign: "center", marginBottom: 8 }}>
+        Ελέγξτε σύνδεση στο internet, απενεργοποιήστε ad blocker και δοκιμάστε ξανά.
+      </Text>
+      <Text style={{ color: "#666", fontSize: 12, textAlign: "center", marginBottom: 24 }}>
+        Σφάλμα: failed_to_load_clerk_js_timeout
+      </Text>
+      <TouchableOpacity
+        onPress={onRetry}
+        style={{ backgroundColor: "#FFD700", paddingHorizontal: 24, paddingVertical: 12, borderRadius: 12 }}
+      >
+        <Text style={{ color: "#121212", fontWeight: "bold" }}>Ξαναφόρτωση</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
 export default Sentry.wrap(function RootLayout() {
+  const [clerkLoadError, setClerkLoadError] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handler = () => setClerkLoadError(true);
+    window.addEventListener("clerk-load-error", handler);
+    return () => window.removeEventListener("clerk-load-error", handler);
+  }, []);
+
+  const handleClerkRetry = () => {
+    setClerkLoadError(false);
+    if (typeof window !== "undefined") window.location.reload();
+  };
+
   if (!CLERK_PUBLISHABLE_KEY) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center", padding: 20, backgroundColor: "#000" }}>
@@ -92,6 +133,10 @@ export default Sentry.wrap(function RootLayout() {
     );
   }
 
+  if (clerkLoadError) {
+    return <ClerkLoadErrorFallback onRetry={handleClerkRetry} />;
+  }
+
   const content = (
     <Stack screenOptions={{ headerShown: false }} />
   );
@@ -103,7 +148,7 @@ export default Sentry.wrap(function RootLayout() {
           <View
             style={{
               flex: 1,
-              maxWidth: 500,
+              maxWidth: 1200,
               width: "100%",
               alignSelf: "center",
               backgroundColor: "#121212",

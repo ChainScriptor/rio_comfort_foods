@@ -34,7 +34,11 @@
       "themeColor": "#121212",
       "backgroundColor": "#121212",
       "startUrl": "/",
-      "scope": "/"
+      "scope": "/",
+      "icons": [
+        { "src": "./assets/images/applogo.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+        { "src": "./assets/images/applogo.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+      ]
     },
     "plugins": [
       "expo-router",

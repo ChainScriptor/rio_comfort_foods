@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import { fileURLToPath } from "url";
 import { clerkMiddleware } from "@clerk/express";
 import { serve } from "inngest/express";
 import cors from "cors";
@@ -21,6 +22,9 @@ import authRoutes from "./routes/auth.route.js";
 const app = express();
 
 const __dirname = path.resolve();
+const __filename = fileURLToPath(import.meta.url);
+const __serverDir = path.dirname(__filename);
+const MOBILE_DIST_PATH = path.join(__serverDir, "..", "..", "mobile", "dist");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -83,12 +87,17 @@ app.get("/api/health", (req, res) => {
   res.status(200).json({ message: "Success" });
 });
 
-// make our app ready for deployment
+// Production: serve PWA (mobile) static files and catch-all for expo-router
 if (ENV.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../admin/dist")));
 
-  app.get("/{*any}", (req, res) => {
-    res.sendFile(path.join(__dirname, "../admin", "dist", "index.html"));
+  // PWA: serve static files from mobile/dist (../../mobile/dist from backend/src)
+  app.use(express.static(MOBILE_DIST_PATH));
+
+  // Catch-all: send PWA index.html for any non-API route (expo-router client-side routing)
+  app.get("*", (req, res, next) => {
+    if (req.path.startsWith("/api")) return next();
+    res.sendFile(path.join(MOBILE_DIST_PATH, "index.html"));
   });
 }
 

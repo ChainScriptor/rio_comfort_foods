@@ -12,8 +12,18 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Alert,
+  useWindowDimensions,
+  Platform,
 } from "react-native";
 import { FlashList } from "@shopify/flash-list";
+
+const PADDING = 24;
+const GAP_MOBILE = 16;
+const GAP_WEB = 24;
+const MIN_COLUMN_WIDTH = 140;
+const WEB_BREAKPOINT = 768;
+const WEB_BREAKPOINT_LG = 1024;
+const WEB_MAX_CONTENT_WIDTH = 1200;
 
 interface ProductsGridProps {
   isLoading: boolean;
@@ -29,6 +39,9 @@ interface ProductGridItemProps {
   isAddingToCart: boolean;
   isAddingToWishlist: boolean;
   isRemovingFromWishlist: boolean;
+  itemWidth: number;
+  imageHeight: number;
+  isWeb: boolean;
 }
 
 const ProductGridItem = React.memo(function ProductGridItem({
@@ -39,18 +52,22 @@ const ProductGridItem = React.memo(function ProductGridItem({
   isAddingToCart,
   isAddingToWishlist,
   isRemovingFromWishlist,
+  itemWidth,
+  imageHeight,
+  isWeb,
 }: ProductGridItemProps) {
   return (
     <TouchableOpacity
-      className="bg-surface rounded-3xl overflow-hidden mb-3"
-      style={{ width: "48%" }}
+      className="bg-surface rounded-3xl overflow-hidden"
+      style={{ width: itemWidth }}
       activeOpacity={0.8}
       onPress={() => router.push(`/product/${product._id}`)}
     >
-      <View className="relative">
+      <View className="relative" style={{ width: "100%" }}>
         <Image
           source={getOptimizedUrl(product.images[0]) ?? product.images[0]}
-          className="w-full h-44 bg-background-lighter"
+          style={{ width: "100%", height: imageHeight }}
+          className="bg-background-lighter"
           contentFit="cover"
           cachePolicy="disk"
           transition={300}
@@ -69,27 +86,31 @@ const ProductGridItem = React.memo(function ProductGridItem({
           ) : (
             <Ionicons
               name={isInWishlist(product._id) ? "heart" : "heart-outline"}
-              size={18}
+              size={isWeb ? 20 : 18}
               color={isInWishlist(product._id) ? "#FF6B6B" : "#FFFFFF"}
             />
           )}
         </TouchableOpacity>
       </View>
 
-      <View className="p-3">
-        <Text className="text-text-secondary text-xs mb-1">{product.category}</Text>
-        <Text className="text-text-primary font-bold text-sm mb-2" numberOfLines={2}>
+      <View className={`p-3 ${isWeb ? "p-4" : ""}`}>
+        <Text className={`text-text-secondary mb-1 ${isWeb ? "text-sm" : "text-xs"}`}>{product.category}</Text>
+        <Text
+          className={`text-text-primary font-bold mb-2 ${isWeb ? "text-lg" : "text-base"}`}
+          numberOfLines={2}
+        >
           {product.name}
         </Text>
 
-
         <View className="flex-row items-center justify-between">
           {product.showPrice !== false && product.price && (
-            <Text className="text-primary font-bold text-lg">${product.price.toFixed(2)}</Text>
+            <Text className={`text-primary font-bold ${isWeb ? "text-lg" : "text-base"}`}>
+              ${product.price.toFixed(2)}
+            </Text>
           )}
 
           <TouchableOpacity
-            className="bg-primary rounded-full w-8 h-8 items-center justify-center"
+            className={`bg-primary rounded-full items-center justify-center ${isWeb ? "w-10 h-10" : "w-8 h-8"}`}
             activeOpacity={0.7}
             onPress={() => onAddToCart(product)}
             disabled={isAddingToCart}
@@ -97,7 +118,7 @@ const ProductGridItem = React.memo(function ProductGridItem({
             {isAddingToCart ? (
               <ActivityIndicator size="small" color="#121212" />
             ) : (
-              <Ionicons name="add" size={18} color="#121212" />
+              <Ionicons name="add" size={isWeb ? 20 : 18} color="#121212" />
             )}
           </TouchableOpacity>
         </View>
@@ -107,24 +128,35 @@ const ProductGridItem = React.memo(function ProductGridItem({
 });
 
 const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
+  const { width: windowWidth } = useWindowDimensions();
+  const isWeb = Platform.OS === "web";
+  const contentWidth = isWeb
+    ? Math.min(windowWidth, WEB_MAX_CONTENT_WIDTH) - PADDING * 2
+    : windowWidth - PADDING * 2;
+  const gap = isWeb ? GAP_WEB : GAP_MOBILE;
+  const numColumns = isWeb
+    ? contentWidth >= WEB_BREAKPOINT_LG
+      ? Math.min(4, Math.floor(contentWidth / (MIN_COLUMN_WIDTH + gap)))
+      : contentWidth >= WEB_BREAKPOINT
+        ? Math.min(3, Math.floor(contentWidth / (MIN_COLUMN_WIDTH + gap)))
+        : 2
+    : 2;
+  const cols = Math.max(2, numColumns);
+  const itemWidth = (contentWidth - gap * (cols - 1)) / cols;
+  const imageHeight = isWeb ? Math.round(itemWidth * 0.85) : 176;
+
   const { isInWishlist, toggleWishlist, isAddingToWishlist, isRemovingFromWishlist } =
     useWishlist();
 
   const { isAddingToCart, addToCart } = useCart();
 
   const handleAddToCart = (product: Product) => {
-    // If product has unit options, redirect to product page to select unit
     if (product.unitOptions && product.unitOptions.length > 0) {
       router.push(`/product/${product._id}`);
       return;
     }
-    
     addToCart(
-      { 
-        productId: product._id, 
-        quantity: 1,
-        selectedUnit: undefined, // No unit selection needed
-      },
+      { productId: product._id, quantity: 1, selectedUnit: undefined },
       {
         onError: (error: any) => {
           Alert.alert("Error", error?.response?.data?.error || "Failed to add to cart");
@@ -133,17 +165,31 @@ const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
     );
   };
 
-  const renderProduct = ({ item: product }: { item: Product }) => (
-    <ProductGridItem
-      product={product}
-      onAddToCart={handleAddToCart}
-      onToggleWishlist={toggleWishlist}
-      isInWishlist={isInWishlist}
-      isAddingToCart={isAddingToCart}
-      isAddingToWishlist={isAddingToWishlist}
-      isRemovingFromWishlist={isRemovingFromWishlist}
-    />
-  );
+  const renderProduct = ({ item: product, index }: { item: Product; index: number }) => {
+    const isLastInRow = (index % cols) === cols - 1;
+    return (
+      <View
+        style={{
+          width: itemWidth,
+          marginRight: isLastInRow ? 0 : gap,
+          marginBottom: gap,
+        }}
+      >
+        <ProductGridItem
+          product={product}
+          onAddToCart={handleAddToCart}
+          onToggleWishlist={toggleWishlist}
+          isInWishlist={isInWishlist}
+          isAddingToCart={isAddingToCart}
+          isAddingToWishlist={isAddingToWishlist}
+          isRemovingFromWishlist={isRemovingFromWishlist}
+          itemWidth={itemWidth}
+          imageHeight={imageHeight}
+          isWeb={isWeb}
+        />
+      </View>
+    );
+  };
 
   if (isLoading) {
     return (
@@ -164,13 +210,15 @@ const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
     );
   }
 
+  const estimatedRowHeight = imageHeight + 140;
+
   return (
     <FlashList
       data={products}
       renderItem={renderProduct}
       keyExtractor={(item) => item._id}
-      numColumns={2}
-      estimatedItemSize={280}
+      numColumns={cols}
+      estimatedItemSize={estimatedRowHeight}
       contentContainerStyle={{ paddingBottom: 24 }}
       showsVerticalScrollIndicator={false}
       scrollEnabled={false}

@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "npm install --prefix backend && npm install --prefix admin && npm run build --prefix admin",
+    "build:web": "cd mobile && npx expo export --platform web",
     "start": "npm run start --prefix backend"
   },
   "repository": {
@@ -28,5 +29,9 @@
     "expo-image": "~3.0.11",
     "react-dom": "19.1.0",
     "react-native-web": "^0.21.0"
+  },
+  "devDependencies": {
+    "@types/react": "~19.1.10",
+    "typescript": "~5.9.2"
   }
 }

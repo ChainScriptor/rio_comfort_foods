@@ -3,16 +3,14 @@ import axios from "axios";
 import { useEffect } from "react";
 import * as SecureStore from "expo-secure-store";
 
-// Production API URL
-const API_URL = "https://riocomfortfoodsapi-yelm3.sevalla.app/api";
-
-// For local development (uncomment to use)
-// For physical device: use your computer's local IP
-// For simulator/emulator: use "http://localhost:3000/api"
-// const API_URL = "http://192.168.1.13:3000/api";
+// API base URL: use EXPO_PUBLIC_API_URL in production (e.g. Sevalla), else localhost for dev
+const API_URL =
+  process.env.EXPO_PUBLIC_API_URL?.replace(/\/$/, "") ||
+  "https://riocomfortfoodsapi-yelm3.sevalla.app";
+const BASE_URL = `${API_URL}/api`;
 
 const api = axios.create({
-  baseURL: API_URL,
+  baseURL: BASE_URL,
   headers: {
     "Content-Type": "application/json",
   },
