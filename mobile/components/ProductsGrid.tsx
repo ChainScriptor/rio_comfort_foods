@@ -1,17 +1,19 @@
 import useCart from "@/hooks/useCart";
 import useWishlist from "@/hooks/useWishlist";
+import { getOptimizedUrl } from "@/lib/utils";
 import { Product } from "@/types";
 import { Ionicons } from "@expo/vector-icons";
+import { Image } from "expo-image";
 import { router } from "expo-router";
+import React from "react";
 import {
   View,
   Text,
-  FlatList,
   TouchableOpacity,
-  Image,
   ActivityIndicator,
   Alert,
 } from "react-native";
+import { FlashList } from "@shopify/flash-list";
 
 interface ProductsGridProps {
   isLoading: boolean;
@@ -19,34 +21,26 @@ interface ProductsGridProps {
   products: Product[];
 }
 
-const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
-  const { isInWishlist, toggleWishlist, isAddingToWishlist, isRemovingFromWishlist } =
-    useWishlist();
+interface ProductGridItemProps {
+  product: Product;
+  onAddToCart: (product: Product) => void;
+  onToggleWishlist: (productId: string) => void;
+  isInWishlist: (productId: string) => boolean;
+  isAddingToCart: boolean;
+  isAddingToWishlist: boolean;
+  isRemovingFromWishlist: boolean;
+}
 
-  const { isAddingToCart, addToCart } = useCart();
-
-  const handleAddToCart = (product: Product) => {
-    // If product has unit options, redirect to product page to select unit
-    if (product.unitOptions && product.unitOptions.length > 0) {
-      router.push(`/product/${product._id}`);
-      return;
-    }
-    
-    addToCart(
-      { 
-        productId: product._id, 
-        quantity: 1,
-        selectedUnit: undefined, // No unit selection needed
-      },
-      {
-        onError: (error: any) => {
-          Alert.alert("Error", error?.response?.data?.error || "Failed to add to cart");
-        },
-      }
-    );
-  };
-
-  const renderProduct = ({ item: product }: { item: Product }) => (
+const ProductGridItem = React.memo(function ProductGridItem({
+  product,
+  onAddToCart,
+  onToggleWishlist,
+  isInWishlist,
+  isAddingToCart,
+  isAddingToWishlist,
+  isRemovingFromWishlist,
+}: ProductGridItemProps) {
+  return (
     <TouchableOpacity
       className="bg-surface rounded-3xl overflow-hidden mb-3"
       style={{ width: "48%" }}
@@ -55,9 +49,11 @@ const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
     >
       <View className="relative">
         <Image
-          source={{ uri: product.images[0] }}
+          source={getOptimizedUrl(product.images[0]) ?? product.images[0]}
           className="w-full h-44 bg-background-lighter"
-          resizeMode="cover"
+          contentFit="cover"
+          cachePolicy="disk"
+          transition={300}
         />
 
         <TouchableOpacity
@@ -65,7 +61,7 @@ const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
             isInWishlist(product._id) ? "bg-red-500/30" : "bg-black/30"
           }`}
           activeOpacity={0.7}
-          onPress={() => toggleWishlist(product._id)}
+          onPress={() => onToggleWishlist(product._id)}
           disabled={isAddingToWishlist || isRemovingFromWishlist}
         >
           {isAddingToWishlist || isRemovingFromWishlist ? (
@@ -95,7 +91,7 @@ const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
           <TouchableOpacity
             className="bg-primary rounded-full w-8 h-8 items-center justify-center"
             activeOpacity={0.7}
-            onPress={() => handleAddToCart(product)}
+            onPress={() => onAddToCart(product)}
             disabled={isAddingToCart}
           >
             {isAddingToCart ? (
@@ -107,6 +103,46 @@ const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
         </View>
       </View>
     </TouchableOpacity>
+  );
+});
+
+const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
+  const { isInWishlist, toggleWishlist, isAddingToWishlist, isRemovingFromWishlist } =
+    useWishlist();
+
+  const { isAddingToCart, addToCart } = useCart();
+
+  const handleAddToCart = (product: Product) => {
+    // If product has unit options, redirect to product page to select unit
+    if (product.unitOptions && product.unitOptions.length > 0) {
+      router.push(`/product/${product._id}`);
+      return;
+    }
+    
+    addToCart(
+      { 
+        productId: product._id, 
+        quantity: 1,
+        selectedUnit: undefined, // No unit selection needed
+      },
+      {
+        onError: (error: any) => {
+          Alert.alert("Error", error?.response?.data?.error || "Failed to add to cart");
+        },
+      }
+    );
+  };
+
+  const renderProduct = ({ item: product }: { item: Product }) => (
+    <ProductGridItem
+      product={product}
+      onAddToCart={handleAddToCart}
+      onToggleWishlist={toggleWishlist}
+      isInWishlist={isInWishlist}
+      isAddingToCart={isAddingToCart}
+      isAddingToWishlist={isAddingToWishlist}
+      isRemovingFromWishlist={isRemovingFromWishlist}
+    />
   );
 
   if (isLoading) {
@@ -129,12 +165,13 @@ const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
   }
 
   return (
-    <FlatList
+    <FlashList
       data={products}
       renderItem={renderProduct}
       keyExtractor={(item) => item._id}
       numColumns={2}
-      columnWrapperStyle={{ justifyContent: "space-between" }}
+      estimatedItemSize={280}
+      contentContainerStyle={{ paddingBottom: 24 }}
       showsVerticalScrollIndicator={false}
       scrollEnabled={false}
       ListEmptyComponent={NoProductsFound}

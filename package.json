@@ -21,5 +21,12 @@
   "bugs": {
     "url": "https://github.com/burakorkmez/expo-ecommerce/issues"
   },
-  "homepage": "https://github.com/burakorkmez/expo-ecommerce#readme"
+  "homepage": "https://github.com/burakorkmez/expo-ecommerce#readme",
+  "dependencies": {
+    "@expo/metro-runtime": "~6.1.2",
+    "@shopify/flash-list": "2.0.2",
+    "expo-image": "~3.0.11",
+    "react-dom": "19.1.0",
+    "react-native-web": "^0.21.0"
+  }
 }

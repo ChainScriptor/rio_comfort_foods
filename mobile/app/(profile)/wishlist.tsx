@@ -1,6 +1,7 @@
 import SafeScreen from "@/components/SafeScreen";
 import useCart from "@/hooks/useCart";
 import useWishlist from "@/hooks/useWishlist";
+import { getOptimizedUrl } from "@/lib/utils";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { router } from "expo-router";
@@ -137,8 +138,11 @@ function WishlistScreen() {
               >
                 <View className="flex-row p-4">
                   <Image
-                    source={item.images[0]}
+                    source={getOptimizedUrl(item.images[0]) ?? item.images[0]}
                     className="rounded-2xl bg-background-lighter"
+                    contentFit="cover"
+                    cachePolicy="disk"
+                    transition={300}
                     style={{ width: 96, height: 96, borderRadius: 8 }}
                   />
 

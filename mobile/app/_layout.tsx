@@ -4,7 +4,20 @@ import { MutationCache, QueryCache, QueryClient, QueryClientProvider } from "@ta
 import { ClerkProvider } from "@clerk/clerk-expo";
 import { tokenCache } from "@clerk/clerk-expo/token-cache";
 import * as Sentry from "@sentry/react-native";
-import { View, Text } from "react-native";
+import { View, Text, Platform } from "react-native";
+
+// Prevent expo-font's 6000ms timeout (FontFaceObserver on web) from crashing the app.
+// Fonts will fall back to system; the app continues to run.
+if (typeof window !== "undefined") {
+  window.addEventListener("unhandledrejection", (event) => {
+    const msg = event.reason?.message ?? "";
+    if (typeof msg === "string" && msg.includes("timeout exceeded")) {
+      event.preventDefault();
+      event.stopPropagation();
+      console.warn("[expo-font] Font load timed out, using fallback fonts:", msg);
+    }
+  });
+}
 
 // Get Clerk publishable key from environment variables
 const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
@@ -79,10 +92,35 @@ export default Sentry.wrap(function RootLayout() {
     );
   }
 
+  const content = (
+    <Stack screenOptions={{ headerShown: false }} />
+  );
+
   return (
     <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY} tokenCache={tokenCache}>
       <QueryClientProvider client={queryClient}>
-        <Stack screenOptions={{ headerShown: false }} />
+        {Platform.OS === "web" ? (
+          <View
+            style={{
+              flex: 1,
+              maxWidth: 500,
+              width: "100%",
+              alignSelf: "center",
+              backgroundColor: "#121212",
+              shadowColor: "#000",
+              shadowOffset: { width: 0, height: 4 },
+              shadowOpacity: 0.3,
+              shadowRadius: 12,
+              borderLeftWidth: 1,
+              borderRightWidth: 1,
+              borderColor: "rgba(255,255,255,0.06)",
+            }}
+          >
+            {content}
+          </View>
+        ) : (
+          content
+        )}
       </QueryClientProvider>
     </ClerkProvider>
   );

@@ -11,9 +11,10 @@ import {
   View,
   Alert,
   ActivityIndicator,
-  Image,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
+import { Image } from "expo-image";
+import { getOptimizedUrl } from "@/lib/utils";
 import { useApi } from "@/lib/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useProfile } from "@/hooks/useProfile";
@@ -207,8 +208,11 @@ export default function EditProfileScreen() {
             >
               {imageUri ? (
                 <Image
-                  source={{ uri: imageUri }}
+                  source={imageUri.startsWith("http") ? (getOptimizedUrl(imageUri) ?? imageUri) : imageUri}
                   style={{ width: 120, height: 120, borderRadius: 60 }}
+                  contentFit="cover"
+                  cachePolicy="disk"
+                  transition={300}
                 />
               ) : (
                 <View className="bg-surface rounded-full w-30 h-30 items-center justify-center">

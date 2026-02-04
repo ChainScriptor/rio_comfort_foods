@@ -2,6 +2,7 @@ import SafeScreen from "@/components/SafeScreen";
 import { useAddresses } from "@/hooks/useAddressess";
 import useCart from "@/hooks/useCart";
 import { useApi } from "@/lib/api";
+import { getOptimizedUrl } from "@/lib/utils";
 import { ActivityIndicator, Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { useState } from "react";
 import { Address } from "@/types";
@@ -161,9 +162,11 @@ const CartScreen = () => {
                   {/* product image */}
                   <View className="relative">
                     <Image
-                      source={item.product!.images[0]}
+                      source={getOptimizedUrl(item.product!.images[0]) ?? item.product!.images[0]}
                       className="bg-background-lighter"
                       contentFit="cover"
+                      cachePolicy="disk"
+                      transition={300}
                       style={{ width: 112, height: 112, borderRadius: 16 }}
                     />
                     <View className="absolute top-2 right-2 bg-primary rounded-full px-2 py-0.5">

@@ -14,6 +14,8 @@ export const ENV = {
   INNGEST_SIGNING_KEY: process.env.INNGEST_SIGNING_KEY,
   ADMIN_EMAIL: process.env.ADMIN_EMAIL,
   CLIENT_URL: process.env.CLIENT_URL,
+  // Comma-separated list of extra origins (e.g. "http://localhost:8081" for Expo web)
+  ALLOWED_ORIGINS: process.env.ALLOWED_ORIGINS || "",
   STRIPE_PUBLISHABLE_KEY: process.env.STRIPE_PUBLISHABLE_KEY,
   STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
   STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,

@@ -3,10 +3,12 @@ import SafeScreen from "@/components/SafeScreen";
 import useProducts from "@/hooks/useProducts";
 import useCategories from "@/hooks/useCategories";
 import useBanners from "@/hooks/useBanners";
+import { getOptimizedUrl } from "@/lib/utils";
 
 import { Ionicons } from "@expo/vector-icons";
+import { Image } from "expo-image";
 import { useMemo, useState } from "react";
-import { View, Text, ScrollView, TouchableOpacity, TextInput, Image, ActivityIndicator, Linking } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity, TextInput, ActivityIndicator, Linking } from "react-native";
 
 const ShopScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -108,9 +110,11 @@ const ShopScreen = () => {
                     disabled={!banner.linkUrl}
                   >
                     <Image
-                      source={{ uri: banner.imageUrl }}
+                      source={getOptimizedUrl(banner.imageUrl) ?? banner.imageUrl}
                       style={{ width: 320, height: 160, backgroundColor: "#121212" }}
-                      resizeMode="cover"
+                      contentFit="cover"
+                      cachePolicy="disk"
+                      transition={300}
                     />
                   </TouchableOpacity>
                 ))}
@@ -165,10 +169,12 @@ const ShopScreen = () => {
                   >
                     {category.image && !isAllOption ? (
                       <>
-                        <Image 
-                          source={{ uri: category.image }} 
+                        <Image
+                          source={getOptimizedUrl(category.image) ?? category.image}
                           className="absolute inset-0 w-full h-full"
-                          resizeMode="cover"
+                          contentFit="cover"
+                          cachePolicy="disk"
+                          transition={300}
                         />
                         {category.icon && (
                           <Text className="text-3xl relative z-10">{category.icon}</Text>

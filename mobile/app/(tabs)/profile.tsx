@@ -8,6 +8,7 @@ import { Image } from "expo-image";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useProfile } from "@/hooks/useProfile";
+import { getOptimizedUrl } from "@/lib/utils";
 
 const MENU_ITEMS = [
   { id: 1, icon: "person-outline", title: "Επεξεργασία Προφίλ", color: "#3B82F6", action: "/profile" },
@@ -55,10 +56,11 @@ const ProfileScreen = () => {
               <View className="relative">
                 {profileData?.imageUrl || clerkUser?.imageUrl ? (
                   <Image
-                    source={profileData?.imageUrl || clerkUser?.imageUrl}
+                    source={getOptimizedUrl(profileData?.imageUrl || clerkUser?.imageUrl) ?? (profileData?.imageUrl || clerkUser?.imageUrl)}
                     style={{ width: 80, height: 80, borderRadius: 40 }}
-                    transition={200}
                     contentFit="cover"
+                    cachePolicy="disk"
+                    transition={300}
                   />
                 ) : (
                   <View className="bg-surface rounded-full w-20 h-20 items-center justify-center">

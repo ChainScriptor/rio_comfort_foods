@@ -3,7 +3,7 @@ import SafeScreen from "@/components/SafeScreen";
 import { useOrders } from "@/hooks/useOrders";
 import { useReviews } from "@/hooks/useReviews";
 import useCart from "@/hooks/useCart";
-import { capitalizeFirstLetter, formatDate, getStatusColor } from "@/lib/utils";
+import { capitalizeFirstLetter, formatDate, getOptimizedUrl, getStatusColor } from "@/lib/utils";
 import { Order, OrderItem } from "@/types";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
@@ -225,9 +225,11 @@ function OrdersScreen() {
                   <View className="flex-row mb-4">
                     <View className="relative">
                       <Image
-                        source={firstImage}
+                        source={getOptimizedUrl(firstImage) ?? firstImage}
                         style={{ height: 80, width: 80, borderRadius: 8 }}
                         contentFit="cover"
+                        cachePolicy="disk"
+                        transition={300}
                       />
 
                       {/* BADGE FOR MORE ITEMS */}
@@ -377,9 +379,11 @@ function OrdersScreen() {
                       >
                         <View className="flex-row">
                           <Image
-                            source={item.image}
+                            source={getOptimizedUrl(item.image) ?? item.image}
                             style={{ width: 80, height: 80, borderRadius: 8 }}
                             contentFit="cover"
+                            cachePolicy="disk"
+                            transition={300}
                           />
                           <View className="flex-1 ml-4">
                             <Text className="text-text-primary font-bold text-base mb-1">

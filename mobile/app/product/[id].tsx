@@ -2,6 +2,7 @@ import SafeScreen from "@/components/SafeScreen";
 import useCart from "@/hooks/useCart";
 import { useProduct } from "@/hooks/useProduct";
 import useWishlist from "@/hooks/useWishlist";
+import { getOptimizedUrl } from "@/lib/utils";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { router, useLocalSearchParams } from "expo-router";
@@ -113,7 +114,13 @@ const ProductDetailScreen = () => {
           >
             {product.images.map((image: string, index: number) => (
               <View key={index} style={{ width }}>
-                <Image source={image} style={{ width, height: 400 }} contentFit="cover" />
+                <Image
+                  source={getOptimizedUrl(image) ?? image}
+                  style={{ width, height: 400 }}
+                  contentFit="cover"
+                  cachePolicy="disk"
+                  transition={300}
+                />
               </View>
             ))}
           </ScrollView>

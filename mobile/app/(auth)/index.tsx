@@ -1,5 +1,8 @@
 import useSocialAuth from "@/hooks/useSocialAuth";
-import { View, Text, Image, ImageBackground, TouchableOpacity, ActivityIndicator } from "react-native";
+import { Image } from "expo-image";
+import { View, Text, ImageBackground, TouchableOpacity, ActivityIndicator } from "react-native";
+
+const LOGO_SIZE = 24;
 
 const AuthScreen = () => {
   const { loadingStrategy, handleSocialAuth } = useSocialAuth();
@@ -30,8 +33,8 @@ const AuthScreen = () => {
               <View className="flex-row items-center justify-center">
                 <Image
                   source={require("../../assets/images/google.png")}
-                  className="size-10 mr-3"
-                  resizeMode="contain"
+                  style={{ width: LOGO_SIZE, height: LOGO_SIZE, marginRight: 12 }}
+                  contentFit="contain"
                 />
                 <Text className="text-black font-medium text-base">Συνέχεια με Google</Text>
               </View>
@@ -55,8 +58,8 @@ const AuthScreen = () => {
               <View className="flex-row items-center justify-center">
                 <Image
                   source={require("../../assets/images/apple.png")}
-                  className="size-8 mr-3"
-                  resizeMode="contain"
+                  style={{ width: LOGO_SIZE, height: LOGO_SIZE, marginRight: 12 }}
+                  contentFit="contain"
                 />
                 <Text className="text-black font-medium text-base">Συνέχεια με Apple</Text>
               </View>

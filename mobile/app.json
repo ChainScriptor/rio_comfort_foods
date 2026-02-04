@@ -25,7 +25,16 @@
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "display": "standalone",
+      "orientation": "portrait",
+      "name": "Comfort Foods",
+      "shortName": "Comfort Foods",
+      "description": "Comfort Foods - Περιήγηση σε όλα τα προϊόντα",
+      "themeColor": "#121212",
+      "backgroundColor": "#121212",
+      "startUrl": "/",
+      "scope": "/"
     },
     "plugins": [
       "expo-router",

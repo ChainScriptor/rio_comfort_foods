@@ -47,24 +47,20 @@ app.use((req, res, next) => {
 
 app.use(clerkMiddleware()); // adds auth object under the req => req.auth
 
-// CORS configuration - handle both with and without trailing slash
+// CORS: permissive so Expo (localhost:8081) and mobile (no origin) work; log origin for debugging
 const corsOptions = {
   origin: (origin, callback) => {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-    
-    // Normalize both origins by removing trailing slash for comparison
-    const normalizedOrigin = origin.replace(/\/$/, '');
-    const allowedOrigin = ENV.CLIENT_URL ? ENV.CLIENT_URL.replace(/\/$/, '') : '';
-    
-    // Check if origin matches (handles trailing slash differences)
-    if (normalizedOrigin === allowedOrigin) {
-      callback(null, true);
+    if (origin) {
+      console.log("[CORS] Request from origin:", origin);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      console.log("[CORS] Request with no origin (e.g. mobile app, Postman)");
     }
+    callback(null, true);
   },
   credentials: true,
+  optionsSuccessStatus: 200,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept"],
 };
 
 app.use(cors(corsOptions));

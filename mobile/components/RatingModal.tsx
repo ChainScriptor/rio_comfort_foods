@@ -1,3 +1,4 @@
+import { getOptimizedUrl } from "@/lib/utils";
 import { Order } from "@/types";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
@@ -65,8 +66,11 @@ const RatingModal = ({
                     >
                       <View className="flex-row items-center mb-3">
                         <Image
-                          source={item.image}
+                          source={getOptimizedUrl(item.image) ?? item.image}
                           style={{ height: 64, width: 64, borderRadius: 8 }}
+                          contentFit="cover"
+                          cachePolicy="disk"
+                          transition={300}
                         />
                         <View className="flex-1 ml-3">
                           <Text
