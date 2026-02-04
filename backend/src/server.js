@@ -83,18 +83,18 @@ app.get("/api/health", (req, res) => {
   res.status(200).json({ message: "Success" });
 });
 
-// Production: serve static files and catch-all for expo-router (path-to-regexp compatible)
+// Production: serve static files and catch-all for expo-router (regex bypasses path-to-regexp)
 if (ENV.NODE_ENV === "production") {
-  const adminPath = path.resolve(process.cwd(), "..", "admin", "dist");
-  const pwaPath = path.resolve(process.cwd(), "..", "mobile", "dist");
+  const adminDistPath = path.resolve(process.cwd(), "../admin/dist");
+  const pwaDistPath = path.resolve(process.cwd(), "../mobile/dist");
 
-  app.use(express.static(adminPath));
-  app.use(express.static(pwaPath));
+  app.use(express.static(adminDistPath));
+  app.use(express.static(pwaDistPath));
 
-  // Catch-all: send PWA index.html for any non-API route (expo-router client-side routing)
-  app.get("(.*)", (req, res, next) => {
+  // Catch-all: send PWA index.html for non-API routes only (regex literal avoids path-to-regexp error)
+  app.get(/.*/, (req, res, next) => {
     if (req.path.startsWith("/api")) return next();
-    res.sendFile(path.join(pwaPath, "index.html"));
+    res.sendFile(path.join(pwaDistPath, "index.html"));
   });
 }
 
