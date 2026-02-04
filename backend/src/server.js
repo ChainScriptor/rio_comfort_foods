@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import { fileURLToPath } from "url";
 import { clerkMiddleware } from "@clerk/express";
 import { serve } from "inngest/express";
 import cors from "cors";
@@ -83,15 +84,18 @@ app.get("/api/health", (req, res) => {
   res.status(200).json({ message: "Success" });
 });
 
-// Production: serve static files and catch-all for expo-router (regex bypasses path-to-regexp)
+// Production: serve static files and catch-all for expo-router
+// Paths from server.js location (backend/src) so they work regardless of process.cwd() on Sevalla
 if (ENV.NODE_ENV === "production") {
-  const adminDistPath = path.resolve(process.cwd(), "../admin/dist");
-  const pwaDistPath = path.resolve(process.cwd(), "../mobile/dist");
+  const __filename = fileURLToPath(import.meta.url);
+  const __serverDir = path.dirname(__filename);
+  const adminDistPath = path.resolve(__serverDir, "..", "..", "admin", "dist");
+  const pwaDistPath = path.resolve(__serverDir, "..", "..", "mobile", "dist");
 
   app.use(express.static(adminDistPath));
   app.use(express.static(pwaDistPath));
 
-  // Catch-all: send PWA index.html for non-API routes only (regex literal avoids path-to-regexp error)
+  // Catch-all: send PWA index.html for non-API routes (regex literal avoids path-to-regexp error)
   app.get(/.*/, (req, res, next) => {
     if (req.path.startsWith("/api")) return next();
     res.sendFile(path.join(pwaDistPath, "index.html"));
