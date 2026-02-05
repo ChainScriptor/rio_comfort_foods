@@ -83,19 +83,23 @@ app.use("/api/reviews", reviewRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/invite", inviteRoutes);
+
+// Production: root redirect πριν από authRoutes ώστε GET / → /admin
+if (ENV.NODE_ENV === "production") {
+  app.get("/", (req, res) => res.redirect("/admin"));
+}
 app.use("/", authRoutes);
 
 app.get("/api/health", (req, res) => {
   res.status(200).json({ message: "Success" });
 });
 
-// Production: Admin Dashboard at /admin only (PWA on separate service)
+// Production: Admin static + SPA fallback at /admin
 if (ENV.NODE_ENV === "production") {
   const adminDistPath = path.resolve(process.cwd(), "../admin/dist");
 
   app.use("/admin", express.static(adminDistPath));
 
-  // Admin SPA: send index.html for /admin and /admin/* (regex avoids path-to-regexp error)
   app.get(/^\/admin(\/.*)?$/, (req, res) => {
     res.sendFile(path.resolve(process.cwd(), "../admin/dist/index.html"));
   });

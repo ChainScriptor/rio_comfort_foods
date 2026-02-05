@@ -34,7 +34,7 @@ Sentry.init({
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/admin">
       <ClerkProvider publishableKey={PUBLISHABLE_KEY} localization={elGR}>
         <QueryClientProvider client={queryClient}>
           <App />
