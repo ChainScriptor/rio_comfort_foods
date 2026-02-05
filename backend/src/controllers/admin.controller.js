@@ -62,12 +62,13 @@ export async function createProduct(req, res) {
   }
 }
 
-export async function getAllProducts(_, res) {
+export async function getAllProducts(req, res) {
   try {
-    // -1 means in desc order: most recent products first
+    console.log("[Admin] GET /api/admin/products hit", { auth: !!req.auth?.userId });
     const products = await Product.find().sort({ createdAt: -1 });
     res.status(200).json(products);
   } catch (error) {
+    console.error("[Admin] getAllProducts error:", error?.message);
     res.status(500).json({ message: "Internal server error" });
   }
 }
@@ -307,6 +308,7 @@ export async function deleteCustomer(req, res) {
 
 export async function getDashboardStats(req, res) {
   try {
+    console.log("[Admin] GET /api/admin/stats hit", { auth: !!req.auth?.userId, query: req.query });
     const { period = "all", month, year } = req.query; // period: 'week', 'month', 'year', 'all', 'custom'
     
     // Calculate date range based on period

@@ -47,7 +47,7 @@ app.use((req, res, next) => {
 
 app.use(clerkMiddleware()); // adds auth object under the req => req.auth
 
-// CORS: PWA static site, admin, API origin, and no-origin (native app, Postman)
+// CORS: credentials + headers for Admin (Authorization, cookies)
 const allowedOrigins = [
   "https://riocomfort-app.sevalla.app",
   "https://riocomfortfoodsapi-yelm3.sevalla.app",
@@ -56,11 +56,8 @@ const allowedOrigins = [
 ];
 const corsOptions = {
   origin: (origin, callback) => {
-    if (origin) {
-      console.log("[CORS] Request from origin:", origin);
-    } else {
-      console.log("[CORS] Request with no origin (e.g. mobile app, Postman)");
-    }
+    if (origin) console.log("[CORS] Request from origin:", origin);
+    else console.log("[CORS] Request with no origin (e.g. mobile app, Postman)");
     callback(null, true);
   },
   credentials: true,
