@@ -8,7 +8,8 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "export:web": "expo export --platform web && node scripts/copy-vector-icon-fonts.js"
   },
   "dependencies": {
     "@clerk/backend": "^2.29.3",
