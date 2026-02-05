@@ -13,6 +13,8 @@ export const ENV = {
   CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
   INNGEST_SIGNING_KEY: process.env.INNGEST_SIGNING_KEY,
   ADMIN_EMAIL: process.env.ADMIN_EMAIL,
+  /** Hostname of the admin dashboard (e.g. riocomfortfoods-oksxz.sevalla.app). When request host matches, server sends admin SPA index.html instead of PWA. */
+  ADMIN_APP_HOST: process.env.ADMIN_APP_HOST || "",
   CLIENT_URL: process.env.CLIENT_URL,
   // Comma-separated list of extra origins (e.g. "http://localhost:8081" for Expo web)
   ALLOWED_ORIGINS: process.env.ALLOWED_ORIGINS || "",

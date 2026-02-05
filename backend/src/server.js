@@ -95,10 +95,15 @@ if (ENV.NODE_ENV === "production") {
   app.use(express.static(adminDistPath));
   app.use(express.static(pwaDistPath));
 
-  // Catch-all: send PWA index.html for non-API routes (regex literal avoids path-to-regexp error)
+  // Catch-all: send admin or PWA index.html by host (regex literal avoids path-to-regexp error)
   app.get(/.*/, (req, res, next) => {
     if (req.path.startsWith("/api")) return next();
-    res.sendFile(path.join(pwaDistPath, "index.html"));
+    const host = (req.get("host") || req.hostname || "").split(":")[0];
+    const isAdminHost = ENV.ADMIN_APP_HOST && host === ENV.ADMIN_APP_HOST;
+    const indexPath = isAdminHost
+      ? path.join(adminDistPath, "index.html")
+      : path.join(pwaDistPath, "index.html");
+    res.sendFile(indexPath);
   });
 }
 
