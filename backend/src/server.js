@@ -1,6 +1,5 @@
 import express from "express";
 import path from "path";
-import { fileURLToPath } from "url";
 import { clerkMiddleware } from "@clerk/express";
 import { serve } from "inngest/express";
 import cors from "cors";
@@ -90,18 +89,15 @@ app.get("/api/health", (req, res) => {
   res.status(200).json({ message: "Success" });
 });
 
-// Production: serve Admin Dashboard at /admin only (PWA is deployed as separate static site)
+// Production: Admin Dashboard at /admin only (PWA on separate service)
 if (ENV.NODE_ENV === "production") {
-  const __filename = fileURLToPath(import.meta.url);
-  const __serverDir = path.dirname(__filename);
-  const adminDistPath = path.resolve(__serverDir, "..", "..", "admin", "dist");
+  const adminDistPath = path.resolve(process.cwd(), "../admin/dist");
 
   app.use("/admin", express.static(adminDistPath));
 
-  // Catch-all for /admin/*: send admin SPA index.html (regex avoids path-to-regexp error)
+  // Admin SPA: send index.html for /admin and /admin/* (regex avoids path-to-regexp error)
   app.get(/^\/admin(\/.*)?$/, (req, res) => {
-    console.log(`[SPA] ${req.method} ${req.path} -> admin index.html`);
-    res.sendFile(path.join(adminDistPath, "index.html"));
+    res.sendFile(path.resolve(process.cwd(), "../admin/dist/index.html"));
   });
 }
 
