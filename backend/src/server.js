@@ -57,7 +57,7 @@ const allowedOrigins = [
 const corsOptions = {
   origin: (origin, callback) => {
     if (origin) console.log("[CORS] Request from origin:", origin);
-    else console.log("[CORS] Request with no origin (e.g. mobile app, Postman)");
+    else console.log("[CORS] Request with no origin (same-origin or mobile/Postman)");
     callback(null, true);
   },
   credentials: true,
@@ -81,9 +81,8 @@ app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/invite", inviteRoutes);
 
-// Production: redirects πριν από authRoutes (ορφανά paths → admin)
+// Production: μόνο redirect /dashboard → /admin/dashboard (το / θα σερβίρει PWA)
 if (ENV.NODE_ENV === "production") {
-  app.get("/", (req, res) => res.redirect("/admin"));
   app.get("/dashboard", (req, res) => res.redirect("/admin/dashboard"));
 }
 app.use("/", authRoutes);
@@ -92,16 +91,21 @@ app.get("/api/health", (req, res) => {
   res.status(200).json({ message: "Success" });
 });
 
-// Production: Admin static + SPA catch-all (μετά τα API routes)
+// Production: Admin + PWA static, μετά master router (API / admin / PWA)
 if (ENV.NODE_ENV === "production") {
   const adminDistPath = path.resolve(process.cwd(), "../admin/dist");
+  const pwaDistPath = path.resolve(process.cwd(), "../mobile/dist");
 
   app.use("/admin", express.static(adminDistPath));
+  app.use(express.static(pwaDistPath));
 
-  // Catch-all μόνο για /admin*: ποτέ μην στέλνουμε index.html για /api
-  app.get(/^\/admin(\/.*)?$/, (req, res, next) => {
+  // Master router: /api → next, /admin → admin index, όλα τα άλλα (συμπ. /) → PWA index
+  app.get(/.*/, (req, res, next) => {
     if (req.path.startsWith("/api")) return next();
-    res.sendFile(path.resolve(process.cwd(), "../admin/dist/index.html"));
+    if (req.path.startsWith("/admin")) {
+      return res.sendFile(path.join(adminDistPath, "index.html"));
+    }
+    res.sendFile(path.join(pwaDistPath, "index.html"));
   });
 }
 
