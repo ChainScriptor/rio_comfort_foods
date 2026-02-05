@@ -48,7 +48,13 @@ app.use((req, res, next) => {
 
 app.use(clerkMiddleware()); // adds auth object under the req => req.auth
 
-// CORS: permissive so Expo (localhost:8081) and mobile (no origin) work; log origin for debugging
+// CORS: PWA static site, admin, API origin, and no-origin (native app, Postman)
+const allowedOrigins = [
+  "https://riocomfort-app.sevalla.app",
+  "https://riocomfortfoodsapi-yelm3.sevalla.app",
+  "https://riocomfortfoods-oksxz.sevalla.app",
+  ...(ENV.ALLOWED_ORIGINS ? ENV.ALLOWED_ORIGINS.split(",").map((o) => o.trim()).filter(Boolean) : []),
+];
 const corsOptions = {
   origin: (origin, callback) => {
     if (origin) {
@@ -84,33 +90,18 @@ app.get("/api/health", (req, res) => {
   res.status(200).json({ message: "Success" });
 });
 
-// Production: serve static files and catch-all (path-based: /admin vs PWA)
-// Paths from server.js location (backend/src) so they work regardless of process.cwd() on Sevalla
+// Production: serve Admin Dashboard at /admin only (PWA is deployed as separate static site)
 if (ENV.NODE_ENV === "production") {
   const __filename = fileURLToPath(import.meta.url);
   const __serverDir = path.dirname(__filename);
   const adminDistPath = path.resolve(__serverDir, "..", "..", "admin", "dist");
-  const pwaDistPath = path.resolve(__serverDir, "..", "..", "mobile", "dist");
 
-  // 1. Static Admin under /admin (must be before PWA static)
   app.use("/admin", express.static(adminDistPath));
 
-  // 2. Static PWA at root
-  app.use(express.static(pwaDistPath));
-
-  // 3. Catch-all: send correct index.html by path (regex avoids path-to-regexp error)
-  app.get(/.*/, (req, res, next) => {
-    if (req.path.startsWith("/api")) return next();
-
-    let indexPath;
-    if (req.path.startsWith("/admin")) {
-      indexPath = path.join(adminDistPath, "index.html");
-      console.log(`[SPA] ${req.method} ${req.path} -> admin index.html`);
-    } else {
-      indexPath = path.join(pwaDistPath, "index.html");
-      console.log(`[SPA] ${req.method} ${req.path} -> PWA index.html`);
-    }
-    res.sendFile(indexPath);
+  // Catch-all for /admin/*: send admin SPA index.html (regex avoids path-to-regexp error)
+  app.get(/^\/admin(\/.*)?$/, (req, res) => {
+    console.log(`[SPA] ${req.method} ${req.path} -> admin index.html`);
+    res.sendFile(path.join(adminDistPath, "index.html"));
   });
 }
 

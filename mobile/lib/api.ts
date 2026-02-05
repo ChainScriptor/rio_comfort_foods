@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import * as SecureStore from "expo-secure-store";
 
-// API base URL: use EXPO_PUBLIC_API_URL in production (e.g. Sevalla), else localhost for dev
+// Live backend API on Sevalla; override with EXPO_PUBLIC_API_URL if needed (e.g. local dev)
 const API_URL =
   process.env.EXPO_PUBLIC_API_URL?.replace(/\/$/, "") ||
   "https://riocomfortfoodsapi-yelm3.sevalla.app";
