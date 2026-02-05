@@ -10,11 +10,13 @@ import { elGR } from "@clerk/localizations";
 import { BrowserRouter } from "react-router";
 import * as Sentry from "@sentry/react";
 
-// Import your Publishable Key
+// Clerk Publishable Key (set VITE_CLERK_PUBLISHABLE_KEY in admin/.env before build)
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
 if (!PUBLISHABLE_KEY) {
-  throw new Error("Missing Publishable Key");
+  throw new Error(
+    "Missing Publishable Key: set VITE_CLERK_PUBLISHABLE_KEY in admin/.env (see .env.example) and rebuild."
+  );
 }
 
 const queryClient = new QueryClient();
