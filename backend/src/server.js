@@ -84,7 +84,7 @@ app.get("/api/health", (req, res) => {
   res.status(200).json({ message: "Success" });
 });
 
-// Production: serve static files and catch-all for expo-router
+// Production: serve static files and catch-all (path-based: /admin vs PWA)
 // Paths from server.js location (backend/src) so they work regardless of process.cwd() on Sevalla
 if (ENV.NODE_ENV === "production") {
   const __filename = fileURLToPath(import.meta.url);
@@ -92,17 +92,24 @@ if (ENV.NODE_ENV === "production") {
   const adminDistPath = path.resolve(__serverDir, "..", "..", "admin", "dist");
   const pwaDistPath = path.resolve(__serverDir, "..", "..", "mobile", "dist");
 
-  app.use(express.static(adminDistPath));
+  // 1. Static Admin under /admin (must be before PWA static)
+  app.use("/admin", express.static(adminDistPath));
+
+  // 2. Static PWA at root
   app.use(express.static(pwaDistPath));
 
-  // Catch-all: send admin or PWA index.html by host (regex literal avoids path-to-regexp error)
+  // 3. Catch-all: send correct index.html by path (regex avoids path-to-regexp error)
   app.get(/.*/, (req, res, next) => {
     if (req.path.startsWith("/api")) return next();
-    const host = (req.get("host") || req.hostname || "").split(":")[0];
-    const isAdminHost = ENV.ADMIN_APP_HOST && host === ENV.ADMIN_APP_HOST;
-    const indexPath = isAdminHost
-      ? path.join(adminDistPath, "index.html")
-      : path.join(pwaDistPath, "index.html");
+
+    let indexPath;
+    if (req.path.startsWith("/admin")) {
+      indexPath = path.join(adminDistPath, "index.html");
+      console.log(`[SPA] ${req.method} ${req.path} -> admin index.html`);
+    } else {
+      indexPath = path.join(pwaDistPath, "index.html");
+      console.log(`[SPA] ${req.method} ${req.path} -> PWA index.html`);
+    }
     res.sendFile(indexPath);
   });
 }
