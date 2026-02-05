@@ -92,13 +92,15 @@ app.get("/api/health", (req, res) => {
   res.status(200).json({ message: "Success" });
 });
 
-// Production: Admin static + SPA fallback at /admin
+// Production: Admin static + SPA catch-all (μετά τα API routes)
 if (ENV.NODE_ENV === "production") {
   const adminDistPath = path.resolve(process.cwd(), "../admin/dist");
 
   app.use("/admin", express.static(adminDistPath));
 
-  app.get(/^\/admin(\/.*)?$/, (req, res) => {
+  // Catch-all μόνο για /admin*: ποτέ μην στέλνουμε index.html για /api
+  app.get(/^\/admin(\/.*)?$/, (req, res, next) => {
+    if (req.path.startsWith("/api")) return next();
     res.sendFile(path.resolve(process.cwd(), "../admin/dist/index.html"));
   });
 }
