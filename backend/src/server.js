@@ -96,12 +96,28 @@ if (ENV.NODE_ENV === "production") {
   const adminDistPath = path.resolve(process.cwd(), "../admin/dist");
   const pwaDistPath = path.resolve(process.cwd(), "../mobile/dist");
 
-  app.use("/admin", express.static(adminDistPath));
-  app.use(express.static(pwaDistPath));
+  const staticFileExtensions = [".js", ".css", ".ttf", ".woff", ".woff2", ".otf", ".eot", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".ico", ".webp", ".json", ".map", ".webmanifest"];
+  const isStaticFile = (urlPath) => {
+    const lower = urlPath.toLowerCase().split("?")[0];
+    return staticFileExtensions.some((ext) => lower.endsWith(ext));
+  };
 
-  // Master router: /api → next, /admin → admin index, όλα τα άλλα (συμπ. /) → PWA index
+  app.use("/admin", express.static(adminDistPath));
+
+  app.use(
+    express.static(pwaDistPath, {
+      setHeaders: (res, filePath) => {
+        const ext = path.extname(filePath).toLowerCase();
+        const fontTypes = { ".ttf": "font/ttf", ".woff": "font/woff", ".woff2": "font/woff2", ".otf": "font/otf", ".eot": "application/vnd.ms-fontobject" };
+        if (fontTypes[ext]) res.setHeader("Content-Type", fontTypes[ext]);
+      },
+    })
+  );
+
+  // Master router: αν το request αφορά αρχείο (τελεία στο path: .js, .css, .ttf, .webmanifest κ.λπ.) → next() (static/404), όχι index.html
   app.get(/.*/, (req, res, next) => {
     if (req.path.startsWith("/api")) return next();
+    if (isStaticFile(req.path)) return next();
     if (req.path.startsWith("/admin")) {
       return res.sendFile(path.join(adminDistPath, "index.html"));
     }
