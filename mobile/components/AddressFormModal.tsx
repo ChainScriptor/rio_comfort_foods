@@ -12,7 +12,10 @@ import {
   Platform,
 } from "react-native";
 import SafeScreen from "./SafeScreen";
-import { Ionicons } from "@expo/vector-icons";
+import CloseIcon from "@/assets/icons/CloseIcon.svg";
+import ChevronDownIcon from "@/assets/icons/ChevronDownIcon.svg";
+import ChevronUpIcon from "@/assets/icons/ChevronUpIcon.svg";
+import PlusCircleIcon from "@/assets/icons/PlusCircleIcon.svg";
 
 interface AddressFormData {
   storeLocation: string;
@@ -69,7 +72,7 @@ const AddressFormModal = ({
               {isEditing ? "Επεξεργασία Διεύθυνσης" : "Προσθήκη Νέας Διεύθυνσης"}
             </Text>
             <TouchableOpacity onPress={onClose}>
-              <Ionicons name="close" size={28} color="#FFFFFF" />
+              <CloseIcon width={28} height={28} stroke="#FFFFFF" color="#FFFFFF" />
             </TouchableOpacity>
           </View>
 
@@ -90,11 +93,11 @@ const AddressFormModal = ({
                   <Text className={`text-base ${addressForm.storeLocation ? "text-text-primary" : "text-text-secondary"}`}>
                     {addressForm.storeLocation || "Επιλέξτε περιοχή..."}
                   </Text>
-                  <Ionicons
-                    name={showLocationDropdown ? "chevron-up" : "chevron-down"}
-                    size={20}
-                    color="#FFFFFF"
-                  />
+                  {showLocationDropdown ? (
+                    <ChevronUpIcon width={20} height={20} stroke="#FFFFFF" color="#FFFFFF" />
+                  ) : (
+                    <ChevronDownIcon width={20} height={20} stroke="#FFFFFF" color="#FFFFFF" />
+                  )}
                 </TouchableOpacity>
                 {showLocationDropdown && (
                   <View className="bg-surface rounded-2xl mt-2 border border-surface-variant">

@@ -1,6 +1,9 @@
 import SafeScreen from "@/components/SafeScreen";
 import { useAuth, useUser } from "@clerk/clerk-expo";
-import { Ionicons } from "@expo/vector-icons";
+import ArrowBackIcon from "@/assets/icons/ArrowBackIcon.svg";
+import PersonIcon from "@/assets/icons/PersonIcon.svg";
+import CameraIcon from "@/assets/icons/CameraIcon.svg";
+import CheckmarkCircleIcon from "@/assets/icons/CheckmarkCircleIcon.svg";
 import { router } from "expo-router";
 import { useState, useEffect } from "react";
 import {
@@ -188,7 +191,7 @@ export default function EditProfileScreen() {
       {/* HEADER */}
       <View className="px-6 pb-5 border-b border-surface flex-row items-center">
         <TouchableOpacity onPress={() => router.back()} className="mr-4">
-          <Ionicons name="arrow-back" size={28} color="#fff" />
+          <ArrowBackIcon width={28} height={28} stroke="#fff" color="#fff" />
         </TouchableOpacity>
         <Text className="text-text-primary text-2xl font-bold">Επεξεργασία Προφίλ</Text>
       </View>
@@ -216,11 +219,11 @@ export default function EditProfileScreen() {
                 />
               ) : (
                 <View className="bg-surface rounded-full w-30 h-30 items-center justify-center">
-                  <Ionicons name="person" size={60} color="#666" />
+                  <PersonIcon width={60} height={60} stroke="#666" color="#666" />
                 </View>
               )}
               <View className="absolute bottom-0 right-0 bg-primary rounded-full w-10 h-10 items-center justify-center border-4 border-background">
-                <Ionicons name="camera" size={20} color="#121212" />
+                <CameraIcon width={20} height={20} stroke="#121212" color="#121212" />
               </View>
             </TouchableOpacity>
             <Text className="text-text-secondary text-sm mt-2">
@@ -276,7 +279,7 @@ export default function EditProfileScreen() {
               <ActivityIndicator size="small" color="#121212" />
             ) : (
               <>
-                <Ionicons name="checkmark-circle" size={24} color="#121212" />
+                <CheckmarkCircleIcon width={24} height={24} stroke="#121212" color="#121212" />
                 <Text className="text-background font-bold text-lg ml-2">Αποθήκευση</Text>
               </>
             )}

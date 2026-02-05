@@ -1,5 +1,12 @@
 import SafeScreen from "@/components/SafeScreen";
-import { Ionicons } from "@expo/vector-icons";
+import ArrowBackIcon from "@/assets/icons/ArrowBackIcon.svg";
+import LanguageIcon from "@/assets/icons/LanguageIcon.svg";
+import InfoCircleIcon from "@/assets/icons/InfoCircleIcon.svg";
+import DocumentTextIcon from "@/assets/icons/DocumentTextIcon.svg";
+import ServerIcon from "@/assets/icons/ServerIcon.svg";
+import TrashIcon from "@/assets/icons/TrashIcon.svg";
+import MailIcon from "@/assets/icons/MailIcon.svg";
+import RefreshIcon from "@/assets/icons/RefreshIcon.svg";
 import { router } from "expo-router";
 import { useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View, Linking } from "react-native";
@@ -98,7 +105,7 @@ export default function PrivacyPolicyScreen() {
       <View className="px-6 pb-5 border-b border-surface flex-row items-center justify-between">
         <View className="flex-row items-center flex-1">
           <TouchableOpacity onPress={() => router.back()} className="mr-4">
-            <Ionicons name="arrow-back" size={28} color="#fff" />
+            <ArrowBackIcon width={28} height={28} stroke="#fff" color="#fff" />
           </TouchableOpacity>
           <Text className="text-text-primary text-2xl font-bold">{currentContent.title}</Text>
         </View>
@@ -108,7 +115,7 @@ export default function PrivacyPolicyScreen() {
           onPress={() => setLanguage(language === "el" ? "en" : "el")}
           className="bg-surface rounded-full px-4 py-2 flex-row items-center"
         >
-          <Ionicons name="language-outline" size={18} color="#FFD700" />
+          <LanguageIcon width={18} height={18} stroke="#FFD700" color="#FFD700" />
           <Text className="text-primary font-semibold ml-2">{language === "el" ? "EN" : "EL"}</Text>
         </TouchableOpacity>
       </View>
@@ -123,7 +130,7 @@ export default function PrivacyPolicyScreen() {
           <View className="mb-6">
             <View className="flex-row items-center mb-3">
               <View className="bg-primary/20 rounded-full w-10 h-10 items-center justify-center mr-3">
-                <Ionicons name="information-circle" size={20} color="#FFD700" />
+                <InfoCircleIcon width={20} height={20} stroke="#FFD700" color="#FFD700" />
               </View>
               <Text className="text-text-primary text-xl font-bold">{currentContent.purpose.title}</Text>
             </View>
@@ -136,7 +143,7 @@ export default function PrivacyPolicyScreen() {
           <View className="mb-6">
             <View className="flex-row items-center mb-3">
               <View className="bg-primary/20 rounded-full w-10 h-10 items-center justify-center mr-3">
-                <Ionicons name="document-text" size={20} color="#FFD700" />
+                <DocumentTextIcon width={20} height={20} stroke="#FFD700" color="#FFD700" />
               </View>
               <Text className="text-text-primary text-xl font-bold">{currentContent.data.title}</Text>
             </View>
@@ -154,7 +161,7 @@ export default function PrivacyPolicyScreen() {
           <View className="mb-6">
             <View className="flex-row items-center mb-3">
               <View className="bg-primary/20 rounded-full w-10 h-10 items-center justify-center mr-3">
-                <Ionicons name="server" size={20} color="#FFD700" />
+                <ServerIcon width={20} height={20} stroke="#FFD700" color="#FFD700" />
               </View>
               <Text className="text-text-primary text-xl font-bold">{currentContent.services.title}</Text>
             </View>
@@ -171,7 +178,7 @@ export default function PrivacyPolicyScreen() {
           <View className="mb-6">
             <View className="flex-row items-center mb-3">
               <View className="bg-primary/20 rounded-full w-10 h-10 items-center justify-center mr-3">
-                <Ionicons name="trash" size={20} color="#FFD700" />
+                <TrashIcon width={20} height={20} stroke="#FFD700" color="#FFD700" />
               </View>
               <Text className="text-text-primary text-xl font-bold">{currentContent.deletion.title}</Text>
             </View>
@@ -184,7 +191,7 @@ export default function PrivacyPolicyScreen() {
                 className="bg-primary/20 rounded-xl p-3 mb-3"
               >
                 <View className="flex-row items-center">
-                  <Ionicons name="mail" size={20} color="#FFD700" />
+                  <MailIcon width={20} height={20} stroke="#FFD700" color="#FFD700" />
                   <Text className="text-primary font-semibold ml-2">{currentContent.deletion.email}</Text>
                 </View>
               </TouchableOpacity>
@@ -196,7 +203,7 @@ export default function PrivacyPolicyScreen() {
           <View className="mb-6">
             <View className="flex-row items-center mb-3">
               <View className="bg-primary/20 rounded-full w-10 h-10 items-center justify-center mr-3">
-                <Ionicons name="refresh" size={20} color="#FFD700" />
+                <RefreshIcon width={20} height={20} stroke="#FFD700" color="#FFD700" />
               </View>
               <Text className="text-text-primary text-xl font-bold">{currentContent.updates.title}</Text>
             </View>
@@ -209,7 +216,7 @@ export default function PrivacyPolicyScreen() {
           <View className="mb-6">
             <View className="flex-row items-center mb-3">
               <View className="bg-primary/20 rounded-full w-10 h-10 items-center justify-center mr-3">
-                <Ionicons name="mail-outline" size={20} color="#FFD700" />
+                <MailIcon width={20} height={20} stroke="#FFD700" color="#FFD700" />
               </View>
               <Text className="text-text-primary text-xl font-bold">{currentContent.contact.title}</Text>
             </View>
@@ -222,7 +229,7 @@ export default function PrivacyPolicyScreen() {
                 className="bg-primary/20 rounded-xl p-3"
               >
                 <View className="flex-row items-center">
-                  <Ionicons name="mail" size={20} color="#FFD700" />
+                  <MailIcon width={20} height={20} stroke="#FFD700" color="#FFD700" />
                   <Text className="text-primary font-semibold ml-2">{currentContent.deletion.email}</Text>
                 </View>
               </TouchableOpacity>

@@ -5,7 +5,9 @@ import useCategories from "@/hooks/useCategories";
 import useBanners from "@/hooks/useBanners";
 import { getOptimizedUrl } from "@/lib/utils";
 
-import { Ionicons } from "@expo/vector-icons";
+import SearchIcon from "@/assets/icons/SearchIcon.svg";
+import OptionsIcon from "@/assets/icons/OptionsIcon.svg";
+import { Icon } from "@/components/Icon";
 import { Image } from "expo-image";
 import { useMemo, useState } from "react";
 import { View, Text, ScrollView, TouchableOpacity, TextInput, ActivityIndicator, Linking } from "react-native";
@@ -71,13 +73,13 @@ const ShopScreen = () => {
             </View>
 
             <TouchableOpacity className="bg-surface/50 p-3 rounded-full" activeOpacity={0.7}>
-              <Ionicons name="options-outline" size={22} color={"#fff"} />
+              <OptionsIcon width={22} height={22} stroke="#fff" color="#fff" />
             </TouchableOpacity>
           </View>
 
           {/* SEARCH BAR */}
           <View className="bg-surface flex-row items-center px-5 py-4 rounded-2xl">
-            <Ionicons color={"#666"} size={22} name="search" />
+            <SearchIcon width={22} height={22} stroke="#666" color="#666" />
             <TextInput
               placeholder="Αναζήτηση προϊόντων"
               placeholderTextColor={"#666"}
@@ -181,8 +183,8 @@ const ShopScreen = () => {
                         )}
                       </>
                     ) : isAllOption && category.icon ? (
-                      <Ionicons
-                        name={category.icon}
+                      <Icon
+                        name={category.icon as "grid-outline"}
                         size={36}
                         color={isSelected ? "#121212" : "#fff"}
                       />

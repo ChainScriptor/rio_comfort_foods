@@ -1,6 +1,7 @@
 import { getOptimizedUrl } from "@/lib/utils";
 import { Order } from "@/types";
-import { Ionicons } from "@expo/vector-icons";
+import StarIcon from "@/assets/icons/StarIcon.svg";
+import StarOutlineIcon from "@/assets/icons/StarOutlineIcon.svg";
 import { Image } from "expo-image";
 import {
   View,
@@ -40,7 +41,7 @@ const RatingModal = ({
             <View className="bg-surface rounded-3xl p-6 w-full max-w-md max-h-[80%]">
               <View className="items-center mb-4">
                 <View className="bg-primary/20 rounded-full w-16 h-16 items-center justify-center mb-3">
-                  <Ionicons name="star" size={32} color="#FFD700" />
+                  <StarIcon width={32} height={32} color="#FFD700" fill="#FFD700" />
                 </View>
                 <Text className="text-text-primary text-2xl font-bold mb-1">
                   Αξιολογήστε τα Προϊόντα σας
@@ -93,11 +94,11 @@ const RatingModal = ({
                             activeOpacity={0.7}
                             className="mx-1.5"
                           >
-                            <Ionicons
-                              name={star <= currentRating ? "star" : "star-outline"}
-                              size={32}
-                              color={star <= currentRating ? "#FFD700" : "#666"}
-                            />
+                            {star <= currentRating ? (
+                              <StarIcon width={32} height={32} color="#FFD700" fill="#FFD700" />
+                            ) : (
+                              <StarOutlineIcon width={32} height={32} stroke="#666" color="#666" />
+                            )}
                           </TouchableOpacity>
                         ))}
                       </View>

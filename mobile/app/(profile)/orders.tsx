@@ -5,7 +5,17 @@ import { useReviews } from "@/hooks/useReviews";
 import useCart from "@/hooks/useCart";
 import { capitalizeFirstLetter, formatDate, getOptimizedUrl, getStatusColor } from "@/lib/utils";
 import { Order, OrderItem } from "@/types";
-import { Ionicons } from "@expo/vector-icons";
+import ArrowBackIcon from "@/assets/icons/ArrowBackIcon.svg";
+import RefreshIcon from "@/assets/icons/RefreshIcon.svg";
+import CheckmarkCircleIcon from "@/assets/icons/CheckmarkCircleIcon.svg";
+import StarIcon from "@/assets/icons/StarIcon.svg";
+import CloseIcon from "@/assets/icons/CloseIcon.svg";
+import CartIcon from "@/assets/icons/CartIcon.svg";
+import MinusIcon from "@/assets/icons/MinusIcon.svg";
+import PlusIcon from "@/assets/icons/PlusIcon.svg";
+import TrashIcon from "@/assets/icons/TrashIcon.svg";
+import AlertCircleIcon from "@/assets/icons/AlertCircleIcon.svg";
+import ReceiptIcon from "@/assets/icons/ReceiptIcon.svg";
 import { Image } from "expo-image";
 import { router } from "expo-router";
 import { useState } from "react";
@@ -198,7 +208,7 @@ function OrdersScreen() {
       {/* Header */}
       <View className="px-6 pb-5 border-b border-surface flex-row items-center">
         <TouchableOpacity onPress={() => router.back()} className="mr-4">
-          <Ionicons name="arrow-back" size={28} color="#FFFFFF" />
+          <ArrowBackIcon width={28} height={28} stroke="#FFFFFF" color="#FFFFFF" />
         </TouchableOpacity>
         <Text className="text-text-primary text-2xl font-bold">Οι Παραγγελίες Μου</Text>
       </View>
@@ -283,7 +293,7 @@ function OrdersScreen() {
                         activeOpacity={0.7}
                         onPress={() => handleReorder(order)}
                       >
-                        <Ionicons name="refresh" size={18} color="#121212" />
+                        <RefreshIcon width={18} height={18} stroke="#121212" color="#121212" />
                         <Text className="text-background font-bold text-sm ml-2">
                           Επαναποστολή
                         </Text>
@@ -291,7 +301,7 @@ function OrdersScreen() {
 
                       {order.hasReviewed ? (
                         <View className="bg-primary/20 px-4 py-3 rounded-xl flex-row items-center">
-                          <Ionicons name="checkmark-circle" size={18} color="#FFD700" />
+                          <CheckmarkCircleIcon width={18} height={18} stroke="#FFD700" color="#FFD700" fill="#FFD700" />
                           <Text className="text-primary font-bold text-sm ml-2">Αξιολογημένο</Text>
                         </View>
                       ) : (
@@ -306,7 +316,7 @@ function OrdersScreen() {
                           {isCreatingReview ? (
                             <ActivityIndicator size="small" color="#FFD700" />
                           ) : (
-                            <Ionicons name="star" size={18} color="#FFD700" />
+                            <StarIcon width={18} height={18} color="#FFD700" fill="#FFD700" />
                           )}
                           <Text className="text-primary font-bold text-sm ml-2">
                             {isCreatingReview ? "Υποβολή..." : "Αξιολόγηση"}
@@ -349,7 +359,7 @@ function OrdersScreen() {
                 onPress={() => setShowReorderModal(false)}
                 className="p-2"
               >
-                <Ionicons name="close" size={24} color="#FFFFFF" />
+                <CloseIcon width={24} height={24} stroke="#FFFFFF" color="#FFFFFF" />
               </TouchableOpacity>
             </View>
 
@@ -361,7 +371,7 @@ function OrdersScreen() {
               <View className="px-6 py-4">
                 {reorderItems.length === 0 ? (
                   <View className="py-20 items-center">
-                    <Ionicons name="cart-outline" size={64} color="#666" />
+                    <CartIcon width={64} height={64} stroke="#666" color="#666" />
                     <Text className="text-text-primary font-semibold text-lg mt-4">
                       Δεν υπάρχουν προϊόντα
                     </Text>
@@ -401,7 +411,7 @@ function OrdersScreen() {
                                 onPress={() => handleUpdateQuantity(index, -1)}
                                 activeOpacity={0.7}
                               >
-                                <Ionicons name="remove" size={16} color="#FFFFFF" />
+                                <MinusIcon width={16} height={16} stroke="#FFFFFF" color="#FFFFFF" />
                               </TouchableOpacity>
 
                               <Text className="text-text-primary font-bold text-lg mx-4 min-w-[32px] text-center">
@@ -413,7 +423,7 @@ function OrdersScreen() {
                                 onPress={() => handleUpdateQuantity(index, 1)}
                                 activeOpacity={0.7}
                               >
-                                <Ionicons name="add" size={16} color="#121212" />
+                                <PlusIcon width={16} height={16} stroke="#121212" color="#121212" />
                               </TouchableOpacity>
 
                               <TouchableOpacity
@@ -421,7 +431,7 @@ function OrdersScreen() {
                                 onPress={() => handleRemoveItem(index)}
                                 activeOpacity={0.7}
                               >
-                                <Ionicons name="trash-outline" size={16} color="#EF4444" />
+                                <TrashIcon width={16} height={16} stroke="#EF4444" color="#EF4444" />
                               </TouchableOpacity>
                             </View>
                           </View>
@@ -444,7 +454,7 @@ function OrdersScreen() {
                   <ActivityIndicator size="small" color="#121212" />
                 ) : (
                   <>
-                    <Ionicons name="cart" size={20} color="#121212" />
+                    <CartIcon width={20} height={20} stroke="#121212" color="#121212" />
                     <Text className="text-background font-bold text-lg ml-2">
                       Προσθήκη στο Καλάθι
                     </Text>
@@ -472,7 +482,7 @@ function LoadingUI() {
 function ErrorUI() {
   return (
     <View className="flex-1 items-center justify-center px-6">
-      <Ionicons name="alert-circle-outline" size={64} color="#FF6B6B" />
+      <AlertCircleIcon width={64} height={64} stroke="#FF6B6B" color="#FF6B6B" />
       <Text className="text-text-primary font-semibold text-xl mt-4">Αποτυχία φόρτωσης παραγγελιών</Text>
       <Text className="text-text-secondary text-center mt-2">
         Παρακαλώ ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά
@@ -484,7 +494,7 @@ function ErrorUI() {
 function EmptyUI() {
   return (
     <View className="flex-1 items-center justify-center px-6">
-      <Ionicons name="receipt-outline" size={80} color="#666" />
+      <ReceiptIcon width={80} height={80} stroke="#666" color="#666" />
       <Text className="text-text-primary font-semibold text-xl mt-4">Δεν υπάρχουν παραγγελίες ακόμα</Text>
       <Text className="text-text-secondary text-center mt-2">
         Το ιστορικό των παραγγελιών σας θα εμφανιστεί εδώ

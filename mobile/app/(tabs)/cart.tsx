@@ -6,7 +6,12 @@ import { getOptimizedUrl } from "@/lib/utils";
 import { ActivityIndicator, Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { useState } from "react";
 import { Address } from "@/types";
-import { Ionicons } from "@expo/vector-icons";
+import MinusIcon from "@/assets/icons/MinusIcon.svg";
+import PlusIcon from "@/assets/icons/PlusIcon.svg";
+import TrashIcon from "@/assets/icons/TrashIcon.svg";
+import CartIcon from "@/assets/icons/CartIcon.svg";
+import ArrowForwardIcon from "@/assets/icons/ArrowForwardIcon.svg";
+import AlertCircleIcon from "@/assets/icons/AlertCircleIcon.svg";
 import { Image } from "expo-image";
 import AddressSelectionModal from "@/components/AddressSelectionModal";
 
@@ -209,7 +214,7 @@ const CartScreen = () => {
                         {isUpdating ? (
                           <ActivityIndicator size="small" color="#FFFFFF" />
                         ) : (
-                          <Ionicons name="remove" size={18} color="#FFFFFF" />
+                          <MinusIcon width={18} height={18} stroke="#FFFFFF" color="#FFFFFF" />
                         )}
                       </TouchableOpacity>
 
@@ -226,7 +231,7 @@ const CartScreen = () => {
                         {isUpdating ? (
                           <ActivityIndicator size="small" color="#121212" />
                         ) : (
-                          <Ionicons name="add" size={18} color="#121212" />
+                          <PlusIcon width={18} height={18} stroke="#121212" color="#121212" />
                         )}
                       </TouchableOpacity>
 
@@ -236,7 +241,7 @@ const CartScreen = () => {
                         onPress={() => handleRemoveItem(item.product!._id, item.product!.name, item.selectedUnit)}
                         disabled={isRemoving}
                       >
-                        <Ionicons name="trash-outline" size={18} color="#EF4444" />
+                        <TrashIcon width={18} height={18} stroke="#EF4444" color="#EF4444" />
                       </TouchableOpacity>
                     </View>
                   </View>
@@ -253,7 +258,7 @@ const CartScreen = () => {
         {/* Quick Stats */}
         <View className="flex-row items-center justify-center mb-4">
           <View className="flex-row items-center">
-            <Ionicons name="cart" size={20} color="#FFD700" />
+            <CartIcon width={20} height={20} stroke="#FFD700" color="#FFD700" />
             <Text className="text-text-primary font-bold text-xl ml-2">
               {cartItemCount} {cartItemCount === 1 ? "προϊόν" : "προϊόντα"}
             </Text>
@@ -273,7 +278,7 @@ const CartScreen = () => {
             ) : (
               <>
                 <Text className="text-background font-bold text-lg mr-2">Ολοκλήρωση Παραγγελίας</Text>
-                <Ionicons name="arrow-forward" size={20} color="#121212" />
+                <ArrowForwardIcon width={20} height={20} stroke="#121212" color="#121212" />
               </>
             )}
           </View>
@@ -304,7 +309,7 @@ function LoadingUI() {
 function ErrorUI() {
   return (
     <View className="flex-1 bg-background items-center justify-center px-6">
-      <Ionicons name="alert-circle-outline" size={64} color="#FF6B6B" />
+      <AlertCircleIcon width={64} height={64} stroke="#FF6B6B" color="#FF6B6B" />
       <Text className="text-text-primary font-semibold text-xl mt-4">Αποτυχία φόρτωσης καλαθιού</Text>
       <Text className="text-text-secondary text-center mt-2">
         Παρακαλώ ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά
@@ -320,7 +325,7 @@ function EmptyUI() {
         <Text className="text-text-primary text-3xl font-bold tracking-tight">Καλάθι</Text>
       </View>
       <View className="flex-1 items-center justify-center px-6">
-        <Ionicons name="cart-outline" size={80} color="#666" />
+        <CartIcon width={80} height={80} stroke="#666" color="#666" />
         <Text className="text-text-primary font-semibold text-xl mt-4">Το καλάθι σας είναι άδειο</Text>
         <Text className="text-text-secondary text-center mt-2">
           Προσθέστε προϊόντα για να ξεκινήσετε

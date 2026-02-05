@@ -4,7 +4,9 @@ import AddressFormModal from "@/components/AddressFormModal";
 import SafeScreen from "@/components/SafeScreen";
 import { useAddresses } from "@/hooks/useAddressess";
 import { Address } from "@/types";
-import { Ionicons } from "@expo/vector-icons";
+import LocationIcon from "@/assets/icons/LocationIcon.svg";
+import PlusCircleIcon from "@/assets/icons/PlusCircleIcon.svg";
+import AlertCircleIcon from "@/assets/icons/AlertCircleIcon.svg";
 import { useState } from "react";
 import { ActivityIndicator, Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
@@ -130,7 +132,7 @@ function AddressesScreen() {
 
       {addresses.length === 0 ? (
         <View className="flex-1 items-center justify-center px-6">
-          <Ionicons name="location-outline" size={80} color="#666" />
+          <LocationIcon width={80} height={80} stroke="#666" color="#666" />
           <Text className="text-text-primary font-semibold text-xl mt-4">Δεν υπάρχουν διευθύνσεις ακόμα</Text>
           <Text className="text-text-secondary text-center mt-2">
             Προσθέστε την πρώτη σας διεύθυνση αποστολής
@@ -167,7 +169,7 @@ function AddressesScreen() {
               onPress={handleAddAddress}
             >
               <View className="flex-row items-center">
-                <Ionicons name="add-circle-outline" size={24} color="#121212" />
+                <PlusCircleIcon width={24} height={24} stroke="#121212" color="#121212" />
                 <Text className="text-background font-bold text-base ml-2">Προσθήκη Νέας Διεύθυνσης</Text>
               </View>
             </TouchableOpacity>
@@ -195,7 +197,7 @@ function ErrorUI() {
     <SafeScreen>
       <AddressesHeader />
       <View className="flex-1 items-center justify-center px-6">
-        <Ionicons name="alert-circle-outline" size={64} color="#FF6B6B" />
+        <AlertCircleIcon width={64} height={64} stroke="#FF6B6B" color="#FF6B6B" />
         <Text className="text-text-primary font-semibold text-xl mt-4">
           Αποτυχία φόρτωσης διευθύνσεων
         </Text>

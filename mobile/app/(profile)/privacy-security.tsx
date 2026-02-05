@@ -1,5 +1,9 @@
 import SafeScreen from "@/components/SafeScreen";
-import { Ionicons } from "@expo/vector-icons";
+import { Icon, type IconName } from "@/components/Icon";
+import ArrowBackIcon from "@/assets/icons/ArrowBackIcon.svg";
+import ChevronForwardIcon from "@/assets/icons/ChevronForwardIcon.svg";
+import TrashIcon from "@/assets/icons/TrashIcon.svg";
+import InfoCircleIcon from "@/assets/icons/InfoCircleIcon.svg";
 import { router } from "expo-router";
 import { useState } from "react";
 import { ScrollView, Switch, Text, TouchableOpacity, View } from "react-native";
@@ -119,7 +123,7 @@ function PrivacyAndSecurityScreen() {
       {/* HEADER */}
       <View className="px-6 pb-5 border-b border-surface flex-row items-center">
         <TouchableOpacity onPress={() => router.back()} className="mr-4">
-          <Ionicons name="arrow-back" size={28} color="#fff" />
+          <ArrowBackIcon width={28} height={28} stroke="#fff" color="#fff" />
         </TouchableOpacity>
         <Text className="text-text-primary text-2xl font-bold">Απόρρητο & Ασφάλεια</Text>
       </View>
@@ -141,7 +145,7 @@ function PrivacyAndSecurityScreen() {
             >
               <View className="flex-row items-center">
                 <View className="bg-primary/20 rounded-full w-12 h-12 items-center justify-center mr-4">
-                  <Ionicons name={setting.icon as any} size={24} color="#FFD700" />
+                  <Icon name={setting.icon as IconName} size={24} color="#FFD700" />
                 </View>
 
                 <View className="flex-1">
@@ -159,7 +163,7 @@ function PrivacyAndSecurityScreen() {
                     trackColor={{ false: "#2A2A2A", true: "#FFD700" }}
                   />
                 ) : (
-                  <Ionicons name="chevron-forward" size={20} color="#666" />
+                  <ChevronForwardIcon width={20} height={20} stroke="#666" color="#666" />
                 )}
               </View>
             </TouchableOpacity>
@@ -175,7 +179,7 @@ function PrivacyAndSecurityScreen() {
               <View className="bg-surface rounded-2xl p-4 mb-3">
                 <View className="flex-row items-center">
                   <View className="bg-primary/20 rounded-full w-12 h-12 items-center justify-center mr-4">
-                    <Ionicons name={setting.icon as any} size={24} color="#FFD700" />
+                    <Icon name={setting.icon as IconName} size={24} color="#FFD700" />
                   </View>
                   <View className="flex-1">
                     <Text className="text-text-primary font-bold text-base mb-1">
@@ -207,7 +211,7 @@ function PrivacyAndSecurityScreen() {
             >
               <View className="flex-row items-center">
                 <View className="bg-primary/20 rounded-full w-12 h-12 items-center justify-center mr-4">
-                  <Ionicons name={setting.icon as any} size={24} color="#FFD700" />
+                  <Icon name={setting.icon as IconName} size={24} color="#FFD700" />
                 </View>
                 <View className="flex-1">
                   <Text className="text-text-primary font-bold text-base mb-1">
@@ -215,7 +219,7 @@ function PrivacyAndSecurityScreen() {
                   </Text>
                   <Text className="text-text-secondary text-sm">{setting.description}</Text>
                 </View>
-                <Ionicons name="chevron-forward" size={20} color="#666" />
+                <ChevronForwardIcon width={20} height={20} stroke="#666" color="#666" />
               </View>
             </TouchableOpacity>
           ))}
@@ -229,21 +233,21 @@ function PrivacyAndSecurityScreen() {
           >
             <View className="flex-row items-center">
               <View className="bg-red-500/20 rounded-full w-12 h-12 items-center justify-center mr-4">
-                <Ionicons name="trash-outline" size={24} color="#EF4444" />
+                <TrashIcon width={24} height={24} stroke="#EF4444" color="#EF4444" />
               </View>
               <View>
                 <Text className="text-red-500 font-bold text-base mb-1">Διαγραφή Λογαριασμού</Text>
                 <Text className="text-text-secondary text-sm">Οριστική διαγραφή του λογαριασμού σας</Text>
               </View>
             </View>
-            <Ionicons name="chevron-forward" size={20} color="#EF4444" />
+            <ChevronForwardIcon width={20} height={20} stroke="#EF4444" color="#EF4444" />
           </TouchableOpacity>
         </View>
 
         {/* INFO ALERT */}
         <View className="px-6 pt-6 pb-4">
           <View className="bg-primary/10 rounded-2xl p-4 flex-row">
-            <Ionicons name="information-circle-outline" size={24} color="#FFD700" />
+            <InfoCircleIcon width={24} height={24} stroke="#FFD700" color="#FFD700" />
             <Text className="text-text-secondary text-sm ml-3 flex-1">
               Παίρνουμε το απόρρητό σας σοβαρά. Τα δεδομένα σας είναι κρυπτογραφημένα και αποθηκευμένα με ασφάλεια. Μπορείτε να διαχειριστείτε τις ρυθμίσεις απορρήτου σας ανά πάσα στιγμή.
             </Text>

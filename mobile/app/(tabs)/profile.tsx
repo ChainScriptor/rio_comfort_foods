@@ -5,7 +5,14 @@ import { useCallback } from "react";
 
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { Image } from "expo-image";
-import { Ionicons } from "@expo/vector-icons";
+import { Icon } from "@/components/Icon";
+import PersonIcon from "@/assets/icons/PersonIcon.svg";
+import CheckmarkIcon from "@/assets/icons/CheckmarkIcon.svg";
+import NotificationsIcon from "@/assets/icons/NotificationsIcon.svg";
+import ChevronForwardIcon from "@/assets/icons/ChevronForwardIcon.svg";
+import ShieldCheckIcon from "@/assets/icons/ShieldCheckIcon.svg";
+import DocumentTextIcon from "@/assets/icons/DocumentTextIcon.svg";
+import LogOutIcon from "@/assets/icons/LogOutIcon.svg";
 import { router } from "expo-router";
 import { useProfile } from "@/hooks/useProfile";
 import { getOptimizedUrl } from "@/lib/utils";
@@ -64,11 +71,11 @@ const ProfileScreen = () => {
                   />
                 ) : (
                   <View className="bg-surface rounded-full w-20 h-20 items-center justify-center">
-                    <Ionicons name="person" size={40} color="#666" />
+                    <PersonIcon width={40} height={40} stroke="#666" color="#666" />
                   </View>
                 )}
                 <View className="absolute -bottom-1 -right-1 bg-primary rounded-full size-7 items-center justify-center border-2 border-surface">
-                  <Ionicons name="checkmark" size={16} color="#121212" />
+                  <CheckmarkIcon width={16} height={16} stroke="#121212" color="#121212" />
                 </View>
               </View>
 
@@ -98,7 +105,7 @@ const ProfileScreen = () => {
                 className="rounded-full w-16 h-16 items-center justify-center mb-4"
                 style={{ backgroundColor: item.color + "20" }}
               >
-                <Ionicons name={item.icon} size={28} color={item.color} />
+                <Icon name={item.icon} size={28} color={item.color} />
               </View>
               <Text className="text-text-primary font-bold text-base">{item.title}</Text>
             </TouchableOpacity>
@@ -112,10 +119,10 @@ const ProfileScreen = () => {
             activeOpacity={0.7}
           >
             <View className="flex-row items-center">
-              <Ionicons name="notifications-outline" size={22} color="#FFFFFF" />
+              <NotificationsIcon width={22} height={22} stroke="#FFFFFF" color="#FFFFFF" />
               <Text className="text-text-primary font-semibold ml-3">Ειδοποιήσεις</Text>
             </View>
-            <Ionicons name="chevron-forward" size={20} color="#666" />
+            <ChevronForwardIcon width={20} height={20} stroke="#666" color="#666" />
           </TouchableOpacity>
         </View>
 
@@ -127,10 +134,10 @@ const ProfileScreen = () => {
             onPress={() => router.push("/(profile)/privacy-security")}
           >
             <View className="flex-row items-center">
-              <Ionicons name="shield-checkmark-outline" size={22} color="#FFFFFF" />
+              <ShieldCheckIcon width={22} height={22} stroke="#FFFFFF" color="#FFFFFF" />
               <Text className="text-text-primary font-semibold ml-3">Απόρρητο & Ασφάλεια</Text>
             </View>
-            <Ionicons name="chevron-forward" size={20} color="#666" />
+            <ChevronForwardIcon width={20} height={20} stroke="#666" color="#666" />
           </TouchableOpacity>
         </View>
 
@@ -142,10 +149,10 @@ const ProfileScreen = () => {
             onPress={() => router.push("/privacy")}
           >
             <View className="flex-row items-center">
-              <Ionicons name="document-text-outline" size={22} color="#FFFFFF" />
+              <DocumentTextIcon width={22} height={22} stroke="#FFFFFF" color="#FFFFFF" />
               <Text className="text-text-primary font-semibold ml-3">Πολιτική Απορρήτου</Text>
             </View>
-            <Ionicons name="chevron-forward" size={20} color="#666" />
+            <ChevronForwardIcon width={20} height={20} stroke="#666" color="#666" />
           </TouchableOpacity>
         </View>
 
@@ -155,7 +162,7 @@ const ProfileScreen = () => {
           activeOpacity={0.8}
           onPress={() => signOut()}
         >
-          <Ionicons name="log-out-outline" size={22} color="#EF4444" />
+          <LogOutIcon width={22} height={22} stroke="#EF4444" color="#EF4444" />
           <Text className="text-red-500 font-bold text-base ml-2">Αποσύνδεση</Text>
         </TouchableOpacity>
 

@@ -2,7 +2,11 @@ import useCart from "@/hooks/useCart";
 import useWishlist from "@/hooks/useWishlist";
 import { getOptimizedUrl } from "@/lib/utils";
 import { Product } from "@/types";
-import { Ionicons } from "@expo/vector-icons";
+import SearchIcon from "@/assets/icons/SearchIcon.svg";
+import HeartIcon from "@/assets/icons/HeartIcon.svg";
+import HeartFilledIcon from "@/assets/icons/HeartFilledIcon.svg";
+import PlusIcon from "@/assets/icons/PlusIcon.svg";
+import AlertCircleIcon from "@/assets/icons/AlertCircleIcon.svg";
 import { Image } from "expo-image";
 import { router } from "expo-router";
 import React from "react";
@@ -83,12 +87,10 @@ const ProductGridItem = React.memo(function ProductGridItem({
         >
           {isAddingToWishlist || isRemovingFromWishlist ? (
             <ActivityIndicator size="small" color={isInWishlist(product._id) ? "#FF6B6B" : "#FFFFFF"} />
+          ) : isInWishlist(product._id) ? (
+            <HeartFilledIcon width={isWeb ? 20 : 18} height={isWeb ? 20 : 18} color="#FF6B6B" fill="#FF6B6B" />
           ) : (
-            <Ionicons
-              name={isInWishlist(product._id) ? "heart" : "heart-outline"}
-              size={isWeb ? 20 : 18}
-              color={isInWishlist(product._id) ? "#FF6B6B" : "#FFFFFF"}
-            />
+            <HeartIcon width={isWeb ? 20 : 18} height={isWeb ? 20 : 18} stroke="#FFFFFF" color="#FFFFFF" />
           )}
         </TouchableOpacity>
       </View>
@@ -118,7 +120,7 @@ const ProductGridItem = React.memo(function ProductGridItem({
             {isAddingToCart ? (
               <ActivityIndicator size="small" color="#121212" />
             ) : (
-              <Ionicons name="add" size={isWeb ? 20 : 18} color="#121212" />
+              <PlusIcon width={isWeb ? 20 : 18} height={isWeb ? 20 : 18} stroke="#121212" color="#121212" />
             )}
           </TouchableOpacity>
         </View>
@@ -203,7 +205,7 @@ const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
   if (isError) {
     return (
       <View className="py-20 items-center justify-center">
-        <Ionicons name="alert-circle-outline" size={48} color="#FF6B6B" />
+        <AlertCircleIcon width={48} height={48} stroke="#FF6B6B" color="#FF6B6B" />
         <Text className="text-text-primary font-semibold mt-4">Failed to load products</Text>
         <Text className="text-text-secondary text-sm mt-2">Please try again later</Text>
       </View>
@@ -232,7 +234,7 @@ export default ProductsGrid;
 function NoProductsFound() {
   return (
     <View className="py-20 items-center justify-center">
-      <Ionicons name="search-outline" size={48} color={"#666"} />
+      <SearchIcon width={48} height={48} stroke="#666" color="#666" />
       <Text className="text-text-primary font-semibold mt-4">No products found</Text>
       <Text className="text-text-secondary text-sm mt-2">Try adjusting your filters</Text>
     </View>

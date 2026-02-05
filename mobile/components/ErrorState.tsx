@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import AlertCircleIcon from "@/assets/icons/AlertCircleIcon.svg";
 
 interface ErrorStateProps {
   title?: string;
@@ -14,7 +14,7 @@ export function ErrorState({
 }: ErrorStateProps) {
   return (
     <View className="flex-1 bg-background items-center justify-center px-6">
-      <Ionicons name="alert-circle-outline" size={64} color="#FF6B6B" />
+      <AlertCircleIcon width={64} height={64} stroke="#FF6B6B" color="#FF6B6B" />
       <Text className="text-text-primary font-semibold text-xl mt-4">{title}</Text>
       <Text className="text-text-secondary text-center mt-2">{description}</Text>
       {onRetry && (

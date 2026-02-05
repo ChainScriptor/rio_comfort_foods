@@ -3,7 +3,12 @@ import useCart from "@/hooks/useCart";
 import { useProduct } from "@/hooks/useProduct";
 import useWishlist from "@/hooks/useWishlist";
 import { getOptimizedUrl } from "@/lib/utils";
-import { Ionicons } from "@expo/vector-icons";
+import ArrowBackIcon from "@/assets/icons/ArrowBackIcon.svg";
+import HeartIcon from "@/assets/icons/HeartIcon.svg";
+import HeartFilledIcon from "@/assets/icons/HeartFilledIcon.svg";
+import MinusIcon from "@/assets/icons/MinusIcon.svg";
+import PlusIcon from "@/assets/icons/PlusIcon.svg";
+import AlertCircleIcon from "@/assets/icons/AlertCircleIcon.svg";
 import { Image } from "expo-image";
 import { router, useLocalSearchParams } from "expo-router";
 import { useState, useEffect } from "react";
@@ -81,7 +86,7 @@ const ProductDetailScreen = () => {
           onPress={() => router.back()}
           activeOpacity={0.7}
         >
-          <Ionicons name="arrow-back" size={24} color="#FFFFFF" />
+          <ArrowBackIcon width={24} height={24} stroke="#FFFFFF" color="#FFFFFF" />
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -94,12 +99,10 @@ const ProductDetailScreen = () => {
         >
           {isAddingToWishlist || isRemovingFromWishlist ? (
             <ActivityIndicator size="small" color="#FFFFFF" />
+          ) : isInWishlist(product._id) ? (
+            <HeartFilledIcon width={24} height={24} color="#FF6B6B" fill="#FF6B6B" />
           ) : (
-            <Ionicons
-              name={isInWishlist(product._id) ? "heart" : "heart-outline"}
-              size={24}
-              color={isInWishlist(product._id) ? "#FF6B6B" : "#FFFFFF"}
-            />
+            <HeartIcon width={24} height={24} stroke="#FFFFFF" color="#FFFFFF" />
           )}
         </TouchableOpacity>
       </View>
@@ -208,7 +211,7 @@ const ProductDetailScreen = () => {
                 onPress={() => setQuantity(Math.max(1, quantity - 1))}
                 activeOpacity={0.7}
               >
-                <Ionicons name="remove" size={24} color="#FFFFFF" />
+                <MinusIcon width={24} height={24} stroke="#FFFFFF" color="#FFFFFF" />
               </TouchableOpacity>
 
               <Text className="text-text-primary text-xl font-bold mx-6">{quantity}</Text>
@@ -218,7 +221,7 @@ const ProductDetailScreen = () => {
                 onPress={() => setQuantity(quantity + 1)}
                 activeOpacity={0.7}
               >
-                <Ionicons name="add" size={24} color="#121212" />
+                <PlusIcon width={24} height={24} stroke="#121212" color="#121212" />
               </TouchableOpacity>
             </View>
           </View>
@@ -254,7 +257,7 @@ const ProductDetailScreen = () => {
               <ActivityIndicator size="small" color="#121212" />
             ) : (
               <>
-                <Ionicons name="cart" size={24} color="#121212" />
+                <PlusIcon width={24} height={24} stroke="#121212" color="#121212" />
                 <Text className="font-bold text-lg ml-2 text-background">
                   Προσθήκη στο Καλάθι
                 </Text>
@@ -273,7 +276,7 @@ function ErrorUI() {
   return (
     <SafeScreen>
       <View className="flex-1 items-center justify-center px-6">
-        <Ionicons name="alert-circle-outline" size={64} color="#FF6B6B" />
+        <AlertCircleIcon width={64} height={64} stroke="#FF6B6B" color="#FF6B6B" />
         <Text className="text-text-primary font-semibold text-xl mt-4">Το προϊόν δεν βρέθηκε</Text>
         <Text className="text-text-secondary text-center mt-2">
           Το προϊόν μπορεί να έχει αφαιρεθεί ή να μην υπάρχει

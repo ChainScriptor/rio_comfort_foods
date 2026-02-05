@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import LocationIcon from "@/assets/icons/LocationIcon.svg";
 import { Address } from "@/types";
 
 interface AddressCardProps {
@@ -22,7 +22,7 @@ export default function AddressCard({
       <View className="flex-row items-center justify-between mb-4">
         <View className="flex-row items-center">
           <View className="bg-primary/20 rounded-full w-12 h-12 items-center justify-center mr-3">
-            <Ionicons name="location" size={24} color="#FFD700" />
+            <LocationIcon width={24} height={24} stroke="#FFD700" color="#FFD700" />
           </View>
           <Text className="text-text-primary font-bold text-lg">{address.storeLocation}</Text>
         </View>

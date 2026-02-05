@@ -1,8 +1,8 @@
 import { View, Text } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { Icon, type IconName } from "@/components/Icon";
 
 interface EmptyStateProps {
-  icon?: keyof typeof Ionicons.glyphMap;
+  icon?: IconName;
   iconSize?: number;
   title: string;
   description?: string;
@@ -24,7 +24,7 @@ export function EmptyState({
         </View>
       )}
       <View className="flex-1 items-center justify-center px-6">
-        <Ionicons name={icon} size={iconSize} color="#666" />
+        <Icon name={icon} size={iconSize} color="#666" />
         <Text className="text-text-primary font-semibold text-xl mt-4">{title}</Text>
         {description && <Text className="text-text-secondary text-center mt-2">{description}</Text>}
       </View>

@@ -1,6 +1,10 @@
 import { useAddresses } from "@/hooks/useAddressess";
 import { Address } from "@/types";
-import { Ionicons } from "@expo/vector-icons";
+import CloseIcon from "@/assets/icons/CloseIcon.svg";
+import CheckmarkIcon from "@/assets/icons/CheckmarkIcon.svg";
+import CalendarIcon from "@/assets/icons/CalendarIcon.svg";
+import ChevronForwardIcon from "@/assets/icons/ChevronForwardIcon.svg";
+import ArrowForwardIcon from "@/assets/icons/ArrowForwardIcon.svg";
 import { useState } from "react";
 import { View, Text, Modal, TouchableOpacity, ScrollView, ActivityIndicator, TextInput, Platform, Keyboard, TouchableWithoutFeedback } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -92,7 +96,7 @@ const AddressSelectionModal = ({
           <View className="flex-row items-center justify-between p-6 border-b border-surface">
             <Text className="text-text-primary text-2xl font-bold">Επιλογή Διεύθυνσης</Text>
             <TouchableOpacity onPress={handleClose} className="bg-surface rounded-full p-2">
-              <Ionicons name="close" size={24} color="#FFFFFF" />
+              <CloseIcon width={24} height={24} stroke="#FFFFFF" color="#FFFFFF" />
             </TouchableOpacity>
           </View>
 
@@ -151,7 +155,7 @@ const AddressSelectionModal = ({
                       </View>
                       {selectedAddress?._id === address._id && (
                         <View className="bg-primary rounded-full p-2 ml-3">
-                          <Ionicons name="checkmark" size={24} color="#121212" />
+                          <CheckmarkIcon width={24} height={24} stroke="#121212" color="#121212" />
                         </View>
                       )}
                     </View>
@@ -175,7 +179,7 @@ const AddressSelectionModal = ({
                   onPress={() => setShowDatePicker(true)}
                 >
                   <View className="flex-row items-center">
-                    <Ionicons name="calendar-outline" size={20} color="#FFD700" />
+                    <CalendarIcon width={20} height={20} stroke="#FFD700" color="#FFD700" />
                     <Text className="text-text-primary font-semibold ml-3">
                       {deliveryDate.toLocaleDateString("el-GR", {
                         weekday: "long",
@@ -185,7 +189,7 @@ const AddressSelectionModal = ({
                       })}
                     </Text>
                   </View>
-                  <Ionicons name="chevron-forward" size={20} color="#666" />
+                  <ChevronForwardIcon width={20} height={20} stroke="#666" color="#666" />
                 </TouchableOpacity>
                 
                 {showDatePicker && Platform.OS !== "web" && (
@@ -268,7 +272,7 @@ const AddressSelectionModal = ({
                     <Text className="text-background font-bold text-lg mr-2">
                       Ολοκλήρωση Παραγγελίας
                     </Text>
-                    <Ionicons name="arrow-forward" size={20} color="#121212" />
+                    <ArrowForwardIcon width={20} height={20} stroke="#121212" color="#121212" />
                   </>
                 )}
               </View>
