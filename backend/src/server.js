@@ -84,9 +84,10 @@ app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/invite", inviteRoutes);
 
-// Production: root redirect πριν από authRoutes ώστε GET / → /admin
+// Production: redirects πριν από authRoutes (ορφανά paths → admin)
 if (ENV.NODE_ENV === "production") {
   app.get("/", (req, res) => res.redirect("/admin"));
+  app.get("/dashboard", (req, res) => res.redirect("/admin/dashboard"));
 }
 app.use("/", authRoutes);
 
