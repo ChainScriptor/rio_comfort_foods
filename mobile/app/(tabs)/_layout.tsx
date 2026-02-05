@@ -1,9 +1,11 @@
 import { Redirect, Tabs } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
 import { useAuth } from "@clerk/clerk-expo";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BlurView } from "expo-blur";
 import { StyleSheet } from "react-native";
+import HomeIcon from "@/assets/icons/HomeIcon.svg";
+import CartIcon from "@/assets/icons/CartIcon.svg";
+import ProfileIcon from "@/assets/icons/ProfileIcon.svg";
 
 const TabsLayout = () => {
   const { isSignedIn, isLoaded } = useAuth();
@@ -48,21 +50,27 @@ const TabsLayout = () => {
         name="index"
         options={{
           title: "Κατάστημα",
-          tabBarIcon: ({ color, size }) => <Ionicons name="grid" size={size} color={color} />,
+          tabBarIcon: ({ color, size }) => (
+            <HomeIcon width={size} height={size} stroke={color} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="cart"
         options={{
           title: "Καλάθι",
-          tabBarIcon: ({ color, size }) => <Ionicons name="cart" size={size} color={color} />,
+          tabBarIcon: ({ color, size }) => (
+            <CartIcon width={size} height={size} stroke={color} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           title: "Προφίλ",
-          tabBarIcon: ({ color, size }) => <Ionicons name="person" size={size} color={color} />,
+          tabBarIcon: ({ color, size }) => (
+            <ProfileIcon width={size} height={size} stroke={color} color={color} />
+          ),
         }}
       />
     </Tabs>
