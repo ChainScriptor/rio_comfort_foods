@@ -7,8 +7,8 @@ import HomeIcon from "@/assets/icons/HomeIcon.svg";
 import CartIcon from "@/assets/icons/CartIcon.svg";
 import ProfileIcon from "@/assets/icons/ProfileIcon.svg";
 
-// Ύψος περιεχομένου tab bar (εικονίδιο + λεζάντα) — όχι το συνολικό ύψος
-const TAB_BAR_CONTENT_HEIGHT = 56;
+// Ύψος περιεχομένου tab bar (εικονίδιο + λεζάντα) — χώρος για εικονίδιο + κείμενο
+const TAB_BAR_CONTENT_HEIGHT = 64;
 // Ελάχιστη απόσταση από το κάτω χείλος (για κινητά χωρίς notch / web)
 const MIN_BOTTOM_INSET = Platform.OS === "web" ? 12 : 0;
 
@@ -35,8 +35,9 @@ const TabsLayout = () => {
           marginHorizontal: 100,
           marginBottom: bottomInset,
           borderRadius: 24,
-          overflow: "hidden",
+          overflow: "visible",
         },
+        tabBarShowLabel: true,
         tabBarBackground: () => (
           <BlurView
             intensity={80}
@@ -47,8 +48,12 @@ const TabsLayout = () => {
           />
         ),
         tabBarLabelStyle: {
-          fontSize: 12,
-          fontWeight: 600,
+          fontSize: 11,
+          fontWeight: "600",
+          marginTop: 2,
+        },
+        tabBarItemStyle: {
+          paddingVertical: 4,
         },
         headerShown: false,
       }}
