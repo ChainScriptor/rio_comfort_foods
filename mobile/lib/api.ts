@@ -4,10 +4,10 @@ import { useEffect } from "react";
 import * as SecureStore from "expo-secure-store";
 
 // Live backend API on Sevalla; override with EXPO_PUBLIC_API_URL if needed (e.g. local dev)
-const API_URL =
+const API_HOST =
   process.env.EXPO_PUBLIC_API_URL?.replace(/\/$/, "") ||
   "https://riocomfortfoodsapi-yelm3.sevalla.app";
-const BASE_URL = `${API_URL}/api`;
+const BASE_URL = API_HOST.endsWith("/api") ? API_HOST : `${API_HOST}/api`;
 
 const api = axios.create({
   baseURL: BASE_URL,

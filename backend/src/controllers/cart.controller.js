@@ -156,7 +156,8 @@ export async function updateCartItem(req, res) {
 export async function removeFromCart(req, res) {
   try {
     const { productId } = req.params;
-    const { selectedUnit } = req.body; // Get selectedUnit from body
+    // Support both body and query (some clients/proxies strip DELETE body)
+    const selectedUnit = req.body?.selectedUnit ?? req.query?.selectedUnit;
 
     const cart = await Cart.findOne({ clerkId: req.user.clerkId });
     if (!cart) {

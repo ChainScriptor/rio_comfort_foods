@@ -58,15 +58,16 @@ const useCart = () => {
   });
 
   const removeFromCartMutation = useMutation({
-    mutationFn: async ({ 
-      productId, 
-      selectedUnit 
-    }: { 
+    mutationFn: async ({
+      productId,
+      selectedUnit,
+    }: {
       productId: string;
       selectedUnit?: string;
     }) => {
-      const { data } = await api.delete<{ cart: Cart }>(`/cart/${productId}`, {
-        data: { selectedUnit },
+      const id = String(productId);
+      const { data } = await api.delete<{ cart: Cart }>(`/cart/${id}`, {
+        params: selectedUnit != null ? { selectedUnit } : undefined,
       });
       return data.cart;
     },

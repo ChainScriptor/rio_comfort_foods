@@ -102,8 +102,12 @@ export default function EditProfileScreen() {
       }
 
       const token = await getToken();
-      const baseURL = api.defaults.baseURL || "https://riocomfortfoodsapi-yelm3.sevalla.app/api";
-      const response = await fetch(`${baseURL}/users/profile/image`, {
+      const apiBase =
+        (typeof api.defaults.baseURL === "string" && api.defaults.baseURL) ||
+        (typeof process !== "undefined" && process.env?.EXPO_PUBLIC_API_URL
+          ? `${process.env.EXPO_PUBLIC_API_URL.replace(/\/$/, "")}/api`
+          : "https://riocomfortfoodsapi-yelm3.sevalla.app/api");
+      const response = await fetch(`${apiBase.replace(/\/$/, "")}/users/profile/image`, {
         method: "POST",
         body: formData,
         headers: {
