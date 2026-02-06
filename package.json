@@ -7,7 +7,7 @@
     "node": ">=20.0.0"
   },
   "scripts": {
-    "build": "npm install --prefix backend && npm install --prefix admin && npm install --prefix mobile && npm run build --prefix admin && npm run export:web --prefix mobile",
+    "build": "npm install --prefix backend --legacy-peer-deps && npm install --prefix admin --legacy-peer-deps && npm install --prefix mobile --legacy-peer-deps && npm run build --prefix admin && npm run export:web --prefix mobile",
     "build:web": "cd mobile && npx expo export --platform web",
     "start": "npm run start --prefix backend"
   },

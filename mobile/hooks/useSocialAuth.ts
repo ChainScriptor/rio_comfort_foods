@@ -1,8 +1,14 @@
-import { useSSO } from "@clerk/clerk-expo";
+import { useSignIn, useSSO } from "@clerk/clerk-expo";
 import { useEffect, useState } from "react";
 import { Alert, Platform } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import * as AuthSession from "expo-auth-session";
+
+// Base URL for PWA (redirect flow). Override with EXPO_PUBLIC_APP_URL if needed.
+const PWA_BASE_URL =
+  typeof process !== "undefined" && process.env?.EXPO_PUBLIC_APP_URL
+    ? process.env.EXPO_PUBLIC_APP_URL.replace(/\/$/, "")
+    : "https://riocomfortfoods-oksxz.sevalla.app";
 
 // Handle any pending authentication sessions (needed for web/PWA + native)
 WebBrowser.maybeCompleteAuthSession();
@@ -22,17 +28,31 @@ function useWarmUpBrowser() {
 function useSocialAuth() {
   useWarmUpBrowser();
   const [loadingStrategy, setLoadingStrategy] = useState<string | null>(null);
+  const { signIn, isLoaded: isSignInLoaded } = useSignIn();
   const { startSSOFlow } = useSSO();
 
   const handleSocialAuth = async (strategy: "oauth_google" | "oauth_apple") => {
     setLoadingStrategy(strategy);
 
     try {
-      // Use an explicit redirect URL so that:
-      // - On web/PWA it redirects back to https://<domain>/sso-callback
-      // - On native it uses the custom app scheme (see app.json "scheme")
+      // Web/PWA: full-page redirect (no popup) — avoids mobile popup blockers
+      if (Platform.OS === "web") {
+        if (!isSignInLoaded || !signIn) {
+          setLoadingStrategy(null);
+          return;
+        }
+        await signIn.authenticateWithRedirect({
+          strategy,
+          redirectUrl: `${PWA_BASE_URL}/sso-callback`,
+          redirectUrlComplete: `${PWA_BASE_URL}/`,
+        });
+        // Page will redirect; loading state will unmount
+        return;
+      }
+
+      // Native (iOS/Android): in-app browser flow
       const redirectUrl = AuthSession.makeRedirectUri({
-        scheme: Platform.OS === "web" ? undefined : "mobile",
+        scheme: "mobile",
         path: "sso-callback",
       });
 
