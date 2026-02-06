@@ -67,11 +67,14 @@ const useCart = () => {
     }) => {
       const id = String(productId);
       const { data } = await api.delete<{ cart: Cart }>(`/cart/${id}`, {
-        params: selectedUnit != null ? { selectedUnit } : undefined,
+        params: selectedUnit != null && selectedUnit !== "" ? { selectedUnit } : undefined,
       });
       return data.cart;
     },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["cart"] }),
+    onError: (error: any) => {
+      console.error("Remove from cart failed:", error?.response?.data || error?.message);
+    },
   });
 
   const clearCartMutation = useMutation({

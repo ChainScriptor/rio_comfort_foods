@@ -54,7 +54,19 @@ const CartScreen = () => {
       {
         text: "Αφαίρεση",
         style: "destructive",
-        onPress: () => removeFromCart({ productId, selectedUnit }),
+        onPress: () =>
+          removeFromCart(
+            { productId: String(productId), selectedUnit },
+            {
+              onError: (error: any) => {
+                const msg =
+                  error?.response?.data?.error ||
+                  error?.message ||
+                  "Δεν ήταν δυνατή η αφαίρεση του προϊόντος.";
+                Alert.alert("Σφάλμα", msg);
+              },
+            }
+          ),
       },
     ]);
   };
@@ -238,7 +250,13 @@ const CartScreen = () => {
                       <TouchableOpacity
                         className="ml-auto bg-red-500/10 rounded-full w-9 h-9 items-center justify-center"
                         activeOpacity={0.7}
-                        onPress={() => handleRemoveItem(item.product!._id, item.product!.name, item.selectedUnit)}
+                        onPress={() =>
+                          handleRemoveItem(
+                            String(item.product!._id),
+                            item.product!.name,
+                            item.selectedUnit
+                          )
+                        }
                         disabled={isRemoving}
                       >
                         <TrashIcon width={18} height={18} stroke="#EF4444" color="#EF4444" />

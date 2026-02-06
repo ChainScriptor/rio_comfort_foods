@@ -170,22 +170,30 @@ export async function removeFromCart(req, res) {
       normalizedSelectedUnit = null;
     }
 
+    const lengthBefore = cart.items.length;
+    const normalizedProductId = String(productId).trim();
+
     // Remove only the item that matches both productId AND selectedUnit
     cart.items = cart.items.filter((item) => {
-      const productMatches = item.product.toString() === productId;
+      const itemProductId = item.product?.toString?.() ?? String(item.product);
+      const productMatches = itemProductId === normalizedProductId;
       const itemUnit = item.selectedUnit ? String(item.selectedUnit).trim() : null;
       const normalizedItemUnit = itemUnit === "" ? null : itemUnit;
       const unitMatches = normalizedItemUnit === normalizedSelectedUnit;
 
-      // Keep the item if it does NOT match both
       return !(productMatches && unitMatches);
     });
+
+    if (cart.items.length === lengthBefore) {
+      return res.status(404).json({ error: "Item not found in cart" });
+    }
 
     await cart.save();
 
     res.status(200).json({ message: "Item removed from cart", cart });
   } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
+    console.error("removeFromCart error:", error);
+    res.status(500).json({ error: error?.message || "Internal server error" });
   }
 }
 
