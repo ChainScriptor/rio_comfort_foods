@@ -2,14 +2,20 @@ import { Redirect, Tabs } from "expo-router";
 import { useAuth } from "@clerk/clerk-expo";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BlurView } from "expo-blur";
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import HomeIcon from "@/assets/icons/HomeIcon.svg";
 import CartIcon from "@/assets/icons/CartIcon.svg";
 import ProfileIcon from "@/assets/icons/ProfileIcon.svg";
 
+// Ύψος περιεχομένου tab bar (εικονίδιο + λεζάντα) — όχι το συνολικό ύψος
+const TAB_BAR_CONTENT_HEIGHT = 56;
+// Ελάχιστη απόσταση από το κάτω χείλος (για κινητά χωρίς notch / web)
+const MIN_BOTTOM_INSET = Platform.OS === "web" ? 12 : 0;
+
 const TabsLayout = () => {
   const { isSignedIn, isLoaded } = useAuth();
   const insets = useSafeAreaInsets();
+  const bottomInset = Math.max(insets.bottom, MIN_BOTTOM_INSET);
 
   if (!isLoaded) return null; // for a better ux
   if (!isSignedIn) return <Redirect href={"/(auth)"} />;
@@ -23,10 +29,11 @@ const TabsLayout = () => {
           position: "absolute",
           backgroundColor: "transparent",
           borderTopWidth: 0,
-          height: 32 + insets.bottom,
-          paddingTop: 4,
+          height: TAB_BAR_CONTENT_HEIGHT + bottomInset,
+          paddingTop: 10,
+          paddingBottom: bottomInset,
           marginHorizontal: 100,
-          marginBottom: insets.bottom,
+          marginBottom: bottomInset,
           borderRadius: 24,
           overflow: "hidden",
         },
