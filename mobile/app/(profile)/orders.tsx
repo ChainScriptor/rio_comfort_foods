@@ -216,7 +216,7 @@ function OrdersScreen() {
       {isLoading ? (
         <LoadingUI />
       ) : isError ? (
-        <ErrorUI />
+        <ErrorUI onRetry={() => refetchOrders()} />
       ) : !orders || orders.length === 0 ? (
         <EmptyUI />
       ) : (
@@ -479,7 +479,7 @@ function LoadingUI() {
   );
 }
 
-function ErrorUI() {
+function ErrorUI({ onRetry }: { onRetry?: () => void }) {
   return (
     <View className="flex-1 items-center justify-center px-6">
       <AlertCircleIcon width={64} height={64} stroke="#FF6B6B" color="#FF6B6B" />
@@ -487,6 +487,15 @@ function ErrorUI() {
       <Text className="text-text-secondary text-center mt-2">
         Παρακαλώ ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά
       </Text>
+      {onRetry && (
+        <TouchableOpacity
+          className="mt-6 bg-primary px-6 py-3 rounded-xl"
+          onPress={onRetry}
+          activeOpacity={0.8}
+        >
+          <Text className="text-background font-bold">Δοκιμάστε ξανά</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }

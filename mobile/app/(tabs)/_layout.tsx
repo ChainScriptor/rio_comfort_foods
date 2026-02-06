@@ -7,8 +7,8 @@ import HomeIcon from "@/assets/icons/HomeIcon.svg";
 import CartIcon from "@/assets/icons/CartIcon.svg";
 import ProfileIcon from "@/assets/icons/ProfileIcon.svg";
 
-// Ύψος περιεχομένου tab bar (εικονίδιο + λεζάντα) — χώρος για εικονίδιο + κείμενο
-const TAB_BAR_CONTENT_HEIGHT = 64;
+// Ύψος ζώνης εικονίδιο + λεζάντα (αρκετό ώστε να μην κόβεται με overflow: hidden)
+const TAB_BAR_CONTENT_HEIGHT = 72;
 // Ελάχιστη απόσταση από το κάτω χείλος (για κινητά χωρίς notch / web)
 const MIN_BOTTOM_INSET = Platform.OS === "web" ? 12 : 0;
 
@@ -30,12 +30,12 @@ const TabsLayout = () => {
           backgroundColor: "transparent",
           borderTopWidth: 0,
           height: TAB_BAR_CONTENT_HEIGHT + bottomInset,
-          paddingTop: 10,
+          paddingTop: 8,
           paddingBottom: bottomInset,
           marginHorizontal: 100,
           marginBottom: bottomInset,
-          borderRadius: 24,
-          overflow: "visible",
+          borderRadius: 28,
+          overflow: "hidden",
         },
         tabBarShowLabel: true,
         tabBarBackground: () => (
@@ -50,10 +50,10 @@ const TabsLayout = () => {
         tabBarLabelStyle: {
           fontSize: 11,
           fontWeight: "600",
-          marginTop: 2,
+          marginTop: 4,
         },
         tabBarItemStyle: {
-          paddingVertical: 4,
+          paddingVertical: 6,
         },
         headerShown: false,
       }}

@@ -194,37 +194,42 @@ export async function createOrder(req, res) {
 
 export async function getUserOrders(req, res) {
   try {
-    const orders = await Order.find({ clerkId: req.user.clerkId })
-      .populate("orderItems.product")
-      .sort({ createdAt: -1 });
+    const clerkId = req.user?.clerkId;
+    if (!clerkId) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
 
-    // check if each order has been reviewed (all products in the order must have reviews)
+    const orders = await Order.find({ clerkId })
+      .populate("orderItems.product")
+      .sort({ createdAt: -1 })
+      .lean();
+
     const orderIds = orders.map((order) => order._id);
     const reviews = await Review.find({ orderId: { $in: orderIds } });
 
-    const ordersWithReviewStatus = await Promise.all(
-      orders.map(async (order) => {
-        // Get all product IDs from this order
-        const orderProductIds = order.orderItems.map((item) => item.product.toString());
-        
-        // Get all reviews for this order
-        const orderReviews = reviews.filter(
-          (review) => review.orderId.toString() === order._id.toString()
-        );
-        
-        // Check if all products in the order have been reviewed
-        const reviewedProductIds = new Set(orderReviews.map((review) => review.productId.toString()));
-        const allProductsReviewed = orderProductIds.every((productId) => reviewedProductIds.has(productId));
-        
-        return {
-          ...order.toObject(),
-          hasReviewed: allProductsReviewed && orderProductIds.length > 0,
-        };
-      })
-    );
+    const ordersWithReviewStatus = orders.map((order) => {
+      // Ασφαλής λίστα product IDs (διαγραμμένα προϊόντα → populate επιστρέφει null)
+      const orderProductIds = (order.orderItems || [])
+        .map((item) => item.product)
+        .filter(Boolean)
+        .map((p) => (typeof p === "object" && p._id ? p._id.toString() : String(p)));
+
+      const orderReviews = reviews.filter(
+        (review) => review.orderId.toString() === order._id.toString()
+      );
+      const reviewedProductIds = new Set(orderReviews.map((review) => review.productId.toString()));
+      const allProductsReviewed =
+        orderProductIds.length > 0 && orderProductIds.every((id) => reviewedProductIds.has(id));
+
+      return {
+        ...order,
+        hasReviewed: allProductsReviewed,
+      };
+    });
 
     res.status(200).json({ orders: ordersWithReviewStatus });
   } catch (error) {
+    console.error("getUserOrders error:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 }

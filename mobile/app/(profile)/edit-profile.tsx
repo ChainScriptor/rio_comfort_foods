@@ -14,6 +14,7 @@ import {
   View,
   Alert,
   ActivityIndicator,
+  Platform,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Image } from "expo-image";
@@ -79,15 +80,26 @@ export default function EditProfileScreen() {
   const uploadImageToBackend = async (uri: string): Promise<string> => {
     try {
       const formData = new FormData();
-      const filename = uri.split("/").pop() || "profile.jpg";
-      const match = /\.(\w+)$/.exec(filename);
-      const type = match ? `image/${match[1]}` : "image/jpeg";
 
-      formData.append("image", {
-        uri,
-        name: filename,
-        type,
-      } as any);
+      // Στο web το Image Picker επιστρέφει data:image/...;base64,... — το FormData του browser
+      // δεν δέχεται { uri, name, type }. Πρέπει να μετατρέψουμε σε Blob/File.
+      const isDataUrl = uri.startsWith("data:");
+      if (Platform.OS === "web" && isDataUrl) {
+        const res = await fetch(uri);
+        const blob = await res.blob();
+        const type = blob.type || "image/jpeg";
+        const file = new File([blob], "profile.jpg", { type });
+        formData.append("image", file);
+      } else {
+        const filename = uri.split("/").pop() || "profile.jpg";
+        const match = /\.(\w+)$/.exec(filename);
+        const type = match ? `image/${match[1]}` : "image/jpeg";
+        formData.append("image", {
+          uri,
+          name: filename,
+          type,
+        } as any);
+      }
 
       const token = await getToken();
       const baseURL = api.defaults.baseURL || "https://riocomfortfoodsapi-yelm3.sevalla.app/api";
@@ -96,7 +108,7 @@ export default function EditProfileScreen() {
         body: formData,
         headers: {
           Authorization: `Bearer ${token}`,
-          // Don't set Content-Type, let fetch set it with boundary
+          // Μην ορίζεις Content-Type — το fetch θα βάλει boundary για multipart
         },
       });
 
