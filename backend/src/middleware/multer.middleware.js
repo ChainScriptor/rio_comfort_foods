@@ -10,9 +10,12 @@ const storage = multer.diskStorage({
   },
 });
 
+const memoryStorage = multer.memoryStorage();
+
 const fileFilter = (req, file, cb) => {
   const allowedTypes = /jpeg|jpg|png|webp/;
-  const extname = allowedTypes.test(path.extname(file.originalname).toLocaleLowerCase());
+  const ext = path.extname(file.originalname || "").toLowerCase();
+  const extname = allowedTypes.test(ext);
   const mimeType = allowedTypes.test(file.mimetype);
 
   if (extname && mimeType) {
@@ -26,4 +29,11 @@ export const upload = multer({
   storage,
   fileFilter,
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
+});
+
+/** Για profile image: memory storage ώστε να δουλεύει και σε environments χωρίς disk (π.χ. container) */
+export const uploadMemory = multer({
+  storage: memoryStorage,
+  fileFilter,
+  limits: { fileSize: 5 * 1024 * 1024 },
 });

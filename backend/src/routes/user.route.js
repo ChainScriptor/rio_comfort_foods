@@ -12,7 +12,7 @@ import {
   uploadProfileImage,
 } from "../controllers/user.controller.js";
 import { protectRoute } from "../middleware/auth.middleware.js";
-import { upload } from "../middleware/multer.middleware.js";
+import { upload, uploadMemory } from "../middleware/multer.middleware.js";
 
 const router = Router();
 
@@ -32,6 +32,6 @@ router.get("/wishlist", getWishlist);
 // profile routes
 router.get("/profile", getProfile);
 router.put("/profile", updateProfile);
-router.post("/profile/image", upload.single("image"), uploadProfileImage);
+router.post("/profile/image", uploadMemory.single("image"), uploadProfileImage);
 
 export default router;

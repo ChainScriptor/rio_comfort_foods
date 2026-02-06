@@ -235,6 +235,7 @@ export async function uploadProfileImage(req, res) {
     }
 
     const user = req.user;
+    const file = req.file;
 
     // Delete old image from Cloudinary if exists
     if (user.imageUrl) {
@@ -249,17 +250,34 @@ export async function uploadProfileImage(req, res) {
       }
     }
 
-    // Upload new image to Cloudinary
-    const uploadResult = await cloudinary.uploader.upload(req.file.path, {
-      folder: "profiles",
-    });
+    // Upload: support buffer (memory storage) or path (disk)
+    let uploadResult;
+    if (file.buffer) {
+      uploadResult = await new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.uploader.upload_stream(
+          { folder: "profiles" },
+          (err, result) => (err ? reject(err) : resolve(result))
+        );
+        uploadStream.end(file.buffer);
+      });
+    } else if (file.path) {
+      uploadResult = await cloudinary.uploader.upload(file.path, {
+        folder: "profiles",
+      });
+    } else {
+      return res.status(400).json({ error: "Invalid file data" });
+    }
+
+    if (!uploadResult?.secure_url) {
+      throw new Error("Cloudinary upload did not return URL");
+    }
 
     user.imageUrl = uploadResult.secure_url;
     await user.save();
 
-    res.status(200).json({ 
-      message: "Profile image uploaded successfully", 
-      imageUrl: uploadResult.secure_url 
+    res.status(200).json({
+      message: "Profile image uploaded successfully",
+      imageUrl: uploadResult.secure_url,
     });
   } catch (error) {
     console.error("Error uploading profile image:", error);
