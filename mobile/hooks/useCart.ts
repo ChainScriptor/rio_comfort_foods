@@ -65,9 +65,9 @@ const useCart = () => {
       productId: string;
       selectedUnit?: string;
     }) => {
-      const id = String(productId);
-      const { data } = await api.delete<{ cart: Cart }>(`/cart/${id}`, {
-        params: selectedUnit != null && selectedUnit !== "" ? { selectedUnit } : undefined,
+      const { data } = await api.post<{ cart: Cart }>("/cart/remove", {
+        productId: String(productId),
+        selectedUnit: selectedUnit != null && selectedUnit !== "" ? selectedUnit : undefined,
       });
       return data.cart;
     },

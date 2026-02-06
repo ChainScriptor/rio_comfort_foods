@@ -153,10 +153,31 @@ export async function updateCartItem(req, res) {
   }
 }
 
+function normalizeUnit(value) {
+  if (value == null || value === "") return null;
+  const s = String(value).trim();
+  return s === "" ? null : s;
+}
+
+async function removeItemFromCart(cart, productId, selectedUnit) {
+  const normalizedProductId = String(productId).trim();
+  const normalizedSelectedUnit = normalizeUnit(selectedUnit);
+  const lengthBefore = cart.items.length;
+
+  cart.items = cart.items.filter((item) => {
+    const itemProductId = item.product?.toString?.() ?? String(item.product);
+    const productMatches = itemProductId === normalizedProductId;
+    const normalizedItemUnit = normalizeUnit(item.selectedUnit);
+    const unitMatches = normalizedItemUnit === normalizedSelectedUnit;
+    return !(productMatches && unitMatches);
+  });
+
+  return cart.items.length < lengthBefore;
+}
+
 export async function removeFromCart(req, res) {
   try {
     const { productId } = req.params;
-    // Support both body and query (some clients/proxies strip DELETE body)
     const selectedUnit = req.body?.selectedUnit ?? req.query?.selectedUnit;
 
     const cart = await Cart.findOne({ clerkId: req.user.clerkId });
@@ -164,35 +185,41 @@ export async function removeFromCart(req, res) {
       return res.status(404).json({ error: "Cart not found" });
     }
 
-    // Normalize selectedUnit
-    let normalizedSelectedUnit = selectedUnit ? String(selectedUnit).trim() : null;
-    if (normalizedSelectedUnit === "") {
-      normalizedSelectedUnit = null;
-    }
-
-    const lengthBefore = cart.items.length;
-    const normalizedProductId = String(productId).trim();
-
-    // Remove only the item that matches both productId AND selectedUnit
-    cart.items = cart.items.filter((item) => {
-      const itemProductId = item.product?.toString?.() ?? String(item.product);
-      const productMatches = itemProductId === normalizedProductId;
-      const itemUnit = item.selectedUnit ? String(item.selectedUnit).trim() : null;
-      const normalizedItemUnit = itemUnit === "" ? null : itemUnit;
-      const unitMatches = normalizedItemUnit === normalizedSelectedUnit;
-
-      return !(productMatches && unitMatches);
-    });
-
-    if (cart.items.length === lengthBefore) {
+    const removed = await removeItemFromCart(cart, productId, selectedUnit);
+    if (!removed) {
       return res.status(404).json({ error: "Item not found in cart" });
     }
 
     await cart.save();
-
     res.status(200).json({ message: "Item removed from cart", cart });
   } catch (error) {
     console.error("removeFromCart error:", error);
+    res.status(500).json({ error: error?.message || "Internal server error" });
+  }
+}
+
+/** POST /cart/remove - body: { productId, selectedUnit }. Use this when DELETE query/body is unreliable. */
+export async function removeFromCartByBody(req, res) {
+  try {
+    const { productId, selectedUnit } = req.body || {};
+    if (!productId) {
+      return res.status(400).json({ error: "productId is required" });
+    }
+
+    const cart = await Cart.findOne({ clerkId: req.user.clerkId });
+    if (!cart) {
+      return res.status(404).json({ error: "Cart not found" });
+    }
+
+    const removed = await removeItemFromCart(cart, productId, selectedUnit);
+    if (!removed) {
+      return res.status(404).json({ error: "Item not found in cart" });
+    }
+
+    await cart.save();
+    res.status(200).json({ message: "Item removed from cart", cart });
+  } catch (error) {
+    console.error("removeFromCartByBody error:", error);
     res.status(500).json({ error: error?.message || "Internal server error" });
   }
 }
