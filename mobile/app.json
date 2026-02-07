@@ -25,7 +25,7 @@
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/icon.png",
+      "favicon": "./assets/favicon.png",
       "display": "standalone",
       "orientation": "portrait",
       "name": "Comfort Foods",
