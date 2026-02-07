@@ -3,7 +3,15 @@ import { useAddresses } from "@/hooks/useAddressess";
 import useCart from "@/hooks/useCart";
 import { useApi } from "@/lib/api";
 import { getOptimizedUrl } from "@/lib/utils";
-import { ActivityIndicator, Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import {
+  ActivityIndicator,
+  Alert,
+  Platform,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { useState } from "react";
 import { Address } from "@/types";
 import MinusIcon from "@/assets/icons/MinusIcon.svg";
@@ -49,26 +57,33 @@ const CartScreen = () => {
   };
 
   const handleRemoveItem = (productId: string, productName: string, selectedUnit?: string) => {
-    Alert.alert("Αφαίρεση Προϊόντος", `Αφαίρεση ${productName} από το καλάθι;`, [
-      { text: "Ακύρωση", style: "cancel" },
-      {
-        text: "Αφαίρεση",
-        style: "destructive",
-        onPress: () =>
-          removeFromCart(
-            { productId: String(productId), selectedUnit },
-            {
-              onError: (error: any) => {
-                const msg =
-                  error?.response?.data?.error ||
-                  error?.message ||
-                  "Δεν ήταν δυνατή η αφαίρεση του προϊόντος.";
-                Alert.alert("Σφάλμα", msg);
-              },
+    console.log("Button Clicked!");
+    const doRemove = () =>
+      removeFromCart(
+        { productId: String(productId), selectedUnit },
+        {
+          onError: (error: any) => {
+            const msg =
+              error?.response?.data?.error ||
+              error?.message ||
+              "Δεν ήταν δυνατή η αφαίρεση του προϊόντος.";
+            if (Platform.OS === "web") {
+              window.alert(msg);
+            } else {
+              Alert.alert("Σφάλμα", msg);
             }
-          ),
-      },
-    ]);
+          },
+        }
+      );
+    if (Platform.OS === "web") {
+      const confirmed = window.confirm(`Αφαίρεση ${productName} από το καλάθι;`);
+      if (confirmed) doRemove();
+    } else {
+      Alert.alert("Αφαίρεση Προϊόντος", `Αφαίρεση ${productName} από το καλάθι;`, [
+        { text: "Ακύρωση", style: "cancel" },
+        { text: "Αφαίρεση", style: "destructive", onPress: doRemove },
+      ]);
+    }
   };
 
   const handleCheckout = () => {
@@ -248,8 +263,10 @@ const CartScreen = () => {
                       </TouchableOpacity>
 
                       <TouchableOpacity
-                        className="ml-auto bg-red-500/10 rounded-full w-9 h-9 items-center justify-center"
+                        className="ml-auto bg-red-500/10 rounded-full w-9 h-9 items-center justify-center min-w-[36px] min-h-[36px]"
+                        style={{ zIndex: 50 }}
                         activeOpacity={0.7}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                         onPress={() =>
                           handleRemoveItem(
                             String(item.product!._id),
@@ -258,8 +275,12 @@ const CartScreen = () => {
                           )
                         }
                         disabled={isRemoving}
+                        accessibilityRole="button"
+                        accessibilityLabel="Αφαίρεση από καλάθι"
                       >
-                        <TrashIcon width={18} height={18} stroke="#EF4444" color="#EF4444" />
+                        <View pointerEvents="none">
+                          <TrashIcon width={18} height={18} stroke="#EF4444" color="#EF4444" />
+                        </View>
                       </TouchableOpacity>
                     </View>
                   </View>
