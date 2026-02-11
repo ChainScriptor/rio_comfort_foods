@@ -1,6 +1,15 @@
 import { User } from "../models/user.model.js";
 import cloudinary from "../config/cloudinary.js";
 
+function ensureAddressStoreLocations(user) {
+  if (!user || !user.addresses) return;
+  user.addresses.forEach((addr) => {
+    if (!addr.storeLocation) {
+      addr.storeLocation = "Άλλο";
+    }
+  });
+}
+
 export async function addAddress(req, res) {
   try {
     const { storeLocation, fullName, streetAddress, city, state, zipCode, phoneNumber, isDefault } =
@@ -30,11 +39,18 @@ export async function addAddress(req, res) {
       isDefault: isDefault || false,
     });
 
+    // Backfill storeLocation on any legacy addresses that might be missing it
+    ensureAddressStoreLocations(user);
+
     await user.save();
 
     res.status(201).json({ message: "Address added successfully", addresses: user.addresses });
   } catch (error) {
     console.error("Error adding address:", error);
+    if (error.name === "ValidationError") {
+      const errors = Object.values(error.errors).map((err) => err.message);
+      return res.status(400).json({ error: errors.join(", ") });
+    }
     res.status(500).json({ error: "Internal server error" });
   }
 }
@@ -90,12 +106,7 @@ export async function updateAddress(req, res) {
     address.isDefault = isDefault !== undefined ? isDefault : address.isDefault;
 
     // Fix any other addresses that might be missing storeLocation (for backward compatibility)
-    user.addresses.forEach((addr) => {
-      if (!addr.storeLocation) {
-        // Set default value for old addresses without storeLocation
-        addr.storeLocation = "Άλλο";
-      }
-    });
+    ensureAddressStoreLocations(user);
 
     await user.save();
 
@@ -117,10 +128,19 @@ export async function deleteAddress(req, res) {
     const user = req.user;
 
     user.addresses.pull(addressId);
+
+    // Ensure legacy addresses have a valid storeLocation before saving
+    ensureAddressStoreLocations(user);
+
     await user.save();
 
     res.status(200).json({ message: "Address deleted successfully", addresses: user.addresses });
   } catch (error) {
+    console.error("Error deleting address:", error);
+    if (error.name === "ValidationError") {
+      const errors = Object.values(error.errors).map((err) => err.message);
+      return res.status(400).json({ error: errors.join(", ") });
+    }
     res.status(500).json({ error: "Internal server error" });
   }
 }
