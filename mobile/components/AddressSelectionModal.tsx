@@ -6,7 +6,18 @@ import CalendarIcon from "@/assets/icons/CalendarIcon.svg";
 import ChevronForwardIcon from "@/assets/icons/ChevronForwardIcon.svg";
 import ArrowForwardIcon from "@/assets/icons/ArrowForwardIcon.svg";
 import { useState } from "react";
-import { View, Text, Modal, TouchableOpacity, ScrollView, ActivityIndicator, TextInput, Platform, Keyboard } from "react-native";
+import {
+  View,
+  Text,
+  Modal,
+  TouchableOpacity,
+  ScrollView,
+  ActivityIndicator,
+  TextInput,
+  Platform,
+  Keyboard,
+  Alert,
+} from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 interface AddressSelectionModalProps {
@@ -260,9 +271,22 @@ const AddressSelectionModal = ({
               className="bg-primary rounded-2xl py-5"
               activeOpacity={0.9}
               onPress={() => {
-                if (selectedAddress) {
-                  onProceed(selectedAddress, deliveryDate, comments.trim() || undefined);
+                if (!selectedAddress) return;
+
+                const storeLocation = selectedAddress.storeLocation?.toString().trim();
+                if (!storeLocation) {
+                  Alert.alert(
+                    "Ελλιπής διεύθυνση",
+                    "Παρακαλώ επιλέξτε \"Περιοχή Καταστήματος\" για τη διεύθυνσή σας πριν ολοκληρώσετε την παραγγελία."
+                  );
+                  return;
                 }
+
+                onProceed(
+                  { ...selectedAddress, storeLocation } as Address,
+                  deliveryDate,
+                  comments.trim() || undefined
+                );
               }}
               disabled={!selectedAddress || isProcessing}
             >

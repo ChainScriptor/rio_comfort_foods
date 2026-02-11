@@ -108,6 +108,16 @@ const CartScreen = () => {
     deliveryDate?: Date,
     comments?: string
   ) => {
+    // Extra safety: make sure storeLocation is present before sending to backend
+    const storeLocation = selectedAddress.storeLocation?.toString().trim();
+    if (!storeLocation) {
+      Alert.alert(
+        "Ελλιπής διεύθυνση",
+        "Η επιλεγμένη διεύθυνση δεν έχει \"Περιοχή Καταστήματος\". Επεξεργαστείτε τη διεύθυνση και συμπληρώστε την πριν συνεχίσετε."
+      );
+      return;
+    }
+
     setAddressModalVisible(false);
 
     // log checkout initiated
@@ -136,7 +146,7 @@ const CartScreen = () => {
       await api.post("/orders", {
         orderItems,
         shippingAddress: {
-          storeLocation: selectedAddress.storeLocation,
+          storeLocation,
           fullName: selectedAddress.fullName,
           streetAddress: selectedAddress.streetAddress,
           city: selectedAddress.city,
