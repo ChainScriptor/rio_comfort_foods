@@ -163,10 +163,17 @@ const CartScreen = () => {
         error: error instanceof Error ? error.message : "Unknown error",
         cartTotal: total,
         itemCount: cartItems.length,
+        serverError: error?.response?.data,
       });
 
-      const errorMessage = error.response?.data?.error || "Αποτυχία δημιουργίας παραγγελίας";
-      Alert.alert("Σφάλμα", errorMessage);
+      const baseMessage = error.response?.data?.error || "Αποτυχία δημιουργίας παραγγελίας";
+      const missingFields: string[] | undefined = error.response?.data?.missingFields;
+      const detailedMessage =
+        missingFields && missingFields.length > 0
+          ? `${baseMessage} (λείπουν: ${missingFields.join(", ")})`
+          : baseMessage;
+
+      Alert.alert("Σφάλμα", detailedMessage);
     } finally {
       setOrderLoading(false);
     }

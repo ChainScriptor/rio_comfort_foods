@@ -16,16 +16,28 @@ export async function createOrder(req, res) {
       return res.status(400).json({ error: "Shipping address is required" });
     }
 
-    if (
-      !shippingAddress.storeLocation ||
-      !shippingAddress.fullName ||
-      !shippingAddress.streetAddress ||
-      !shippingAddress.city ||
-      !shippingAddress.state ||
-      !shippingAddress.zipCode ||
-      !shippingAddress.phoneNumber
-    ) {
-      return res.status(400).json({ error: "All shipping address fields are required" });
+    // Normalize and validate required shipping address fields so we can
+    // return a helpful 400 instead of a generic error.
+    const requiredFields = [
+      "storeLocation",
+      "fullName",
+      "streetAddress",
+      "city",
+      "state",
+      "zipCode",
+      "phoneNumber",
+    ];
+
+    const missingFields = requiredFields.filter((field) => {
+      const value = shippingAddress[field];
+      return value == null || String(value).trim() === "";
+    });
+
+    if (missingFields.length > 0) {
+      return res.status(400).json({
+        error: "All shipping address fields are required",
+        missingFields,
+      });
     }
 
     // validate products exist

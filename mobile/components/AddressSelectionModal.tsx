@@ -6,7 +6,7 @@ import CalendarIcon from "@/assets/icons/CalendarIcon.svg";
 import ChevronForwardIcon from "@/assets/icons/ChevronForwardIcon.svg";
 import ArrowForwardIcon from "@/assets/icons/ArrowForwardIcon.svg";
 import { useState } from "react";
-import { View, Text, Modal, TouchableOpacity, ScrollView, ActivityIndicator, TextInput, Platform, Keyboard, TouchableWithoutFeedback } from "react-native";
+import { View, Text, Modal, TouchableOpacity, ScrollView, ActivityIndicator, TextInput, Platform, Keyboard } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 interface AddressSelectionModalProps {
@@ -82,16 +82,18 @@ const AddressSelectionModal = ({
   return (
     <Modal visible={visible} animationType="slide" transparent={true} onRequestClose={onClose}>
       <View className="flex-1 bg-black/50">
-        <TouchableOpacity 
-          activeOpacity={1} 
+        <TouchableOpacity
+          activeOpacity={1}
           onPress={() => {
             Keyboard.dismiss();
             handleClose();
           }}
           className="flex-1"
         />
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View className="bg-background rounded-t-3xl" style={{ height: "85%", maxHeight: 700 }}>
+        {/* Use a plain View here so that taps inside TextInput (comments)
+            are not intercepted by TouchableWithoutFeedback, which was
+            preventing typing on web. */}
+        <View className="bg-background rounded-t-3xl" style={{ height: "85%", maxHeight: 700 }}>
           {/* Modal Header */}
           <View className="flex-row items-center justify-between p-6 border-b border-surface">
             <Text className="text-text-primary text-2xl font-bold">Επιλογή Διεύθυνσης</Text>
@@ -278,8 +280,7 @@ const AddressSelectionModal = ({
               </View>
             </TouchableOpacity>
           </View>
-          </View>
-        </TouchableWithoutFeedback>
+        </View>
       </View>
     </Modal>
   );
