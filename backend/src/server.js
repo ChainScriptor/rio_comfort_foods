@@ -52,6 +52,9 @@ const allowedOrigins = [
   "https://riocomfort-app.sevalla.app",
   "https://riocomfortfoodsapi-yelm3.sevalla.app",
   "https://riocomfortfoods-oksxz.sevalla.app",
+  // Railway PWA / API hosts
+  "https://rio-comfort-foods-production.up.railway.app",
+  "https://rio-comfort-foods.up.railway.app",
   ...(ENV.ALLOWED_ORIGINS ? ENV.ALLOWED_ORIGINS.split(",").map((o) => o.trim()).filter(Boolean) : []),
 ];
 const corsOptions = {
@@ -127,7 +130,11 @@ if (ENV.NODE_ENV === "production") {
 
 const startServer = async () => {
   await connectDB();
-  app.listen(ENV.PORT, () => {
+
+  const port = process.env.PORT || ENV.PORT || 8080;
+
+  app.listen(port, "0.0.0.0", () => {
+    console.log(`Server initialized on port ${port}`);
   });
 };
 
