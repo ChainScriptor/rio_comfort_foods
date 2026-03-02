@@ -8,7 +8,7 @@ import * as AuthSession from "expo-auth-session";
 const PWA_BASE_URL =
   typeof process !== "undefined" && process.env?.EXPO_PUBLIC_APP_URL
     ? process.env.EXPO_PUBLIC_APP_URL.replace(/\/$/, "")
-    : "https://riocomfortfoods-oksxz.sevalla.app";
+    : "https://riocomfortfoods-production.up.railway.app";
 
 // Handle any pending authentication sessions (needed for web/PWA + native)
 WebBrowser.maybeCompleteAuthSession();

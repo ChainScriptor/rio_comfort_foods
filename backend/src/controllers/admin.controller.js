@@ -636,7 +636,7 @@ export async function inviteCustomer(req, res) {
     const backendUrl =
       process.env.BACKEND_URL ||
       (ENV.NODE_ENV === "production"
-        ? "https://riocomfortfoods-oksxz.sevalla.app"
+        ? "https://riocomfortfoods-production.up.railway.app"
         : `http://localhost:${ENV.PORT || 3000}`);
     const redirectUrl = `${backendUrl}/sign-up`;
 

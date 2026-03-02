@@ -9,7 +9,7 @@ export interface Banner {
 }
 
 // Public endpoint - no auth required
-const API_URL = "https://riocomfortfoodsapi-yelm3.sevalla.app/api";
+const API_URL = "https://riocomfortfoods-production.up.railway.app/api";
 
 const useBanners = () => {
   const result = useQuery({

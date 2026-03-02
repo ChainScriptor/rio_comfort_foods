@@ -106,7 +106,7 @@ export default function EditProfileScreen() {
         (typeof api.defaults.baseURL === "string" && api.defaults.baseURL) ||
         (typeof process !== "undefined" && process.env?.EXPO_PUBLIC_API_URL
           ? `${process.env.EXPO_PUBLIC_API_URL.replace(/\/$/, "")}/api`
-          : "https://riocomfortfoodsapi-yelm3.sevalla.app/api");
+          : "https://riocomfortfoods-production.up.railway.app/api");
       const response = await fetch(`${apiBase.replace(/\/$/, "")}/users/profile/image`, {
         method: "POST",
         body: formData,

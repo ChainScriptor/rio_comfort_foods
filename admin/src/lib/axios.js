@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// Πάντα /api: αν same-origin χρησιμοποιείται '/api', αλλιώς όρισε VITE_API_URL (π.χ. https://riocomfortfoodsapi-yelm3.sevalla.app/api)
+// Πάντα /api: αν same-origin χρησιμοποιείται '/api', αλλιώς όρισε VITE_API_URL (π.χ. https://riocomfortfoods-production.up.railway.app/api)
 const baseURL = import.meta.env.VITE_API_URL || "/api";
 
 const axiosInstance = axios.create({

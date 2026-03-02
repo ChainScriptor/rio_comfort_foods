@@ -1,0 +1,17185 @@
+module.exports = [
+"[project]/web-client/node_modules/next/dist/server/route-modules/app-page/module.compiled.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+;
+else {
+    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+    ;
+    else {
+        if ("TURBOPACK compile-time truthy", 1) {
+            if ("TURBOPACK compile-time truthy", 1) {
+                module.exports = __turbopack_context__.r("[externals]/next/dist/compiled/next-server/app-page-turbo.runtime.dev.js [external] (next/dist/compiled/next-server/app-page-turbo.runtime.dev.js, cjs)");
+            } else //TURBOPACK unreachable
+            ;
+        } else //TURBOPACK unreachable
+        ;
+    }
+} //# sourceMappingURL=module.compiled.js.map
+}),
+"[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+module.exports = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/module.compiled.js [app-ssr] (ecmascript)").vendored['react-ssr'].ReactJsxDevRuntime; //# sourceMappingURL=react-jsx-dev-runtime.js.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/constants-ByUssRbE.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "CURRENT_DEV_INSTANCE_SUFFIXES",
+    ()=>CURRENT_DEV_INSTANCE_SUFFIXES,
+    "DEV_OR_STAGING_SUFFIXES",
+    ()=>DEV_OR_STAGING_SUFFIXES,
+    "LEGACY_DEV_INSTANCE_SUFFIXES",
+    ()=>LEGACY_DEV_INSTANCE_SUFFIXES,
+    "LOCAL_API_URL",
+    ()=>LOCAL_API_URL,
+    "LOCAL_ENV_SUFFIXES",
+    ()=>LOCAL_ENV_SUFFIXES,
+    "PROD_API_URL",
+    ()=>PROD_API_URL,
+    "STAGING_API_URL",
+    ()=>STAGING_API_URL,
+    "STAGING_ENV_SUFFIXES",
+    ()=>STAGING_ENV_SUFFIXES,
+    "iconImageUrl",
+    ()=>iconImageUrl
+]);
+//#region src/constants.ts
+const LEGACY_DEV_INSTANCE_SUFFIXES = [
+    ".lcl.dev",
+    ".lclstage.dev",
+    ".lclclerk.com"
+];
+const CURRENT_DEV_INSTANCE_SUFFIXES = [
+    ".accounts.dev",
+    ".accountsstage.dev",
+    ".accounts.lclclerk.com"
+];
+const DEV_OR_STAGING_SUFFIXES = [
+    ".lcl.dev",
+    ".stg.dev",
+    ".lclstage.dev",
+    ".stgstage.dev",
+    ".dev.lclclerk.com",
+    ".stg.lclclerk.com",
+    ".accounts.lclclerk.com",
+    "accountsstage.dev",
+    "accounts.dev"
+];
+const LOCAL_ENV_SUFFIXES = [
+    ".lcl.dev",
+    "lclstage.dev",
+    ".lclclerk.com",
+    ".accounts.lclclerk.com"
+];
+const STAGING_ENV_SUFFIXES = [
+    ".accountsstage.dev"
+];
+const LOCAL_API_URL = "https://api.lclclerk.com";
+const STAGING_API_URL = "https://api.clerkstage.dev";
+const PROD_API_URL = "https://api.clerk.com";
+/**
+* Returns the URL for a static image
+* using the new img.clerk.com service
+*/ function iconImageUrl(id, format = "svg") {
+    return `https://img.clerk.com/static/${id}.${format}`;
+}
+;
+ //# sourceMappingURL=constants-ByUssRbE.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/isomorphicAtob-DybBXGFR.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "isomorphicAtob",
+    ()=>isomorphicAtob
+]);
+//#region src/isomorphicAtob.ts
+/**
+* A function that decodes a string of data which has been encoded using base-64 encoding.
+* Uses `atob` if available, otherwise uses `Buffer` from `global`. If neither are available, returns the data as-is.
+*/ const isomorphicAtob = (data)=>{
+    if (typeof atob !== "undefined" && typeof atob === "function") return atob(data);
+    else if (("TURBOPACK compile-time value", "object") !== "undefined" && /*TURBOPACK member replacement*/ __turbopack_context__.g.Buffer) return new /*TURBOPACK member replacement*/ __turbopack_context__.g.Buffer(data, "base64").toString();
+    return data;
+};
+;
+ //# sourceMappingURL=isomorphicAtob-DybBXGFR.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/isomorphicBtoa-Dr7WubZv.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "isomorphicBtoa",
+    ()=>isomorphicBtoa
+]);
+//#region src/isomorphicBtoa.ts
+const isomorphicBtoa = (data)=>{
+    if (typeof btoa !== "undefined" && typeof btoa === "function") return btoa(data);
+    else if (("TURBOPACK compile-time value", "object") !== "undefined" && /*TURBOPACK member replacement*/ __turbopack_context__.g.Buffer) return new /*TURBOPACK member replacement*/ __turbopack_context__.g.Buffer(data).toString("base64");
+    return data;
+};
+;
+ //# sourceMappingURL=isomorphicBtoa-Dr7WubZv.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/keys-YNv6yjKk.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "buildPublishableKey",
+    ()=>buildPublishableKey,
+    "createDevOrStagingUrlCache",
+    ()=>createDevOrStagingUrlCache,
+    "getCookieSuffix",
+    ()=>getCookieSuffix,
+    "getSuffixedCookieName",
+    ()=>getSuffixedCookieName,
+    "isDevelopmentFromPublishableKey",
+    ()=>isDevelopmentFromPublishableKey,
+    "isDevelopmentFromSecretKey",
+    ()=>isDevelopmentFromSecretKey,
+    "isProductionFromPublishableKey",
+    ()=>isProductionFromPublishableKey,
+    "isProductionFromSecretKey",
+    ()=>isProductionFromSecretKey,
+    "isPublishableKey",
+    ()=>isPublishableKey,
+    "parsePublishableKey",
+    ()=>parsePublishableKey
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$constants$2d$ByUssRbE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/constants-ByUssRbE.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$isomorphicAtob$2d$DybBXGFR$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/isomorphicAtob-DybBXGFR.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$isomorphicBtoa$2d$Dr7WubZv$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/isomorphicBtoa-Dr7WubZv.mjs [app-ssr] (ecmascript)");
+;
+;
+;
+//#region src/keys.ts
+/** Prefix used for production publishable keys */ const PUBLISHABLE_KEY_LIVE_PREFIX = "pk_live_";
+/** Prefix used for development publishable keys */ const PUBLISHABLE_KEY_TEST_PREFIX = "pk_test_";
+/**
+* Regular expression that matches development frontend API keys.
+* Matches patterns like: foo-bar-13.clerk.accounts.dev.
+*/ const PUBLISHABLE_FRONTEND_API_DEV_REGEX = /^(([a-z]+)-){2}([0-9]{1,2})\.clerk\.accounts([a-z.]*)(dev|com)$/i;
+/**
+* Converts a frontend API URL into a base64-encoded publishable key.
+*
+* @param frontendApi - The frontend API URL (e.g., 'clerk.example.com').
+* @returns A base64-encoded publishable key with appropriate prefix (pk_live_ or pk_test_).
+*/ function buildPublishableKey(frontendApi) {
+    return `${PUBLISHABLE_FRONTEND_API_DEV_REGEX.test(frontendApi) || frontendApi.startsWith("clerk.") && __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$constants$2d$ByUssRbE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["LEGACY_DEV_INSTANCE_SUFFIXES"].some((s)=>frontendApi.endsWith(s)) ? PUBLISHABLE_KEY_TEST_PREFIX : PUBLISHABLE_KEY_LIVE_PREFIX}${(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$isomorphicBtoa$2d$Dr7WubZv$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isomorphicBtoa"])(`${frontendApi}$`)}`;
+}
+/**
+* Validates that a decoded publishable key has the correct format.
+* The decoded value should be a frontend API followed by exactly one '$' at the end.
+*
+* @param decoded - The decoded publishable key string to validate.
+* @returns `true` if the decoded key has valid format, `false` otherwise.
+*/ function isValidDecodedPublishableKey(decoded) {
+    if (!decoded.endsWith("$")) return false;
+    const withoutTrailing = decoded.slice(0, -1);
+    if (withoutTrailing.includes("$")) return false;
+    return withoutTrailing.includes(".");
+}
+/**
+* Parses and validates a publishable key, extracting the frontend API and instance type.
+*
+* @param key - The publishable key to parse.
+* @param options - Configuration options for parsing.
+* @param options.fatal
+* @param options.domain
+* @param options.proxyUrl
+* @param options.isSatellite
+* @returns Parsed publishable key object with instanceType and frontendApi, or null if invalid.
+*
+* @throws {Error} When options.fatal is true and key is missing or invalid.
+*/ function parsePublishableKey(key, options = {}) {
+    key = key || "";
+    if (!key || !isPublishableKey(key)) {
+        if (options.fatal && !key) throw new Error("Publishable key is missing. Ensure that your publishable key is correctly configured. Double-check your environment configuration for your keys, or access them here: https://dashboard.clerk.com/last-active?path=api-keys");
+        if (options.fatal && !isPublishableKey(key)) throw new Error("Publishable key not valid.");
+        return null;
+    }
+    const instanceType = key.startsWith(PUBLISHABLE_KEY_LIVE_PREFIX) ? "production" : "development";
+    let decodedFrontendApi;
+    try {
+        decodedFrontendApi = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$isomorphicAtob$2d$DybBXGFR$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isomorphicAtob"])(key.split("_")[2]);
+    } catch  {
+        if (options.fatal) throw new Error("Publishable key not valid: Failed to decode key.");
+        return null;
+    }
+    if (!isValidDecodedPublishableKey(decodedFrontendApi)) {
+        if (options.fatal) throw new Error("Publishable key not valid: Decoded key has invalid format.");
+        return null;
+    }
+    let frontendApi = decodedFrontendApi.slice(0, -1);
+    if (options.proxyUrl) frontendApi = options.proxyUrl;
+    else if (instanceType !== "development" && options.domain && options.isSatellite) frontendApi = `clerk.${options.domain}`;
+    return {
+        instanceType,
+        frontendApi
+    };
+}
+/**
+* Checks if the provided key is a valid publishable key.
+*
+* @param key - The key to be checked. Defaults to an empty string if not provided.
+* @returns `true` if 'key' is a valid publishable key, `false` otherwise.
+*/ function isPublishableKey(key = "") {
+    try {
+        if (!(key.startsWith(PUBLISHABLE_KEY_LIVE_PREFIX) || key.startsWith(PUBLISHABLE_KEY_TEST_PREFIX))) return false;
+        const parts = key.split("_");
+        if (parts.length !== 3) return false;
+        const encodedPart = parts[2];
+        if (!encodedPart) return false;
+        return isValidDecodedPublishableKey((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$isomorphicAtob$2d$DybBXGFR$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isomorphicAtob"])(encodedPart));
+    } catch  {
+        return false;
+    }
+}
+/**
+* Creates a memoized cache for checking if URLs are development or staging environments.
+* Uses a Map to cache results for better performance on repeated checks.
+*
+* @returns An object with an isDevOrStagingUrl method that checks if a URL is dev/staging.
+*/ function createDevOrStagingUrlCache() {
+    const devOrStagingUrlCache = /* @__PURE__ */ new Map();
+    return {
+        isDevOrStagingUrl: (url)=>{
+            if (!url) return false;
+            const hostname = typeof url === "string" ? url : url.hostname;
+            let res = devOrStagingUrlCache.get(hostname);
+            if (res === void 0) {
+                res = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$constants$2d$ByUssRbE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DEV_OR_STAGING_SUFFIXES"].some((s)=>hostname.endsWith(s));
+                devOrStagingUrlCache.set(hostname, res);
+            }
+            return res;
+        }
+    };
+}
+/**
+* Checks if a publishable key is for a development environment.
+* Supports both legacy format (test_) and new format (pk_test_).
+*
+* @param apiKey - The API key to check.
+* @returns `true` if the key is for development, `false` otherwise.
+*/ function isDevelopmentFromPublishableKey(apiKey) {
+    return apiKey.startsWith("test_") || apiKey.startsWith("pk_test_");
+}
+/**
+* Checks if a publishable key is for a production environment.
+* Supports both legacy format (live_) and new format (pk_live_).
+*
+* @param apiKey - The API key to check.
+* @returns `true` if the key is for production, `false` otherwise.
+*/ function isProductionFromPublishableKey(apiKey) {
+    return apiKey.startsWith("live_") || apiKey.startsWith("pk_live_");
+}
+/**
+* Checks if a secret key is for a development environment.
+* Supports both legacy format (test_) and new format (sk_test_).
+*
+* @param apiKey - The secret key to check.
+* @returns `true` if the key is for development, `false` otherwise.
+*/ function isDevelopmentFromSecretKey(apiKey) {
+    return apiKey.startsWith("test_") || apiKey.startsWith("sk_test_");
+}
+/**
+* Checks if a secret key is for a production environment.
+* Supports both legacy format (live_) and new format (sk_live_).
+*
+* @param apiKey - The secret key to check.
+* @returns `true` if the key is for production, `false` otherwise.
+*/ function isProductionFromSecretKey(apiKey) {
+    return apiKey.startsWith("live_") || apiKey.startsWith("sk_live_");
+}
+/**
+* Generates a unique cookie suffix based on the publishable key using SHA-1 hashing.
+* The suffix is base64-encoded and URL-safe (+ and / characters are replaced).
+*
+* @param publishableKey - The publishable key to generate suffix from.
+* @param subtle - The SubtleCrypto interface to use for hashing (defaults to globalThis.crypto.subtle).
+* @returns A promise that resolves to an 8-character URL-safe base64 string.
+*/ async function getCookieSuffix(publishableKey, subtle = globalThis.crypto.subtle) {
+    const data = new TextEncoder().encode(publishableKey);
+    const digest = await subtle.digest("sha-1", data);
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$isomorphicBtoa$2d$Dr7WubZv$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isomorphicBtoa"])(String.fromCharCode(...new Uint8Array(digest))).replace(/\+/gi, "-").replace(/\//gi, "_").substring(0, 8);
+}
+/**
+* Creates a suffixed cookie name by appending the cookie suffix to the base name.
+* Used to create unique cookie names based on the publishable key.
+*
+* @param cookieName - The base cookie name.
+* @param cookieSuffix - The suffix to append (typically generated by getCookieSuffix).
+* @returns The suffixed cookie name in format: `${cookieName}_${cookieSuffix}`.
+*/ const getSuffixedCookieName = (cookieName, cookieSuffix)=>{
+    return `${cookieName}_${cookieSuffix}`;
+};
+;
+ //# sourceMappingURL=keys-YNv6yjKk.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/authorization-errors-CS1pNy8i.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "isReverificationHint",
+    ()=>isReverificationHint,
+    "reverificationError",
+    ()=>reverificationError,
+    "reverificationErrorResponse",
+    ()=>reverificationErrorResponse
+]);
+//#region src/authorization-errors.ts
+const REVERIFICATION_REASON = "reverification-error";
+const reverificationError = (missingConfig)=>({
+        clerk_error: {
+            type: "forbidden",
+            reason: REVERIFICATION_REASON,
+            metadata: {
+                reverification: missingConfig
+            }
+        }
+    });
+const reverificationErrorResponse = (...args)=>new Response(JSON.stringify(reverificationError(...args)), {
+        status: 403
+    });
+const isReverificationHint = (result)=>{
+    return result && typeof result === "object" && "clerk_error" in result && result.clerk_error?.type === "forbidden" && result.clerk_error?.reason === REVERIFICATION_REASON;
+};
+;
+ //# sourceMappingURL=authorization-errors-CS1pNy8i.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/authorization-D2ans7vW.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "createCheckAuthorization",
+    ()=>createCheckAuthorization,
+    "resolveAuthState",
+    ()=>resolveAuthState,
+    "splitByScope",
+    ()=>splitByScope,
+    "validateReverificationConfig",
+    ()=>validateReverificationConfig
+]);
+//#region src/authorization.ts
+const TYPES_TO_OBJECTS = {
+    strict_mfa: {
+        afterMinutes: 10,
+        level: "multi_factor"
+    },
+    strict: {
+        afterMinutes: 10,
+        level: "second_factor"
+    },
+    moderate: {
+        afterMinutes: 60,
+        level: "second_factor"
+    },
+    lax: {
+        afterMinutes: 1440,
+        level: "second_factor"
+    }
+};
+const ALLOWED_LEVELS = new Set([
+    "first_factor",
+    "second_factor",
+    "multi_factor"
+]);
+const ALLOWED_TYPES = new Set([
+    "strict_mfa",
+    "strict",
+    "moderate",
+    "lax"
+]);
+const isValidMaxAge = (maxAge)=>typeof maxAge === "number" && maxAge > 0;
+const isValidLevel = (level)=>ALLOWED_LEVELS.has(level);
+const isValidVerificationType = (type)=>ALLOWED_TYPES.has(type);
+const prefixWithOrg = (value)=>value.replace(/^(org:)*/, "org:");
+/**
+* Checks if a user has the required Organization-level authorization.
+* Verifies if the user has the specified Role or Permission within their Organization.
+* @returns null, if unable to determine due to missing data or unspecified Role/Permission.
+*/ const checkOrgAuthorization = (params, options)=>{
+    const { orgId, orgRole, orgPermissions } = options;
+    if (!params.role && !params.permission) return null;
+    if (!orgId || !orgRole || !orgPermissions) return null;
+    if (params.permission) return orgPermissions.includes(prefixWithOrg(params.permission));
+    if (params.role) return prefixWithOrg(orgRole) === prefixWithOrg(params.role);
+    return null;
+};
+const checkForFeatureOrPlan = (claim, featureOrPlan)=>{
+    const { org: orgFeatures, user: userFeatures } = splitByScope(claim);
+    const [scope, _id] = featureOrPlan.split(":");
+    const id = _id || scope;
+    if (scope === "org") return orgFeatures.includes(id);
+    else if (scope === "user") return userFeatures.includes(id);
+    else return [
+        ...orgFeatures,
+        ...userFeatures
+    ].includes(id);
+};
+const checkBillingAuthorization = (params, options)=>{
+    const { features, plans } = options;
+    if (params.feature && features) return checkForFeatureOrPlan(features, params.feature);
+    if (params.plan && plans) return checkForFeatureOrPlan(plans, params.plan);
+    return null;
+};
+const splitByScope = (fea)=>{
+    const features = fea ? fea.split(",").map((f)=>f.trim()) : [];
+    return {
+        org: features.filter((f)=>f.split(":")[0].includes("o")).map((f)=>f.split(":")[1]),
+        user: features.filter((f)=>f.split(":")[0].includes("u")).map((f)=>f.split(":")[1])
+    };
+};
+const validateReverificationConfig = (config)=>{
+    if (!config) return false;
+    const convertConfigToObject = (config$1)=>{
+        if (typeof config$1 === "string") return TYPES_TO_OBJECTS[config$1];
+        return config$1;
+    };
+    const isValidStringValue = typeof config === "string" && isValidVerificationType(config);
+    const isValidObjectValue = typeof config === "object" && isValidLevel(config.level) && isValidMaxAge(config.afterMinutes);
+    if (isValidStringValue || isValidObjectValue) return convertConfigToObject.bind(null, config);
+    return false;
+};
+/**
+* Evaluates if the user meets re-verification authentication requirements.
+* Compares the user's factor verification ages against the specified maxAge.
+* Handles different verification levels (first factor, second factor, multi-factor).
+* @returns null, if requirements or verification data are missing.
+*/ const checkReverificationAuthorization = (params, { factorVerificationAge })=>{
+    if (!params.reverification || !factorVerificationAge) return null;
+    const isValidReverification = validateReverificationConfig(params.reverification);
+    if (!isValidReverification) return null;
+    const { level, afterMinutes } = isValidReverification();
+    const [factor1Age, factor2Age] = factorVerificationAge;
+    const isValidFactor1 = factor1Age !== -1 ? afterMinutes > factor1Age : null;
+    const isValidFactor2 = factor2Age !== -1 ? afterMinutes > factor2Age : null;
+    switch(level){
+        case "first_factor":
+            return isValidFactor1;
+        case "second_factor":
+            return factor2Age !== -1 ? isValidFactor2 : isValidFactor1;
+        case "multi_factor":
+            return factor2Age === -1 ? isValidFactor1 : isValidFactor1 && isValidFactor2;
+    }
+};
+/**
+* Creates a function for comprehensive user authorization checks.
+* Combines organization-level and reverification authentication checks.
+* The returned function authorizes if both checks pass, or if at least one passes
+* when the other is indeterminate. Fails if userId is missing.
+*/ const createCheckAuthorization = (options)=>{
+    return (params)=>{
+        if (!options.userId) return false;
+        const billingAuthorization = checkBillingAuthorization(params, options);
+        const orgAuthorization = checkOrgAuthorization(params, options);
+        const reverificationAuthorization = checkReverificationAuthorization(params, options);
+        if ([
+            billingAuthorization || orgAuthorization,
+            reverificationAuthorization
+        ].some((a)=>a === null)) return [
+            billingAuthorization || orgAuthorization,
+            reverificationAuthorization
+        ].some((a)=>a === true);
+        return [
+            billingAuthorization || orgAuthorization,
+            reverificationAuthorization
+        ].every((a)=>a === true);
+    };
+};
+/**
+* Shared utility function that centralizes auth state resolution logic,
+* preventing duplication across different packages.
+* @internal
+*/ const resolveAuthState = ({ authObject: { sessionId, sessionStatus, userId, actor, orgId, orgRole, orgSlug, signOut, getToken, has, sessionClaims }, options: { treatPendingAsSignedOut = true } })=>{
+    if (sessionId === void 0 && userId === void 0) return {
+        isLoaded: false,
+        isSignedIn: void 0,
+        sessionId,
+        sessionClaims: void 0,
+        userId,
+        actor: void 0,
+        orgId: void 0,
+        orgRole: void 0,
+        orgSlug: void 0,
+        has: void 0,
+        signOut,
+        getToken
+    };
+    if (sessionId === null && userId === null) return {
+        isLoaded: true,
+        isSignedIn: false,
+        sessionId,
+        userId,
+        sessionClaims: null,
+        actor: null,
+        orgId: null,
+        orgRole: null,
+        orgSlug: null,
+        has: ()=>false,
+        signOut,
+        getToken
+    };
+    if (treatPendingAsSignedOut && sessionStatus === "pending") return {
+        isLoaded: true,
+        isSignedIn: false,
+        sessionId: null,
+        userId: null,
+        sessionClaims: null,
+        actor: null,
+        orgId: null,
+        orgRole: null,
+        orgSlug: null,
+        has: ()=>false,
+        signOut,
+        getToken
+    };
+    if (!!sessionId && !!sessionClaims && !!userId && !!orgId && !!orgRole) return {
+        isLoaded: true,
+        isSignedIn: true,
+        sessionId,
+        sessionClaims,
+        userId,
+        actor: actor || null,
+        orgId,
+        orgRole,
+        orgSlug: orgSlug || null,
+        has,
+        signOut,
+        getToken
+    };
+    if (!!sessionId && !!sessionClaims && !!userId && !orgId) return {
+        isLoaded: true,
+        isSignedIn: true,
+        sessionId,
+        sessionClaims,
+        userId,
+        actor: actor || null,
+        orgId: null,
+        orgRole: null,
+        orgSlug: null,
+        has,
+        signOut,
+        getToken
+    };
+};
+;
+ //# sourceMappingURL=authorization-D2ans7vW.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/error-Dl9xmUf3.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "ClerkAPIError",
+    ()=>ClerkAPIError,
+    "ClerkAPIResponseError",
+    ()=>ClerkAPIResponseError,
+    "ClerkError",
+    ()=>ClerkError,
+    "ClerkRuntimeError",
+    ()=>ClerkRuntimeError,
+    "ClerkWebAuthnError",
+    ()=>ClerkWebAuthnError,
+    "EmailLinkError",
+    ()=>EmailLinkError,
+    "EmailLinkErrorCode",
+    ()=>EmailLinkErrorCode,
+    "EmailLinkErrorCodeStatus",
+    ()=>EmailLinkErrorCodeStatus,
+    "MissingExpiredTokenError",
+    ()=>MissingExpiredTokenError,
+    "buildErrorThrower",
+    ()=>buildErrorThrower,
+    "createClerkGlobalHookError",
+    ()=>createClerkGlobalHookError,
+    "errorToJSON",
+    ()=>errorToJSON,
+    "is4xxError",
+    ()=>is4xxError,
+    "isCaptchaError",
+    ()=>isCaptchaError,
+    "isClerkAPIError",
+    ()=>isClerkAPIError,
+    "isClerkAPIResponseError",
+    ()=>isClerkAPIResponseError,
+    "isClerkError",
+    ()=>isClerkError,
+    "isClerkRuntimeError",
+    ()=>isClerkRuntimeError,
+    "isEmailLinkError",
+    ()=>isEmailLinkError,
+    "isKnownError",
+    ()=>isKnownError,
+    "isMetamaskError",
+    ()=>isMetamaskError,
+    "isNetworkError",
+    ()=>isNetworkError,
+    "isPasswordCompromisedError",
+    ()=>isPasswordCompromisedError,
+    "isPasswordPwnedError",
+    ()=>isPasswordPwnedError,
+    "isReverificationCancelledError",
+    ()=>isReverificationCancelledError,
+    "isUnauthorizedError",
+    ()=>isUnauthorizedError,
+    "isUserLockedError",
+    ()=>isUserLockedError,
+    "parseError",
+    ()=>parseError,
+    "parseErrors",
+    ()=>parseErrors
+]);
+//#region src/errors/createErrorTypeGuard.ts
+/**
+* Creates a type guard function for any error class.
+* The returned function can be called as a standalone function or as a method on an error object.
+*
+* @example
+* ```typescript
+* class MyError extends Error {}
+* const isMyError = createErrorTypeGuard(MyError);
+*
+* // As a standalone function
+* if (isMyError(error)) { ... }
+*
+* // As a method (when attached to error object)
+* if (error.isMyError()) { ... }
+* ```
+*/ function createErrorTypeGuard(ErrorClass) {
+    function typeGuard(error) {
+        const target = error ?? this;
+        if (!target) throw new TypeError(`${ErrorClass.kind || ErrorClass.name} type guard requires an error object`);
+        if (ErrorClass.kind && typeof target === "object" && target !== null && "constructor" in target) {
+            if (target.constructor?.kind === ErrorClass.kind) return true;
+        }
+        return target instanceof ErrorClass;
+    }
+    return typeGuard;
+}
+//#endregion
+//#region src/errors/clerkApiError.ts
+/**
+* This error contains the specific error message, code, and any additional metadata that was returned by the Clerk API.
+*/ var ClerkAPIError = class {
+    static kind = "ClerkApiError";
+    code;
+    message;
+    longMessage;
+    meta;
+    constructor(json){
+        const parsedError = {
+            code: json.code,
+            message: json.message,
+            longMessage: json.long_message,
+            meta: {
+                paramName: json.meta?.param_name,
+                sessionId: json.meta?.session_id,
+                emailAddresses: json.meta?.email_addresses,
+                identifiers: json.meta?.identifiers,
+                zxcvbn: json.meta?.zxcvbn,
+                plan: json.meta?.plan,
+                isPlanUpgradePossible: json.meta?.is_plan_upgrade_possible
+            }
+        };
+        this.code = parsedError.code;
+        this.message = parsedError.message;
+        this.longMessage = parsedError.longMessage;
+        this.meta = parsedError.meta;
+    }
+};
+/**
+* Type guard to check if a value is a ClerkAPIError instance.
+*/ const isClerkAPIError = createErrorTypeGuard(ClerkAPIError);
+//#endregion
+//#region src/errors/parseError.ts
+/**
+* Parses an array of ClerkAPIErrorJSON objects into an array of ClerkAPIError objects.
+*
+* @internal
+*/ function parseErrors(data = []) {
+    return data.length > 0 ? data.map((e)=>new ClerkAPIError(e)) : [];
+}
+/**
+* Parses a ClerkAPIErrorJSON object into a ClerkAPIError object.
+*
+* @deprecated Use `ClerkAPIError` class instead
+*
+* @internal
+*/ function parseError(error) {
+    return new ClerkAPIError(error);
+}
+/**
+* Converts a ClerkAPIError object into a ClerkAPIErrorJSON object.
+*
+* @internal
+*/ function errorToJSON(error) {
+    return {
+        code: error?.code || "",
+        message: error?.message || "",
+        long_message: error?.longMessage,
+        meta: {
+            param_name: error?.meta?.paramName,
+            session_id: error?.meta?.sessionId,
+            email_addresses: error?.meta?.emailAddresses,
+            identifiers: error?.meta?.identifiers,
+            zxcvbn: error?.meta?.zxcvbn,
+            plan: error?.meta?.plan,
+            is_plan_upgrade_possible: error?.meta?.isPlanUpgradePossible
+        }
+    };
+}
+//#endregion
+//#region src/errors/clerkError.ts
+var ClerkError = class ClerkError extends Error {
+    static kind = "ClerkError";
+    clerkError = true;
+    code;
+    longMessage;
+    docsUrl;
+    cause;
+    get name() {
+        return this.constructor.name;
+    }
+    constructor(opts){
+        super(new.target.formatMessage(new.target.kind, opts.message, opts.code, opts.docsUrl), {
+            cause: opts.cause
+        });
+        Object.setPrototypeOf(this, ClerkError.prototype);
+        this.code = opts.code;
+        this.docsUrl = opts.docsUrl;
+        this.longMessage = opts.longMessage;
+        this.cause = opts.cause;
+    }
+    toString() {
+        return `[${this.name}]\nMessage:${this.message}`;
+    }
+    static formatMessage(name, msg, code, docsUrl) {
+        const prefix = "Clerk:";
+        const regex = new RegExp(prefix.replace(" ", "\\s*"), "i");
+        msg = msg.replace(regex, "");
+        msg = `${prefix} ${msg.trim()}\n\n(code="${code}")\n\n`;
+        if (docsUrl) msg += `\n\nDocs: ${docsUrl}`;
+        return msg;
+    }
+};
+/**
+* Type guard to check if a value is a ClerkError instance.
+*/ function isClerkError(val) {
+    return createErrorTypeGuard(ClerkError)(val) || !!val && typeof val === "object" && "clerkError" in val && val.clerkError === true;
+}
+//#endregion
+//#region src/errors/clerkApiResponseError.ts
+var ClerkAPIResponseError = class ClerkAPIResponseError extends ClerkError {
+    static kind = "ClerkAPIResponseError";
+    status;
+    clerkTraceId;
+    retryAfter;
+    errors;
+    constructor(message, options){
+        const { data: errorsJson, status, clerkTraceId, retryAfter } = options;
+        super({
+            ...options,
+            message,
+            code: "api_response_error"
+        });
+        Object.setPrototypeOf(this, ClerkAPIResponseError.prototype);
+        this.status = status;
+        this.clerkTraceId = clerkTraceId;
+        this.retryAfter = retryAfter;
+        this.errors = (errorsJson || []).map((e)=>new ClerkAPIError(e));
+    }
+    toString() {
+        let message = `[${this.name}]\nMessage:${this.message}\nStatus:${this.status}\nSerialized errors: ${this.errors.map((e)=>JSON.stringify(e))}`;
+        if (this.clerkTraceId) message += `\nClerk Trace ID: ${this.clerkTraceId}`;
+        return message;
+    }
+    static formatMessage(name, msg, _, __) {
+        return msg;
+    }
+};
+/**
+* Type guard to check if an error is a ClerkAPIResponseError.
+* Can be called as a standalone function or as a method on an error object.
+*
+* @example
+* // As a standalone function
+* if (isClerkAPIResponseError(error)) { ... }
+*
+* // As a method (when attached to error object)
+* if (error.isClerkAPIResponseError()) { ... }
+*/ const isClerkAPIResponseError = createErrorTypeGuard(ClerkAPIResponseError);
+//#endregion
+//#region src/errors/missingExpiredTokenError.ts
+/**
+* Error class representing a missing expired token error from the API.
+* This error occurs when the server requires an expired token to mint a new session token.
+*
+* Use the static `is` method to check if a ClerkAPIResponseError matches this error type.
+*
+* @example
+* ```typescript
+* if (MissingExpiredTokenError.is(error)) {
+*   // Handle the missing expired token error
+* }
+* ```
+*/ var MissingExpiredTokenError = class MissingExpiredTokenError extends ClerkAPIResponseError {
+    static kind = "MissingExpiredTokenError";
+    static ERROR_CODE = "missing_expired_token";
+    static STATUS = 422;
+    /**
+	* Type guard to check if an error is a MissingExpiredTokenError.
+	* This checks the error's properties (status and error code) rather than instanceof,
+	* allowing it to work with ClerkAPIResponseError instances thrown from the API layer.
+	*
+	* @example
+	* ```typescript
+	* try {
+	*   await someApiCall();
+	* } catch (e) {
+	*   if (MissingExpiredTokenError.is(e)) {
+	*     // e is typed as ClerkAPIResponseError with the specific error properties
+	*   }
+	* }
+	* ```
+	*/ static is(err) {
+        return isClerkAPIResponseError(err) && err.status === MissingExpiredTokenError.STATUS && err.errors.length > 0 && err.errors[0].code === MissingExpiredTokenError.ERROR_CODE;
+    }
+};
+//#endregion
+//#region src/errors/errorThrower.ts
+const DefaultMessages = Object.freeze({
+    InvalidProxyUrlErrorMessage: `The proxyUrl passed to Clerk is invalid. The expected value for proxyUrl is an absolute URL or a relative path with a leading '/'. (key={{url}})`,
+    InvalidPublishableKeyErrorMessage: `The publishableKey passed to Clerk is invalid. You can get your Publishable key at https://dashboard.clerk.com/last-active?path=api-keys. (key={{key}})`,
+    MissingPublishableKeyErrorMessage: `Missing publishableKey. You can get your key at https://dashboard.clerk.com/last-active?path=api-keys.`,
+    MissingSecretKeyErrorMessage: `Missing secretKey. You can get your key at https://dashboard.clerk.com/last-active?path=api-keys.`,
+    MissingClerkProvider: `{{source}} can only be used within the <ClerkProvider /> component. Learn more: https://clerk.com/docs/components/clerk-provider`
+});
+/**
+* Builds an error thrower.
+*
+* @internal
+*/ function buildErrorThrower({ packageName, customMessages }) {
+    let pkg = packageName;
+    /**
+	* Builds a message from a raw message and replacements.
+	*
+	* @internal
+	*/ function buildMessage(rawMessage, replacements) {
+        if (!replacements) return `${pkg}: ${rawMessage}`;
+        let msg = rawMessage;
+        const matches = rawMessage.matchAll(/{{([a-zA-Z0-9-_]+)}}/g);
+        for (const match of matches){
+            const replacement = (replacements[match[1]] || "").toString();
+            msg = msg.replace(`{{${match[1]}}}`, replacement);
+        }
+        return `${pkg}: ${msg}`;
+    }
+    const messages = {
+        ...DefaultMessages,
+        ...customMessages
+    };
+    return {
+        setPackageName ({ packageName: packageName$1 }) {
+            if (typeof packageName$1 === "string") pkg = packageName$1;
+            return this;
+        },
+        setMessages ({ customMessages: customMessages$1 }) {
+            Object.assign(messages, customMessages$1 || {});
+            return this;
+        },
+        throwInvalidPublishableKeyError (params) {
+            throw new Error(buildMessage(messages.InvalidPublishableKeyErrorMessage, params));
+        },
+        throwInvalidProxyUrl (params) {
+            throw new Error(buildMessage(messages.InvalidProxyUrlErrorMessage, params));
+        },
+        throwMissingPublishableKeyError () {
+            throw new Error(buildMessage(messages.MissingPublishableKeyErrorMessage));
+        },
+        throwMissingSecretKeyError () {
+            throw new Error(buildMessage(messages.MissingSecretKeyErrorMessage));
+        },
+        throwMissingClerkProviderError (params) {
+            throw new Error(buildMessage(messages.MissingClerkProvider, params));
+        },
+        throw (message) {
+            throw new Error(buildMessage(message));
+        }
+    };
+}
+//#endregion
+//#region src/errors/emailLinkError.ts
+var EmailLinkError = class EmailLinkError extends Error {
+    code;
+    constructor(code){
+        super(code);
+        this.code = code;
+        this.name = "EmailLinkError";
+        Object.setPrototypeOf(this, EmailLinkError.prototype);
+    }
+};
+/**
+* @deprecated Use `EmailLinkErrorCodeStatus` instead.
+*
+* @internal
+*/ const EmailLinkErrorCode = {
+    Expired: "expired",
+    Failed: "failed",
+    ClientMismatch: "client_mismatch"
+};
+const EmailLinkErrorCodeStatus = {
+    Expired: "expired",
+    Failed: "failed",
+    ClientMismatch: "client_mismatch"
+};
+//#endregion
+//#region src/errors/clerkRuntimeError.ts
+/**
+* Custom error class for representing Clerk runtime errors.
+*
+* @class ClerkRuntimeError
+*
+* @example
+*   throw new ClerkRuntimeError('An error occurred', { code: 'password_invalid' });
+*/ var ClerkRuntimeError = class ClerkRuntimeError extends ClerkError {
+    static kind = "ClerkRuntimeError";
+    /**
+	* @deprecated Use `clerkError` property instead. This property is maintained for backward compatibility.
+	*/ clerkRuntimeError = true;
+    constructor(message, options){
+        super({
+            ...options,
+            message
+        });
+        Object.setPrototypeOf(this, ClerkRuntimeError.prototype);
+    }
+};
+/**
+* Type guard to check if an error is a ClerkRuntimeError.
+* Can be called as a standalone function or as a method on an error object.
+*
+* @example
+* // As a standalone function
+* if (isClerkRuntimeError(error)) { ... }
+*
+* // As a method (when attached to error object)
+* if (error.isClerkRuntimeError()) { ... }
+*/ const isClerkRuntimeError = createErrorTypeGuard(ClerkRuntimeError);
+//#endregion
+//#region src/errors/webAuthNError.ts
+var ClerkWebAuthnError = class extends ClerkRuntimeError {
+    /**
+	* A unique code identifying the error, can be used for localization.
+	*/ code;
+    constructor(message, { code }){
+        super(message, {
+            code
+        });
+        this.code = code;
+    }
+};
+//#endregion
+//#region src/errors/helpers.ts
+/**
+* Checks if the provided error object is an unauthorized error.
+*
+* @internal
+*
+* @deprecated This is no longer used, and will be removed in the next major version.
+*/ function isUnauthorizedError(e) {
+    const status = e?.status;
+    return e?.errors?.[0]?.code === "authentication_invalid" && status === 401;
+}
+/**
+* Checks if the provided error object is a captcha error.
+*
+* @internal
+*/ function isCaptchaError(e) {
+    return [
+        "captcha_invalid",
+        "captcha_not_enabled",
+        "captcha_missing_token"
+    ].includes(e.errors[0].code);
+}
+/**
+* Checks if the provided error is a 4xx error.
+*
+* @internal
+*/ function is4xxError(e) {
+    const status = e?.status;
+    return !!status && status >= 400 && status < 500;
+}
+/**
+* Checks if the provided error is a network error.
+*
+* @internal
+*/ function isNetworkError(e) {
+    return (`${e.message}${e.name}` || "").toLowerCase().replace(/\s+/g, "").includes("networkerror");
+}
+/**
+* Checks if the provided error is either a ClerkAPIResponseError, a ClerkRuntimeError, or a MetamaskError.
+*
+* @internal
+*/ function isKnownError(error) {
+    return isClerkAPIResponseError(error) || isMetamaskError(error) || isClerkRuntimeError(error);
+}
+/**
+* Checks if the provided error is a Clerk runtime error indicating a reverification was cancelled.
+*
+* @internal
+*/ function isReverificationCancelledError(err) {
+    return isClerkRuntimeError(err) && err.code === "reverification_cancelled";
+}
+/**
+* Checks if the provided error is a Metamask error.
+*
+* @internal
+*/ function isMetamaskError(err) {
+    return "code" in err && [
+        4001,
+        32602,
+        32603
+    ].includes(err.code) && "message" in err;
+}
+/**
+* Checks if the provided error is clerk api response error indicating a user is locked.
+*
+* @internal
+*/ function isUserLockedError(err) {
+    return isClerkAPIResponseError(err) && err.errors?.[0]?.code === "user_locked";
+}
+/**
+* Checks if the provided error is a clerk api response error indicating a password was pwned.
+*
+* @internal
+*/ function isPasswordPwnedError(err) {
+    return isClerkAPIResponseError(err) && err.errors?.[0]?.code === "form_password_pwned";
+}
+/**
+* Checks if the provided error is a clerk api response error indicating a password was compromised.
+*
+* @internal
+*/ function isPasswordCompromisedError(err) {
+    return isClerkAPIResponseError(err) && err.errors?.[0]?.code === "form_password_compromised";
+}
+/**
+* Checks if the provided error is an EmailLinkError.
+*
+* @internal
+*/ function isEmailLinkError(err) {
+    return err.name === "EmailLinkError";
+}
+//#endregion
+//#region src/errors/globalHookError.ts
+/**
+* Creates a ClerkGlobalHookError object from a ClerkError instance.
+* It's a wrapper for all the different instances of Clerk errors that can
+* be returned when using Clerk hooks.
+*/ function createClerkGlobalHookError(error) {
+    const predicates = {
+        isClerkAPIResponseError,
+        isClerkRuntimeError
+    };
+    for (const [name, fn] of Object.entries(predicates))Object.assign(error, {
+        [name]: fn
+    });
+    return error;
+}
+;
+ //# sourceMappingURL=error-Dl9xmUf3.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/noop-B3MbDAfb.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "noop",
+    ()=>noop
+]);
+//#region src/utils/noop.ts
+const noop = (..._args)=>{};
+;
+ //# sourceMappingURL=noop-B3MbDAfb.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/createDeferredPromise-CjYZzUuU.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "createDeferredPromise",
+    ()=>createDeferredPromise
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$noop$2d$B3MbDAfb$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/noop-B3MbDAfb.mjs [app-ssr] (ecmascript)");
+;
+//#region src/utils/createDeferredPromise.ts
+/**
+* Create a promise that can be resolved or rejected from
+* outside the Promise constructor callback
+* A ES6 compatible utility that implements `Promise.withResolvers`
+* @internal
+*/ const createDeferredPromise = ()=>{
+    let resolve = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$noop$2d$B3MbDAfb$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["noop"];
+    let reject = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$noop$2d$B3MbDAfb$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["noop"];
+    return {
+        promise: new Promise((res, rej)=>{
+            resolve = res;
+            reject = rej;
+        }),
+        resolve,
+        reject
+    };
+};
+;
+ //# sourceMappingURL=createDeferredPromise-CjYZzUuU.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/underscore-DjQrhefX.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "camelToSnake",
+    ()=>camelToSnake,
+    "deepCamelToSnake",
+    ()=>deepCamelToSnake,
+    "deepSnakeToCamel",
+    ()=>deepSnakeToCamel,
+    "getNonUndefinedValues",
+    ()=>getNonUndefinedValues,
+    "isIPV4Address",
+    ()=>isIPV4Address,
+    "isTruthy",
+    ()=>isTruthy,
+    "snakeToCamel",
+    ()=>snakeToCamel,
+    "titleize",
+    ()=>titleize,
+    "toSentence",
+    ()=>toSentence
+]);
+//#region src/underscore.ts
+/**
+* Convert words to a sentence.
+*
+* @param items - An array of words to be joined.
+* @returns A string with the items joined by a comma and the last item joined by ", or".
+*/ const toSentence = (items)=>{
+    if (items.length == 0) return "";
+    if (items.length == 1) return items[0];
+    let sentence = items.slice(0, -1).join(", ");
+    sentence += `, or ${items.slice(-1)}`;
+    return sentence;
+};
+const IP_V4_ADDRESS_REGEX = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+/**
+* Checks if a string is a valid IPv4 address.
+*
+* @returns True if the string is a valid IPv4 address, false otherwise.
+*/ function isIPV4Address(str) {
+    return IP_V4_ADDRESS_REGEX.test(str || "");
+}
+/**
+* Converts the first character of a string to uppercase.
+*
+* @param str - The string to be converted.
+* @returns The modified string with the rest of the string unchanged.
+*
+* @example
+* ```ts
+* titleize('hello world') // 'Hello world'
+* ```
+*/ function titleize(str) {
+    const s = str || "";
+    return s.charAt(0).toUpperCase() + s.slice(1);
+}
+/**
+* Converts a string from snake_case to camelCase.
+*/ function snakeToCamel(str) {
+    return str ? str.replace(/([-_][a-z])/g, (match)=>match.toUpperCase().replace(/-|_/, "")) : "";
+}
+/**
+* Converts a string from camelCase to snake_case.
+*/ function camelToSnake(str) {
+    return str ? str.replace(/[A-Z]/g, (letter)=>`_${letter.toLowerCase()}`) : "";
+}
+const createDeepObjectTransformer = (transform)=>{
+    const deepTransform = (obj)=>{
+        if (!obj) return obj;
+        if (Array.isArray(obj)) return obj.map((el)=>{
+            if (typeof el === "object" || Array.isArray(el)) return deepTransform(el);
+            return el;
+        });
+        const copy = {
+            ...obj
+        };
+        const keys = Object.keys(copy);
+        for (const oldName of keys){
+            const newName = transform(oldName.toString());
+            if (newName !== oldName) {
+                copy[newName] = copy[oldName];
+                delete copy[oldName];
+            }
+            if (typeof copy[newName] === "object") copy[newName] = deepTransform(copy[newName]);
+        }
+        return copy;
+    };
+    return deepTransform;
+};
+/**
+* Transforms camelCased objects/ arrays to snake_cased.
+* This function recursively traverses all objects and arrays of the passed value
+* camelCased keys are removed.
+*
+* @function
+*/ const deepCamelToSnake = createDeepObjectTransformer(camelToSnake);
+/**
+* Transforms snake_cased objects/ arrays to camelCased.
+* This function recursively traverses all objects and arrays of the passed value
+* camelCased keys are removed.
+*
+* @function
+*/ const deepSnakeToCamel = createDeepObjectTransformer(snakeToCamel);
+/**
+* A function to determine if a value is truthy.
+*
+* @returns True for `true`, true, positive numbers. False for `false`, false, 0, negative integers and anything else.
+*/ function isTruthy(value) {
+    if (typeof value === `boolean`) return value;
+    if (value === void 0 || value === null) return false;
+    if (typeof value === `string`) {
+        if (value.toLowerCase() === `true`) return true;
+        if (value.toLowerCase() === `false`) return false;
+    }
+    const number = parseInt(value, 10);
+    if (isNaN(number)) return false;
+    if (number > 0) return true;
+    return false;
+}
+/**
+* Get all non-undefined values from an object.
+*/ function getNonUndefinedValues(obj) {
+    return Object.entries(obj).reduce((acc, [key, value])=>{
+        if (value !== void 0) acc[key] = value;
+        return acc;
+    }, {});
+}
+;
+ //# sourceMappingURL=underscore-DjQrhefX.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/organization-BqxdOtRG.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "getCurrentOrganizationMembership",
+    ()=>getCurrentOrganizationMembership
+]);
+//#region src/organization.ts
+/**
+* Finds the Organization membership for a given Organization ID from a list of memberships
+* @param organizationMemberships - Array of Organization memberships to search through
+* @param organizationId - ID of the Organization to find the membership for
+* @returns The matching Organization membership or undefined if not found
+*/ function getCurrentOrganizationMembership(organizationMemberships, organizationId) {
+    return organizationMemberships.find((organizationMembership)=>organizationMembership.organization.id === organizationId);
+}
+;
+ //# sourceMappingURL=organization-BqxdOtRG.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/telemetry-wqMDWlvR.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "EVENT_SAMPLING_RATE",
+    ()=>EVENT_SAMPLING_RATE,
+    "EVENT_THEME_USAGE",
+    ()=>EVENT_THEME_USAGE,
+    "TelemetryCollector",
+    ()=>TelemetryCollector,
+    "eventComponentMounted",
+    ()=>eventComponentMounted,
+    "eventFrameworkMetadata",
+    ()=>eventFrameworkMetadata,
+    "eventMethodCalled",
+    ()=>eventMethodCalled,
+    "eventPrebuiltComponentMounted",
+    ()=>eventPrebuiltComponentMounted,
+    "eventPrebuiltComponentOpened",
+    ()=>eventPrebuiltComponentOpened,
+    "eventThemeUsage",
+    ()=>eventThemeUsage
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$keys$2d$YNv6yjKk$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/keys-YNv6yjKk.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$underscore$2d$DjQrhefX$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/underscore-DjQrhefX.mjs [app-ssr] (ecmascript)");
+;
+;
+//#region src/telemetry/throttler.ts
+const DEFAULT_CACHE_TTL_MS = 864e5;
+/**
+* Manages throttling for telemetry events using a configurable cache implementation
+* to mitigate event flooding in frequently executed code paths.
+*/ var TelemetryEventThrottler = class {
+    #cache;
+    #cacheTtl = DEFAULT_CACHE_TTL_MS;
+    constructor(cache){
+        this.#cache = cache;
+    }
+    isEventThrottled(payload) {
+        const now = Date.now();
+        const key = this.#generateKey(payload);
+        const entry = this.#cache.getItem(key);
+        if (!entry) {
+            this.#cache.setItem(key, now);
+            return false;
+        }
+        if (now - entry > this.#cacheTtl) {
+            this.#cache.setItem(key, now);
+            return false;
+        }
+        return true;
+    }
+    /**
+	* Generates a consistent unique key for telemetry events by sorting payload properties.
+	* This ensures that payloads with identical content in different orders produce the same key.
+	*/ #generateKey(event) {
+        const { sk: _sk, pk: _pk, payload, ...rest } = event;
+        const sanitizedEvent = {
+            ...payload,
+            ...rest
+        };
+        return JSON.stringify(Object.keys({
+            ...payload,
+            ...rest
+        }).sort().map((key)=>sanitizedEvent[key]));
+    }
+};
+/**
+* LocalStorage-based cache implementation for browser environments.
+*/ var LocalStorageThrottlerCache = class {
+    #storageKey = "clerk_telemetry_throttler";
+    getItem(key) {
+        return this.#getCache()[key];
+    }
+    setItem(key, value) {
+        try {
+            const cache = this.#getCache();
+            cache[key] = value;
+            localStorage.setItem(this.#storageKey, JSON.stringify(cache));
+        } catch (err) {
+            if (err instanceof DOMException && (err.name === "QuotaExceededError" || err.name === "NS_ERROR_DOM_QUOTA_REACHED") && localStorage.length > 0) localStorage.removeItem(this.#storageKey);
+        }
+    }
+    removeItem(key) {
+        try {
+            const cache = this.#getCache();
+            delete cache[key];
+            localStorage.setItem(this.#storageKey, JSON.stringify(cache));
+        } catch  {}
+    }
+    #getCache() {
+        try {
+            const cacheString = localStorage.getItem(this.#storageKey);
+            if (!cacheString) return {};
+            return JSON.parse(cacheString);
+        } catch  {
+            return {};
+        }
+    }
+    static isSupported() {
+        return ("TURBOPACK compile-time value", "undefined") !== "undefined" && !!window.localStorage;
+    }
+};
+/**
+* In-memory cache implementation for non-browser environments (e.g., React Native).
+*/ var InMemoryThrottlerCache = class {
+    #cache = /* @__PURE__ */ new Map();
+    #maxSize = 1e4;
+    getItem(key) {
+        if (this.#cache.size > this.#maxSize) {
+            this.#cache.clear();
+            return;
+        }
+        return this.#cache.get(key);
+    }
+    setItem(key, value) {
+        this.#cache.set(key, value);
+    }
+    removeItem(key) {
+        this.#cache.delete(key);
+    }
+};
+//#endregion
+//#region src/telemetry/collector.ts
+/**
+* Type guard to check if window.Clerk exists and has the expected structure.
+*/ function isWindowClerkWithMetadata(clerk) {
+    return typeof clerk === "object" && clerk !== null && "constructor" in clerk && typeof clerk.constructor === "function";
+}
+const VALID_LOG_LEVELS = new Set([
+    "error",
+    "warn",
+    "info",
+    "debug",
+    "trace"
+]);
+const DEFAULT_CONFIG = {
+    samplingRate: 1,
+    maxBufferSize: 5,
+    endpoint: "https://clerk-telemetry.com"
+};
+var TelemetryCollector = class {
+    #config;
+    #eventThrottler;
+    #metadata = {};
+    #buffer = [];
+    #pendingFlush = null;
+    constructor(options){
+        this.#config = {
+            maxBufferSize: options.maxBufferSize ?? DEFAULT_CONFIG.maxBufferSize,
+            samplingRate: options.samplingRate ?? DEFAULT_CONFIG.samplingRate,
+            perEventSampling: options.perEventSampling ?? true,
+            disabled: options.disabled ?? false,
+            debug: options.debug ?? false,
+            endpoint: DEFAULT_CONFIG.endpoint
+        };
+        if (!options.clerkVersion && ("TURBOPACK compile-time value", "undefined") === "undefined") this.#metadata.clerkVersion = "";
+        else this.#metadata.clerkVersion = options.clerkVersion ?? "";
+        this.#metadata.sdk = options.sdk;
+        this.#metadata.sdkVersion = options.sdkVersion;
+        this.#metadata.publishableKey = options.publishableKey ?? "";
+        const parsedKey = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$keys$2d$YNv6yjKk$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["parsePublishableKey"])(options.publishableKey);
+        if (parsedKey) this.#metadata.instanceType = parsedKey.instanceType;
+        if (options.secretKey) this.#metadata.secretKey = options.secretKey.substring(0, 16);
+        this.#eventThrottler = new TelemetryEventThrottler(LocalStorageThrottlerCache.isSupported() ? new LocalStorageThrottlerCache() : new InMemoryThrottlerCache());
+    }
+    get isEnabled() {
+        if (this.#metadata.instanceType !== "development") return false;
+        if (this.#config.disabled || typeof process !== "undefined" && process.env && (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$underscore$2d$DjQrhefX$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isTruthy"])(process.env.CLERK_TELEMETRY_DISABLED)) return false;
+        if (("TURBOPACK compile-time value", "undefined") !== "undefined" && !!window?.navigator?.webdriver) //TURBOPACK unreachable
+        ;
+        return true;
+    }
+    get isDebug() {
+        return this.#config.debug || typeof process !== "undefined" && process.env && (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$underscore$2d$DjQrhefX$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isTruthy"])(process.env.CLERK_TELEMETRY_DEBUG);
+    }
+    record(event) {
+        try {
+            const preparedPayload = this.#preparePayload(event.event, event.payload);
+            this.#logEvent(preparedPayload.event, preparedPayload);
+            if (!this.#shouldRecord(preparedPayload, event.eventSamplingRate)) return;
+            this.#buffer.push({
+                kind: "event",
+                value: preparedPayload
+            });
+            this.#scheduleFlush();
+        } catch (error) {
+            console.error("[clerk/telemetry] Error recording telemetry event", error);
+        }
+    }
+    /**
+	* Records a telemetry log entry if logging is enabled and not in debug mode.
+	*
+	* @param entry - The telemetry log entry to record.
+	*/ recordLog(entry) {
+        try {
+            if (!this.#shouldRecordLog(entry)) return;
+            const levelIsValid = typeof entry?.level === "string" && VALID_LOG_LEVELS.has(entry.level);
+            const messageIsValid = typeof entry?.message === "string" && entry.message.trim().length > 0;
+            let normalizedTimestamp = null;
+            const timestampInput = entry?.timestamp;
+            if (typeof timestampInput === "number" || typeof timestampInput === "string") {
+                const candidate = new Date(timestampInput);
+                if (!Number.isNaN(candidate.getTime())) normalizedTimestamp = candidate;
+            }
+            if (!levelIsValid || !messageIsValid || normalizedTimestamp === null) {
+                if (this.isDebug && typeof console !== "undefined") console.warn("[clerk/telemetry] Dropping invalid telemetry log entry", {
+                    levelIsValid,
+                    messageIsValid,
+                    timestampIsValid: normalizedTimestamp !== null
+                });
+                return;
+            }
+            const sdkMetadata = this.#getSDKMetadata();
+            const logData = {
+                sdk: sdkMetadata.name,
+                sdkv: sdkMetadata.version,
+                cv: this.#metadata.clerkVersion ?? "",
+                lvl: entry.level,
+                msg: entry.message,
+                ts: normalizedTimestamp.toISOString(),
+                pk: this.#metadata.publishableKey || null,
+                payload: this.#sanitizeContext(entry.context)
+            };
+            this.#buffer.push({
+                kind: "log",
+                value: logData
+            });
+            this.#scheduleFlush();
+        } catch (error) {
+            console.error("[clerk/telemetry] Error recording telemetry log entry", error);
+        }
+    }
+    #shouldRecord(preparedPayload, eventSamplingRate) {
+        return this.isEnabled && !this.isDebug && this.#shouldBeSampled(preparedPayload, eventSamplingRate);
+    }
+    #shouldRecordLog(_entry) {
+        return true;
+    }
+    #shouldBeSampled(preparedPayload, eventSamplingRate) {
+        const randomSeed = Math.random();
+        if (!(randomSeed <= this.#config.samplingRate && (this.#config.perEventSampling === false || typeof eventSamplingRate === "undefined" || randomSeed <= eventSamplingRate))) return false;
+        return !this.#eventThrottler.isEventThrottled(preparedPayload);
+    }
+    #scheduleFlush() {
+        if ("TURBOPACK compile-time truthy", 1) {
+            this.#flush();
+            return;
+        }
+        //TURBOPACK unreachable
+        ;
+    }
+    #flush() {
+        const itemsToSend = [
+            ...this.#buffer
+        ];
+        this.#buffer = [];
+        this.#pendingFlush = null;
+        if (itemsToSend.length === 0) return;
+        const eventsToSend = itemsToSend.filter((item)=>item.kind === "event").map((item)=>item.value);
+        const logsToSend = itemsToSend.filter((item)=>item.kind === "log").map((item)=>item.value);
+        if (eventsToSend.length > 0) {
+            const eventsUrl = new URL("/v1/event", this.#config.endpoint);
+            fetch(eventsUrl, {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                keepalive: true,
+                method: "POST",
+                body: JSON.stringify({
+                    events: eventsToSend
+                })
+            }).catch(()=>void 0);
+        }
+        if (logsToSend.length > 0) {
+            const logsUrl = new URL("/v1/logs", this.#config.endpoint);
+            fetch(logsUrl, {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                keepalive: true,
+                method: "POST",
+                body: JSON.stringify({
+                    logs: logsToSend
+                })
+            }).catch(()=>void 0);
+        }
+    }
+    /**
+	* If running in debug mode, log the event and its payload to the console.
+	*/ #logEvent(event, payload) {
+        if (!this.isDebug) return;
+        if (typeof console.groupCollapsed !== "undefined") {
+            console.groupCollapsed("[clerk/telemetry]", event);
+            console.log(payload);
+            console.groupEnd();
+        } else console.log("[clerk/telemetry]", event, payload);
+    }
+    /**
+	* If in browser, attempt to lazily grab the SDK metadata from the Clerk singleton, otherwise fallback to the initially passed in values.
+	*
+	* This is necessary because the sdkMetadata can be set by the host SDK after the TelemetryCollector is instantiated.
+	*/ #getSDKMetadata() {
+        const sdkMetadata = {
+            name: this.#metadata.sdk,
+            version: this.#metadata.sdkVersion
+        };
+        if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+        ;
+        return sdkMetadata;
+    }
+    /**
+	* Append relevant metadata from the Clerk singleton to the event payload.
+	*/ #preparePayload(event, payload) {
+        const sdkMetadata = this.#getSDKMetadata();
+        return {
+            event,
+            cv: this.#metadata.clerkVersion ?? "",
+            it: this.#metadata.instanceType ?? "",
+            sdk: sdkMetadata.name,
+            sdkv: sdkMetadata.version,
+            ...this.#metadata.publishableKey ? {
+                pk: this.#metadata.publishableKey
+            } : {},
+            ...this.#metadata.secretKey ? {
+                sk: this.#metadata.secretKey
+            } : {},
+            payload
+        };
+    }
+    /**
+	* Best-effort sanitization of the context payload. Returns a plain object with JSON-serializable
+	* values or null when the input is missing or not serializable. Arrays are not accepted.
+	*/ #sanitizeContext(context) {
+        if (context === null || typeof context === "undefined") return null;
+        if (typeof context !== "object") return null;
+        try {
+            const cleaned = JSON.parse(JSON.stringify(context));
+            if (cleaned && typeof cleaned === "object" && !Array.isArray(cleaned)) return cleaned;
+            return null;
+        } catch  {
+            return null;
+        }
+    }
+};
+//#endregion
+//#region src/telemetry/events/component-mounted.ts
+const EVENT_COMPONENT_MOUNTED = "COMPONENT_MOUNTED";
+const EVENT_COMPONENT_OPENED = "COMPONENT_OPENED";
+const EVENT_SAMPLING_RATE$3 = .1;
+/** Increase sampling for high-signal auth components on mount. */ const AUTH_COMPONENTS = new Set([
+    "SignIn",
+    "SignUp"
+]);
+/**
+* Returns the per-event sampling rate for component-mounted telemetry events.
+* Uses a higher rate for SignIn/SignUp to improve signal quality.
+*
+*  @internal
+*/ function getComponentMountedSamplingRate(component) {
+    return AUTH_COMPONENTS.has(component) ? 1 : EVENT_SAMPLING_RATE$3;
+}
+/**
+* Factory for prebuilt component telemetry events.
+*
+* @internal
+*/ function createPrebuiltComponentEvent(event) {
+    return function(component, props, additionalPayload) {
+        return {
+            event,
+            eventSamplingRate: event === EVENT_COMPONENT_MOUNTED ? getComponentMountedSamplingRate(component) : EVENT_SAMPLING_RATE$3,
+            payload: {
+                component,
+                appearanceProp: Boolean(props?.appearance),
+                baseTheme: Boolean(props?.appearance?.baseTheme),
+                elements: Boolean(props?.appearance?.elements),
+                variables: Boolean(props?.appearance?.variables),
+                ...additionalPayload
+            }
+        };
+    };
+}
+/**
+* Helper function for `telemetry.record()`. Create a consistent event object for when a prebuilt (AIO) component is mounted.
+*
+* @param component - The name of the component.
+* @param props - The props passed to the component. Will be filtered to a known list of props.
+* @param additionalPayload - Additional data to send with the event.
+* @example
+* telemetry.record(eventPrebuiltComponentMounted('SignUp', props));
+*/ function eventPrebuiltComponentMounted(component, props, additionalPayload) {
+    return createPrebuiltComponentEvent(EVENT_COMPONENT_MOUNTED)(component, props, additionalPayload);
+}
+/**
+* Helper function for `telemetry.record()`. Create a consistent event object for when a prebuilt (AIO) component is opened as a modal.
+*
+* @param component - The name of the component.
+* @param props - The props passed to the component. Will be filtered to a known list of props.
+* @param additionalPayload - Additional data to send with the event.
+* @example
+* telemetry.record(eventPrebuiltComponentOpened('GoogleOneTap', props));
+*/ function eventPrebuiltComponentOpened(component, props, additionalPayload) {
+    return createPrebuiltComponentEvent(EVENT_COMPONENT_OPENED)(component, props, additionalPayload);
+}
+/**
+* Helper function for `telemetry.record()`. Create a consistent event object for when a component is mounted. Use `eventPrebuiltComponentMounted` for prebuilt components.
+*
+* **Caution:** Filter the `props` you pass to this function to avoid sending too much data.
+*
+* @param component - The name of the component.
+* @param props - The props passed to the component. Ideally you only pass a handful of props here.
+* @example
+* telemetry.record(eventComponentMounted('SignUp', props));
+*/ function eventComponentMounted(component, props = {}) {
+    return {
+        event: EVENT_COMPONENT_MOUNTED,
+        eventSamplingRate: getComponentMountedSamplingRate(component),
+        payload: {
+            component,
+            ...props
+        }
+    };
+}
+//#endregion
+//#region src/telemetry/events/method-called.ts
+const EVENT_METHOD_CALLED = "METHOD_CALLED";
+const EVENT_SAMPLING_RATE$2 = .1;
+/**
+* Fired when a helper method is called from a Clerk SDK.
+*/ function eventMethodCalled(method, payload) {
+    return {
+        event: EVENT_METHOD_CALLED,
+        eventSamplingRate: EVENT_SAMPLING_RATE$2,
+        payload: {
+            method,
+            ...payload
+        }
+    };
+}
+//#endregion
+//#region src/telemetry/events/framework-metadata.ts
+const EVENT_FRAMEWORK_METADATA = "FRAMEWORK_METADATA";
+const EVENT_SAMPLING_RATE$1 = .1;
+/**
+* Fired when a helper method is called from a Clerk SDK.
+*/ function eventFrameworkMetadata(payload) {
+    return {
+        event: EVENT_FRAMEWORK_METADATA,
+        eventSamplingRate: EVENT_SAMPLING_RATE$1,
+        payload
+    };
+}
+//#endregion
+//#region src/telemetry/events/theme-usage.ts
+const EVENT_THEME_USAGE = "THEME_USAGE";
+const EVENT_SAMPLING_RATE = 1;
+/**
+* Helper function for `telemetry.record()`. Create a consistent event object for tracking theme usage in ClerkProvider.
+*
+* @param appearance - The appearance prop from ClerkProvider.
+* @example
+* telemetry.record(eventThemeUsage(appearance));
+*/ function eventThemeUsage(appearance) {
+    return {
+        event: EVENT_THEME_USAGE,
+        eventSamplingRate: EVENT_SAMPLING_RATE,
+        payload: analyzeThemeUsage(appearance)
+    };
+}
+/**
+* Analyzes the appearance prop to extract theme usage information for telemetry.
+*
+* @internal
+*/ function analyzeThemeUsage(appearance) {
+    if (!appearance || typeof appearance !== "object") return {};
+    const themeProperty = appearance.theme || appearance.baseTheme;
+    if (!themeProperty) return {};
+    let themeName;
+    if (Array.isArray(themeProperty)) for (const theme of themeProperty){
+        const name = extractThemeName(theme);
+        if (name) {
+            themeName = name;
+            break;
+        }
+    }
+    else themeName = extractThemeName(themeProperty);
+    return {
+        themeName
+    };
+}
+/**
+* Extracts the theme name from a theme object.
+*
+* @internal
+*/ function extractThemeName(theme) {
+    if (typeof theme === "string") return theme;
+    if (typeof theme === "object" && theme !== null) {
+        if ("name" in theme && typeof theme.name === "string") return theme.name;
+    }
+}
+;
+ //# sourceMappingURL=telemetry-wqMDWlvR.mjs.map
+}),
+"[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+module.exports = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/module.compiled.js [app-ssr] (ecmascript)").vendored['react-ssr'].React; //# sourceMappingURL=react.js.map
+}),
+"[project]/web-client/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+/**
+ * @license React
+ * use-sync-external-store-shim.development.js
+ *
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */ "production" !== ("TURBOPACK compile-time value", "development") && function() {
+    function is(x, y) {
+        return x === y && (0 !== x || 1 / x === 1 / y) || x !== x && y !== y;
+    }
+    function useSyncExternalStore$2(subscribe, getSnapshot) {
+        didWarnOld18Alpha || void 0 === React.startTransition || (didWarnOld18Alpha = !0, console.error("You are using an outdated, pre-release alpha of React 18 that does not support useSyncExternalStore. The use-sync-external-store shim will not work correctly. Upgrade to a newer pre-release."));
+        var value = getSnapshot();
+        if (!didWarnUncachedGetSnapshot) {
+            var cachedValue = getSnapshot();
+            objectIs(value, cachedValue) || (console.error("The result of getSnapshot should be cached to avoid an infinite loop"), didWarnUncachedGetSnapshot = !0);
+        }
+        cachedValue = useState({
+            inst: {
+                value: value,
+                getSnapshot: getSnapshot
+            }
+        });
+        var inst = cachedValue[0].inst, forceUpdate = cachedValue[1];
+        useLayoutEffect(function() {
+            inst.value = value;
+            inst.getSnapshot = getSnapshot;
+            checkIfSnapshotChanged(inst) && forceUpdate({
+                inst: inst
+            });
+        }, [
+            subscribe,
+            value,
+            getSnapshot
+        ]);
+        useEffect(function() {
+            checkIfSnapshotChanged(inst) && forceUpdate({
+                inst: inst
+            });
+            return subscribe(function() {
+                checkIfSnapshotChanged(inst) && forceUpdate({
+                    inst: inst
+                });
+            });
+        }, [
+            subscribe
+        ]);
+        useDebugValue(value);
+        return value;
+    }
+    function checkIfSnapshotChanged(inst) {
+        var latestGetSnapshot = inst.getSnapshot;
+        inst = inst.value;
+        try {
+            var nextValue = latestGetSnapshot();
+            return !objectIs(inst, nextValue);
+        } catch (error) {
+            return !0;
+        }
+    }
+    function useSyncExternalStore$1(subscribe, getSnapshot) {
+        return getSnapshot();
+    }
+    "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
+    var React = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)"), objectIs = "function" === typeof Object.is ? Object.is : is, useState = React.useState, useEffect = React.useEffect, useLayoutEffect = React.useLayoutEffect, useDebugValue = React.useDebugValue, didWarnOld18Alpha = !1, didWarnUncachedGetSnapshot = !1, shim = ("TURBOPACK compile-time truthy", 1) ? useSyncExternalStore$1 : "TURBOPACK unreachable";
+    exports.useSyncExternalStore = void 0 !== React.useSyncExternalStore ? React.useSyncExternalStore : shim;
+    "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
+}();
+}),
+"[project]/web-client/node_modules/use-sync-external-store/shim/index.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+;
+else {
+    module.exports = __turbopack_context__.r("[project]/web-client/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js [app-ssr] (ecmascript)");
+}
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/events.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "ERROR_REVALIDATE_EVENT",
+    ()=>ERROR_REVALIDATE_EVENT,
+    "FOCUS_EVENT",
+    ()=>FOCUS_EVENT,
+    "MUTATE_EVENT",
+    ()=>MUTATE_EVENT,
+    "RECONNECT_EVENT",
+    ()=>RECONNECT_EVENT
+]);
+const FOCUS_EVENT = 0;
+const RECONNECT_EVENT = 1;
+const MUTATE_EVENT = 2;
+const ERROR_REVALIDATE_EVENT = 3;
+;
+}),
+"[project]/web-client/node_modules/dequal/lite/index.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "dequal",
+    ()=>dequal
+]);
+var has = Object.prototype.hasOwnProperty;
+function dequal(foo, bar) {
+    var ctor, len;
+    if (foo === bar) return true;
+    if (foo && bar && (ctor = foo.constructor) === bar.constructor) {
+        if (ctor === Date) return foo.getTime() === bar.getTime();
+        if (ctor === RegExp) return foo.toString() === bar.toString();
+        if (ctor === Array) {
+            if ((len = foo.length) === bar.length) {
+                while(len-- && dequal(foo[len], bar[len]));
+            }
+            return len === -1;
+        }
+        if (!ctor || typeof foo === 'object') {
+            len = 0;
+            for(ctor in foo){
+                if (has.call(foo, ctor) && ++len && !has.call(bar, ctor)) return false;
+                if (!(ctor in bar) || !dequal(foo[ctor], bar[ctor])) return false;
+            }
+            return Object.keys(bar).length === len;
+        }
+    }
+    return foo !== foo && bar !== bar;
+}
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "A",
+    ()=>noop,
+    "B",
+    ()=>isPromiseLike,
+    "I",
+    ()=>IS_REACT_LEGACY,
+    "O",
+    ()=>OBJECT,
+    "S",
+    ()=>SWRConfigContext,
+    "U",
+    ()=>UNDEFINED,
+    "a",
+    ()=>isFunction,
+    "b",
+    ()=>SWRGlobalState,
+    "c",
+    ()=>cache,
+    "d",
+    ()=>defaultConfig,
+    "e",
+    ()=>isUndefined,
+    "f",
+    ()=>mergeConfigs,
+    "g",
+    ()=>SWRConfig,
+    "h",
+    ()=>initCache,
+    "i",
+    ()=>isWindowDefined,
+    "j",
+    ()=>mutate,
+    "k",
+    ()=>compare,
+    "l",
+    ()=>stableHash,
+    "m",
+    ()=>mergeObjects,
+    "n",
+    ()=>internalMutate,
+    "o",
+    ()=>getTimestamp,
+    "p",
+    ()=>preset,
+    "q",
+    ()=>defaultConfigOptions,
+    "r",
+    ()=>IS_SERVER,
+    "s",
+    ()=>serialize,
+    "t",
+    ()=>rAF,
+    "u",
+    ()=>useIsomorphicLayoutEffect,
+    "v",
+    ()=>slowConnection,
+    "w",
+    ()=>isDocumentDefined,
+    "x",
+    ()=>isLegacyDeno,
+    "y",
+    ()=>hasRequestAnimationFrame,
+    "z",
+    ()=>createCacheHelper
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$events$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/events.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$dequal$2f$lite$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/dequal/lite/index.mjs [app-ssr] (ecmascript)");
+'use client';
+;
+;
+;
+// Global state used to deduplicate requests and store listeners
+const SWRGlobalState = new WeakMap();
+// Shared state between server components and client components
+const noop = ()=>{};
+// Using noop() as the undefined value as undefined can be replaced
+// by something else. Prettier ignore and extra parentheses are necessary here
+// to ensure that tsc doesn't remove the __NOINLINE__ comment.
+// prettier-ignore
+const UNDEFINED = /*#__NOINLINE__*/ noop();
+const OBJECT = Object;
+const isUndefined = (v)=>v === UNDEFINED;
+const isFunction = (v)=>typeof v == 'function';
+const mergeObjects = (a, b)=>({
+        ...a,
+        ...b
+    });
+const isPromiseLike = (x)=>isFunction(x.then);
+const EMPTY_CACHE = {};
+const INITIAL_CACHE = {};
+const STR_UNDEFINED = 'undefined';
+// NOTE: Use the function to guarantee it's re-evaluated between jsdom and node runtime for tests.
+const isWindowDefined = ("TURBOPACK compile-time value", "undefined") != STR_UNDEFINED;
+const isDocumentDefined = typeof document != STR_UNDEFINED;
+const isLegacyDeno = isWindowDefined && 'Deno' in window;
+const hasRequestAnimationFrame = ()=>isWindowDefined && typeof window['requestAnimationFrame'] != STR_UNDEFINED;
+const createCacheHelper = (cache, key)=>{
+    const state = SWRGlobalState.get(cache);
+    return [
+        // Getter
+        ()=>!isUndefined(key) && cache.get(key) || EMPTY_CACHE,
+        // Setter
+        (info)=>{
+            if (!isUndefined(key)) {
+                const prev = cache.get(key);
+                // Before writing to the store, we keep the value in the initial cache
+                // if it's not there yet.
+                if (!(key in INITIAL_CACHE)) {
+                    INITIAL_CACHE[key] = prev;
+                }
+                state[5](key, mergeObjects(prev, info), prev || EMPTY_CACHE);
+            }
+        },
+        // Subscriber
+        state[6],
+        // Get server cache snapshot
+        ()=>{
+            if (!isUndefined(key)) {
+                // If the cache was updated on the client, we return the stored initial value.
+                if (key in INITIAL_CACHE) return INITIAL_CACHE[key];
+            }
+            // If we haven't done any client-side updates, we return the current value.
+            return !isUndefined(key) && cache.get(key) || EMPTY_CACHE;
+        }
+    ];
+} // export { UNDEFINED, OBJECT, isUndefined, isFunction, mergeObjects, isPromiseLike }
+;
+/**
+ * Due to the bug https://bugs.chromium.org/p/chromium/issues/detail?id=678075,
+ * it's not reliable to detect if the browser is currently online or offline
+ * based on `navigator.onLine`.
+ * As a workaround, we always assume it's online on the first load, and change
+ * the status upon `online` or `offline` events.
+ */ let online = true;
+const isOnline = ()=>online;
+// For node and React Native, `add/removeEventListener` doesn't exist on window.
+const [onWindowEvent, offWindowEvent] = ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : [
+    noop,
+    noop
+];
+const isVisible = ()=>{
+    const visibilityState = isDocumentDefined && document.visibilityState;
+    return isUndefined(visibilityState) || visibilityState !== 'hidden';
+};
+const initFocus = (callback)=>{
+    // focus revalidate
+    if (isDocumentDefined) {
+        document.addEventListener('visibilitychange', callback);
+    }
+    onWindowEvent('focus', callback);
+    return ()=>{
+        if (isDocumentDefined) {
+            document.removeEventListener('visibilitychange', callback);
+        }
+        offWindowEvent('focus', callback);
+    };
+};
+const initReconnect = (callback)=>{
+    // revalidate on reconnected
+    const onOnline = ()=>{
+        online = true;
+        callback();
+    };
+    // nothing to revalidate, just update the status
+    const onOffline = ()=>{
+        online = false;
+    };
+    onWindowEvent('online', onOnline);
+    onWindowEvent('offline', onOffline);
+    return ()=>{
+        offWindowEvent('online', onOnline);
+        offWindowEvent('offline', onOffline);
+    };
+};
+const preset = {
+    isOnline,
+    isVisible
+};
+const defaultConfigOptions = {
+    initFocus,
+    initReconnect
+};
+const IS_REACT_LEGACY = !__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useId;
+const IS_SERVER = !isWindowDefined || isLegacyDeno;
+// Polyfill requestAnimationFrame
+const rAF = (f)=>hasRequestAnimationFrame() ? "TURBOPACK unreachable" : setTimeout(f, 1);
+// React currently throws a warning when using useLayoutEffect on the server.
+// To get around it, we can conditionally useEffect on the server (no-op) and
+// useLayoutEffect in the browser.
+const useIsomorphicLayoutEffect = ("TURBOPACK compile-time truthy", 1) ? __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"] : "TURBOPACK unreachable";
+// This assignment is to extend the Navigator type to use effectiveType.
+const navigatorConnection = typeof navigator !== 'undefined' && navigator.connection;
+// Adjust the config based on slow connection status (<= 70Kbps).
+const slowConnection = !IS_SERVER && navigatorConnection && ([
+    'slow-2g',
+    '2g'
+].includes(navigatorConnection.effectiveType) || navigatorConnection.saveData);
+// use WeakMap to store the object->key mapping
+// so the objects can be garbage collected.
+// WeakMap uses a hashtable under the hood, so the lookup
+// complexity is almost O(1).
+const table = new WeakMap();
+const getTypeName = (value)=>OBJECT.prototype.toString.call(value);
+const isObjectTypeName = (typeName, type)=>typeName === `[object ${type}]`;
+// counter of the key
+let counter = 0;
+// A stable hash implementation that supports:
+// - Fast and ensures unique hash properties
+// - Handles unserializable values
+// - Handles object key ordering
+// - Generates short results
+//
+// This is not a serialization function, and the result is not guaranteed to be
+// parsable.
+const stableHash = (arg)=>{
+    const type = typeof arg;
+    const typeName = getTypeName(arg);
+    const isDate = isObjectTypeName(typeName, 'Date');
+    const isRegex = isObjectTypeName(typeName, 'RegExp');
+    const isPlainObject = isObjectTypeName(typeName, 'Object');
+    let result;
+    let index;
+    if (OBJECT(arg) === arg && !isDate && !isRegex) {
+        // Object/function, not null/date/regexp. Use WeakMap to store the id first.
+        // If it's already hashed, directly return the result.
+        result = table.get(arg);
+        if (result) return result;
+        // Store the hash first for circular reference detection before entering the
+        // recursive `stableHash` calls.
+        // For other objects like set and map, we use this id directly as the hash.
+        result = ++counter + '~';
+        table.set(arg, result);
+        if (Array.isArray(arg)) {
+            // Array.
+            result = '@';
+            for(index = 0; index < arg.length; index++){
+                result += stableHash(arg[index]) + ',';
+            }
+            table.set(arg, result);
+        }
+        if (isPlainObject) {
+            // Object, sort keys.
+            result = '#';
+            const keys = OBJECT.keys(arg).sort();
+            while(!isUndefined(index = keys.pop())){
+                if (!isUndefined(arg[index])) {
+                    result += index + ':' + stableHash(arg[index]) + ',';
+                }
+            }
+            table.set(arg, result);
+        }
+    } else {
+        result = isDate ? arg.toJSON() : type == 'symbol' ? arg.toString() : type == 'string' ? JSON.stringify(arg) : '' + arg;
+    }
+    return result;
+};
+const serialize = (key)=>{
+    if (isFunction(key)) {
+        try {
+            key = key();
+        } catch (err) {
+            // dependencies not ready
+            key = '';
+        }
+    }
+    // Use the original key as the argument of fetcher. This can be a string or an
+    // array of values.
+    const args = key;
+    // If key is not falsy, or not an empty array, hash it.
+    key = typeof key == 'string' ? key : (Array.isArray(key) ? key.length : key) ? stableHash(key) : '';
+    return [
+        key,
+        args
+    ];
+};
+// Global timestamp.
+let __timestamp = 0;
+const getTimestamp = ()=>++__timestamp;
+async function internalMutate(...args) {
+    const [cache, _key, _data, _opts] = args;
+    // When passing as a boolean, it's explicitly used to disable/enable
+    // revalidation.
+    const options = mergeObjects({
+        populateCache: true,
+        throwOnError: true
+    }, typeof _opts === 'boolean' ? {
+        revalidate: _opts
+    } : _opts || {});
+    let populateCache = options.populateCache;
+    const rollbackOnErrorOption = options.rollbackOnError;
+    let optimisticData = options.optimisticData;
+    const rollbackOnError = (error)=>{
+        return typeof rollbackOnErrorOption === 'function' ? rollbackOnErrorOption(error) : rollbackOnErrorOption !== false;
+    };
+    const throwOnError = options.throwOnError;
+    // If the second argument is a key filter, return the mutation results for all
+    // filtered keys.
+    if (isFunction(_key)) {
+        const keyFilter = _key;
+        const matchedKeys = [];
+        const it = cache.keys();
+        for (const key of it){
+            if (!/^\$(inf|sub)\$/.test(key) && keyFilter(cache.get(key)._k)) {
+                matchedKeys.push(key);
+            }
+        }
+        return Promise.all(matchedKeys.map(mutateByKey));
+    }
+    return mutateByKey(_key);
+    //TURBOPACK unreachable
+    ;
+    async function mutateByKey(_k) {
+        // Serialize key
+        const [key] = serialize(_k);
+        if (!key) return;
+        const [get, set] = createCacheHelper(cache, key);
+        const [EVENT_REVALIDATORS, MUTATION, FETCH, PRELOAD] = SWRGlobalState.get(cache);
+        const startRevalidate = ()=>{
+            const revalidators = EVENT_REVALIDATORS[key];
+            const revalidate = isFunction(options.revalidate) ? options.revalidate(get().data, _k) : options.revalidate !== false;
+            if (revalidate) {
+                // Invalidate the key by deleting the concurrent request markers so new
+                // requests will not be deduped.
+                delete FETCH[key];
+                delete PRELOAD[key];
+                if (revalidators && revalidators[0]) {
+                    return revalidators[0](__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$events$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MUTATE_EVENT"]).then(()=>get().data);
+                }
+            }
+            return get().data;
+        };
+        // If there is no new data provided, revalidate the key with current state.
+        if (args.length < 3) {
+            // Revalidate and broadcast state.
+            return startRevalidate();
+        }
+        let data = _data;
+        let error;
+        let isError = false;
+        // Update global timestamps.
+        const beforeMutationTs = getTimestamp();
+        MUTATION[key] = [
+            beforeMutationTs,
+            0
+        ];
+        const hasOptimisticData = !isUndefined(optimisticData);
+        const state = get();
+        // `displayedData` is the current value on screen. It could be the optimistic value
+        // that is going to be overridden by a `committedData`, or get reverted back.
+        // `committedData` is the validated value that comes from a fetch or mutation.
+        const displayedData = state.data;
+        const currentData = state._c;
+        const committedData = isUndefined(currentData) ? displayedData : currentData;
+        // Do optimistic data update.
+        if (hasOptimisticData) {
+            optimisticData = isFunction(optimisticData) ? optimisticData(committedData, displayedData) : optimisticData;
+            // When we set optimistic data, backup the current committedData data in `_c`.
+            set({
+                data: optimisticData,
+                _c: committedData
+            });
+        }
+        if (isFunction(data)) {
+            // `data` is a function, call it passing current cache value.
+            try {
+                data = data(committedData);
+            } catch (err) {
+                // If it throws an error synchronously, we shouldn't update the cache.
+                error = err;
+                isError = true;
+            }
+        }
+        // `data` is a promise/thenable, resolve the final data first.
+        if (data && isPromiseLike(data)) {
+            // This means that the mutation is async, we need to check timestamps to
+            // avoid race conditions.
+            data = await data.catch((err)=>{
+                error = err;
+                isError = true;
+            });
+            // Check if other mutations have occurred since we've started this mutation.
+            // If there's a race we don't update cache or broadcast the change,
+            // just return the data.
+            if (beforeMutationTs !== MUTATION[key][0]) {
+                if (isError) throw error;
+                return data;
+            } else if (isError && hasOptimisticData && rollbackOnError(error)) {
+                // Rollback. Always populate the cache in this case but without
+                // transforming the data.
+                populateCache = true;
+                // Reset data to be the latest committed data, and clear the `_c` value.
+                set({
+                    data: committedData,
+                    _c: UNDEFINED
+                });
+            }
+        }
+        // If we should write back the cache after request.
+        if (populateCache) {
+            if (!isError) {
+                // Transform the result into data.
+                if (isFunction(populateCache)) {
+                    const populateCachedData = populateCache(data, committedData);
+                    set({
+                        data: populateCachedData,
+                        error: UNDEFINED,
+                        _c: UNDEFINED
+                    });
+                } else {
+                    // Only update cached data and reset the error if there's no error. Data can be `undefined` here.
+                    set({
+                        data,
+                        error: UNDEFINED,
+                        _c: UNDEFINED
+                    });
+                }
+            }
+        }
+        // Reset the timestamp to mark the mutation has ended.
+        MUTATION[key][1] = getTimestamp();
+        // Update existing SWR Hooks' internal states:
+        Promise.resolve(startRevalidate()).then(()=>{
+            // The mutation and revalidation are ended, we can clear it since the data is
+            // not an optimistic value anymore.
+            set({
+                _c: UNDEFINED
+            });
+        });
+        // Throw error or return data
+        if (isError) {
+            if (throwOnError) throw error;
+            return;
+        }
+        return data;
+    }
+}
+const revalidateAllKeys = (revalidators, type)=>{
+    for(const key in revalidators){
+        if (revalidators[key][0]) revalidators[key][0](type);
+    }
+};
+const initCache = (provider, options)=>{
+    // The global state for a specific provider will be used to deduplicate
+    // requests and store listeners. As well as a mutate function that is bound to
+    // the cache.
+    // The provider's global state might be already initialized. Let's try to get the
+    // global state associated with the provider first.
+    if (!SWRGlobalState.has(provider)) {
+        const opts = mergeObjects(defaultConfigOptions, options);
+        // If there's no global state bound to the provider, create a new one with the
+        // new mutate function.
+        const EVENT_REVALIDATORS = Object.create(null);
+        const mutate = internalMutate.bind(UNDEFINED, provider);
+        let unmount = noop;
+        const subscriptions = Object.create(null);
+        const subscribe = (key, callback)=>{
+            const subs = subscriptions[key] || [];
+            subscriptions[key] = subs;
+            subs.push(callback);
+            return ()=>subs.splice(subs.indexOf(callback), 1);
+        };
+        const setter = (key, value, prev)=>{
+            provider.set(key, value);
+            const subs = subscriptions[key];
+            if (subs) {
+                for (const fn of subs){
+                    fn(value, prev);
+                }
+            }
+        };
+        const initProvider = ()=>{
+            if (!SWRGlobalState.has(provider)) {
+                // Update the state if it's new, or if the provider has been extended.
+                SWRGlobalState.set(provider, [
+                    EVENT_REVALIDATORS,
+                    Object.create(null),
+                    Object.create(null),
+                    Object.create(null),
+                    mutate,
+                    setter,
+                    subscribe
+                ]);
+                if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+                ;
+            }
+        };
+        initProvider();
+        // This is a new provider, we need to initialize it and setup DOM events
+        // listeners for `focus` and `reconnect` actions.
+        // We might want to inject an extra layer on top of `provider` in the future,
+        // such as key serialization, auto GC, etc.
+        // For now, it's just a `Map` interface without any modifications.
+        return [
+            provider,
+            mutate,
+            initProvider,
+            unmount
+        ];
+    }
+    return [
+        provider,
+        SWRGlobalState.get(provider)[4]
+    ];
+};
+// error retry
+const onErrorRetry = (_, __, config, revalidate, opts)=>{
+    const maxRetryCount = config.errorRetryCount;
+    const currentRetryCount = opts.retryCount;
+    // Exponential backoff
+    const timeout = ~~((Math.random() + 0.5) * (1 << (currentRetryCount < 8 ? currentRetryCount : 8))) * config.errorRetryInterval;
+    if (!isUndefined(maxRetryCount) && currentRetryCount > maxRetryCount) {
+        return;
+    }
+    setTimeout(revalidate, timeout, opts);
+};
+const compare = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$dequal$2f$lite$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["dequal"];
+// Default cache provider
+const [cache, mutate] = initCache(new Map());
+// Default config
+const defaultConfig = mergeObjects({
+    // events
+    onLoadingSlow: noop,
+    onSuccess: noop,
+    onError: noop,
+    onErrorRetry,
+    onDiscarded: noop,
+    // switches
+    revalidateOnFocus: true,
+    revalidateOnReconnect: true,
+    revalidateIfStale: true,
+    shouldRetryOnError: true,
+    // timeouts
+    errorRetryInterval: ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : 5000,
+    focusThrottleInterval: 5 * 1000,
+    dedupingInterval: 2 * 1000,
+    loadingTimeout: ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : 3000,
+    // providers
+    compare,
+    isPaused: ()=>false,
+    cache,
+    mutate,
+    fallback: {}
+}, preset);
+const mergeConfigs = (a, b)=>{
+    // Need to create a new object to avoid mutating the original here.
+    const v = mergeObjects(a, b);
+    // If two configs are provided, merge their `use` and `fallback` options.
+    if (b) {
+        const { use: u1, fallback: f1 } = a;
+        const { use: u2, fallback: f2 } = b;
+        if (u1 && u2) {
+            v.use = u1.concat(u2);
+        }
+        if (f1 && f2) {
+            v.fallback = mergeObjects(f1, f2);
+        }
+    }
+    return v;
+};
+const SWRConfigContext = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createContext"])({});
+const SWRConfig = (props)=>{
+    const { value } = props;
+    const parentConfig = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useContext"])(SWRConfigContext);
+    const isFunctionalConfig = isFunction(value);
+    const config = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>isFunctionalConfig ? value(parentConfig) : value, [
+        isFunctionalConfig,
+        parentConfig,
+        value
+    ]);
+    // Extend parent context values and middleware.
+    const extendedConfig = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>isFunctionalConfig ? config : mergeConfigs(parentConfig, config), [
+        isFunctionalConfig,
+        parentConfig,
+        config
+    ]);
+    // Should not use the inherited provider.
+    const provider = config && config.provider;
+    // initialize the cache only on first access.
+    const cacheContextRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(UNDEFINED);
+    if (provider && !cacheContextRef.current) {
+        cacheContextRef.current = initCache(provider(extendedConfig.cache || cache), config);
+    }
+    const cacheContext = cacheContextRef.current;
+    // Override the cache if a new provider is given.
+    if (cacheContext) {
+        extendedConfig.cache = cacheContext[0];
+        extendedConfig.mutate = cacheContext[1];
+    }
+    // Unsubscribe events.
+    useIsomorphicLayoutEffect(()=>{
+        if (cacheContext) {
+            cacheContext[2] && cacheContext[2]();
+            return cacheContext[3];
+        }
+    }, []);
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createElement"])(SWRConfigContext.Provider, mergeObjects(props, {
+        value: extendedConfig
+    }));
+};
+;
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export O as OBJECT>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "OBJECT",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["O"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript)");
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export g as SWRConfig>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "SWRConfig",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["g"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript)");
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export d as defaultConfig>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "defaultConfig",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["d"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript)");
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/constants.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "INFINITE_PREFIX",
+    ()=>INFINITE_PREFIX
+]);
+const INFINITE_PREFIX = '$inf$';
+;
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/index.mjs [app-ssr] (ecmascript) <locals>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "normalize",
+    ()=>normalize,
+    "preload",
+    ()=>preload,
+    "subscribeCallback",
+    ()=>subscribeCallback,
+    "useSWRConfig",
+    ()=>useSWRConfig,
+    "withArgs",
+    ()=>withArgs,
+    "withMiddleware",
+    ()=>withMiddleware
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$events$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/events.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$constants$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/constants.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+;
+;
+;
+;
+;
+;
+;
+;
+// @ts-expect-error
+const enableDevtools = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["i"] && window.__SWR_DEVTOOLS_USE__;
+const use = enableDevtools ? window.__SWR_DEVTOOLS_USE__ : [];
+const setupDevTools = ()=>{
+    if (enableDevtools) {
+        // @ts-expect-error
+        window.__SWR_DEVTOOLS_REACT__ = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"];
+    }
+};
+const normalize = (args)=>{
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["a"])(args[1]) ? [
+        args[0],
+        args[1],
+        args[2] || {}
+    ] : [
+        args[0],
+        null,
+        (args[1] === null ? args[2] : args[1]) || {}
+    ];
+};
+const useSWRConfig = ()=>{
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["m"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["d"], (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useContext"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["S"]));
+};
+const preload = (key_, fetcher)=>{
+    const [key, fnArg] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["s"])(key_);
+    const [, , , PRELOAD] = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["b"].get(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["c"]);
+    // Prevent preload to be called multiple times before used.
+    if (PRELOAD[key]) return PRELOAD[key];
+    const req = fetcher(fnArg);
+    PRELOAD[key] = req;
+    return req;
+};
+const middleware = (useSWRNext)=>(key_, fetcher_, config)=>{
+        // fetcher might be a sync function, so this should not be an async function
+        const fetcher = fetcher_ && ((...args)=>{
+            const [key] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["s"])(key_);
+            const [, , , PRELOAD] = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["b"].get(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["c"]);
+            if (key.startsWith(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$constants$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["INFINITE_PREFIX"])) {
+                // we want the infinite fetcher to be called.
+                // handling of the PRELOAD cache happens there.
+                return fetcher_(...args);
+            }
+            const req = PRELOAD[key];
+            if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["e"])(req)) return fetcher_(...args);
+            delete PRELOAD[key];
+            return req;
+        });
+        return useSWRNext(key_, fetcher, config);
+    };
+const BUILT_IN_MIDDLEWARE = use.concat(middleware);
+// It's tricky to pass generic types as parameters, so we just directly override
+// the types here.
+const withArgs = (hook)=>{
+    return function useSWRArgs(...args) {
+        // Get the default and inherited configuration.
+        const fallbackConfig = useSWRConfig();
+        // Normalize arguments.
+        const [key, fn, _config] = normalize(args);
+        // Merge configurations.
+        const config = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["f"])(fallbackConfig, _config);
+        // Apply middleware
+        let next = hook;
+        const { use } = config;
+        const middleware = (use || []).concat(BUILT_IN_MIDDLEWARE);
+        for(let i = middleware.length; i--;){
+            next = middleware[i](next);
+        }
+        return next(key, fn || config.fetcher || null, config);
+    };
+};
+// Add a callback function to a list of keyed callback functions and return
+// the unsubscribe function.
+const subscribeCallback = (key, callbacks, callback)=>{
+    const keyedRevalidators = callbacks[key] || (callbacks[key] = []);
+    keyedRevalidators.push(callback);
+    return ()=>{
+        const index = keyedRevalidators.indexOf(callback);
+        if (index >= 0) {
+            // O(1): faster than splice
+            keyedRevalidators[index] = keyedRevalidators[keyedRevalidators.length - 1];
+            keyedRevalidators.pop();
+        }
+    };
+};
+// Create a custom hook with a middleware
+const withMiddleware = (useSWR, middleware)=>{
+    return (...args)=>{
+        const [key, fn, config] = normalize(args);
+        const uses = (config.use || []).concat(middleware);
+        return useSWR(key, fn, {
+            ...config,
+            use: uses
+        });
+    };
+};
+setupDevTools();
+;
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export b as SWRGlobalState>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "SWRGlobalState",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["b"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript)");
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export s as serialize>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "serialize",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["s"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript)");
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export z as createCacheHelper>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "createCacheHelper",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["z"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript)");
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export e as isUndefined>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "isUndefined",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["e"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript)");
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export U as UNDEFINED>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "UNDEFINED",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["U"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript)");
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export B as isPromiseLike>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "isPromiseLike",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["B"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript)");
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export o as getTimestamp>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "getTimestamp",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["o"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript)");
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export a as isFunction>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "isFunction",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["a"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript)");
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/events.mjs [app-ssr] (ecmascript) <export * as revalidateEvents>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "revalidateEvents",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$events$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$events$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/events.mjs [app-ssr] (ecmascript)");
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export n as internalMutate>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "internalMutate",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["n"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript)");
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export u as useIsomorphicLayoutEffect>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "useIsomorphicLayoutEffect",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["u"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript)");
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export r as IS_SERVER>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "IS_SERVER",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["r"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript)");
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export t as rAF>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "rAF",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["t"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript)");
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export I as IS_REACT_LEGACY>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "IS_REACT_LEGACY",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["I"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript)");
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export m as mergeObjects>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "mergeObjects",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["m"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript)");
+}),
+"[project]/web-client/node_modules/swr/dist/index/index.mjs [app-ssr] (ecmascript) <locals>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "SWRConfig",
+    ()=>SWRConfig,
+    "default",
+    ()=>useSWR,
+    "unstable_serialize",
+    ()=>unstable_serialize
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$use$2d$sync$2d$external$2d$store$2f$shim$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/use-sync-external-store/shim/index.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__O__as__OBJECT$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export O as OBJECT>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__g__as__SWRConfig$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export g as SWRConfig>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__d__as__defaultConfig$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export d as defaultConfig>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/index.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__b__as__SWRGlobalState$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export b as SWRGlobalState>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__s__as__serialize$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export s as serialize>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__z__as__createCacheHelper$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export z as createCacheHelper>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export e as isUndefined>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__U__as__UNDEFINED$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export U as UNDEFINED>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__B__as__isPromiseLike$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export B as isPromiseLike>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__o__as__getTimestamp$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export o as getTimestamp>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__a__as__isFunction$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export a as isFunction>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$events$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__revalidateEvents$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/events.mjs [app-ssr] (ecmascript) <export * as revalidateEvents>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__n__as__internalMutate$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export n as internalMutate>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__u__as__useIsomorphicLayoutEffect$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export u as useIsomorphicLayoutEffect>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__r__as__IS_SERVER$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export r as IS_SERVER>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__t__as__rAF$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export t as rAF>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__I__as__IS_REACT_LEGACY$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export I as IS_REACT_LEGACY>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__m__as__mergeObjects$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export m as mergeObjects>");
+;
+;
+;
+;
+// Shared state between server components and client components
+const noop = ()=>{};
+// Using noop() as the undefined value as undefined can be replaced
+// by something else. Prettier ignore and extra parentheses are necessary here
+// to ensure that tsc doesn't remove the __NOINLINE__ comment.
+// prettier-ignore
+const UNDEFINED = /*#__NOINLINE__*/ noop();
+const OBJECT = Object;
+const isUndefined = (v)=>v === UNDEFINED;
+const isFunction = (v)=>typeof v == 'function';
+// use WeakMap to store the object->key mapping
+// so the objects can be garbage collected.
+// WeakMap uses a hashtable under the hood, so the lookup
+// complexity is almost O(1).
+const table = new WeakMap();
+const getTypeName = (value)=>OBJECT.prototype.toString.call(value);
+const isObjectTypeName = (typeName, type)=>typeName === `[object ${type}]`;
+// counter of the key
+let counter = 0;
+// A stable hash implementation that supports:
+// - Fast and ensures unique hash properties
+// - Handles unserializable values
+// - Handles object key ordering
+// - Generates short results
+//
+// This is not a serialization function, and the result is not guaranteed to be
+// parsable.
+const stableHash = (arg)=>{
+    const type = typeof arg;
+    const typeName = getTypeName(arg);
+    const isDate = isObjectTypeName(typeName, 'Date');
+    const isRegex = isObjectTypeName(typeName, 'RegExp');
+    const isPlainObject = isObjectTypeName(typeName, 'Object');
+    let result;
+    let index;
+    if (OBJECT(arg) === arg && !isDate && !isRegex) {
+        // Object/function, not null/date/regexp. Use WeakMap to store the id first.
+        // If it's already hashed, directly return the result.
+        result = table.get(arg);
+        if (result) return result;
+        // Store the hash first for circular reference detection before entering the
+        // recursive `stableHash` calls.
+        // For other objects like set and map, we use this id directly as the hash.
+        result = ++counter + '~';
+        table.set(arg, result);
+        if (Array.isArray(arg)) {
+            // Array.
+            result = '@';
+            for(index = 0; index < arg.length; index++){
+                result += stableHash(arg[index]) + ',';
+            }
+            table.set(arg, result);
+        }
+        if (isPlainObject) {
+            // Object, sort keys.
+            result = '#';
+            const keys = OBJECT.keys(arg).sort();
+            while(!isUndefined(index = keys.pop())){
+                if (!isUndefined(arg[index])) {
+                    result += index + ':' + stableHash(arg[index]) + ',';
+                }
+            }
+            table.set(arg, result);
+        }
+    } else {
+        result = isDate ? arg.toJSON() : type == 'symbol' ? arg.toString() : type == 'string' ? JSON.stringify(arg) : '' + arg;
+    }
+    return result;
+};
+const serialize = (key)=>{
+    if (isFunction(key)) {
+        try {
+            key = key();
+        } catch (err) {
+            // dependencies not ready
+            key = '';
+        }
+    }
+    // Use the original key as the argument of fetcher. This can be a string or an
+    // array of values.
+    const args = key;
+    // If key is not falsy, or not an empty array, hash it.
+    key = typeof key == 'string' ? key : (Array.isArray(key) ? key.length : key) ? stableHash(key) : '';
+    return [
+        key,
+        args
+    ];
+};
+const unstable_serialize = (key)=>serialize(key)[0];
+/// <reference types="react/experimental" />
+const use = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].use || // This extra generic is to avoid TypeScript mixing up the generic and JSX sytax
+// and emitting an error.
+// We assume that this is only for the `use(thenable)` case, not `use(context)`.
+// https://github.com/facebook/react/blob/aed00dacfb79d17c53218404c52b1c7aa59c4a89/packages/react-server/src/ReactFizzThenable.js#L45
+((thenable)=>{
+    switch(thenable.status){
+        case 'pending':
+            throw thenable;
+        case 'fulfilled':
+            return thenable.value;
+        case 'rejected':
+            throw thenable.reason;
+        default:
+            thenable.status = 'pending';
+            thenable.then((v)=>{
+                thenable.status = 'fulfilled';
+                thenable.value = v;
+            }, (e)=>{
+                thenable.status = 'rejected';
+                thenable.reason = e;
+            });
+            throw thenable;
+    }
+});
+const WITH_DEDUPE = {
+    dedupe: true
+};
+const useSWRHandler = (_key, fetcher, config)=>{
+    const { cache, compare, suspense, fallbackData, revalidateOnMount, revalidateIfStale, refreshInterval, refreshWhenHidden, refreshWhenOffline, keepPreviousData } = config;
+    const [EVENT_REVALIDATORS, MUTATION, FETCH, PRELOAD] = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__b__as__SWRGlobalState$3e$__["SWRGlobalState"].get(cache);
+    // `key` is the identifier of the SWR internal state,
+    // `fnArg` is the argument/arguments parsed from the key, which will be passed
+    // to the fetcher.
+    // All of them are derived from `_key`.
+    const [key, fnArg] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__s__as__serialize$3e$__["serialize"])(_key);
+    // If it's the initial render of this hook.
+    const initialMountedRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(false);
+    // If the hook is unmounted already. This will be used to prevent some effects
+    // to be called after unmounting.
+    const unmountedRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(false);
+    // Refs to keep the key and config.
+    const keyRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(key);
+    const fetcherRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(fetcher);
+    const configRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(config);
+    const getConfig = ()=>configRef.current;
+    const isActive = ()=>getConfig().isVisible() && getConfig().isOnline();
+    const [getCache, setCache, subscribeCache, getInitialCache] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__z__as__createCacheHelper$3e$__["createCacheHelper"])(cache, key);
+    const stateDependencies = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])({}).current;
+    // Resolve the fallback data from either the inline option, or the global provider.
+    // If it's a promise, we simply let React suspend and resolve it for us.
+    const fallback = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(fallbackData) ? (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(config.fallback) ? __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__U__as__UNDEFINED$3e$__["UNDEFINED"] : config.fallback[key] : fallbackData;
+    const isEqual = (prev, current)=>{
+        for(const _ in stateDependencies){
+            const t = _;
+            if (t === 'data') {
+                if (!compare(prev[t], current[t])) {
+                    if (!(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(prev[t])) {
+                        return false;
+                    }
+                    if (!compare(returnedData, current[t])) {
+                        return false;
+                    }
+                }
+            } else {
+                if (current[t] !== prev[t]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    };
+    const getSnapshot = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>{
+        const shouldStartRequest = (()=>{
+            if (!key) return false;
+            if (!fetcher) return false;
+            // If `revalidateOnMount` is set, we take the value directly.
+            if (!(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(revalidateOnMount)) return revalidateOnMount;
+            // If it's paused, we skip revalidation.
+            if (getConfig().isPaused()) return false;
+            if (suspense) return false;
+            return revalidateIfStale !== false;
+        })();
+        // Get the cache and merge it with expected states.
+        const getSelectedCache = (state)=>{
+            // We only select the needed fields from the state.
+            const snapshot = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__m__as__mergeObjects$3e$__["mergeObjects"])(state);
+            delete snapshot._k;
+            if (!shouldStartRequest) {
+                return snapshot;
+            }
+            return {
+                isValidating: true,
+                isLoading: true,
+                ...snapshot
+            };
+        };
+        const cachedData = getCache();
+        const initialData = getInitialCache();
+        const clientSnapshot = getSelectedCache(cachedData);
+        const serverSnapshot = cachedData === initialData ? clientSnapshot : getSelectedCache(initialData);
+        // To make sure that we are returning the same object reference to avoid
+        // unnecessary re-renders, we keep the previous snapshot and use deep
+        // comparison to check if we need to return a new one.
+        let memorizedSnapshot = clientSnapshot;
+        return [
+            ()=>{
+                const newSnapshot = getSelectedCache(getCache());
+                const compareResult = isEqual(newSnapshot, memorizedSnapshot);
+                if (compareResult) {
+                    // Mentally, we should always return the `memorizedSnapshot` here
+                    // as there's no change between the new and old snapshots.
+                    // However, since the `isEqual` function only compares selected fields,
+                    // the values of the unselected fields might be changed. That's
+                    // simply because we didn't track them.
+                    // To support the case in https://github.com/vercel/swr/pull/2576,
+                    // we need to update these fields in the `memorizedSnapshot` too
+                    // with direct mutations to ensure the snapshot is always up-to-date
+                    // even for the unselected fields, but only trigger re-renders when
+                    // the selected fields are changed.
+                    memorizedSnapshot.data = newSnapshot.data;
+                    memorizedSnapshot.isLoading = newSnapshot.isLoading;
+                    memorizedSnapshot.isValidating = newSnapshot.isValidating;
+                    memorizedSnapshot.error = newSnapshot.error;
+                    return memorizedSnapshot;
+                } else {
+                    memorizedSnapshot = newSnapshot;
+                    return newSnapshot;
+                }
+            },
+            ()=>serverSnapshot
+        ];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [
+        cache,
+        key
+    ]);
+    // Get the current state that SWR should return.
+    const cached = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$use$2d$sync$2d$external$2d$store$2f$shim$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useSyncExternalStore"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])((callback)=>subscribeCache(key, (current, prev)=>{
+            if (!isEqual(prev, current)) callback();
+        }), [
+        cache,
+        key
+    ]), getSnapshot[0], getSnapshot[1]);
+    const isInitialMount = !initialMountedRef.current;
+    const hasRevalidator = EVENT_REVALIDATORS[key] && EVENT_REVALIDATORS[key].length > 0;
+    const cachedData = cached.data;
+    const data = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(cachedData) ? fallback && (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__B__as__isPromiseLike$3e$__["isPromiseLike"])(fallback) ? use(fallback) : fallback : cachedData;
+    const error = cached.error;
+    // Use a ref to store previously returned data. Use the initial data as its initial value.
+    const laggyDataRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(data);
+    const returnedData = keepPreviousData ? (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(cachedData) ? (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(laggyDataRef.current) ? data : laggyDataRef.current : cachedData : data;
+    // - Suspense mode and there's stale data for the initial render.
+    // - Not suspense mode and there is no fallback data and `revalidateIfStale` is enabled.
+    // - `revalidateIfStale` is enabled but `data` is not defined.
+    const shouldDoInitialRevalidation = (()=>{
+        // if a key already has revalidators and also has error, we should not trigger revalidation
+        if (hasRevalidator && !(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(error)) return false;
+        // If `revalidateOnMount` is set, we take the value directly.
+        if (isInitialMount && !(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(revalidateOnMount)) return revalidateOnMount;
+        // If it's paused, we skip revalidation.
+        if (getConfig().isPaused()) return false;
+        // Under suspense mode, it will always fetch on render if there is no
+        // stale data so no need to revalidate immediately mount it again.
+        // If data exists, only revalidate if `revalidateIfStale` is true.
+        if (suspense) return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(data) ? false : revalidateIfStale;
+        // If there is no stale data, we need to revalidate when mount;
+        // If `revalidateIfStale` is set to true, we will always revalidate.
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(data) || revalidateIfStale;
+    })();
+    // Resolve the default validating state:
+    // If it's able to validate, and it should revalidate when mount, this will be true.
+    const defaultValidatingState = !!(key && fetcher && isInitialMount && shouldDoInitialRevalidation);
+    const isValidating = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(cached.isValidating) ? defaultValidatingState : cached.isValidating;
+    const isLoading = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(cached.isLoading) ? defaultValidatingState : cached.isLoading;
+    // The revalidation function is a carefully crafted wrapper of the original
+    // `fetcher`, to correctly handle the many edge cases.
+    const revalidate = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(async (revalidateOpts)=>{
+        const currentFetcher = fetcherRef.current;
+        if (!key || !currentFetcher || unmountedRef.current || getConfig().isPaused()) {
+            return false;
+        }
+        let newData;
+        let startAt;
+        let loading = true;
+        const opts = revalidateOpts || {};
+        // If there is no ongoing concurrent request, or `dedupe` is not set, a
+        // new request should be initiated.
+        const shouldStartNewRequest = !FETCH[key] || !opts.dedupe;
+        /*
+         For React 17
+         Do unmount check for calls:
+         If key has changed during the revalidation, or the component has been
+         unmounted, old dispatch and old event callbacks should not take any
+         effect
+
+        For React 18
+        only check if key has changed
+        https://github.com/reactwg/react-18/discussions/82
+      */ const callbackSafeguard = ()=>{
+            if (__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__I__as__IS_REACT_LEGACY$3e$__["IS_REACT_LEGACY"]) {
+                return !unmountedRef.current && key === keyRef.current && initialMountedRef.current;
+            }
+            return key === keyRef.current;
+        };
+        // The final state object when the request finishes.
+        const finalState = {
+            isValidating: false,
+            isLoading: false
+        };
+        const finishRequestAndUpdateState = ()=>{
+            setCache(finalState);
+        };
+        const cleanupState = ()=>{
+            // Check if it's still the same request before deleting it.
+            const requestInfo = FETCH[key];
+            if (requestInfo && requestInfo[1] === startAt) {
+                delete FETCH[key];
+            }
+        };
+        // Start fetching. Change the `isValidating` state, update the cache.
+        const initialState = {
+            isValidating: true
+        };
+        // It is in the `isLoading` state, if and only if there is no cached data.
+        // This bypasses fallback data and laggy data.
+        if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(getCache().data)) {
+            initialState.isLoading = true;
+        }
+        try {
+            if (shouldStartNewRequest) {
+                setCache(initialState);
+                // If no cache is being rendered currently (it shows a blank page),
+                // we trigger the loading slow event.
+                if (config.loadingTimeout && (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(getCache().data)) {
+                    setTimeout(()=>{
+                        if (loading && callbackSafeguard()) {
+                            getConfig().onLoadingSlow(key, config);
+                        }
+                    }, config.loadingTimeout);
+                }
+                // Start the request and save the timestamp.
+                // Key must be truthy if entering here.
+                FETCH[key] = [
+                    currentFetcher(fnArg),
+                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__o__as__getTimestamp$3e$__["getTimestamp"])()
+                ];
+            }
+            // Wait until the ongoing request is done. Deduplication is also
+            // considered here.
+            ;
+            [newData, startAt] = FETCH[key];
+            newData = await newData;
+            if (shouldStartNewRequest) {
+                // If the request isn't interrupted, clean it up after the
+                // deduplication interval.
+                setTimeout(cleanupState, config.dedupingInterval);
+            }
+            // If there're other ongoing request(s), started after the current one,
+            // we need to ignore the current one to avoid possible race conditions:
+            //   req1------------------>res1        (current one)
+            //        req2---------------->res2
+            // the request that fired later will always be kept.
+            // The timestamp maybe be `undefined` or a number
+            if (!FETCH[key] || FETCH[key][1] !== startAt) {
+                if (shouldStartNewRequest) {
+                    if (callbackSafeguard()) {
+                        getConfig().onDiscarded(key);
+                    }
+                }
+                return false;
+            }
+            // Clear error.
+            finalState.error = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__U__as__UNDEFINED$3e$__["UNDEFINED"];
+            // If there're other mutations(s), that overlapped with the current revalidation:
+            // case 1:
+            //   req------------------>res
+            //       mutate------>end
+            // case 2:
+            //         req------------>res
+            //   mutate------>end
+            // case 3:
+            //   req------------------>res
+            //       mutate-------...---------->
+            // we have to ignore the revalidation result (res) because it's no longer fresh.
+            // meanwhile, a new revalidation should be triggered when the mutation ends.
+            const mutationInfo = MUTATION[key];
+            if (!(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(mutationInfo) && // case 1
+            (startAt <= mutationInfo[0] || // case 2
+            startAt <= mutationInfo[1] || // case 3
+            mutationInfo[1] === 0)) {
+                finishRequestAndUpdateState();
+                if (shouldStartNewRequest) {
+                    if (callbackSafeguard()) {
+                        getConfig().onDiscarded(key);
+                    }
+                }
+                return false;
+            }
+            // Deep compare with the latest state to avoid extra re-renders.
+            // For local state, compare and assign.
+            const cacheData = getCache().data;
+            // Since the compare fn could be custom fn
+            // cacheData might be different from newData even when compare fn returns True
+            finalState.data = compare(cacheData, newData) ? cacheData : newData;
+            // Trigger the successful callback if it's the original request.
+            if (shouldStartNewRequest) {
+                if (callbackSafeguard()) {
+                    getConfig().onSuccess(newData, key, config);
+                }
+            }
+        } catch (err) {
+            cleanupState();
+            const currentConfig = getConfig();
+            const { shouldRetryOnError } = currentConfig;
+            // Not paused, we continue handling the error. Otherwise, discard it.
+            if (!currentConfig.isPaused()) {
+                // Get a new error, don't use deep comparison for errors.
+                finalState.error = err;
+                // Error event and retry logic. Only for the actual request, not
+                // deduped ones.
+                if (shouldStartNewRequest && callbackSafeguard()) {
+                    currentConfig.onError(err, key, currentConfig);
+                    if (shouldRetryOnError === true || (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__a__as__isFunction$3e$__["isFunction"])(shouldRetryOnError) && shouldRetryOnError(err)) {
+                        if (!getConfig().revalidateOnFocus || !getConfig().revalidateOnReconnect || isActive()) {
+                            // If it's inactive, stop. It will auto-revalidate when
+                            // refocusing or reconnecting.
+                            // When retrying, deduplication is always enabled.
+                            currentConfig.onErrorRetry(err, key, currentConfig, (_opts)=>{
+                                const revalidators = EVENT_REVALIDATORS[key];
+                                if (revalidators && revalidators[0]) {
+                                    revalidators[0](__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$events$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__revalidateEvents$3e$__["revalidateEvents"].ERROR_REVALIDATE_EVENT, _opts);
+                                }
+                            }, {
+                                retryCount: (opts.retryCount || 0) + 1,
+                                dedupe: true
+                            });
+                        }
+                    }
+                }
+            }
+        }
+        // Mark loading as stopped.
+        loading = false;
+        // Update the current hook's state.
+        finishRequestAndUpdateState();
+        return true;
+    }, // `keyValidating` are depending on `key`, so we can exclude them from
+    // the deps array.
+    //
+    // FIXME:
+    // `fn` and `config` might be changed during the lifecycle,
+    // but they might be changed every render like this.
+    // `useSWR('key', () => fetch('/api/'), { suspense: true })`
+    // So we omit the values from the deps array
+    // even though it might cause unexpected behaviors.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [
+        key,
+        cache
+    ]);
+    // Similar to the global mutate but bound to the current cache and key.
+    // `cache` isn't allowed to change during the lifecycle.
+    const boundMutate = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])((...args)=>{
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__n__as__internalMutate$3e$__["internalMutate"])(cache, keyRef.current, ...args);
+    }, []);
+    // The logic for updating refs.
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__u__as__useIsomorphicLayoutEffect$3e$__["useIsomorphicLayoutEffect"])(()=>{
+        fetcherRef.current = fetcher;
+        configRef.current = config;
+        // Handle laggy data updates. If there's cached data of the current key,
+        // it'll be the correct reference.
+        if (!(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(cachedData)) {
+            laggyDataRef.current = cachedData;
+        }
+    });
+    // After mounted or key changed.
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__u__as__useIsomorphicLayoutEffect$3e$__["useIsomorphicLayoutEffect"])(()=>{
+        if (!key) return;
+        const softRevalidate = revalidate.bind(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__U__as__UNDEFINED$3e$__["UNDEFINED"], WITH_DEDUPE);
+        let nextFocusRevalidatedAt = 0;
+        if (getConfig().revalidateOnFocus) {
+            const initNow = Date.now();
+            nextFocusRevalidatedAt = initNow + getConfig().focusThrottleInterval;
+        }
+        // Expose revalidators to global event listeners. So we can trigger
+        // revalidation from the outside.
+        const onRevalidate = (type, opts = {})=>{
+            if (type == __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$events$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__revalidateEvents$3e$__["revalidateEvents"].FOCUS_EVENT) {
+                const now = Date.now();
+                if (getConfig().revalidateOnFocus && now > nextFocusRevalidatedAt && isActive()) {
+                    nextFocusRevalidatedAt = now + getConfig().focusThrottleInterval;
+                    softRevalidate();
+                }
+            } else if (type == __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$events$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__revalidateEvents$3e$__["revalidateEvents"].RECONNECT_EVENT) {
+                if (getConfig().revalidateOnReconnect && isActive()) {
+                    softRevalidate();
+                }
+            } else if (type == __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$events$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__revalidateEvents$3e$__["revalidateEvents"].MUTATE_EVENT) {
+                return revalidate();
+            } else if (type == __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$events$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__revalidateEvents$3e$__["revalidateEvents"].ERROR_REVALIDATE_EVENT) {
+                return revalidate(opts);
+            }
+            return;
+        };
+        const unsubEvents = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["subscribeCallback"])(key, EVENT_REVALIDATORS, onRevalidate);
+        // Mark the component as mounted and update corresponding refs.
+        unmountedRef.current = false;
+        keyRef.current = key;
+        initialMountedRef.current = true;
+        // Keep the original key in the cache.
+        setCache({
+            _k: fnArg
+        });
+        // Trigger a revalidation
+        if (shouldDoInitialRevalidation) {
+            // Performance optimization: if a request is already in progress for this key,
+            // skip the revalidation to avoid redundant work
+            if (!FETCH[key]) {
+                if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(data) || __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__r__as__IS_SERVER$3e$__["IS_SERVER"]) {
+                    // Revalidate immediately.
+                    softRevalidate();
+                } else {
+                    // Delay the revalidate if we have data to return so we won't block
+                    // rendering.
+                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__t__as__rAF$3e$__["rAF"])(softRevalidate);
+                }
+            }
+        }
+        return ()=>{
+            // Mark it as unmounted.
+            unmountedRef.current = true;
+            unsubEvents();
+        };
+    }, [
+        key
+    ]);
+    // Polling
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__u__as__useIsomorphicLayoutEffect$3e$__["useIsomorphicLayoutEffect"])(()=>{
+        let timer;
+        function next() {
+            // Use the passed interval
+            // ...or invoke the function with the updated data to get the interval
+            const interval = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__a__as__isFunction$3e$__["isFunction"])(refreshInterval) ? refreshInterval(getCache().data) : refreshInterval;
+            // We only start the next interval if `refreshInterval` is not 0, and:
+            // - `force` is true, which is the start of polling
+            // - or `timer` is not 0, which means the effect wasn't canceled
+            if (interval && timer !== -1) {
+                timer = setTimeout(execute, interval);
+            }
+        }
+        function execute() {
+            // Check if it's OK to execute:
+            // Only revalidate when the page is visible, online, and not errored.
+            if (!getCache().error && (refreshWhenHidden || getConfig().isVisible()) && (refreshWhenOffline || getConfig().isOnline())) {
+                revalidate(WITH_DEDUPE).then(next);
+            } else {
+                // Schedule the next interval to check again.
+                next();
+            }
+        }
+        next();
+        return ()=>{
+            if (timer) {
+                clearTimeout(timer);
+                timer = -1;
+            }
+        };
+    }, [
+        refreshInterval,
+        refreshWhenHidden,
+        refreshWhenOffline,
+        key
+    ]);
+    // Display debug info in React DevTools.
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useDebugValue"])(returnedData);
+    // In Suspense mode, we can't return the empty `data` state.
+    // If there is an `error`, the `error` needs to be thrown to the error boundary.
+    // If there is no `error`, the `revalidation` promise needs to be thrown to
+    // the suspense boundary.
+    if (suspense && (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(data) && key) {
+        // SWR should throw when trying to use Suspense on the server with React 18,
+        // without providing any fallback data. This causes hydration errors. See:
+        // https://github.com/vercel/swr/issues/1832
+        if (!__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__I__as__IS_REACT_LEGACY$3e$__["IS_REACT_LEGACY"] && __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__r__as__IS_SERVER$3e$__["IS_SERVER"]) {
+            throw new Error('Fallback data is required when using Suspense in SSR.');
+        }
+        // Always update fetcher and config refs even with the Suspense mode.
+        fetcherRef.current = fetcher;
+        configRef.current = config;
+        unmountedRef.current = false;
+        const req = PRELOAD[key];
+        if (!(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(req)) {
+            const promise = boundMutate(req);
+            use(promise);
+        }
+        if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(error)) {
+            const promise = revalidate(WITH_DEDUPE);
+            if (!(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(returnedData)) {
+                promise.status = 'fulfilled';
+                promise.value = true;
+            }
+            use(promise);
+        } else {
+            throw error;
+        }
+    }
+    const swrResponse = {
+        mutate: boundMutate,
+        get data () {
+            stateDependencies.data = true;
+            return returnedData;
+        },
+        get error () {
+            stateDependencies.error = true;
+            return error;
+        },
+        get isValidating () {
+            stateDependencies.isValidating = true;
+            return isValidating;
+        },
+        get isLoading () {
+            stateDependencies.isLoading = true;
+            return isLoading;
+        }
+    };
+    return swrResponse;
+};
+const SWRConfig = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__O__as__OBJECT$3e$__["OBJECT"].defineProperty(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__g__as__SWRConfig$3e$__["SWRConfig"], 'defaultValue', {
+    value: __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__d__as__defaultConfig$3e$__["defaultConfig"]
+});
+/**
+ * A hook to fetch data.
+ *
+ * @link https://swr.vercel.app
+ * @example
+ * ```jsx
+ * import useSWR from 'swr'
+ * function Profile() {
+ *   const { data, error, isLoading } = useSWR('/api/user', fetcher)
+ *   if (error) return <div>failed to load</div>
+ *   if (isLoading) return <div>loading...</div>
+ *   return <div>hello {data.name}!</div>
+ * }
+ * ```
+ */ const useSWR = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withArgs"])(useSWRHandler);
+;
+}),
+"[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export c as cache>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "cache",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["c"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript)");
+}),
+"[project]/web-client/node_modules/swr/dist/infinite/index.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>useSWRInfinite,
+    "infinite",
+    ()=>infinite,
+    "unstable_serialize",
+    ()=>unstable_serialize
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$index$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/index/index.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/index.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__b__as__SWRGlobalState$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export b as SWRGlobalState>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__c__as__cache$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export c as cache>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$constants$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/constants.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__z__as__createCacheHelper$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export z as createCacheHelper>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export e as isUndefined>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__u__as__useIsomorphicLayoutEffect$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export u as useIsomorphicLayoutEffect>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__U__as__UNDEFINED$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export U as UNDEFINED>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__s__as__serialize$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export s as serialize>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__a__as__isFunction$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export a as isFunction>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$use$2d$sync$2d$external$2d$store$2f$shim$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/use-sync-external-store/shim/index.js [app-ssr] (ecmascript)");
+;
+;
+;
+;
+;
+// Shared state between server components and client components
+const noop = ()=>{};
+// Using noop() as the undefined value as undefined can be replaced
+// by something else. Prettier ignore and extra parentheses are necessary here
+// to ensure that tsc doesn't remove the __NOINLINE__ comment.
+// prettier-ignore
+const UNDEFINED = /*#__NOINLINE__*/ noop();
+const OBJECT = Object;
+const isUndefined = (v)=>v === UNDEFINED;
+const isFunction = (v)=>typeof v == 'function';
+// use WeakMap to store the object->key mapping
+// so the objects can be garbage collected.
+// WeakMap uses a hashtable under the hood, so the lookup
+// complexity is almost O(1).
+const table = new WeakMap();
+const getTypeName = (value)=>OBJECT.prototype.toString.call(value);
+const isObjectTypeName = (typeName, type)=>typeName === `[object ${type}]`;
+// counter of the key
+let counter = 0;
+// A stable hash implementation that supports:
+// - Fast and ensures unique hash properties
+// - Handles unserializable values
+// - Handles object key ordering
+// - Generates short results
+//
+// This is not a serialization function, and the result is not guaranteed to be
+// parsable.
+const stableHash = (arg)=>{
+    const type = typeof arg;
+    const typeName = getTypeName(arg);
+    const isDate = isObjectTypeName(typeName, 'Date');
+    const isRegex = isObjectTypeName(typeName, 'RegExp');
+    const isPlainObject = isObjectTypeName(typeName, 'Object');
+    let result;
+    let index;
+    if (OBJECT(arg) === arg && !isDate && !isRegex) {
+        // Object/function, not null/date/regexp. Use WeakMap to store the id first.
+        // If it's already hashed, directly return the result.
+        result = table.get(arg);
+        if (result) return result;
+        // Store the hash first for circular reference detection before entering the
+        // recursive `stableHash` calls.
+        // For other objects like set and map, we use this id directly as the hash.
+        result = ++counter + '~';
+        table.set(arg, result);
+        if (Array.isArray(arg)) {
+            // Array.
+            result = '@';
+            for(index = 0; index < arg.length; index++){
+                result += stableHash(arg[index]) + ',';
+            }
+            table.set(arg, result);
+        }
+        if (isPlainObject) {
+            // Object, sort keys.
+            result = '#';
+            const keys = OBJECT.keys(arg).sort();
+            while(!isUndefined(index = keys.pop())){
+                if (!isUndefined(arg[index])) {
+                    result += index + ':' + stableHash(arg[index]) + ',';
+                }
+            }
+            table.set(arg, result);
+        }
+    } else {
+        result = isDate ? arg.toJSON() : type == 'symbol' ? arg.toString() : type == 'string' ? JSON.stringify(arg) : '' + arg;
+    }
+    return result;
+};
+const serialize = (key)=>{
+    if (isFunction(key)) {
+        try {
+            key = key();
+        } catch (err) {
+            // dependencies not ready
+            key = '';
+        }
+    }
+    // Use the original key as the argument of fetcher. This can be a string or an
+    // array of values.
+    const args = key;
+    // If key is not falsy, or not an empty array, hash it.
+    key = typeof key == 'string' ? key : (Array.isArray(key) ? key.length : key) ? stableHash(key) : '';
+    return [
+        key,
+        args
+    ];
+};
+const getFirstPageKey = (getKey)=>{
+    return serialize(getKey ? getKey(0, null) : null)[0];
+};
+const unstable_serialize = (getKey)=>{
+    return __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$constants$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["INFINITE_PREFIX"] + getFirstPageKey(getKey);
+};
+// We have to several type castings here because `useSWRInfinite` is a special
+// hook where `key` and return type are not like the normal `useSWR` types.
+const EMPTY_PROMISE = Promise.resolve();
+const infinite = (useSWRNext)=>(getKey, fn, config)=>{
+        const didMountRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(false);
+        const { cache: cache$1, initialSize = 1, revalidateAll = false, persistSize = false, revalidateFirstPage = true, revalidateOnMount = false, parallel = false } = config;
+        const [, , , PRELOAD] = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__b__as__SWRGlobalState$3e$__["SWRGlobalState"].get(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__c__as__cache$3e$__["cache"]);
+        // The serialized key of the first page. This key will be used to store
+        // metadata of this SWR infinite hook.
+        let infiniteKey;
+        try {
+            infiniteKey = getFirstPageKey(getKey);
+            if (infiniteKey) infiniteKey = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$constants$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["INFINITE_PREFIX"] + infiniteKey;
+        } catch (err) {
+        // Not ready yet.
+        }
+        const [get, set, subscribeCache] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__z__as__createCacheHelper$3e$__["createCacheHelper"])(cache$1, infiniteKey);
+        const getSnapshot = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(()=>{
+            const size = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(get()._l) ? initialSize : get()._l;
+            return size;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, [
+            cache$1,
+            infiniteKey,
+            initialSize
+        ]);
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$use$2d$sync$2d$external$2d$store$2f$shim$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useSyncExternalStore"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])((callback)=>{
+            if (infiniteKey) return subscribeCache(infiniteKey, ()=>{
+                callback();
+            });
+            return ()=>{};
+        }, [
+            cache$1,
+            infiniteKey
+        ]), getSnapshot, getSnapshot);
+        const resolvePageSize = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(()=>{
+            const cachedPageSize = get()._l;
+            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(cachedPageSize) ? initialSize : cachedPageSize;
+        // `cache` isn't allowed to change during the lifecycle
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, [
+            infiniteKey,
+            initialSize
+        ]);
+        // keep the last page size to restore it with the persistSize option
+        const lastPageSizeRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(resolvePageSize());
+        // When the page key changes, we reset the page size if it's not persisted
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__u__as__useIsomorphicLayoutEffect$3e$__["useIsomorphicLayoutEffect"])(()=>{
+            if (!didMountRef.current) {
+                didMountRef.current = true;
+                return;
+            }
+            if (infiniteKey) {
+                // If the key has been changed, we keep the current page size if persistSize is enabled
+                // Otherwise, we reset the page size to cached pageSize
+                set({
+                    _l: persistSize ? lastPageSizeRef.current : resolvePageSize()
+                });
+            }
+        // `initialSize` isn't allowed to change during the lifecycle
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, [
+            infiniteKey,
+            cache$1
+        ]);
+        // Needs to check didMountRef during mounting, not in the fetcher
+        const shouldRevalidateOnMount = revalidateOnMount && !didMountRef.current;
+        // Actual SWR hook to load all pages in one fetcher.
+        const swr = useSWRNext(infiniteKey, async (key)=>{
+            // get the revalidate context
+            const forceRevalidateAll = get()._i;
+            const shouldRevalidatePage = get()._r;
+            set({
+                _r: __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__U__as__UNDEFINED$3e$__["UNDEFINED"]
+            });
+            // return an array of page data
+            const data = [];
+            const pageSize = resolvePageSize();
+            const [getCache] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__z__as__createCacheHelper$3e$__["createCacheHelper"])(cache$1, key);
+            const cacheData = getCache().data;
+            const revalidators = [];
+            let previousPageData = null;
+            for(let i = 0; i < pageSize; ++i){
+                const [pageKey, pageArg] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__s__as__serialize$3e$__["serialize"])(getKey(i, parallel ? null : previousPageData));
+                if (!pageKey) {
+                    break;
+                }
+                const [getSWRCache, setSWRCache] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__z__as__createCacheHelper$3e$__["createCacheHelper"])(cache$1, pageKey);
+                // Get the cached page data.
+                let pageData = getSWRCache().data;
+                // should fetch (or revalidate) if:
+                // - `revalidateAll` is enabled
+                // - `mutate()` called
+                // - the cache is missing
+                // - it's the first page and it's not the initial render
+                // - `revalidateOnMount` is enabled and it's on mount
+                // - cache for that page has changed
+                const shouldFetchPage = revalidateAll || forceRevalidateAll || (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(pageData) || revalidateFirstPage && !i && !(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(cacheData) || shouldRevalidateOnMount || cacheData && !(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(cacheData[i]) && !config.compare(cacheData[i], pageData);
+                if (fn && (typeof shouldRevalidatePage === 'function' ? shouldRevalidatePage(pageData, pageArg) : shouldFetchPage)) {
+                    const revalidate = async ()=>{
+                        const hasPreloadedRequest = pageKey in PRELOAD;
+                        if (!hasPreloadedRequest) {
+                            pageData = await fn(pageArg);
+                        } else {
+                            const req = PRELOAD[pageKey];
+                            // delete the preload cache key before resolving it
+                            // in case there's an error
+                            delete PRELOAD[pageKey];
+                            // get the page data from the preload cache
+                            pageData = await req;
+                        }
+                        setSWRCache({
+                            data: pageData,
+                            _k: pageArg
+                        });
+                        data[i] = pageData;
+                    };
+                    if (parallel) {
+                        revalidators.push(revalidate);
+                    } else {
+                        await revalidate();
+                    }
+                } else {
+                    data[i] = pageData;
+                }
+                if (!parallel) {
+                    previousPageData = pageData;
+                }
+            }
+            // flush all revalidateions in parallel
+            if (parallel) {
+                await Promise.all(revalidators.map((r)=>r()));
+            }
+            // once we executed the data fetching based on the context, clear the context
+            set({
+                _i: __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__U__as__UNDEFINED$3e$__["UNDEFINED"]
+            });
+            // return the data
+            return data;
+        }, config);
+        const mutate = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(function(data, opts) {
+            // When passing as a boolean, it's explicitly used to disable/enable
+            // revalidation.
+            const options = typeof opts === 'boolean' ? {
+                revalidate: opts
+            } : opts || {};
+            // Default to true.
+            const shouldRevalidate = options.revalidate !== false;
+            // It is possible that the key is still falsy.
+            if (!infiniteKey) return EMPTY_PROMISE;
+            if (shouldRevalidate) {
+                if (!(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(data)) {
+                    // We only revalidate the pages that are changed
+                    set({
+                        _i: false,
+                        _r: options.revalidate
+                    });
+                } else {
+                    // Calling `mutate()`, we revalidate all pages
+                    set({
+                        _i: true,
+                        _r: options.revalidate
+                    });
+                }
+            }
+            return arguments.length ? swr.mutate(data, {
+                ...options,
+                revalidate: shouldRevalidate
+            }) : swr.mutate();
+        }, // eslint-disable-next-line react-hooks/exhaustive-deps
+        [
+            infiniteKey,
+            cache$1
+        ]);
+        // Extend the SWR API
+        const setSize = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])((arg)=>{
+            // It is possible that the key is still falsy.
+            if (!infiniteKey) return EMPTY_PROMISE;
+            const [, changeSize] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__z__as__createCacheHelper$3e$__["createCacheHelper"])(cache$1, infiniteKey);
+            let size;
+            if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__a__as__isFunction$3e$__["isFunction"])(arg)) {
+                size = arg(resolvePageSize());
+            } else if (typeof arg == 'number') {
+                size = arg;
+            }
+            if (typeof size != 'number') return EMPTY_PROMISE;
+            changeSize({
+                _l: size
+            });
+            lastPageSizeRef.current = size;
+            // Calculate the page data after the size change.
+            const data = [];
+            const [getInfiniteCache] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__z__as__createCacheHelper$3e$__["createCacheHelper"])(cache$1, infiniteKey);
+            let previousPageData = null;
+            for(let i = 0; i < size; ++i){
+                const [pageKey] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__s__as__serialize$3e$__["serialize"])(getKey(i, previousPageData));
+                const [getCache] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__z__as__createCacheHelper$3e$__["createCacheHelper"])(cache$1, pageKey);
+                // Get the cached page data.
+                const pageData = pageKey ? getCache().data : __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__U__as__UNDEFINED$3e$__["UNDEFINED"];
+                // Call `mutate` with infinte cache data if we can't get it from the page cache.
+                if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__e__as__isUndefined$3e$__["isUndefined"])(pageData)) {
+                    return mutate(getInfiniteCache().data);
+                }
+                data.push(pageData);
+                previousPageData = pageData;
+            }
+            return mutate(data);
+        }, // eslint-disable-next-line react-hooks/exhaustive-deps
+        [
+            infiniteKey,
+            cache$1,
+            mutate,
+            resolvePageSize
+        ]);
+        // Use getter functions to avoid unnecessary re-renders caused by triggering
+        // all the getters of the returned swr object.
+        return {
+            size: resolvePageSize(),
+            setSize,
+            mutate,
+            get data () {
+                return swr.data;
+            },
+            get error () {
+                return swr.error;
+            },
+            get isValidating () {
+                return swr.isValidating;
+            },
+            get isLoading () {
+                return swr.isLoading;
+            }
+        };
+    };
+const useSWRInfinite = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withMiddleware"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$index$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"], infinite);
+;
+}),
+"[project]/web-client/node_modules/dequal/dist/index.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "dequal",
+    ()=>dequal
+]);
+var has = Object.prototype.hasOwnProperty;
+function find(iter, tar, key) {
+    for (key of iter.keys()){
+        if (dequal(key, tar)) return key;
+    }
+}
+function dequal(foo, bar) {
+    var ctor, len, tmp;
+    if (foo === bar) return true;
+    if (foo && bar && (ctor = foo.constructor) === bar.constructor) {
+        if (ctor === Date) return foo.getTime() === bar.getTime();
+        if (ctor === RegExp) return foo.toString() === bar.toString();
+        if (ctor === Array) {
+            if ((len = foo.length) === bar.length) {
+                while(len-- && dequal(foo[len], bar[len]));
+            }
+            return len === -1;
+        }
+        if (ctor === Set) {
+            if (foo.size !== bar.size) {
+                return false;
+            }
+            for (len of foo){
+                tmp = len;
+                if (tmp && typeof tmp === 'object') {
+                    tmp = find(bar, tmp);
+                    if (!tmp) return false;
+                }
+                if (!bar.has(tmp)) return false;
+            }
+            return true;
+        }
+        if (ctor === Map) {
+            if (foo.size !== bar.size) {
+                return false;
+            }
+            for (len of foo){
+                tmp = len[0];
+                if (tmp && typeof tmp === 'object') {
+                    tmp = find(bar, tmp);
+                    if (!tmp) return false;
+                }
+                if (!dequal(len[1], bar.get(tmp))) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        if (ctor === ArrayBuffer) {
+            foo = new Uint8Array(foo);
+            bar = new Uint8Array(bar);
+        } else if (ctor === DataView) {
+            if ((len = foo.byteLength) === bar.byteLength) {
+                while(len-- && foo.getInt8(len) === bar.getInt8(len));
+            }
+            return len === -1;
+        }
+        if (ArrayBuffer.isView(foo)) {
+            if ((len = foo.byteLength) === bar.byteLength) {
+                while(len-- && foo[len] === bar[len]);
+            }
+            return len === -1;
+        }
+        if (!ctor || typeof foo === 'object') {
+            len = 0;
+            for(ctor in foo){
+                if (has.call(foo, ctor) && ++len && !has.call(bar, ctor)) return false;
+                if (!(ctor in bar) || !dequal(foo[ctor], bar[ctor])) return false;
+            }
+            return Object.keys(bar).length === len;
+        }
+    }
+    return foo !== foo && bar !== bar;
+}
+}),
+"[project]/web-client/node_modules/swr/dist/mutation/index.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>useSWRMutation
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$index$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/index/index.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/index.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__I__as__IS_REACT_LEGACY$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export I as IS_REACT_LEGACY>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__u__as__useIsomorphicLayoutEffect$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export u as useIsomorphicLayoutEffect>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__s__as__serialize$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export s as serialize>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__m__as__mergeObjects$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export m as mergeObjects>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__o__as__getTimestamp$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export o as getTimestamp>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__U__as__UNDEFINED$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/config-context-client-BoS53ST9.mjs [app-ssr] (ecmascript) <export U as UNDEFINED>");
+;
+;
+;
+const startTransition = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__I__as__IS_REACT_LEGACY$3e$__["IS_REACT_LEGACY"] ? (cb)=>{
+    cb();
+} : __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].startTransition;
+/**
+ * An implementation of state with dependency-tracking.
+ * @param initialState - The initial state object.
+ */ const useStateWithDeps = (initialState)=>{
+    const [, rerender] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])({});
+    const unmountedRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(false);
+    const stateRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(initialState);
+    // If a state property (data, error, or isValidating) is accessed by the render
+    // function, we mark the property as a dependency so if it is updated again
+    // in the future, we trigger a rerender.
+    // This is also known as dependency-tracking.
+    const stateDependenciesRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])({
+        data: false,
+        error: false,
+        isValidating: false
+    });
+    /**
+   * Updates state and triggers re-render if necessary.
+   * @param payload To change stateRef, pass the values explicitly to setState:
+   * @example
+   * ```js
+   * setState({
+   *   isValidating: false
+   *   data: newData // set data to newData
+   *   error: undefined // set error to undefined
+   * })
+   *
+   * setState({
+   *   isValidating: false
+   *   data: undefined // set data to undefined
+   *   error: err // set error to err
+   * })
+   * ```
+   */ const setState = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])((payload)=>{
+        let shouldRerender = false;
+        const currentState = stateRef.current;
+        for(const key in payload){
+            if (Object.prototype.hasOwnProperty.call(payload, key)) {
+                const k = key;
+                // If the property has changed, update the state and mark rerender as
+                // needed.
+                if (currentState[k] !== payload[k]) {
+                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                    currentState[k] = payload[k];
+                    // If the property is accessed by the component, a rerender should be
+                    // triggered.
+                    if (stateDependenciesRef.current[k]) {
+                        shouldRerender = true;
+                    }
+                }
+            }
+        }
+        if (shouldRerender && !unmountedRef.current) {
+            rerender({});
+        }
+    }, []);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__u__as__useIsomorphicLayoutEffect$3e$__["useIsomorphicLayoutEffect"])(()=>{
+        unmountedRef.current = false;
+        return ()=>{
+            unmountedRef.current = true;
+        };
+    });
+    return [
+        stateRef,
+        stateDependenciesRef.current,
+        setState
+    ];
+};
+const mutation = ()=>(key, fetcher, config = {})=>{
+        const { mutate } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useSWRConfig"])();
+        const keyRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(key);
+        const fetcherRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(fetcher);
+        const configRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(config);
+        // Ditch all mutation results that happened earlier than this timestamp.
+        const ditchMutationsUntilRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(0);
+        const [stateRef, stateDependencies, setState] = useStateWithDeps({
+            data: __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__U__as__UNDEFINED$3e$__["UNDEFINED"],
+            error: __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__U__as__UNDEFINED$3e$__["UNDEFINED"],
+            isMutating: false
+        });
+        const currentState = stateRef.current;
+        const trigger = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(async (arg, opts)=>{
+            const [serializedKey, resolvedKey] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__s__as__serialize$3e$__["serialize"])(keyRef.current);
+            if (!fetcherRef.current) {
+                throw new Error('Can’t trigger the mutation: missing fetcher.');
+            }
+            if (!serializedKey) {
+                throw new Error('Can’t trigger the mutation: missing key.');
+            }
+            // Disable cache population by default.
+            const options = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__m__as__mergeObjects$3e$__["mergeObjects"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__m__as__mergeObjects$3e$__["mergeObjects"])({
+                populateCache: false,
+                throwOnError: true
+            }, configRef.current), opts);
+            // Trigger a mutation, and also track the timestamp. Any mutation that happened
+            // earlier this timestamp should be ignored.
+            const mutationStartedAt = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__o__as__getTimestamp$3e$__["getTimestamp"])();
+            ditchMutationsUntilRef.current = mutationStartedAt;
+            setState({
+                isMutating: true
+            });
+            try {
+                const data = await mutate(serializedKey, fetcherRef.current(resolvedKey, {
+                    arg
+                }), (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__m__as__mergeObjects$3e$__["mergeObjects"])(options, {
+                    throwOnError: true
+                }));
+                // If it's reset after the mutation, we don't broadcast any state change.
+                if (ditchMutationsUntilRef.current <= mutationStartedAt) {
+                    startTransition(()=>setState({
+                            data,
+                            isMutating: false,
+                            error: undefined
+                        }));
+                    options.onSuccess == null ? void 0 : options.onSuccess.call(options, data, serializedKey, options);
+                }
+                return data;
+            } catch (error) {
+                // If it's reset after the mutation, we don't broadcast any state change
+                // or throw because it's discarded.
+                if (ditchMutationsUntilRef.current <= mutationStartedAt) {
+                    startTransition(()=>setState({
+                            error: error,
+                            isMutating: false
+                        }));
+                    options.onError == null ? undefined : options.onError.call(options, error, serializedKey, options);
+                    if (options.throwOnError) {
+                        throw error;
+                    }
+                }
+            }
+        }, []);
+        const reset = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(()=>{
+            ditchMutationsUntilRef.current = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__o__as__getTimestamp$3e$__["getTimestamp"])();
+            setState({
+                data: __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__U__as__UNDEFINED$3e$__["UNDEFINED"],
+                error: __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__U__as__UNDEFINED$3e$__["UNDEFINED"],
+                isMutating: false
+            });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, []);
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$config$2d$context$2d$client$2d$BoS53ST9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__u__as__useIsomorphicLayoutEffect$3e$__["useIsomorphicLayoutEffect"])(()=>{
+            keyRef.current = key;
+            fetcherRef.current = fetcher;
+            configRef.current = config;
+        });
+        // We don't return `mutate` here as it can be pretty confusing (e.g. people
+        // calling `mutate` but they actually mean `trigger`).
+        // And also, `mutate` relies on the useSWR hook to exist too.
+        return {
+            trigger,
+            reset,
+            get data () {
+                stateDependencies.data = true;
+                return currentState.data;
+            },
+            get error () {
+                stateDependencies.error = true;
+                return currentState.error;
+            },
+            get isMutating () {
+                stateDependencies.isMutating = true;
+                return currentState.isMutating;
+            }
+        };
+    };
+/**
+ * A hook to define and manually trigger remote mutations like POST, PUT, DELETE and PATCH use cases.
+ *
+ * @link https://swr.vercel.app/docs/mutation
+ * @example
+ * ```jsx
+ * import useSWRMutation from 'swr/mutation'
+ *
+ * const {
+ *   data,
+ *   error,
+ *   trigger,
+ *   reset,
+ *   isMutating
+ * } = useSWRMutation(key, fetcher, options?)
+ * ```
+ */ const useSWRMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withMiddleware"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$index$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"], mutation);
+;
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/react/index.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "ClerkInstanceContext",
+    ()=>ClerkInstanceContext,
+    "ClientContext",
+    ()=>ClientContext,
+    "OptionsContext",
+    ()=>OptionsContext,
+    "OrganizationProvider",
+    ()=>OrganizationProvider,
+    "SessionContext",
+    ()=>SessionContext,
+    "UserContext",
+    ()=>UserContext,
+    "__experimental_CheckoutProvider",
+    ()=>__experimental_CheckoutProvider,
+    "__experimental_PaymentElement",
+    ()=>PaymentElement,
+    "__experimental_PaymentElementProvider",
+    ()=>PaymentElementProvider,
+    "__experimental_useAPIKeys",
+    ()=>useAPIKeys,
+    "__experimental_useCheckout",
+    ()=>useCheckout,
+    "__experimental_usePaymentAttempts",
+    ()=>usePaymentAttempts,
+    "__experimental_usePaymentElement",
+    ()=>usePaymentElement,
+    "__experimental_usePaymentMethods",
+    ()=>usePaymentMethods,
+    "__experimental_usePlans",
+    ()=>usePlans,
+    "__experimental_useStatements",
+    ()=>useStatements,
+    "__experimental_useSubscription",
+    ()=>useSubscription,
+    "__internal_usePaymentAttemptQuery",
+    ()=>__internal_usePaymentAttemptQuery,
+    "__internal_usePlanDetailsQuery",
+    ()=>usePlanDetailsQuery,
+    "__internal_useStatementQuery",
+    ()=>__internal_useStatementQuery,
+    "assertContextExists",
+    ()=>assertContextExists,
+    "createContextAndHook",
+    ()=>createContextAndHook,
+    "isDeeplyEqual",
+    ()=>isDeeplyEqual,
+    "useAssertWrappedByClerkProvider",
+    ()=>useAssertWrappedByClerkProvider,
+    "useAttemptToEnableOrganizations",
+    ()=>useAttemptToEnableOrganizations,
+    "useClerk",
+    ()=>useClerk,
+    "useClerkInstanceContext",
+    ()=>useClerkInstanceContext,
+    "useClientContext",
+    ()=>useClientContext,
+    "useDeepEqualMemo",
+    ()=>useDeepEqualMemo,
+    "useOptionsContext",
+    ()=>useOptionsContext,
+    "useOrganization",
+    ()=>useOrganization,
+    "useOrganizationContext",
+    ()=>useOrganizationContext,
+    "useOrganizationList",
+    ()=>useOrganizationList,
+    "useReverification",
+    ()=>useReverification,
+    "useSafeLayoutEffect",
+    ()=>useSafeLayoutEffect,
+    "useSession",
+    ()=>useSession,
+    "useSessionContext",
+    ()=>useSessionContext,
+    "useSessionList",
+    ()=>useSessionList,
+    "useUser",
+    ()=>useUser,
+    "useUserContext",
+    ()=>useUserContext
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$constants$2d$ByUssRbE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/constants-ByUssRbE.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$isomorphicAtob$2d$DybBXGFR$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/isomorphicAtob-DybBXGFR.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$isomorphicBtoa$2d$Dr7WubZv$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/isomorphicBtoa-Dr7WubZv.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$keys$2d$YNv6yjKk$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/keys-YNv6yjKk.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$authorization$2d$errors$2d$CS1pNy8i$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/authorization-errors-CS1pNy8i.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$authorization$2d$D2ans7vW$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/authorization-D2ans7vW.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$error$2d$Dl9xmUf3$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/error-Dl9xmUf3.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$noop$2d$B3MbDAfb$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/noop-B3MbDAfb.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$createDeferredPromise$2d$CjYZzUuU$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/createDeferredPromise-CjYZzUuU.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$underscore$2d$DjQrhefX$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/underscore-DjQrhefX.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$organization$2d$BqxdOtRG$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/organization-BqxdOtRG.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$telemetry$2d$wqMDWlvR$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/telemetry-wqMDWlvR.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$index$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/index/index.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/_internal/index.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$infinite$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/infinite/index.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$dequal$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/dequal/dist/index.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$mutation$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/swr/dist/mutation/index.mjs [app-ssr] (ecmascript)");
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+//#region src/react/hooks/createContextAndHook.ts
+/**
+* Assert that the context value exists, otherwise throw an error.
+*
+* @internal
+*/ function assertContextExists(contextVal, msgOrCtx) {
+    if (!contextVal) throw typeof msgOrCtx === "string" ? new Error(msgOrCtx) : /* @__PURE__ */ new Error(`${msgOrCtx.displayName} not found`);
+}
+/**
+* Create and return a Context and two hooks that return the context value.
+* The Context type is derived from the type passed in by the user.
+*
+* The first hook returned guarantees that the context exists so the returned value is always `CtxValue`
+* The second hook makes no guarantees, so the returned value can be `CtxValue | undefined`
+*
+* @internal
+*/ const createContextAndHook = (displayName, options)=>{
+    const { assertCtxFn = assertContextExists } = options || {};
+    const Ctx = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createContext(void 0);
+    Ctx.displayName = displayName;
+    const useCtx = ()=>{
+        const ctx = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useContext(Ctx);
+        assertCtxFn(ctx, `${displayName} not found`);
+        return ctx.value;
+    };
+    const useCtxWithoutGuarantee = ()=>{
+        const ctx = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useContext(Ctx);
+        return ctx ? ctx.value : {};
+    };
+    return [
+        Ctx,
+        useCtx,
+        useCtxWithoutGuarantee
+    ];
+};
+//#endregion
+//#region src/react/providers/SWRConfigCompat.swr.tsx
+/**
+* @internal
+*/ function SWRConfigCompat({ swrConfig, children }) {
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$index$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["SWRConfig"], {
+        value: swrConfig
+    }, children);
+}
+//#endregion
+//#region src/react/contexts.tsx
+const [ClerkInstanceContext, useClerkInstanceContext] = createContextAndHook("ClerkInstanceContext");
+const [UserContext, useUserContext] = createContextAndHook("UserContext");
+const [ClientContext, useClientContext] = createContextAndHook("ClientContext");
+const [SessionContext, useSessionContext] = createContextAndHook("SessionContext");
+const OptionsContext = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createContext({});
+const [CheckoutContext, useCheckoutContext] = createContextAndHook("CheckoutContext");
+const __experimental_CheckoutProvider = ({ children, ...rest })=>{
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(CheckoutContext.Provider, {
+        value: {
+            value: rest
+        }
+    }, children);
+};
+/**
+* @internal
+*/ function useOptionsContext() {
+    const context = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useContext(OptionsContext);
+    if (context === void 0) throw new Error("useOptions must be used within an OptionsContext");
+    return context;
+}
+const [OrganizationContextInternal, useOrganizationContext] = createContextAndHook("OrganizationContext");
+const OrganizationProvider = ({ children, organization, swrConfig })=>{
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(SWRConfigCompat, {
+        swrConfig
+    }, /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(OrganizationContextInternal.Provider, {
+        value: {
+            value: {
+                organization
+            }
+        }
+    }, children));
+};
+/**
+* @internal
+*/ function useAssertWrappedByClerkProvider(displayNameOrFn) {
+    if (!__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useContext(ClerkInstanceContext)) {
+        if (typeof displayNameOrFn === "function") {
+            displayNameOrFn();
+            return;
+        }
+        throw new Error(`${displayNameOrFn} can only be used within the <ClerkProvider /> component.
+
+Possible fixes:
+1. Ensure that the <ClerkProvider /> is correctly wrapping your application where this component is used.
+2. Check for multiple versions of the \`@clerk/shared\` package in your project. Use a tool like \`npm ls @clerk/shared\` to identify multiple versions, and update your dependencies to only rely on one.
+
+Learn more: https://clerk.com/docs/components/clerk-provider`.trim());
+    }
+}
+//#endregion
+//#region src/react/stable-keys.ts
+const USER_MEMBERSHIPS_KEY = "userMemberships";
+const USER_INVITATIONS_KEY = "userInvitations";
+const USER_SUGGESTIONS_KEY = "userSuggestions";
+const DOMAINS_KEY = "domains";
+const MEMBERSHIP_REQUESTS_KEY = "membershipRequests";
+const MEMBERSHIPS_KEY = "memberships";
+const INVITATIONS_KEY = "invitations";
+const API_KEYS_KEY = "apiKeys";
+const PLANS_KEY = "billing-plans";
+const SUBSCRIPTION_KEY = "billing-subscription";
+const PAYMENT_METHODS_KEY = "billing-payment-methods";
+const PAYMENT_ATTEMPTS_KEY = "billing-payment-attempts";
+const STATEMENTS_KEY = "billing-statements";
+const STABLE_KEYS = {
+    USER_MEMBERSHIPS_KEY,
+    USER_INVITATIONS_KEY,
+    USER_SUGGESTIONS_KEY,
+    DOMAINS_KEY,
+    MEMBERSHIP_REQUESTS_KEY,
+    MEMBERSHIPS_KEY,
+    INVITATIONS_KEY,
+    PLANS_KEY,
+    SUBSCRIPTION_KEY,
+    PAYMENT_METHODS_KEY,
+    PAYMENT_ATTEMPTS_KEY,
+    STATEMENTS_KEY,
+    API_KEYS_KEY
+};
+/**
+* Internal stable keys for queries only used by our UI components.
+* These keys are not used by the hooks themselves.
+*/ const PAYMENT_ATTEMPT_KEY = "billing-payment-attempt";
+const BILLING_PLANS_KEY = "billing-plan";
+const BILLING_STATEMENTS_KEY = "billing-statement";
+const INTERNAL_STABLE_KEYS = {
+    PAYMENT_ATTEMPT_KEY,
+    BILLING_PLANS_KEY,
+    BILLING_STATEMENTS_KEY
+};
+//#endregion
+//#region src/react/hooks/createCacheKeys.ts
+/**
+* @internal
+*/ function createCacheKeys(params) {
+    return {
+        queryKey: [
+            params.stablePrefix,
+            params.authenticated,
+            params.tracked,
+            params.untracked
+        ],
+        invalidationKey: [
+            params.stablePrefix,
+            params.authenticated,
+            params.tracked
+        ],
+        stableKey: params.stablePrefix,
+        authenticated: params.authenticated
+    };
+}
+/**
+* @internal
+*/ function toSWRQuery(keys) {
+    const { queryKey } = keys;
+    return {
+        type: queryKey[0],
+        ...queryKey[2],
+        ...queryKey[3].args
+    };
+}
+//#endregion
+//#region src/react/hooks/usePagesOrInfinite.shared.ts
+/**
+* A hook that safely merges user-provided pagination options with default values.
+* It caches initial pagination values (page and size) until component unmount to prevent unwanted rerenders.
+*
+* @internal
+*
+* @example
+* ```typescript
+* // Example 1: With user-provided options
+* const userOptions = { initialPage: 2, pageSize: 20, infinite: true };
+* const defaults = { initialPage: 1, pageSize: 10, infinite: false };
+* useWithSafeValues(userOptions, defaults);
+* // Returns { initialPage: 2, pageSize: 20, infinite: true }
+*
+* // Example 2: With boolean true (use defaults)
+* const params = true;
+* const defaults = { initialPage: 1, pageSize: 10, infinite: false };
+* useWithSafeValues(params, defaults);
+* // Returns { initialPage: 1, pageSize: 10, infinite: false }
+*
+* // Example 3: With undefined options (fallback to defaults)
+* const params = undefined;
+* const defaults = { initialPage: 1, pageSize: 10, infinite: false };
+* useWithSafeValues(params, defaults);
+* // Returns { initialPage: 1, pageSize: 10, infinite: false }
+* ```
+*/ const useWithSafeValues = (params, defaultValues)=>{
+    const shouldUseDefaults = typeof params === "boolean" && params;
+    const initialPageRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(shouldUseDefaults ? defaultValues.initialPage : params?.initialPage ?? defaultValues.initialPage);
+    const pageSizeRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(shouldUseDefaults ? defaultValues.pageSize : params?.pageSize ?? defaultValues.pageSize);
+    const newObj = {};
+    for (const key of Object.keys(defaultValues))newObj[key] = shouldUseDefaults ? defaultValues[key] : params?.[key] ?? defaultValues[key];
+    return {
+        ...newObj,
+        initialPage: initialPageRef.current,
+        pageSize: pageSizeRef.current
+    };
+};
+/**
+* Returns an object containing only the keys from the first object that are not present in the second object.
+* Useful for extracting unique parameters that should be passed to a request while excluding common cache keys.
+*
+* @internal
+*
+* @example
+* ```typescript
+* // Example 1: Basic usage
+* const obj1 = { name: 'John', age: 30, city: 'NY' };
+* const obj2 = { name: 'John', age: 30 };
+* getDifferentKeys(obj1, obj2); // Returns { city: 'NY' }
+*
+* // Example 2: With cache keys
+* const requestParams = { page: 1, limit: 10, userId: '123' };
+* const cacheKeys = { userId: '123' };
+* getDifferentKeys(requestParams, cacheKeys); // Returns { page: 1, limit: 10 }
+* ```
+*/ function getDifferentKeys(obj1, obj2) {
+    const keysSet = new Set(Object.keys(obj2));
+    const differentKeysObject = {};
+    for (const key1 of Object.keys(obj1))if (!keysSet.has(key1)) differentKeysObject[key1] = obj1[key1];
+    return differentKeysObject;
+}
+//#endregion
+//#region src/react/hooks/usePreviousValue.ts
+/**
+* A hook that retains the previous value of a primitive type.
+* It uses a ref to prevent causing unnecessary re-renders.
+*
+* @internal
+*
+* @example
+* ```
+* Render 1: value = 'A' → returns null
+* Render 2: value = 'B' → returns 'A'
+* Render 3: value = 'B' → returns 'A'
+* Render 4: value = 'B' → returns 'A'
+* Render 5: value = 'C' → returns 'B'
+* ```
+*/ function usePreviousValue(value) {
+    const currentRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(value);
+    const previousRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
+    if (currentRef.current !== value) {
+        previousRef.current = currentRef.current;
+        currentRef.current = value;
+    }
+    return previousRef.current;
+}
+//#endregion
+//#region src/react/hooks/usePagesOrInfinite.swr.tsx
+const cachingSWROptions = {
+    dedupingInterval: 1e3 * 60,
+    focusThrottleInterval: 1e3 * 60 * 2
+};
+const cachingSWRInfiniteOptions = {
+    ...cachingSWROptions,
+    revalidateFirstPage: false
+};
+/**
+* A flexible pagination hook that supports both traditional pagination and infinite loading.
+* It provides a unified API for handling paginated data fetching, with built-in caching through SWR.
+* The hook can operate in two modes:
+* - Traditional pagination: Fetches one page at a time with page navigation
+* - Infinite loading: Accumulates data as more pages are loaded.
+*
+* Features:
+* - Cache management with SWR
+* - Loading and error states
+* - Page navigation helpers
+* - Data revalidation and updates
+* - Support for keeping previous data while loading.
+*
+* @internal
+*/ const usePagesOrInfinite = (params)=>{
+    const { fetcher, config, keys } = params;
+    const [paginatedPage, setPaginatedPage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(config.initialPage ?? 1);
+    const initialPageRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(config.initialPage ?? 1);
+    const pageSizeRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(config.pageSize ?? 10);
+    const enabled = config.enabled ?? true;
+    const cacheMode = config.__experimental_mode === "cache";
+    const triggerInfinite = config.infinite ?? false;
+    const keepPreviousData = config.keepPreviousData ?? false;
+    const isSignedIn = config.isSignedIn;
+    const pagesCacheKey = {
+        ...toSWRQuery(keys),
+        initialPage: paginatedPage,
+        pageSize: pageSizeRef.current
+    };
+    const previousIsSignedIn = usePreviousValue(isSignedIn);
+    const shouldFetch = !triggerInfinite && enabled && (!cacheMode ? !!fetcher : true);
+    const { data: swrData, isValidating: swrIsValidating, isLoading: swrIsLoading, error: swrError, mutate: swrMutate } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$index$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"])(typeof isSignedIn === "boolean" ? previousIsSignedIn === true && isSignedIn === false ? pagesCacheKey : isSignedIn ? shouldFetch ? pagesCacheKey : null : null : shouldFetch ? pagesCacheKey : null, !cacheMode && !!fetcher ? (cacheKeyParams)=>{
+        if (isSignedIn === false || shouldFetch === false) return null;
+        return fetcher(getDifferentKeys(cacheKeyParams, {
+            type: keys.queryKey[0],
+            ...keys.queryKey[2]
+        }));
+    } : null, {
+        keepPreviousData,
+        ...cachingSWROptions
+    });
+    const { data: swrInfiniteData, isLoading: swrInfiniteIsLoading, isValidating: swrInfiniteIsValidating, error: swrInfiniteError, size, setSize, mutate: swrInfiniteMutate } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$infinite$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])((pageIndex)=>{
+        if (!triggerInfinite || !enabled || isSignedIn === false) return null;
+        return {
+            ...toSWRQuery(keys),
+            initialPage: initialPageRef.current + pageIndex,
+            pageSize: pageSizeRef.current
+        };
+    }, (cacheKeyParams)=>{
+        const requestParams = getDifferentKeys(cacheKeyParams, {
+            type: keys.queryKey[0],
+            ...keys.queryKey[2]
+        });
+        return fetcher?.(requestParams);
+    }, cachingSWRInfiniteOptions);
+    const page = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>{
+        if (triggerInfinite) return size;
+        return paginatedPage;
+    }, [
+        triggerInfinite,
+        size,
+        paginatedPage
+    ]);
+    const fetchPage = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])((numberOrgFn)=>{
+        if (triggerInfinite) {
+            setSize(numberOrgFn);
+            return;
+        }
+        return setPaginatedPage(numberOrgFn);
+    }, [
+        setSize,
+        triggerInfinite
+    ]);
+    const data = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>{
+        if (triggerInfinite) return swrInfiniteData?.map((a)=>a?.data).flat() ?? [];
+        return swrData?.data ?? [];
+    }, [
+        triggerInfinite,
+        swrData,
+        swrInfiniteData
+    ]);
+    const count = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>{
+        if (triggerInfinite) return swrInfiniteData?.[swrInfiniteData?.length - 1]?.total_count || 0;
+        return swrData?.total_count ?? 0;
+    }, [
+        triggerInfinite,
+        swrData,
+        swrInfiniteData
+    ]);
+    const isLoading = triggerInfinite ? swrInfiniteIsLoading : swrIsLoading;
+    const isFetching = triggerInfinite ? swrInfiniteIsValidating : swrIsValidating;
+    const error = (triggerInfinite ? swrInfiniteError : swrError) ?? null;
+    const isError = !!error;
+    const fetchNext = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(()=>{
+        fetchPage((n)=>Math.max(0, n + 1));
+    }, [
+        fetchPage
+    ]);
+    const fetchPrevious = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(()=>{
+        fetchPage((n)=>Math.max(0, n - 1));
+    }, [
+        fetchPage
+    ]);
+    const offsetCount = (initialPageRef.current - 1) * pageSizeRef.current;
+    return {
+        data,
+        count,
+        error,
+        isLoading,
+        isFetching,
+        isError,
+        page,
+        pageCount: Math.ceil((count - offsetCount) / pageSizeRef.current),
+        fetchPage,
+        fetchNext,
+        fetchPrevious,
+        hasNextPage: count - offsetCount * pageSizeRef.current > page * pageSizeRef.current,
+        hasPreviousPage: (page - 1) * pageSizeRef.current > offsetCount * pageSizeRef.current,
+        revalidate: triggerInfinite ? ()=>swrInfiniteMutate() : ()=>swrMutate(),
+        setData: triggerInfinite ? (value)=>swrInfiniteMutate(value, {
+                revalidate: false
+            }) : (value)=>swrMutate(value, {
+                revalidate: false
+            })
+    };
+};
+//#endregion
+//#region src/react/hooks/useAPIKeys.swr.tsx
+/**
+* @internal
+*
+* The `useAPIKeys()` hook provides access to paginated API keys for the current user or organization.
+*
+* @example
+* ### Basic usage with default pagination
+*
+* ```tsx
+* const { data, isLoading, page, pageCount, fetchNext, fetchPrevious } = useAPIKeys({
+*   subject: 'user_123',
+*   pageSize: 10,
+*   initialPage: 1,
+* });
+* ```
+*
+* @example
+* ### With search query
+*
+* ```tsx
+* const [searchValue, setSearchValue] = useState('');
+* const debouncedSearch = useDebounce(searchValue, 500);
+*
+* const { data, isLoading } = useAPIKeys({
+*   subject: 'user_123',
+*   query: debouncedSearch.trim(),
+*   pageSize: 10,
+* });
+* ```
+*
+* @example
+* ### Infinite scroll
+*
+* ```tsx
+* const { data, isLoading, fetchNext, hasNextPage } = useAPIKeys({
+*   subject: 'user_123',
+*   infinite: true,
+* });
+* ```
+*/ function useAPIKeys(params) {
+    useAssertWrappedByClerkProvider("useAPIKeys");
+    const safeValues = useWithSafeValues(params, {
+        initialPage: 1,
+        pageSize: 10,
+        keepPreviousData: false,
+        infinite: false,
+        subject: "",
+        query: "",
+        enabled: true
+    });
+    const clerk = useClerkInstanceContext();
+    clerk.telemetry?.record((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$telemetry$2d$wqMDWlvR$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["eventMethodCalled"])("useAPIKeys"));
+    const hookParams = {
+        initialPage: safeValues.initialPage,
+        pageSize: safeValues.pageSize,
+        ...safeValues.subject ? {
+            subject: safeValues.subject
+        } : {},
+        ...safeValues.query ? {
+            query: safeValues.query
+        } : {}
+    };
+    const isEnabled = (safeValues.enabled ?? true) && clerk.loaded;
+    const result = usePagesOrInfinite({
+        fetcher: clerk.apiKeys?.getAll ? (params$1)=>clerk.apiKeys.getAll({
+                ...params$1,
+                subject: safeValues.subject
+            }) : void 0,
+        config: {
+            keepPreviousData: safeValues.keepPreviousData,
+            infinite: safeValues.infinite,
+            enabled: isEnabled,
+            isSignedIn: Boolean(clerk.user),
+            initialPage: safeValues.initialPage,
+            pageSize: safeValues.pageSize
+        },
+        keys: createCacheKeys({
+            stablePrefix: STABLE_KEYS.API_KEYS_KEY,
+            authenticated: Boolean(clerk.user),
+            tracked: {
+                subject: safeValues.subject
+            },
+            untracked: {
+                args: hookParams
+            }
+        })
+    });
+    const { mutate } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$_internal$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useSWRConfig"])();
+    const invalidateAll = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(()=>{
+        return mutate((key)=>{
+            if (!key || typeof key !== "object") return false;
+            return "type" in key && key.type === "apiKeys" && "subject" in key && key.subject === safeValues.subject;
+        });
+    }, [
+        mutate,
+        safeValues.subject
+    ]);
+    return {
+        ...result,
+        revalidate: invalidateAll
+    };
+}
+//#endregion
+//#region src/react/hooks/useClerk.ts
+/**
+* > [!WARNING]
+* > This hook should only be used for advanced use cases, such as building a completely custom OAuth flow or as an escape hatch to access to the `Clerk` object.
+*
+* The `useClerk()` hook provides access to the [`Clerk`](https://clerk.com/docs/reference/javascript/clerk) object, allowing you to build alternatives to any Clerk Component.
+*
+* @function
+*
+* @returns The `useClerk()` hook returns the `Clerk` object, which includes all the methods and properties listed in the [`Clerk` reference](https://clerk.com/docs/reference/javascript/clerk).
+*
+* @example
+*
+* The following example uses the `useClerk()` hook to access the `clerk` object. The `clerk` object is used to call the [`openSignIn()`](https://clerk.com/docs/reference/javascript/clerk#sign-in) method to open the sign-in modal.
+*
+* <Tabs items='React,Next.js'>
+* <Tab>
+*
+* ```tsx {{ filename: 'src/Home.tsx' }}
+* import { useClerk } from '@clerk/clerk-react'
+*
+* export default function Home() {
+*   const clerk = useClerk()
+*
+*   return <button onClick={() => clerk.openSignIn({})}>Sign in</button>
+* }
+* ```
+*
+* </Tab>
+* <Tab>
+*
+* {@include ../../../docs/use-clerk.md#nextjs-01}
+*
+* </Tab>
+* </Tabs>
+*/ const useClerk = ()=>{
+    useAssertWrappedByClerkProvider("useClerk");
+    return useClerkInstanceContext();
+};
+//#endregion
+//#region src/react/hooks/useAttemptToEnableOrganizations.ts
+/**
+* Attempts to enable the organizations environment setting for a given caller
+*
+* @internal
+*/ function useAttemptToEnableOrganizations(caller) {
+    const clerk = useClerk();
+    const hasAttempted = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(false);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (hasAttempted.current) return;
+        hasAttempted.current = true;
+        clerk.__internal_attemptToEnableEnvironmentSetting?.({
+            for: "organizations",
+            caller
+        });
+    }, [
+        clerk,
+        caller
+    ]);
+}
+//#endregion
+//#region src/react/hooks/useOrganization.tsx
+const undefinedPaginatedResource$1 = {
+    data: void 0,
+    count: void 0,
+    error: void 0,
+    isLoading: false,
+    isFetching: false,
+    isError: false,
+    page: void 0,
+    pageCount: void 0,
+    fetchPage: void 0,
+    fetchNext: void 0,
+    fetchPrevious: void 0,
+    hasNextPage: false,
+    hasPreviousPage: false,
+    revalidate: void 0,
+    setData: void 0
+};
+/**
+* The `useOrganization()` hook retrieves attributes of the currently Active Organization.
+*
+* @example
+* ### Expand and paginate attributes
+*
+* To keep network usage to a minimum, developers are required to opt-in by specifying which resource they need to fetch and paginate through. By default, the `memberships`, `invitations`, `membershipRequests`, and `domains` attributes are not populated. You must pass `true` or an object with the desired properties to fetch and paginate the data.
+*
+* ```tsx
+* // invitations.data will never be populated.
+* const { invitations } = useOrganization()
+*
+* // Use default values to fetch invitations, such as initialPage = 1 and pageSize = 10
+* const { invitations } = useOrganization({
+*   invitations: true,
+* })
+*
+* // Pass your own values to fetch invitations
+* const { invitations } = useOrganization({
+*   invitations: {
+*     pageSize: 20,
+*     initialPage: 2, // skips the first page
+*   },
+* })
+*
+* // Aggregate pages in order to render an infinite list
+* const { invitations } = useOrganization({
+*   invitations: {
+*     infinite: true,
+*   },
+* })
+* ```
+*
+* @example
+* ### Infinite pagination
+*
+* The following example demonstrates how to use the `infinite` property to fetch and append new data to the existing list. The `memberships` attribute will be populated with the first page of the Organization's memberships. When the "Load more" button is clicked, the `fetchNext` helper function will be called to append the next page of memberships to the list.
+*
+* ```tsx
+* import { useOrganization } from '@clerk/clerk-react'
+*
+* export default function MemberList() {
+*   const { memberships } = useOrganization({
+*     memberships: {
+*       infinite: true, // Append new data to the existing list
+*       keepPreviousData: true, // Persist the cached data until the new data has been fetched
+*     },
+*   })
+*
+*   if (!memberships) {
+*     // Handle loading state
+*     return null
+*   }
+*
+*   return (
+*     <div>
+*       <h2>Organization members</h2>
+*       <ul>
+*         {memberships.data?.map((membership) => (
+*           <li key={membership.id}>
+*             {membership.publicUserData.firstName} {membership.publicUserData.lastName} <
+*             {membership.publicUserData.identifier}> :: {membership.role}
+*           </li>
+*         ))}
+*       </ul>
+*
+*       <button
+*         disabled={!memberships.hasNextPage} // Disable the button if there are no more available pages to be fetched
+*         onClick={memberships.fetchNext}
+*       >
+*         Load more
+*       </button>
+*     </div>
+*   )
+* }
+* ```
+*
+* @example
+* ### Simple pagination
+*
+* The following example demonstrates how to use the `fetchPrevious` and `fetchNext` helper functions to paginate through the data. The `memberships` attribute will be populated with the first page of the Organization's memberships. When the "Previous page" or "Next page" button is clicked, the `fetchPrevious` or `fetchNext` helper function will be called to fetch the previous or next page of memberships.
+*
+* Notice the difference between this example's pagination and the infinite pagination example above.
+*
+* ```tsx
+* import { useOrganization } from '@clerk/clerk-react'
+*
+* export default function MemberList() {
+*   const { memberships } = useOrganization({
+*     memberships: {
+*       keepPreviousData: true, // Persist the cached data until the new data has been fetched
+*     },
+*   })
+*
+*   if (!memberships) {
+*     // Handle loading state
+*     return null
+*   }
+*
+*   return (
+*     <div>
+*       <h2>Organization members</h2>
+*       <ul>
+*         {memberships.data?.map((membership) => (
+*           <li key={membership.id}>
+*             {membership.publicUserData.firstName} {membership.publicUserData.lastName} <
+*             {membership.publicUserData.identifier}> :: {membership.role}
+*           </li>
+*         ))}
+*       </ul>
+*
+*       <button disabled={!memberships.hasPreviousPage} onClick={memberships.fetchPrevious}>
+*         Previous page
+*       </button>
+*
+*       <button disabled={!memberships.hasNextPage} onClick={memberships.fetchNext}>
+*         Next page
+*       </button>
+*     </div>
+*   )
+* }
+* ```
+*/ function useOrganization(params) {
+    const { domains: domainListParams, membershipRequests: membershipRequestsListParams, memberships: membersListParams, invitations: invitationsListParams } = params || {};
+    useAssertWrappedByClerkProvider("useOrganization");
+    useAttemptToEnableOrganizations("useOrganization");
+    const { organization } = useOrganizationContext();
+    const session = useSessionContext();
+    const domainSafeValues = useWithSafeValues(domainListParams, {
+        initialPage: 1,
+        pageSize: 10,
+        keepPreviousData: false,
+        infinite: false,
+        enrollmentMode: void 0
+    });
+    const membershipRequestSafeValues = useWithSafeValues(membershipRequestsListParams, {
+        initialPage: 1,
+        pageSize: 10,
+        status: "pending",
+        keepPreviousData: false,
+        infinite: false
+    });
+    const membersSafeValues = useWithSafeValues(membersListParams, {
+        initialPage: 1,
+        pageSize: 10,
+        role: void 0,
+        keepPreviousData: false,
+        infinite: false,
+        query: void 0
+    });
+    const invitationsSafeValues = useWithSafeValues(invitationsListParams, {
+        initialPage: 1,
+        pageSize: 10,
+        status: [
+            "pending"
+        ],
+        keepPreviousData: false,
+        infinite: false
+    });
+    const clerk = useClerkInstanceContext();
+    clerk.telemetry?.record((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$telemetry$2d$wqMDWlvR$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["eventMethodCalled"])("useOrganization"));
+    const domainParams = typeof domainListParams === "undefined" ? void 0 : {
+        initialPage: domainSafeValues.initialPage,
+        pageSize: domainSafeValues.pageSize,
+        enrollmentMode: domainSafeValues.enrollmentMode
+    };
+    const membershipRequestParams = typeof membershipRequestsListParams === "undefined" ? void 0 : {
+        initialPage: membershipRequestSafeValues.initialPage,
+        pageSize: membershipRequestSafeValues.pageSize,
+        status: membershipRequestSafeValues.status
+    };
+    const membersParams = typeof membersListParams === "undefined" ? void 0 : {
+        initialPage: membersSafeValues.initialPage,
+        pageSize: membersSafeValues.pageSize,
+        role: membersSafeValues.role,
+        query: membersSafeValues.query
+    };
+    const invitationsParams = typeof invitationsListParams === "undefined" ? void 0 : {
+        initialPage: invitationsSafeValues.initialPage,
+        pageSize: invitationsSafeValues.pageSize,
+        status: invitationsSafeValues.status
+    };
+    const domains = usePagesOrInfinite({
+        fetcher: organization?.getDomains,
+        config: {
+            keepPreviousData: domainSafeValues.keepPreviousData,
+            infinite: domainSafeValues.infinite,
+            enabled: !!domainParams,
+            isSignedIn: Boolean(organization),
+            initialPage: domainSafeValues.initialPage,
+            pageSize: domainSafeValues.pageSize
+        },
+        keys: createCacheKeys({
+            stablePrefix: STABLE_KEYS.DOMAINS_KEY,
+            authenticated: Boolean(organization),
+            tracked: {
+                organizationId: organization?.id
+            },
+            untracked: {
+                args: domainParams
+            }
+        })
+    });
+    const membershipRequests = usePagesOrInfinite({
+        fetcher: organization?.getMembershipRequests,
+        config: {
+            keepPreviousData: membershipRequestSafeValues.keepPreviousData,
+            infinite: membershipRequestSafeValues.infinite,
+            enabled: !!membershipRequestParams,
+            isSignedIn: Boolean(organization),
+            initialPage: membershipRequestSafeValues.initialPage,
+            pageSize: membershipRequestSafeValues.pageSize
+        },
+        keys: createCacheKeys({
+            stablePrefix: STABLE_KEYS.MEMBERSHIP_REQUESTS_KEY,
+            authenticated: Boolean(organization),
+            tracked: {
+                organizationId: organization?.id
+            },
+            untracked: {
+                args: membershipRequestParams
+            }
+        })
+    });
+    const memberships = usePagesOrInfinite({
+        fetcher: organization?.getMemberships,
+        config: {
+            keepPreviousData: membersSafeValues.keepPreviousData,
+            infinite: membersSafeValues.infinite,
+            enabled: !!membersParams,
+            isSignedIn: Boolean(organization),
+            initialPage: membersSafeValues.initialPage,
+            pageSize: membersSafeValues.pageSize
+        },
+        keys: createCacheKeys({
+            stablePrefix: STABLE_KEYS.MEMBERSHIPS_KEY,
+            authenticated: Boolean(organization),
+            tracked: {
+                organizationId: organization?.id
+            },
+            untracked: {
+                args: membersParams
+            }
+        })
+    });
+    const invitations = usePagesOrInfinite({
+        fetcher: organization?.getInvitations,
+        config: {
+            keepPreviousData: invitationsSafeValues.keepPreviousData,
+            infinite: invitationsSafeValues.infinite,
+            enabled: !!invitationsParams,
+            isSignedIn: Boolean(organization),
+            initialPage: invitationsSafeValues.initialPage,
+            pageSize: invitationsSafeValues.pageSize
+        },
+        keys: createCacheKeys({
+            stablePrefix: STABLE_KEYS.INVITATIONS_KEY,
+            authenticated: Boolean(organization),
+            tracked: {
+                organizationId: organization?.id
+            },
+            untracked: {
+                args: invitationsParams
+            }
+        })
+    });
+    if (organization === void 0) return {
+        isLoaded: false,
+        organization: void 0,
+        membership: void 0,
+        domains: undefinedPaginatedResource$1,
+        membershipRequests: undefinedPaginatedResource$1,
+        memberships: undefinedPaginatedResource$1,
+        invitations: undefinedPaginatedResource$1
+    };
+    if (organization === null) return {
+        isLoaded: true,
+        organization: null,
+        membership: null,
+        domains: null,
+        membershipRequests: null,
+        memberships: null,
+        invitations: null
+    };
+    /** In SSR context we include only the organization object when loadOrg is set to true. */ if (!clerk.loaded && organization) return {
+        isLoaded: true,
+        organization,
+        membership: void 0,
+        domains: undefinedPaginatedResource$1,
+        membershipRequests: undefinedPaginatedResource$1,
+        memberships: undefinedPaginatedResource$1,
+        invitations: undefinedPaginatedResource$1
+    };
+    return {
+        isLoaded: clerk.loaded,
+        organization,
+        membership: (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$organization$2d$BqxdOtRG$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getCurrentOrganizationMembership"])(session.user.organizationMemberships, organization.id),
+        domains,
+        membershipRequests,
+        memberships,
+        invitations
+    };
+}
+//#endregion
+//#region src/react/hooks/useOrganizationList.tsx
+const undefinedPaginatedResource = {
+    data: void 0,
+    count: void 0,
+    error: void 0,
+    isLoading: false,
+    isFetching: false,
+    isError: false,
+    page: void 0,
+    pageCount: void 0,
+    fetchPage: void 0,
+    fetchNext: void 0,
+    fetchPrevious: void 0,
+    hasNextPage: false,
+    hasPreviousPage: false,
+    revalidate: void 0,
+    setData: void 0
+};
+/**
+* The `useOrganizationList()` hook provides access to the current user's organization memberships, invitations, and suggestions. It also includes methods for creating new organizations and managing the active organization.
+*
+* @example
+* ### Expanding and paginating attributes
+*
+* To keep network usage to a minimum, developers are required to opt-in by specifying which resource they need to fetch and paginate through. So by default, the `userMemberships`, `userInvitations`, and `userSuggestions` attributes are not populated. You must pass true or an object with the desired properties to fetch and paginate the data.
+*
+* ```tsx
+* // userMemberships.data will never be populated
+* const { userMemberships } = useOrganizationList()
+*
+* // Use default values to fetch userMemberships, such as initialPage = 1 and pageSize = 10
+* const { userMemberships } = useOrganizationList({
+*   userMemberships: true,
+* })
+*
+* // Pass your own values to fetch userMemberships
+* const { userMemberships } = useOrganizationList({
+*   userMemberships: {
+*     pageSize: 20,
+*     initialPage: 2, // skips the first page
+*   },
+* })
+*
+* // Aggregate pages in order to render an infinite list
+* const { userMemberships } = useOrganizationList({
+*   userMemberships: {
+*     infinite: true,
+*   },
+* })
+* ```
+*
+* @example
+* ### Infinite pagination
+*
+* The following example demonstrates how to use the `infinite` property to fetch and append new data to the existing list. The `userMemberships` attribute will be populated with the first page of the user's Organization memberships. When the "Load more" button is clicked, the `fetchNext` helper function will be called to append the next page of memberships to the list.
+*
+* ```tsx {{ filename: 'src/components/JoinedOrganizations.tsx' }}
+* import { useOrganizationList } from '@clerk/clerk-react'
+* import React from 'react'
+*
+* const JoinedOrganizations = () => {
+*   const { isLoaded, setActive, userMemberships } = useOrganizationList({
+*     userMemberships: {
+*       infinite: true,
+*     },
+*   })
+*
+*   if (!isLoaded) {
+*     return <>Loading</>
+*   }
+*
+*   return (
+*     <>
+*       <ul>
+*         {userMemberships.data?.map((mem) => (
+*           <li key={mem.id}>
+*             <span>{mem.organization.name}</span>
+*             <button onClick={() => setActive({ organization: mem.organization.id })}>Select</button>
+*           </li>
+*         ))}
+*       </ul>
+*
+*       <button disabled={!userMemberships.hasNextPage} onClick={() => userMemberships.fetchNext()}>
+*         Load more
+*       </button>
+*     </>
+*   )
+* }
+*
+* export default JoinedOrganizations
+* ```
+*
+* @example
+* ### Simple pagination
+*
+* The following example demonstrates how to use the `fetchPrevious` and `fetchNext` helper functions to paginate through the data. The `userInvitations` attribute will be populated with the first page of invitations. When the "Previous page" or "Next page" button is clicked, the `fetchPrevious` or `fetchNext` helper function will be called to fetch the previous or next page of invitations.
+*
+* Notice the difference between this example's pagination and the infinite pagination example above.
+*
+* ```tsx {{ filename: 'src/components/UserInvitationsTable.tsx' }}
+* import { useOrganizationList } from '@clerk/clerk-react'
+* import React from 'react'
+*
+* const UserInvitationsTable = () => {
+*   const { isLoaded, userInvitations } = useOrganizationList({
+*     userInvitations: {
+*       infinite: true,
+*       keepPreviousData: true,
+*     },
+*   })
+*
+*   if (!isLoaded || userInvitations.isLoading) {
+*     return <>Loading</>
+*   }
+*
+*   return (
+*     <>
+*       <table>
+*         <thead>
+*           <tr>
+*             <th>Email</th>
+*             <th>Org name</th>
+*           </tr>
+*         </thead>
+*
+*         <tbody>
+*           {userInvitations.data?.map((inv) => (
+*             <tr key={inv.id}>
+*               <th>{inv.emailAddress}</th>
+*               <th>{inv.publicOrganizationData.name}</th>
+*             </tr>
+*           ))}
+*         </tbody>
+*       </table>
+*
+*       <button disabled={!userInvitations.hasPreviousPage} onClick={userInvitations.fetchPrevious}>
+*         Prev
+*       </button>
+*       <button disabled={!userInvitations.hasNextPage} onClick={userInvitations.fetchNext}>
+*         Next
+*       </button>
+*     </>
+*   )
+* }
+*
+* export default UserInvitationsTable
+* ```
+*/ function useOrganizationList(params) {
+    const { userMemberships, userInvitations, userSuggestions } = params || {};
+    useAssertWrappedByClerkProvider("useOrganizationList");
+    useAttemptToEnableOrganizations("useOrganizationList");
+    const userMembershipsSafeValues = useWithSafeValues(userMemberships, {
+        initialPage: 1,
+        pageSize: 10,
+        keepPreviousData: false,
+        infinite: false
+    });
+    const userInvitationsSafeValues = useWithSafeValues(userInvitations, {
+        initialPage: 1,
+        pageSize: 10,
+        status: "pending",
+        keepPreviousData: false,
+        infinite: false
+    });
+    const userSuggestionsSafeValues = useWithSafeValues(userSuggestions, {
+        initialPage: 1,
+        pageSize: 10,
+        status: "pending",
+        keepPreviousData: false,
+        infinite: false
+    });
+    const clerk = useClerkInstanceContext();
+    const user = useUserContext();
+    clerk.telemetry?.record((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$telemetry$2d$wqMDWlvR$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["eventMethodCalled"])("useOrganizationList"));
+    const userMembershipsParams = typeof userMemberships === "undefined" ? void 0 : {
+        initialPage: userMembershipsSafeValues.initialPage,
+        pageSize: userMembershipsSafeValues.pageSize
+    };
+    const userInvitationsParams = typeof userInvitations === "undefined" ? void 0 : {
+        initialPage: userInvitationsSafeValues.initialPage,
+        pageSize: userInvitationsSafeValues.pageSize,
+        status: userInvitationsSafeValues.status
+    };
+    const userSuggestionsParams = typeof userSuggestions === "undefined" ? void 0 : {
+        initialPage: userSuggestionsSafeValues.initialPage,
+        pageSize: userSuggestionsSafeValues.pageSize,
+        status: userSuggestionsSafeValues.status
+    };
+    const isClerkLoaded = !!(clerk.loaded && user);
+    const memberships = usePagesOrInfinite({
+        fetcher: user?.getOrganizationMemberships,
+        config: {
+            keepPreviousData: userMembershipsSafeValues.keepPreviousData,
+            infinite: userMembershipsSafeValues.infinite,
+            enabled: !!userMembershipsParams,
+            isSignedIn: Boolean(user),
+            initialPage: userMembershipsSafeValues.initialPage,
+            pageSize: userMembershipsSafeValues.pageSize
+        },
+        keys: createCacheKeys({
+            stablePrefix: STABLE_KEYS.USER_MEMBERSHIPS_KEY,
+            authenticated: Boolean(user),
+            tracked: {
+                userId: user?.id
+            },
+            untracked: {
+                args: userMembershipsParams
+            }
+        })
+    });
+    const invitations = usePagesOrInfinite({
+        fetcher: user?.getOrganizationInvitations,
+        config: {
+            keepPreviousData: userInvitationsSafeValues.keepPreviousData,
+            infinite: userInvitationsSafeValues.infinite,
+            enabled: !!userInvitationsParams,
+            isSignedIn: Boolean(user),
+            initialPage: userInvitationsSafeValues.initialPage,
+            pageSize: userInvitationsSafeValues.pageSize
+        },
+        keys: createCacheKeys({
+            stablePrefix: STABLE_KEYS.USER_INVITATIONS_KEY,
+            authenticated: Boolean(user),
+            tracked: {
+                userId: user?.id
+            },
+            untracked: {
+                args: userInvitationsParams
+            }
+        })
+    });
+    const suggestions = usePagesOrInfinite({
+        fetcher: user?.getOrganizationSuggestions,
+        config: {
+            keepPreviousData: userSuggestionsSafeValues.keepPreviousData,
+            infinite: userSuggestionsSafeValues.infinite,
+            enabled: !!userSuggestionsParams,
+            isSignedIn: Boolean(user),
+            initialPage: userSuggestionsSafeValues.initialPage,
+            pageSize: userSuggestionsSafeValues.pageSize
+        },
+        keys: createCacheKeys({
+            stablePrefix: STABLE_KEYS.USER_SUGGESTIONS_KEY,
+            authenticated: Boolean(user),
+            tracked: {
+                userId: user?.id
+            },
+            untracked: {
+                args: userSuggestionsParams
+            }
+        })
+    });
+    if (!isClerkLoaded) return {
+        isLoaded: false,
+        createOrganization: void 0,
+        setActive: void 0,
+        userMemberships: undefinedPaginatedResource,
+        userInvitations: undefinedPaginatedResource,
+        userSuggestions: undefinedPaginatedResource
+    };
+    return {
+        isLoaded: isClerkLoaded,
+        setActive: clerk.setActive,
+        createOrganization: clerk.createOrganization,
+        userMemberships: memberships,
+        userInvitations: invitations,
+        userSuggestions: suggestions
+    };
+}
+//#endregion
+//#region src/react/hooks/useSafeLayoutEffect.tsx
+/**
+* @internal
+*/ const useSafeLayoutEffect = ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useEffect;
+//#endregion
+//#region src/react/hooks/useSession.ts
+const hookName$3 = `useSession`;
+/**
+* The `useSession()` hook provides access to the current user's [`Session`](https://clerk.com/docs/reference/javascript/session) object, as well as helpers for setting the active session.
+*
+* @unionReturnHeadings
+* ["Initialization", "Signed out", "Signed in"]
+*
+* @function
+*
+* @param [options] - An object containing options for the `useSession()` hook.
+* @example
+* ### Access the `Session` object
+*
+* The following example uses the `useSession()` hook to access the `Session` object, which has the `lastActiveAt` property. The `lastActiveAt` property is a `Date` object used to show the time the session was last active.
+*
+* <Tabs items='React,Next.js'>
+* <Tab>
+*
+* ```tsx {{ filename: 'src/Home.tsx' }}
+* import { useSession } from '@clerk/clerk-react'
+*
+* export default function Home() {
+*   const { isLoaded, session, isSignedIn } = useSession()
+*
+*   if (!isLoaded) {
+*     // Handle loading state
+*     return null
+*   }
+*   if (!isSignedIn) {
+*     // Handle signed out state
+*     return null
+*   }
+*
+*   return (
+*     <div>
+*       <p>This session has been active since {session.lastActiveAt.toLocaleString()}</p>
+*     </div>
+*   )
+* }
+* ```
+*
+* </Tab>
+* <Tab>
+*
+* {@include ../../../docs/use-session.md#nextjs-01}
+*
+* </Tab>
+* </Tabs>
+*/ const useSession = ()=>{
+    useAssertWrappedByClerkProvider(hookName$3);
+    const session = useSessionContext();
+    const clerk = useClerkInstanceContext();
+    clerk.telemetry?.record((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$telemetry$2d$wqMDWlvR$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["eventMethodCalled"])(hookName$3));
+    if (session === void 0) return {
+        isLoaded: false,
+        isSignedIn: void 0,
+        session: void 0
+    };
+    if (session === null) return {
+        isLoaded: true,
+        isSignedIn: false,
+        session: null
+    };
+    return {
+        isLoaded: true,
+        isSignedIn: clerk.isSignedIn,
+        session
+    };
+};
+//#endregion
+//#region src/react/hooks/useSessionList.ts
+const hookName$2 = "useSessionList";
+/**
+* The `useSessionList()` hook returns an array of [`Session`](https://clerk.com/docs/reference/javascript/session) objects that have been registered on the client device.
+*
+* @unionReturnHeadings
+* ["Initialization", "Loaded"]
+*
+* @function
+*
+* @example
+* ### Get a list of sessions
+*
+* The following example uses `useSessionList()` to get a list of sessions that have been registered on the client device. The `sessions` property is used to show the number of times the user has visited the page.
+*
+* <Tabs items='React,Next.js'>
+* <Tab>
+*
+* ```tsx {{ filename: 'src/Home.tsx' }}
+* import { useSessionList } from '@clerk/clerk-react'
+*
+* export default function Home() {
+*   const { isLoaded, sessions } = useSessionList()
+*
+*   if (!isLoaded) {
+*     // Handle loading state
+*     return null
+*   }
+*
+*   return (
+*     <div>
+*       <p>Welcome back. You've been here {sessions.length} times before.</p>
+*     </div>
+*   )
+* }
+* ```
+*
+* </Tab>
+* <Tab>
+*
+* {@include ../../../docs/use-session-list.md#nextjs-01}
+*
+* </Tab>
+* </Tabs>
+*/ const useSessionList = ()=>{
+    useAssertWrappedByClerkProvider(hookName$2);
+    const isomorphicClerk = useClerkInstanceContext();
+    const client = useClientContext();
+    useClerkInstanceContext().telemetry?.record((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$telemetry$2d$wqMDWlvR$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["eventMethodCalled"])(hookName$2));
+    if (!client) return {
+        isLoaded: false,
+        sessions: void 0,
+        setActive: void 0
+    };
+    return {
+        isLoaded: true,
+        sessions: client.sessions,
+        setActive: isomorphicClerk.setActive
+    };
+};
+//#endregion
+//#region src/react/hooks/useUser.ts
+const hookName$1 = "useUser";
+/**
+* The `useUser()` hook provides access to the current user's [`User`](https://clerk.com/docs/reference/javascript/user) object, which contains all the data for a single user in your application and provides methods to manage their account. This hook also allows you to check if the user is signed in and if Clerk has loaded and initialized.
+*
+* @unionReturnHeadings
+* ["Initialization", "Signed out", "Signed in"]
+*
+* @example
+* ### Get the current user
+*
+* The following example uses the `useUser()` hook to access the [`User`](https://clerk.com/docs/reference/javascript/user) object, which contains the current user's data such as their full name. The `isLoaded` and `isSignedIn` properties are used to handle the loading state and to check if the user is signed in, respectively.
+*
+* ```tsx {{ filename: 'src/Example.tsx' }}
+* import { useUser } from '@clerk/clerk-react'
+*
+* export default function Example() {
+*   const { isSignedIn, user, isLoaded } = useUser()
+*
+*   if (!isLoaded) {
+*     return <div>Loading...</div>
+*   }
+*
+*   if (!isSignedIn) {
+*     return <div>Sign in to view this page</div>
+*   }
+*
+*   return <div>Hello {user.firstName}!</div>
+* }
+* ```
+*
+* @example
+* ### Update user data
+*
+* The following example uses the `useUser()` hook to access the [`User`](https://clerk.com/docs/reference/javascript/user) object, which calls the [`update()`](https://clerk.com/docs/reference/javascript/user#update) method to update the current user's information.
+*
+* <Tabs items='React,Next.js'>
+* <Tab>
+*
+* ```tsx {{ filename: 'src/Home.tsx' }}
+* import { useUser } from '@clerk/clerk-react'
+*
+* export default function Home() {
+*   const { isSignedIn, isLoaded, user } = useUser()
+*
+*   if (!isLoaded) {
+*     // Handle loading state
+*     return null
+*   }
+*
+*   if (!isSignedIn) return null
+*
+*   const updateUser = async () => {
+*     await user.update({
+*       firstName: 'John',
+*       lastName: 'Doe',
+*     })
+*   }
+*
+*   return (
+*     <>
+*       <button onClick={updateUser}>Update your name</button>
+*       <p>user.firstName: {user.firstName}</p>
+*       <p>user.lastName: {user.lastName}</p>
+*     </>
+*   )
+* }
+* ```
+* </Tab>
+* <Tab>
+*
+* {@include ../../../docs/use-user.md#nextjs-01}
+*
+* </Tab>
+* </Tabs>
+*
+* @example
+* ### Reload user data
+*
+* The following example uses the `useUser()` hook to access the [`User`](https://clerk.com/docs/reference/javascript/user) object, which calls the [`reload()`](https://clerk.com/docs/reference/javascript/user#reload) method to get the latest user's information.
+*
+* <Tabs items='React,Next.js'>
+* <Tab>
+*
+* ```tsx {{ filename: 'src/Home.tsx' }}
+* import { useUser } from '@clerk/clerk-react'
+*
+* export default function Home() {
+*   const { isSignedIn, isLoaded, user } = useUser();
+*
+*   if (!isLoaded) {
+*     // Handle loading state
+*     return null;
+*   }
+*
+*   if (!isSignedIn) return null;
+*
+*   const updateUser = async () => {
+*     // Update data via an API endpoint
+*     const updateMetadata = await fetch('/api/updateMetadata', {
+*       method: 'POST',
+*       body: JSON.stringify({
+*         role: 'admin'
+*       })
+*     });
+*
+*     // Check if the update was successful
+*     if ((await updateMetadata.json()).message !== 'success') {
+*       throw new Error('Error updating');
+*     }
+*
+*     // If the update was successful, reload the user data
+*     await user.reload();
+*   };
+*
+*   return (
+*     <>
+*       <button onClick={updateUser}>Update your metadata</button>
+*       <p>user role: {user.publicMetadata.role}</p>
+*     </>
+*   );
+* }
+* ```
+*
+* </Tab>
+* <Tab>
+*
+* {@include ../../../docs/use-user.md#nextjs-02}
+*
+* </Tab>
+* </Tabs>
+*/ function useUser() {
+    useAssertWrappedByClerkProvider(hookName$1);
+    const user = useUserContext();
+    useClerkInstanceContext().telemetry?.record((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$telemetry$2d$wqMDWlvR$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["eventMethodCalled"])(hookName$1));
+    if (user === void 0) return {
+        isLoaded: false,
+        isSignedIn: void 0,
+        user: void 0
+    };
+    if (user === null) return {
+        isLoaded: true,
+        isSignedIn: false,
+        user: null
+    };
+    return {
+        isLoaded: true,
+        isSignedIn: true,
+        user
+    };
+}
+//#endregion
+//#region src/react/hooks/useDeepEqualMemo.ts
+const useDeepEqualMemoize = (value)=>{
+    const ref = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useRef(value);
+    if (!(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$dequal$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["dequal"])(value, ref.current)) ref.current = value;
+    return __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useMemo(()=>ref.current, [
+        ref.current
+    ]);
+};
+/**
+* @internal
+*/ const useDeepEqualMemo = (factory, dependencyArray)=>{
+    return __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useMemo(factory, useDeepEqualMemoize(dependencyArray));
+};
+/**
+* @internal
+*/ const isDeeplyEqual = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$dequal$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["dequal"];
+//#endregion
+//#region src/react/hooks/useReverification.ts
+const CLERK_API_REVERIFICATION_ERROR_CODE = "session_reverification_required";
+/**
+*
+*/ async function resolveResult(result) {
+    try {
+        const r = await result;
+        if (r instanceof Response) return r.json();
+        return r;
+    } catch (e) {
+        if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$error$2d$Dl9xmUf3$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isClerkAPIResponseError"])(e) && e.errors.find(({ code })=>code === CLERK_API_REVERIFICATION_ERROR_CODE)) return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$authorization$2d$errors$2d$CS1pNy8i$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["reverificationError"])();
+        throw e;
+    }
+}
+/**
+*
+*/ function createReverificationHandler(params) {
+    /**
+	*
+	*/ function assertReverification(fetcher) {
+        return async (...args)=>{
+            let result = await resolveResult(fetcher(...args));
+            if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$authorization$2d$errors$2d$CS1pNy8i$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isReverificationHint"])(result)) {
+                /**
+				* Create a promise
+				*/ const resolvers = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$createDeferredPromise$2d$CjYZzUuU$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createDeferredPromise"])();
+                const isValidMetadata = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$authorization$2d$D2ans7vW$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["validateReverificationConfig"])(result.clerk_error.metadata?.reverification);
+                const level = isValidMetadata ? isValidMetadata().level : void 0;
+                const cancel = ()=>{
+                    resolvers.reject(new __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$error$2d$Dl9xmUf3$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ClerkRuntimeError"]("User cancelled attempted verification", {
+                        code: "reverification_cancelled"
+                    }));
+                };
+                const complete = ()=>{
+                    resolvers.resolve(true);
+                };
+                if (params.onNeedsReverification === void 0) /**
+				* On success resolve the pending promise
+				* On cancel reject the pending promise
+				*/ params.openUIComponent?.({
+                    level,
+                    afterVerification: complete,
+                    afterVerificationCancelled: cancel
+                });
+                else params.onNeedsReverification({
+                    cancel,
+                    complete,
+                    level
+                });
+                /**
+				* Wait until the promise from above have been resolved or rejected
+				*/ await resolvers.promise;
+                /**
+				* After the promise resolved successfully try the original request one more time
+				*/ result = await resolveResult(fetcher(...args));
+            }
+            return result;
+        };
+    }
+    return assertReverification;
+}
+/**
+* > [!WARNING]
+* >
+* > Depending on the SDK you're using, this feature requires `@clerk/nextjs@6.12.7` or later, `@clerk/clerk-react@5.25.1` or later, and `@clerk/clerk-js@5.57.1` or later.
+*
+* The `useReverification()` hook is used to handle a session's reverification flow. If a request requires reverification, a modal will display, prompting the user to verify their credentials. Upon successful verification, the original request will automatically retry.
+*
+* @function
+*
+* @returns The `useReverification()` hook returns an array with the "enhanced" fetcher.
+*
+* @example
+* ### Handle cancellation of the reverification process
+*
+* The following example demonstrates how to handle scenarios where a user cancels the reverification flow, such as closing the modal, which might result in `myData` being `null`.
+*
+* In the following example, `myFetcher` would be a function in your backend that fetches data from the route that requires reverification. See the [guide on how to require reverification](https://clerk.com/docs/guides/secure/reverification) for more information.
+*
+* ```tsx {{ filename: 'src/components/MyButton.tsx' }}
+* import { useReverification } from '@clerk/clerk-react'
+* import { isReverificationCancelledError } from '@clerk/clerk-react/error'
+*
+* type MyData = {
+*   balance: number
+* }
+*
+* export function MyButton() {
+*   const fetchMyData = () => fetch('/api/balance').then(res=> res.json() as Promise<MyData>)
+*   const enhancedFetcher = useReverification(fetchMyData);
+*
+*   const handleClick = async () => {
+*     try {
+*       const myData = await enhancedFetcher()
+*       //     ^ is types as `MyData`
+*     } catch (e) {
+*       // Handle error returned from the fetcher here
+*
+*       // You can also handle cancellation with the following
+*       if (isReverificationCancelledError(err)) {
+*         // Handle the cancellation error here
+*       }
+*     }
+*   }
+*
+*   return <button onClick={handleClick}>Update User</button>
+* }
+* ```
+*/ const useReverification = (fetcher, options)=>{
+    const { __internal_openReverification, telemetry } = useClerk();
+    const fetcherRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(fetcher);
+    const optionsRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(options);
+    telemetry?.record((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$telemetry$2d$wqMDWlvR$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["eventMethodCalled"])("useReverification", {
+        onNeedsReverification: Boolean(options?.onNeedsReverification)
+    }));
+    useSafeLayoutEffect(()=>{
+        fetcherRef.current = fetcher;
+        optionsRef.current = options;
+    });
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])((...args)=>{
+        return createReverificationHandler({
+            openUIComponent: __internal_openReverification,
+            telemetry,
+            ...optionsRef.current
+        })(fetcherRef.current)(...args);
+    }, [
+        __internal_openReverification,
+        telemetry
+    ]);
+};
+//#endregion
+//#region src/react/hooks/useBillingHookEnabled.ts
+/**
+* @internal
+*/ function useBillingHookEnabled(params) {
+    const clerk = useClerkInstanceContext();
+    const enabledFromParam = params?.enabled ?? true;
+    const environment = clerk.__unstable__environment;
+    const user = useUserContext();
+    const { organization } = useOrganizationContext();
+    const isOrganization = params?.for === "organization";
+    const billingEnabled = isOrganization ? environment?.commerceSettings.billing.organization.enabled : environment?.commerceSettings.billing.user.enabled;
+    const requireUserAndOrganizationWhenAuthenticated = params?.authenticated ?? true ? (isOrganization ? Boolean(organization?.id) : true) && Boolean(user?.id) : true;
+    return billingEnabled && enabledFromParam && clerk.loaded && requireUserAndOrganizationWhenAuthenticated;
+}
+//#endregion
+//#region src/react/hooks/createBillingPaginatedHook.tsx
+/**
+* A hook factory that creates paginated data fetching hooks for commerce-related resources.
+* It provides a standardized way to create hooks that can fetch either user or Organization resources
+* with built-in pagination support.
+*
+* The generated hooks handle:
+* - Clerk authentication context
+* - Resource-specific data fetching
+* - Pagination (both traditional and infinite scroll)
+* - Telemetry tracking
+* - Type safety for the specific resource.
+*
+* @internal
+*/ function createBillingPaginatedHook({ hookName: hookName$4, resourceType, useFetcher, options }) {
+    return function useBillingHook(params) {
+        const { for: _for, enabled: externalEnabled, ...paginationParams } = params || {};
+        const safeFor = _for || "user";
+        useAssertWrappedByClerkProvider(hookName$4);
+        const fetchFn = useFetcher(safeFor);
+        const safeValues = useWithSafeValues(paginationParams, {
+            initialPage: 1,
+            pageSize: 10,
+            keepPreviousData: false,
+            infinite: false,
+            __experimental_mode: void 0
+        });
+        const clerk = useClerkInstanceContext();
+        const user = useUserContext();
+        const { organization } = useOrganizationContext();
+        clerk.telemetry?.record((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$telemetry$2d$wqMDWlvR$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["eventMethodCalled"])(hookName$4));
+        const isForOrganization = safeFor === "organization";
+        const billingEnabled = useBillingHookEnabled({
+            for: safeFor,
+            enabled: externalEnabled,
+            authenticated: !options?.unauthenticated
+        });
+        const hookParams = typeof paginationParams === "undefined" ? void 0 : {
+            initialPage: safeValues.initialPage,
+            pageSize: safeValues.pageSize,
+            ...options?.unauthenticated ? {} : isForOrganization ? {
+                orgId: organization?.id
+            } : {}
+        };
+        const isEnabled = !!hookParams && clerk.loaded && !!billingEnabled;
+        return usePagesOrInfinite({
+            fetcher: fetchFn,
+            config: {
+                keepPreviousData: safeValues.keepPreviousData,
+                infinite: safeValues.infinite,
+                enabled: isEnabled,
+                ...options?.unauthenticated ? {} : {
+                    isSignedIn: user !== null
+                },
+                __experimental_mode: safeValues.__experimental_mode,
+                initialPage: safeValues.initialPage,
+                pageSize: safeValues.pageSize
+            },
+            keys: createCacheKeys({
+                stablePrefix: resourceType,
+                authenticated: !options?.unauthenticated,
+                tracked: options?.unauthenticated ? {
+                    for: safeFor
+                } : {
+                    userId: user?.id,
+                    ...isForOrganization ? {
+                        ["_orgId"]: organization?.id
+                    } : {}
+                },
+                untracked: {
+                    args: hookParams
+                }
+            })
+        });
+    };
+}
+//#endregion
+//#region src/react/hooks/useStatements.tsx
+/**
+* @internal
+*/ const useStatements = createBillingPaginatedHook({
+    hookName: "useStatements",
+    resourceType: STABLE_KEYS.STATEMENTS_KEY,
+    useFetcher: ()=>{
+        const clerk = useClerkInstanceContext();
+        if (clerk.loaded) return clerk.billing.getStatements;
+    }
+});
+//#endregion
+//#region src/react/hooks/usePaymentAttempts.tsx
+/**
+* @internal
+*/ const usePaymentAttempts = createBillingPaginatedHook({
+    hookName: "usePaymentAttempts",
+    resourceType: STABLE_KEYS.PAYMENT_ATTEMPTS_KEY,
+    useFetcher: ()=>{
+        const clerk = useClerkInstanceContext();
+        if (clerk.loaded) return clerk.billing.getPaymentAttempts;
+    }
+});
+//#endregion
+//#region src/react/hooks/usePaymentMethods.tsx
+/**
+* @internal
+*/ const usePaymentMethods = createBillingPaginatedHook({
+    hookName: "usePaymentMethods",
+    resourceType: STABLE_KEYS.PAYMENT_METHODS_KEY,
+    useFetcher: (resource)=>{
+        const { organization } = useOrganizationContext();
+        const user = useUserContext();
+        if (resource === "organization") return organization?.getPaymentMethods;
+        return user?.getPaymentMethods;
+    }
+});
+//#endregion
+//#region src/react/hooks/usePlans.tsx
+/**
+* @internal
+*/ const usePlans = createBillingPaginatedHook({
+    hookName: "usePlans",
+    resourceType: STABLE_KEYS.PLANS_KEY,
+    useFetcher: (_for)=>{
+        const clerk = useClerkInstanceContext();
+        if (!clerk.loaded) return;
+        return (params)=>clerk.billing.getPlans({
+                ...params,
+                for: _for
+            });
+    },
+    options: {
+        unauthenticated: true
+    }
+});
+//#endregion
+//#region src/react/hooks/useSubscription.shared.ts
+function useSubscriptionCacheKeys(params) {
+    const { userId, orgId, for: forType } = params;
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>{
+        const safeOrgId = forType === "organization" ? orgId : void 0;
+        return createCacheKeys({
+            stablePrefix: STABLE_KEYS.SUBSCRIPTION_KEY,
+            authenticated: true,
+            tracked: {
+                userId,
+                orgId: safeOrgId
+            },
+            untracked: {
+                args: {
+                    orgId: safeOrgId
+                }
+            }
+        });
+    }, [
+        userId,
+        orgId,
+        forType
+    ]);
+}
+//#endregion
+//#region src/react/hooks/useSubscription.swr.tsx
+const hookName = "useSubscription";
+/**
+* This is the existing implementation of useSubscription using SWR.
+* It is kept here for backwards compatibility until our next major version.
+*
+* @internal
+*/ function useSubscription(params) {
+    useAssertWrappedByClerkProvider(hookName);
+    const clerk = useClerkInstanceContext();
+    const user = useUserContext();
+    const { organization } = useOrganizationContext();
+    const environment = clerk.__unstable__environment;
+    clerk.telemetry?.record((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$telemetry$2d$wqMDWlvR$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["eventMethodCalled"])(hookName));
+    const billingEnabled = params?.for === "organization" ? environment?.commerceSettings.billing.organization.enabled : environment?.commerceSettings.billing.user.enabled;
+    const isEnabled = (params?.enabled ?? true) && billingEnabled;
+    const { queryKey } = useSubscriptionCacheKeys({
+        userId: user?.id,
+        orgId: organization?.id,
+        for: params?.for
+    });
+    const swr = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$index$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"])(isEnabled ? {
+        queryKey
+    } : null, ({ queryKey: queryKey$1 })=>{
+        const args = queryKey$1[3].args;
+        if (queryKey$1[2].userId) return clerk.billing.getSubscription(args);
+        return null;
+    }, {
+        dedupingInterval: 1e3 * 60,
+        keepPreviousData: params?.keepPreviousData
+    });
+    const revalidate = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(()=>{
+        swr.mutate();
+    }, [
+        swr
+    ]);
+    return {
+        data: swr.data,
+        error: swr.error,
+        isLoading: swr.isLoading,
+        isFetching: swr.isValidating,
+        revalidate
+    };
+}
+//#endregion
+//#region src/react/hooks/useCheckout.ts
+/**
+* @function
+*
+* @param [options] - An object containing the configuration for the checkout flow.
+*
+* **Required** if the hook is used without a `<CheckoutProvider />` wrapping the component tree.
+*/ const useCheckout = (options)=>{
+    const contextOptions = useCheckoutContext();
+    const { for: forOrganization, planId, planPeriod } = options || contextOptions;
+    const clerk = useClerk();
+    const { organization } = useOrganizationContext();
+    const { isLoaded, user } = useUser();
+    if (!isLoaded) throw new Error("Clerk: Ensure that `useCheckout` is inside a component wrapped with `<ClerkLoaded />`.");
+    if (!user) throw new Error("Clerk: Ensure that `useCheckout` is inside a component wrapped with `<SignedIn />`.");
+    if (forOrganization === "organization" && !organization) throw new Error("Clerk: Ensure your flow checks for an active organization. Retrieve `orgId` from `useAuth()` and confirm it is defined. For SSR, see: https://clerk.com/docs/reference/backend/types/auth-object#how-to-access-the-auth-object");
+    const manager = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>clerk.__experimental_checkout({
+            planId,
+            planPeriod,
+            for: forOrganization
+        }), [
+        user.id,
+        organization?.id,
+        planId,
+        planPeriod,
+        forOrganization
+    ]);
+    const managerProperties = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useSyncExternalStore"])((cb)=>manager.subscribe(cb), ()=>manager.getState(), ()=>manager.getState());
+    return {
+        checkout: {
+            ...(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>{
+                if (!managerProperties.checkout) return {
+                    id: null,
+                    externalClientSecret: null,
+                    externalGatewayId: null,
+                    totals: null,
+                    isImmediatePlanChange: null,
+                    planPeriod: null,
+                    plan: null,
+                    paymentMethod: null,
+                    freeTrialEndsAt: null,
+                    payer: null,
+                    needsPaymentMethod: null,
+                    planPeriodStart: null
+                };
+                const { reload, confirm, pathRoot, ...rest } = managerProperties.checkout;
+                return rest;
+            }, [
+                managerProperties.checkout
+            ]),
+            getState: manager.getState,
+            start: manager.start,
+            confirm: manager.confirm,
+            clear: manager.clear,
+            finalize: manager.finalize,
+            isStarting: managerProperties.isStarting,
+            isConfirming: managerProperties.isConfirming,
+            error: managerProperties.error,
+            status: managerProperties.status,
+            fetchStatus: managerProperties.fetchStatus
+        }
+    };
+};
+//#endregion
+//#region src/react/hooks/useStatementQuery.shared.ts
+function useStatementQueryCacheKeys(params) {
+    const { statementId, userId, orgId, for: forType } = params;
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>{
+        return createCacheKeys({
+            stablePrefix: INTERNAL_STABLE_KEYS.BILLING_STATEMENTS_KEY,
+            authenticated: true,
+            tracked: {
+                statementId,
+                forType,
+                userId,
+                orgId
+            },
+            untracked: {
+                args: {
+                    id: statementId ?? void 0,
+                    orgId: orgId ?? void 0
+                }
+            }
+        });
+    }, [
+        statementId,
+        forType,
+        userId,
+        orgId
+    ]);
+}
+//#endregion
+//#region src/react/hooks/useStatementQuery.swr.tsx
+/**
+* This is the existing implementation of useStatementQuery using SWR.
+* It is kept here for backwards compatibility until our next major version.
+*
+* @internal
+*/ function __internal_useStatementQuery(params = {}) {
+    const { statementId = null, enabled = true, keepPreviousData = false, for: forType = "user" } = params;
+    const clerk = useClerkInstanceContext();
+    const user = useUserContext();
+    const { organization } = useOrganizationContext();
+    const organizationId = forType === "organization" ? organization?.id ?? null : null;
+    const { queryKey } = useStatementQueryCacheKeys({
+        statementId,
+        userId: user?.id ?? null,
+        orgId: organizationId,
+        for: forType
+    });
+    const swr = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$index$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"])(Boolean(statementId) && enabled && (forType !== "organization" || Boolean(organizationId)) ? queryKey : null, ()=>{
+        if (!statementId) throw new Error("statementId is required to fetch a statement");
+        return clerk.billing.getStatement({
+            id: statementId,
+            orgId: organizationId ?? void 0
+        });
+    }, {
+        dedupingInterval: 1e3 * 60,
+        keepPreviousData
+    });
+    return {
+        data: swr.data,
+        error: swr.error ?? null,
+        isLoading: swr.isLoading,
+        isFetching: swr.isValidating
+    };
+}
+//#endregion
+//#region src/react/hooks/usePlanDetailsQuery.shared.ts
+function usePlanDetailsQueryCacheKeys(params) {
+    const { planId } = params;
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>{
+        return createCacheKeys({
+            stablePrefix: INTERNAL_STABLE_KEYS.BILLING_PLANS_KEY,
+            authenticated: false,
+            tracked: {
+                planId: planId ?? null
+            },
+            untracked: {
+                args: {
+                    id: planId ?? void 0
+                }
+            }
+        });
+    }, [
+        planId
+    ]);
+}
+//#endregion
+//#region src/react/hooks/usePlanDetailsQuery.swr.tsx
+/**
+* This is the existing implementation of usePlanDetailsQuery using SWR.
+* It is kept here for backwards compatibility until our next major version.
+*
+* @internal
+*/ function usePlanDetailsQuery(params = {}) {
+    const { planId, initialPlan = null, enabled = true, keepPreviousData = true } = params;
+    const clerk = useClerkInstanceContext();
+    const targetPlanId = planId ?? initialPlan?.id ?? null;
+    const { queryKey } = usePlanDetailsQueryCacheKeys({
+        planId: targetPlanId
+    });
+    const swr = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$index$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"])(Boolean(targetPlanId) && enabled ? queryKey : null, ()=>{
+        if (!targetPlanId) throw new Error("planId is required to fetch plan details");
+        return clerk.billing.getPlan({
+            id: targetPlanId
+        });
+    }, {
+        dedupingInterval: 1e3 * 60,
+        keepPreviousData,
+        fallbackData: initialPlan ?? void 0
+    });
+    return {
+        data: swr.data,
+        error: swr.error ?? null,
+        isLoading: swr.isLoading,
+        isFetching: swr.isValidating
+    };
+}
+//#endregion
+//#region src/react/hooks/usePaymentAttemptQuery.shared.ts
+function usePaymentAttemptQueryCacheKeys(params) {
+    const { paymentAttemptId, userId, orgId, for: forType } = params;
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>{
+        return createCacheKeys({
+            stablePrefix: INTERNAL_STABLE_KEYS.PAYMENT_ATTEMPT_KEY,
+            authenticated: true,
+            tracked: {
+                paymentAttemptId,
+                forType,
+                userId,
+                orgId
+            },
+            untracked: {
+                args: {
+                    id: paymentAttemptId ?? void 0,
+                    orgId: orgId ?? void 0
+                }
+            }
+        });
+    }, [
+        paymentAttemptId,
+        forType,
+        userId,
+        orgId
+    ]);
+}
+//#endregion
+//#region src/react/hooks/usePaymentAttemptQuery.swr.tsx
+/**
+* This is the existing implementation of usePaymentAttemptQuery using SWR.
+* It is kept here for backwards compatibility until our next major version.
+*
+* @internal
+*/ function __internal_usePaymentAttemptQuery(params) {
+    const { paymentAttemptId, enabled = true, keepPreviousData = false, for: forType = "user" } = params;
+    const clerk = useClerkInstanceContext();
+    const user = useUserContext();
+    const { organization } = useOrganizationContext();
+    const organizationId = forType === "organization" ? organization?.id ?? null : null;
+    const { queryKey } = usePaymentAttemptQueryCacheKeys({
+        paymentAttemptId,
+        userId: user?.id ?? null,
+        orgId: organizationId,
+        for: forType
+    });
+    const swr = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$index$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"])(Boolean(paymentAttemptId) && enabled && (forType !== "organization" || Boolean(organizationId)) ? {
+        queryKey
+    } : null, ({ queryKey: queryKey$1 })=>{
+        const args = queryKey$1[3].args;
+        return clerk.billing.getPaymentAttempt(args);
+    }, {
+        dedupingInterval: 1e3 * 60,
+        keepPreviousData
+    });
+    return {
+        data: swr.data,
+        error: swr.error ?? null,
+        isLoading: swr.isLoading,
+        isFetching: swr.isValidating
+    };
+}
+//#endregion
+//#region src/react/stripe-react/utils.ts
+const usePrevious = (value)=>{
+    const ref = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(value);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        ref.current = value;
+    }, [
+        value
+    ]);
+    return ref.current;
+};
+const useAttachEvent = (element, event, cb)=>{
+    const cbDefined = !!cb;
+    const cbRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(cb);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        cbRef.current = cb;
+    }, [
+        cb
+    ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (!cbDefined || !element) return ()=>{};
+        const decoratedCb = (...args)=>{
+            if (cbRef.current) cbRef.current(...args);
+        };
+        element.on(event, decoratedCb);
+        return ()=>{
+            element.off(event, decoratedCb);
+        };
+    }, [
+        cbDefined,
+        event,
+        element,
+        cbRef
+    ]);
+};
+//#endregion
+//#region src/react/stripe-react/index.tsx
+const ElementsContext = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createContext(null);
+ElementsContext.displayName = "ElementsContext";
+const parseElementsContext = (ctx, useCase)=>{
+    if (!ctx) throw new Error(`Could not find Elements context; You need to wrap the part of your app that ${useCase} in an <Elements> provider.`);
+    return ctx;
+};
+/**
+* The `Elements` provider allows you to use [Element components](https://stripe.com/docs/stripe-js/react#element-components) and access the [Stripe object](https://stripe.com/docs/js/initializing) in any nested component.
+* Render an `Elements` provider at the root of your React app so that it is available everywhere you need it.
+*
+* To use the `Elements` provider, call `loadStripe` from `@stripe/stripe-js` with your publishable key.
+* The `loadStripe` function will asynchronously load the Stripe.js script and initialize a `Stripe` object.
+* Pass the returned `Promise` to `Elements`.
+*
+* @docs https://stripe.com/docs/stripe-js/react#elements-provider
+*/ const Elements = ({ stripe: rawStripeProp, options, children })=>{
+    const parsed = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useMemo(()=>parseStripeProp(rawStripeProp), [
+        rawStripeProp
+    ]);
+    const [ctx, setContext] = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useState(()=>({
+            stripe: parsed.tag === "sync" ? parsed.stripe : null,
+            elements: parsed.tag === "sync" ? parsed.stripe.elements(options) : null
+        }));
+    __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useEffect(()=>{
+        let isMounted = true;
+        const safeSetContext = (stripe)=>{
+            setContext((ctx$1)=>{
+                if (ctx$1.stripe) return ctx$1;
+                return {
+                    stripe,
+                    elements: stripe.elements(options)
+                };
+            });
+        };
+        if (parsed.tag === "async" && !ctx.stripe) parsed.stripePromise.then((stripe)=>{
+            if (stripe && isMounted) safeSetContext(stripe);
+        });
+        else if (parsed.tag === "sync" && !ctx.stripe) safeSetContext(parsed.stripe);
+        return ()=>{
+            isMounted = false;
+        };
+    }, [
+        parsed,
+        ctx,
+        options
+    ]);
+    const prevStripe = usePrevious(rawStripeProp);
+    __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useEffect(()=>{
+        if (prevStripe !== null && prevStripe !== rawStripeProp) console.warn("Unsupported prop change on Elements: You cannot change the `stripe` prop after setting it.");
+    }, [
+        prevStripe,
+        rawStripeProp
+    ]);
+    const prevOptions = usePrevious(options);
+    __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useEffect(()=>{
+        if (!ctx.elements) return;
+        const updates = extractAllowedOptionsUpdates(options, prevOptions, [
+            "clientSecret",
+            "fonts"
+        ]);
+        if (updates) ctx.elements.update(updates);
+    }, [
+        options,
+        prevOptions,
+        ctx.elements
+    ]);
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(ElementsContext.Provider, {
+        value: ctx
+    }, children);
+};
+const useElementsContextWithUseCase = (useCaseMessage)=>{
+    return parseElementsContext(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useContext(ElementsContext), useCaseMessage);
+};
+const useElements = ()=>{
+    const { elements } = useElementsContextWithUseCase("calls useElements()");
+    return elements;
+};
+const INVALID_STRIPE_ERROR = "Invalid prop `stripe` supplied to `Elements`. We recommend using the `loadStripe` utility from `@stripe/stripe-js`. See https://stripe.com/docs/stripe-js/react#elements-props-stripe for details.";
+const validateStripe = (maybeStripe, errorMsg = INVALID_STRIPE_ERROR)=>{
+    if (maybeStripe === null || isStripe(maybeStripe)) return maybeStripe;
+    throw new Error(errorMsg);
+};
+const parseStripeProp = (raw, errorMsg = INVALID_STRIPE_ERROR)=>{
+    if (isPromise(raw)) return {
+        tag: "async",
+        stripePromise: Promise.resolve(raw).then((result)=>validateStripe(result, errorMsg))
+    };
+    const stripe = validateStripe(raw, errorMsg);
+    if (stripe === null) return {
+        tag: "empty"
+    };
+    return {
+        tag: "sync",
+        stripe
+    };
+};
+const isUnknownObject = (raw)=>{
+    return raw !== null && typeof raw === "object";
+};
+const isPromise = (raw)=>{
+    return isUnknownObject(raw) && typeof raw.then === "function";
+};
+const isStripe = (raw)=>{
+    return isUnknownObject(raw) && typeof raw.elements === "function" && typeof raw.createToken === "function" && typeof raw.createPaymentMethod === "function" && typeof raw.confirmCardPayment === "function";
+};
+const extractAllowedOptionsUpdates = (options, prevOptions, immutableKeys)=>{
+    if (!isUnknownObject(options)) return null;
+    return Object.keys(options).reduce((newOptions, key)=>{
+        const isUpdated = !isUnknownObject(prevOptions) || !isEqual(options[key], prevOptions[key]);
+        if (immutableKeys.includes(key)) {
+            if (isUpdated) console.warn(`Unsupported prop change: options.${key} is not a mutable property.`);
+            return newOptions;
+        }
+        if (!isUpdated) return newOptions;
+        return {
+            ...newOptions || {},
+            [key]: options[key]
+        };
+    }, null);
+};
+const PLAIN_OBJECT_STR = "[object Object]";
+const isEqual = (left, right)=>{
+    if (!isUnknownObject(left) || !isUnknownObject(right)) return left === right;
+    const leftArray = Array.isArray(left);
+    if (leftArray !== Array.isArray(right)) return false;
+    const leftPlainObject = Object.prototype.toString.call(left) === PLAIN_OBJECT_STR;
+    if (leftPlainObject !== (Object.prototype.toString.call(right) === PLAIN_OBJECT_STR)) return false;
+    if (!leftPlainObject && !leftArray) return left === right;
+    const leftKeys = Object.keys(left);
+    const rightKeys = Object.keys(right);
+    if (leftKeys.length !== rightKeys.length) return false;
+    const keySet = {};
+    for(let i = 0; i < leftKeys.length; i += 1)keySet[leftKeys[i]] = true;
+    for(let i = 0; i < rightKeys.length; i += 1)keySet[rightKeys[i]] = true;
+    const allKeys = Object.keys(keySet);
+    if (allKeys.length !== leftKeys.length) return false;
+    const l = left;
+    const r = right;
+    const pred = (key)=>{
+        return isEqual(l[key], r[key]);
+    };
+    return allKeys.every(pred);
+};
+const useStripe = ()=>{
+    const { stripe } = useElementsOrCheckoutSdkContextWithUseCase("calls useStripe()");
+    return stripe;
+};
+const useElementsOrCheckoutSdkContextWithUseCase = (useCaseString)=>{
+    return parseElementsContext(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useContext(ElementsContext), useCaseString);
+};
+const capitalized = (str)=>str.charAt(0).toUpperCase() + str.slice(1);
+const createElementComponent = (type, isServer)=>{
+    const displayName = `${capitalized(type)}Element`;
+    const ClientElement = ({ id, className, fallback, options = {}, onBlur, onFocus, onReady, onChange, onEscape, onClick, onLoadError, onLoaderStart, onNetworksChange, onConfirm, onCancel, onShippingAddressChange, onShippingRateChange })=>{
+        const ctx = useElementsOrCheckoutSdkContextWithUseCase(`mounts <${displayName}>`);
+        const elements = "elements" in ctx ? ctx.elements : null;
+        const [element, setElement] = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useState(null);
+        const elementRef = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useRef(null);
+        const domNode = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useRef(null);
+        const [isReady, setReady] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+        useAttachEvent(element, "blur", onBlur);
+        useAttachEvent(element, "focus", onFocus);
+        useAttachEvent(element, "escape", onEscape);
+        useAttachEvent(element, "click", onClick);
+        useAttachEvent(element, "loaderror", onLoadError);
+        useAttachEvent(element, "loaderstart", onLoaderStart);
+        useAttachEvent(element, "networkschange", onNetworksChange);
+        useAttachEvent(element, "confirm", onConfirm);
+        useAttachEvent(element, "cancel", onCancel);
+        useAttachEvent(element, "shippingaddresschange", onShippingAddressChange);
+        useAttachEvent(element, "shippingratechange", onShippingRateChange);
+        useAttachEvent(element, "change", onChange);
+        let readyCallback;
+        if (onReady) readyCallback = ()=>{
+            setReady(true);
+            onReady(element);
+        };
+        useAttachEvent(element, "ready", readyCallback);
+        __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useLayoutEffect(()=>{
+            if (elementRef.current === null && domNode.current !== null && elements) {
+                let newElement = null;
+                if (elements) newElement = elements.create(type, options);
+                elementRef.current = newElement;
+                setElement(newElement);
+                if (newElement) newElement.mount(domNode.current);
+            }
+        }, [
+            elements,
+            options
+        ]);
+        const prevOptions = usePrevious(options);
+        __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useEffect(()=>{
+            if (!elementRef.current) return;
+            const updates = extractAllowedOptionsUpdates(options, prevOptions, [
+                "paymentRequest"
+            ]);
+            if (updates && "update" in elementRef.current) elementRef.current.update(updates);
+        }, [
+            options,
+            prevOptions
+        ]);
+        __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useLayoutEffect(()=>{
+            return ()=>{
+                if (elementRef.current && typeof elementRef.current.destroy === "function") try {
+                    elementRef.current.destroy();
+                    elementRef.current = null;
+                } catch  {}
+            };
+        }, []);
+        return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, !isReady && fallback, /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement("div", {
+            id,
+            style: {
+                height: isReady ? "unset" : "0px",
+                visibility: isReady ? "visible" : "hidden"
+            },
+            className,
+            ref: domNode
+        }));
+    };
+    const ServerElement = (props)=>{
+        useElementsOrCheckoutSdkContextWithUseCase(`mounts <${displayName}>`);
+        const { id, className } = props;
+        return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement("div", {
+            id,
+            className
+        });
+    };
+    const Element = isServer ? ServerElement : ClientElement;
+    Element.displayName = displayName;
+    Element.__elementType = type;
+    return Element;
+};
+const PaymentElement$1 = createElementComponent("payment", ("TURBOPACK compile-time value", "undefined") === "undefined");
+//#endregion
+//#region src/react/billing/useInitializePaymentMethod.swr.tsx
+/**
+* This is the existing implementation of the payment method initializer using SWR.
+* It is kept here for backwards compatibility until our next major version.
+*
+* @internal
+*/ function useInitializePaymentMethod(options) {
+    const { for: forType = "user" } = options ?? {};
+    const { organization } = useOrganizationContext();
+    const user = useUserContext();
+    const resource = forType === "organization" ? organization : user;
+    const { data, trigger } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$mutation$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(resource?.id ? {
+        key: "billing-payment-method-initialize",
+        resourceId: resource.id,
+        for: forType
+    } : null, ()=>{
+        return resource?.initializePaymentMethod({
+            gateway: "stripe"
+        });
+    });
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (!resource?.id) return;
+        trigger().catch(()=>{});
+    }, [
+        resource?.id,
+        trigger
+    ]);
+    return {
+        initializedPaymentMethod: data,
+        initializePaymentMethod: trigger
+    };
+}
+//#endregion
+//#region src/react/billing/useStripeClerkLibs.swr.tsx
+/**
+* This is the existing implementation of the Stripe libraries loader using SWR.
+* It is kept here for backwards compatibility until our next major version.
+*
+* @internal
+*/ function useStripeClerkLibs() {
+    const clerk = useClerk();
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$index$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"])("clerk-stripe-sdk", async ()=>{
+        return {
+            loadStripe: await clerk.__internal_loadStripeJs()
+        };
+    }, {
+        keepPreviousData: true,
+        revalidateOnFocus: false,
+        dedupingInterval: Infinity
+    }).data ?? null;
+}
+//#endregion
+//#region src/react/billing/useStripeLoader.swr.tsx
+/**
+* This is the existing implementation of the Stripe instance loader using SWR.
+* It is kept here for backwards compatibility until our next major version.
+*
+* @internal
+*/ function useStripeLoader(options) {
+    const { stripeClerkLibs, externalGatewayId, stripePublishableKey } = options;
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$swr$2f$dist$2f$index$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"])(stripeClerkLibs && externalGatewayId && stripePublishableKey ? {
+        key: "stripe-sdk",
+        externalGatewayId,
+        stripePublishableKey
+    } : null, ({ stripePublishableKey: stripePublishableKey$1, externalGatewayId: externalGatewayId$1 })=>{
+        return stripeClerkLibs?.loadStripe(stripePublishableKey$1, {
+            stripeAccount: externalGatewayId$1
+        });
+    }, {
+        keepPreviousData: true,
+        revalidateOnFocus: false,
+        dedupingInterval: 1e3 * 60
+    }).data;
+}
+//#endregion
+//#region src/react/billing/payment-element.tsx
+const useInternalEnvironment = ()=>{
+    return useClerk().__unstable__environment;
+};
+const useLocalization = ()=>{
+    const clerk = useClerk();
+    let locale = "en";
+    try {
+        locale = clerk.__internal_getOption("localization")?.locale || "en";
+    } catch  {}
+    return locale.split("-")[0];
+};
+const usePaymentSourceUtils = (forResource = "user")=>{
+    const stripeClerkLibs = useStripeClerkLibs();
+    const environment = useInternalEnvironment();
+    const { initializedPaymentMethod, initializePaymentMethod } = useInitializePaymentMethod({
+        for: forResource
+    });
+    const stripePublishableKey = environment?.commerceSettings.billing.stripePublishableKey ?? void 0;
+    return {
+        stripe: useStripeLoader({
+            stripeClerkLibs,
+            externalGatewayId: initializedPaymentMethod?.externalGatewayId,
+            stripePublishableKey
+        }),
+        initializePaymentMethod,
+        externalClientSecret: initializedPaymentMethod?.externalClientSecret,
+        paymentMethodOrder: initializedPaymentMethod?.paymentMethodOrder
+    };
+};
+const [PaymentElementContext, usePaymentElementContext] = createContextAndHook("PaymentElementContext");
+const [StripeUtilsContext, useStripeUtilsContext] = createContextAndHook("StripeUtilsContext");
+const ValidateStripeUtils = ({ children })=>{
+    const stripe = useStripe();
+    const elements = useElements();
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(StripeUtilsContext.Provider, {
+        value: {
+            value: {
+                stripe,
+                elements
+            }
+        }
+    }, children);
+};
+const DummyStripeUtils = ({ children })=>{
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(StripeUtilsContext.Provider, {
+        value: {
+            value: {}
+        }
+    }, children);
+};
+const PropsProvider = ({ children, ...props })=>{
+    const utils = usePaymentSourceUtils(props.for);
+    const [isPaymentElementReady, setIsPaymentElementReady] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(PaymentElementContext.Provider, {
+        value: {
+            value: {
+                ...props,
+                ...utils,
+                setIsPaymentElementReady,
+                isPaymentElementReady
+            }
+        }
+    }, children);
+};
+const PaymentElementProvider = ({ children, ...props })=>{
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(PropsProvider, props, /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(PaymentElementInternalRoot, null, children));
+};
+const PaymentElementInternalRoot = (props)=>{
+    const { stripe, externalClientSecret, stripeAppearance } = usePaymentElementContext();
+    const locale = useLocalization();
+    if (stripe && externalClientSecret) return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(Elements, {
+        key: externalClientSecret,
+        stripe,
+        options: {
+            loader: "never",
+            clientSecret: externalClientSecret,
+            appearance: {
+                variables: stripeAppearance
+            },
+            locale
+        }
+    }, /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(ValidateStripeUtils, null, props.children));
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(DummyStripeUtils, null, props.children);
+};
+const PaymentElement = ({ fallback })=>{
+    const { setIsPaymentElementReady, paymentMethodOrder, checkout, stripe, externalClientSecret, paymentDescription, for: _for } = usePaymentElementContext();
+    const environment = useInternalEnvironment();
+    const applePay = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>{
+        if (!checkout || !checkout.totals || !checkout.plan) return;
+        return {
+            recurringPaymentRequest: {
+                paymentDescription: paymentDescription || "",
+                managementURL: _for === "organization" ? environment?.displayConfig.organizationProfileUrl || "" : environment?.displayConfig.userProfileUrl || "",
+                regularBilling: {
+                    amount: checkout.totals.totalDueNow?.amount || checkout.totals.grandTotal.amount,
+                    label: checkout.plan.name,
+                    recurringPaymentIntervalUnit: checkout.planPeriod === "annual" ? "year" : "month"
+                }
+            }
+        };
+    }, [
+        checkout,
+        paymentDescription,
+        _for,
+        environment
+    ]);
+    const options = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>{
+        return {
+            layout: {
+                type: "tabs",
+                defaultCollapsed: false
+            },
+            paymentMethodOrder,
+            applePay
+        };
+    }, [
+        applePay,
+        paymentMethodOrder
+    ]);
+    const onReady = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(()=>{
+        setIsPaymentElementReady(true);
+    }, [
+        setIsPaymentElementReady
+    ]);
+    if (!stripe || !externalClientSecret) return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, fallback);
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(PaymentElement$1, {
+        fallback,
+        onReady,
+        options
+    });
+};
+const throwLibsMissingError = ()=>{
+    throw new Error("Clerk: Unable to submit, Stripe libraries are not yet loaded. Be sure to check `isFormReady` before calling `submit`.");
+};
+const usePaymentElement = ()=>{
+    const { isPaymentElementReady, initializePaymentMethod } = usePaymentElementContext();
+    const { stripe, elements } = useStripeUtilsContext();
+    const { externalClientSecret } = usePaymentElementContext();
+    const submit = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(async ()=>{
+        if (!stripe || !elements) return throwLibsMissingError();
+        const { setupIntent, error } = await stripe.confirmSetup({
+            elements,
+            confirmParams: {
+                return_url: window.location.href
+            },
+            redirect: "if_required"
+        });
+        if (error) return {
+            data: null,
+            error: {
+                gateway: "stripe",
+                error: {
+                    code: error.code,
+                    message: error.message,
+                    type: error.type
+                }
+            }
+        };
+        return {
+            data: {
+                gateway: "stripe",
+                paymentToken: setupIntent.payment_method
+            },
+            error: null
+        };
+    }, [
+        stripe,
+        elements
+    ]);
+    const reset = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(async ()=>{
+        if (!stripe || !elements) return throwLibsMissingError();
+        await initializePaymentMethod();
+    }, [
+        stripe,
+        elements,
+        initializePaymentMethod
+    ]);
+    const isProviderReady = Boolean(stripe && externalClientSecret);
+    if (!isProviderReady) return {
+        submit: throwLibsMissingError,
+        reset: throwLibsMissingError,
+        isFormReady: false,
+        provider: void 0,
+        isProviderReady: false
+    };
+    return {
+        submit,
+        reset,
+        isFormReady: isPaymentElementReady,
+        provider: {
+            name: "stripe"
+        },
+        isProviderReady
+    };
+};
+;
+ //# sourceMappingURL=index.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/error.mjs [app-ssr] (ecmascript) <locals>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$error$2d$Dl9xmUf3$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/error-Dl9xmUf3.mjs [app-ssr] (ecmascript)");
+;
+;
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/authorization.mjs [app-ssr] (ecmascript) <locals>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$authorization$2d$D2ans7vW$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/authorization-D2ans7vW.mjs [app-ssr] (ecmascript)");
+;
+;
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/telemetry.mjs [app-ssr] (ecmascript) <locals>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$constants$2d$ByUssRbE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/constants-ByUssRbE.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$isomorphicAtob$2d$DybBXGFR$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/isomorphicAtob-DybBXGFR.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$isomorphicBtoa$2d$Dr7WubZv$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/isomorphicBtoa-Dr7WubZv.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$keys$2d$YNv6yjKk$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/keys-YNv6yjKk.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$underscore$2d$DjQrhefX$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/underscore-DjQrhefX.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$telemetry$2d$wqMDWlvR$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/telemetry-wqMDWlvR.mjs [app-ssr] (ecmascript)");
+;
+;
+;
+;
+;
+;
+;
+}),
+"[project]/web-client/node_modules/@clerk/clerk-react/dist/chunk-OT5FTIRN.mjs [app-ssr] (ecmascript) <locals>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "AuthContext",
+    ()=>AuthContext,
+    "IsomorphicClerkContext",
+    ()=>IsomorphicClerkContext,
+    "customLinkWrongProps",
+    ()=>customLinkWrongProps,
+    "customMenuItemsIgnoredComponent",
+    ()=>customMenuItemsIgnoredComponent,
+    "customPageWrongProps",
+    ()=>customPageWrongProps,
+    "customPagesIgnoredComponent",
+    ()=>customPagesIgnoredComponent,
+    "errorThrower",
+    ()=>errorThrower,
+    "incompatibleRoutingWithPathProvidedError",
+    ()=>incompatibleRoutingWithPathProvidedError,
+    "multipleChildrenInButtonComponent",
+    ()=>multipleChildrenInButtonComponent,
+    "multipleClerkProvidersError",
+    ()=>multipleClerkProvidersError,
+    "noPathProvidedError",
+    ()=>noPathProvidedError,
+    "organizationProfileLinkRenderedError",
+    ()=>organizationProfileLinkRenderedError,
+    "organizationProfilePageRenderedError",
+    ()=>organizationProfilePageRenderedError,
+    "setErrorThrowerOptions",
+    ()=>setErrorThrowerOptions,
+    "unsupportedNonBrowserDomainOrProxyUrlFunction",
+    ()=>unsupportedNonBrowserDomainOrProxyUrlFunction,
+    "useAssertWrappedByClerkProvider",
+    ()=>useAssertWrappedByClerkProvider,
+    "useAuth",
+    ()=>useAuth,
+    "useDerivedAuth",
+    ()=>useDerivedAuth,
+    "useEmailLink",
+    ()=>useEmailLink,
+    "useIsomorphicClerkContext",
+    ()=>useIsomorphicClerkContext,
+    "useSignIn",
+    ()=>useSignIn,
+    "useSignUp",
+    ()=>useSignUp,
+    "userButtonIgnoredComponent",
+    ()=>userButtonIgnoredComponent,
+    "userButtonMenuActionRenderedError",
+    ()=>userButtonMenuActionRenderedError,
+    "userButtonMenuItemLinkWrongProps",
+    ()=>userButtonMenuItemLinkWrongProps,
+    "userButtonMenuItemsActionWrongsProps",
+    ()=>userButtonMenuItemsActionWrongsProps,
+    "userButtonMenuItemsRenderedError",
+    ()=>userButtonMenuItemsRenderedError,
+    "userButtonMenuLinkRenderedError",
+    ()=>userButtonMenuLinkRenderedError,
+    "userProfileLinkRenderedError",
+    ()=>userProfileLinkRenderedError,
+    "userProfilePageRenderedError",
+    ()=>userProfilePageRenderedError,
+    "withClerk",
+    ()=>withClerk
+]);
+// src/errors/errorThrower.ts
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$error$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/error.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$error$2d$Dl9xmUf3$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/error-Dl9xmUf3.mjs [app-ssr] (ecmascript)");
+// src/hooks/useAuth.ts
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$authorization$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/authorization.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$authorization$2d$D2ans7vW$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/authorization-D2ans7vW.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$telemetry$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/telemetry.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$telemetry$2d$wqMDWlvR$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/telemetry-wqMDWlvR.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+// src/contexts/AuthContext.ts
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$react$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/react/index.mjs [app-ssr] (ecmascript)");
+;
+var errorThrower = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$error$2d$Dl9xmUf3$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["buildErrorThrower"])({
+    packageName: "@clerk/clerk-react"
+});
+function setErrorThrowerOptions(options) {
+    errorThrower.setMessages(options).setPackageName(options);
+}
+;
+;
+;
+;
+var [AuthContext, useAuthContext] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$react$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createContextAndHook"])("AuthContext");
+;
+var IsomorphicClerkContext = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$react$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ClerkInstanceContext"];
+var useIsomorphicClerkContext = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$react$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useClerkInstanceContext"];
+// src/errors/messages.ts
+var multipleClerkProvidersError = "You've added multiple <ClerkProvider> components in your React component tree. Wrap your components in a single <ClerkProvider>.";
+var multipleChildrenInButtonComponent = (name)=>`You've passed multiple children components to <${name}/>. You can only pass a single child component or text.`;
+var invalidStateError = "Invalid state. Feel free to submit a bug or reach out to support here: https://clerk.com/support";
+var unsupportedNonBrowserDomainOrProxyUrlFunction = "Unsupported usage of isSatellite, domain or proxyUrl. The usage of isSatellite, domain or proxyUrl as function is not supported in non-browser environments.";
+var userProfilePageRenderedError = "<UserProfile.Page /> component needs to be a direct child of `<UserProfile />` or `<UserButton />`.";
+var userProfileLinkRenderedError = "<UserProfile.Link /> component needs to be a direct child of `<UserProfile />` or `<UserButton />`.";
+var organizationProfilePageRenderedError = "<OrganizationProfile.Page /> component needs to be a direct child of `<OrganizationProfile />` or `<OrganizationSwitcher />`.";
+var organizationProfileLinkRenderedError = "<OrganizationProfile.Link /> component needs to be a direct child of `<OrganizationProfile />` or `<OrganizationSwitcher />`.";
+var customPagesIgnoredComponent = (componentName)=>`<${componentName} /> can only accept <${componentName}.Page /> and <${componentName}.Link /> as its children. Any other provided component will be ignored. Additionally, please ensure that the component is rendered in a client component.`;
+var customPageWrongProps = (componentName)=>`Missing props. <${componentName}.Page /> component requires the following props: url, label, labelIcon, alongside with children to be rendered inside the page.`;
+var customLinkWrongProps = (componentName)=>`Missing props. <${componentName}.Link /> component requires the following props: url, label and labelIcon.`;
+var noPathProvidedError = (componentName)=>`The <${componentName}/> component uses path-based routing by default unless a different routing strategy is provided using the \`routing\` prop. When path-based routing is used, you need to provide the path where the component is mounted on by using the \`path\` prop. Example: <${componentName} path={'/my-path'} />`;
+var incompatibleRoutingWithPathProvidedError = (componentName)=>`The \`path\` prop will only be respected when the Clerk component uses path-based routing. To resolve this error, pass \`routing='path'\` to the <${componentName}/> component, or drop the \`path\` prop to switch to hash-based routing. For more details please refer to our docs: https://clerk.com/docs`;
+var userButtonIgnoredComponent = `<UserButton /> can only accept <UserButton.UserProfilePage />, <UserButton.UserProfileLink /> and <UserButton.MenuItems /> as its children. Any other provided component will be ignored. Additionally, please ensure that the component is rendered in a client component.`;
+var customMenuItemsIgnoredComponent = "<UserButton.MenuItems /> component can only accept <UserButton.Action /> and <UserButton.Link /> as its children. Any other provided component will be ignored. Additionally, please ensure that the component is rendered in a client component.";
+var userButtonMenuItemsRenderedError = "<UserButton.MenuItems /> component needs to be a direct child of `<UserButton />`.";
+var userButtonMenuActionRenderedError = "<UserButton.Action /> component needs to be a direct child of `<UserButton.MenuItems />`.";
+var userButtonMenuLinkRenderedError = "<UserButton.Link /> component needs to be a direct child of `<UserButton.MenuItems />`.";
+var userButtonMenuItemLinkWrongProps = "Missing props. <UserButton.Link /> component requires the following props: href, label and labelIcon.";
+var userButtonMenuItemsActionWrongsProps = "Missing props. <UserButton.Action /> component requires the following props: label.";
+;
+var useAssertWrappedByClerkProvider = (source)=>{
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$react$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useAssertWrappedByClerkProvider"])(()=>{
+        errorThrower.throwMissingClerkProviderError({
+            source
+        });
+    });
+};
+// src/hooks/utils.ts
+var clerkLoaded = (isomorphicClerk)=>{
+    return new Promise((resolve)=>{
+        const handler = (status)=>{
+            if ([
+                "ready",
+                "degraded"
+            ].includes(status)) {
+                resolve();
+                isomorphicClerk.off("status", handler);
+            }
+        };
+        isomorphicClerk.on("status", handler, {
+            notify: true
+        });
+    });
+};
+var createGetToken = (isomorphicClerk)=>{
+    return async (options)=>{
+        await clerkLoaded(isomorphicClerk);
+        if (!isomorphicClerk.session) {
+            return null;
+        }
+        return isomorphicClerk.session.getToken(options);
+    };
+};
+var createSignOut = (isomorphicClerk)=>{
+    return async (...args)=>{
+        await clerkLoaded(isomorphicClerk);
+        return isomorphicClerk.signOut(...args);
+    };
+};
+// src/hooks/useAuth.ts
+var useAuth = (initialAuthStateOrOptions = {})=>{
+    var _a;
+    useAssertWrappedByClerkProvider("useAuth");
+    const { treatPendingAsSignedOut, ...rest } = initialAuthStateOrOptions != null ? initialAuthStateOrOptions : {};
+    const initialAuthState = rest;
+    const authContextFromHook = useAuthContext();
+    let authContext = authContextFromHook;
+    if (authContext.sessionId === void 0 && authContext.userId === void 0) {
+        authContext = initialAuthState != null ? initialAuthState : {};
+    }
+    const isomorphicClerk = useIsomorphicClerkContext();
+    const getToken = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(createGetToken(isomorphicClerk), [
+        isomorphicClerk
+    ]);
+    const signOut = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(createSignOut(isomorphicClerk), [
+        isomorphicClerk
+    ]);
+    (_a = isomorphicClerk.telemetry) == null ? void 0 : _a.record((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$telemetry$2d$wqMDWlvR$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["eventMethodCalled"])("useAuth", {
+        treatPendingAsSignedOut
+    }));
+    return useDerivedAuth({
+        ...authContext,
+        getToken,
+        signOut
+    }, {
+        treatPendingAsSignedOut
+    });
+};
+function useDerivedAuth(authObject, { treatPendingAsSignedOut = true } = {}) {
+    const { userId, orgId, orgRole, has, signOut, getToken, orgPermissions, factorVerificationAge, sessionClaims } = authObject != null ? authObject : {};
+    const derivedHas = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])((params)=>{
+        if (has) {
+            return has(params);
+        }
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$authorization$2d$D2ans7vW$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createCheckAuthorization"])({
+            userId,
+            orgId,
+            orgRole,
+            orgPermissions,
+            factorVerificationAge,
+            features: (sessionClaims == null ? void 0 : sessionClaims.fea) || "",
+            plans: (sessionClaims == null ? void 0 : sessionClaims.pla) || ""
+        })(params);
+    }, [
+        has,
+        userId,
+        orgId,
+        orgRole,
+        orgPermissions,
+        factorVerificationAge,
+        sessionClaims
+    ]);
+    const payload = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$authorization$2d$D2ans7vW$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["resolveAuthState"])({
+        authObject: {
+            ...authObject,
+            getToken,
+            signOut,
+            has: derivedHas
+        },
+        options: {
+            treatPendingAsSignedOut
+        }
+    });
+    if (!payload) {
+        return errorThrower.throw(invalidStateError);
+    }
+    return payload;
+}
+;
+function useEmailLink(resource) {
+    const { startEmailLinkFlow, cancelEmailLinkFlow } = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useMemo(()=>resource.createEmailLinkFlow(), [
+        resource
+    ]);
+    __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useEffect(()=>{
+        return cancelEmailLinkFlow;
+    }, []);
+    return {
+        startEmailLinkFlow,
+        cancelEmailLinkFlow
+    };
+}
+;
+;
+var useSignIn = ()=>{
+    var _a;
+    useAssertWrappedByClerkProvider("useSignIn");
+    const isomorphicClerk = useIsomorphicClerkContext();
+    const client = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$react$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useClientContext"])();
+    (_a = isomorphicClerk.telemetry) == null ? void 0 : _a.record((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$telemetry$2d$wqMDWlvR$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["eventMethodCalled"])("useSignIn"));
+    if (!client) {
+        return {
+            isLoaded: false,
+            signIn: void 0,
+            setActive: void 0
+        };
+    }
+    return {
+        isLoaded: true,
+        signIn: client.signIn,
+        setActive: isomorphicClerk.setActive
+    };
+};
+;
+;
+var useSignUp = ()=>{
+    var _a;
+    useAssertWrappedByClerkProvider("useSignUp");
+    const isomorphicClerk = useIsomorphicClerkContext();
+    const client = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$react$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useClientContext"])();
+    (_a = isomorphicClerk.telemetry) == null ? void 0 : _a.record((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$telemetry$2d$wqMDWlvR$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["eventMethodCalled"])("useSignUp"));
+    if (!client) {
+        return {
+            isLoaded: false,
+            signUp: void 0,
+            setActive: void 0
+        };
+    }
+    return {
+        isLoaded: true,
+        signUp: client.signUp,
+        setActive: isomorphicClerk.setActive
+    };
+};
+;
+;
+var withClerk = (Component, displayNameOrOptions)=>{
+    const passedDisplayedName = typeof displayNameOrOptions === "string" ? displayNameOrOptions : displayNameOrOptions == null ? void 0 : displayNameOrOptions.component;
+    const displayName = passedDisplayedName || Component.displayName || Component.name || "Component";
+    Component.displayName = displayName;
+    const options = typeof displayNameOrOptions === "string" ? void 0 : displayNameOrOptions;
+    const HOC = (props)=>{
+        useAssertWrappedByClerkProvider(displayName || "withClerk");
+        const clerk = useIsomorphicClerkContext();
+        if (!clerk.loaded && !(options == null ? void 0 : options.renderWhileLoading)) {
+            return null;
+        }
+        return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(Component, {
+            ...props,
+            component: displayName,
+            clerk
+        });
+    };
+    HOC.displayName = `withClerk(${displayName})`;
+    return HOC;
+};
+;
+ //# sourceMappingURL=chunk-OT5FTIRN.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/runtimeEnvironment-BB2sO-19.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "isDevelopmentEnvironment",
+    ()=>isDevelopmentEnvironment,
+    "isProductionEnvironment",
+    ()=>isProductionEnvironment,
+    "isTestEnvironment",
+    ()=>isTestEnvironment
+]);
+//#region src/utils/runtimeEnvironment.ts
+const isDevelopmentEnvironment = ()=>{
+    try {
+        return ("TURBOPACK compile-time value", "development") === "development";
+    } catch  {}
+    return false;
+};
+const isTestEnvironment = ()=>{
+    try {
+        return ("TURBOPACK compile-time value", "development") === "test";
+    } catch  {}
+    return false;
+};
+const isProductionEnvironment = ()=>{
+    try {
+        return ("TURBOPACK compile-time value", "development") === "production";
+    } catch  {}
+    return false;
+};
+;
+ //# sourceMappingURL=runtimeEnvironment-BB2sO-19.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/deprecated-BqlFbLHj.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "deprecated",
+    ()=>deprecated,
+    "deprecatedObjectProperty",
+    ()=>deprecatedObjectProperty,
+    "deprecatedProperty",
+    ()=>deprecatedProperty
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$runtimeEnvironment$2d$BB2sO$2d$19$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/runtimeEnvironment-BB2sO-19.mjs [app-ssr] (ecmascript)");
+;
+//#region src/deprecated.ts
+/**
+* Mark class method / function as deprecated.
+*
+* A console WARNING will be displayed when class method / function is invoked.
+*
+* Examples
+* 1. Deprecate class method
+* class Example {
+*   getSomething = (arg1, arg2) => {
+*       deprecated('Example.getSomething', 'Use `getSomethingElse` instead.');
+*       return `getSomethingValue:${arg1 || '-'}:${arg2 || '-'}`;
+*   };
+* }
+*
+* 2. Deprecate function
+* const getSomething = () => {
+*   deprecated('getSomething', 'Use `getSomethingElse` instead.');
+*   return 'getSomethingValue';
+* };
+*/ const displayedWarnings = /* @__PURE__ */ new Set();
+const deprecated = (fnName, warning, key)=>{
+    const hideWarning = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$runtimeEnvironment$2d$BB2sO$2d$19$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isTestEnvironment"])() || (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$runtimeEnvironment$2d$BB2sO$2d$19$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isProductionEnvironment"])();
+    const messageId = key ?? fnName;
+    if (displayedWarnings.has(messageId) || hideWarning) return;
+    displayedWarnings.add(messageId);
+    console.warn(`Clerk - DEPRECATION WARNING: "${fnName}" is deprecated and will be removed in the next major release.\n${warning}`);
+};
+const deprecatedProperty = (cls, propName, warning, isStatic = false)=>{
+    const target = isStatic ? cls : cls.prototype;
+    let value = target[propName];
+    Object.defineProperty(target, propName, {
+        get () {
+            deprecated(propName, warning, `${cls.name}:${propName}`);
+            return value;
+        },
+        set (v) {
+            value = v;
+        }
+    });
+};
+/**
+* Mark object property as deprecated.
+*
+* A console WARNING will be displayed when object property is being accessed.
+*
+* 1. Deprecate object property
+* const obj = { something: 'aloha' };
+*
+* deprecatedObjectProperty(obj, 'something', 'Use `somethingElse` instead.');
+*/ const deprecatedObjectProperty = (obj, propName, warning, key)=>{
+    let value = obj[propName];
+    Object.defineProperty(obj, propName, {
+        get () {
+            deprecated(propName, warning, key);
+            return value;
+        },
+        set (v) {
+            value = v;
+        }
+    });
+};
+;
+ //# sourceMappingURL=deprecated-BqlFbLHj.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/deprecated.mjs [app-ssr] (ecmascript) <locals>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$runtimeEnvironment$2d$BB2sO$2d$19$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/runtimeEnvironment-BB2sO-19.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$deprecated$2d$BqlFbLHj$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/deprecated-BqlFbLHj.mjs [app-ssr] (ecmascript)");
+;
+;
+;
+}),
+"[project]/web-client/node_modules/@clerk/clerk-react/dist/chunk-VMBS36YX.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "AuthenticateWithRedirectCallback",
+    ()=>AuthenticateWithRedirectCallback,
+    "ClerkDegraded",
+    ()=>ClerkDegraded,
+    "ClerkFailed",
+    ()=>ClerkFailed,
+    "ClerkLoaded",
+    ()=>ClerkLoaded,
+    "ClerkLoading",
+    ()=>ClerkLoading,
+    "MultisessionAppSupport",
+    ()=>MultisessionAppSupport,
+    "Protect",
+    ()=>Protect,
+    "RedirectToCreateOrganization",
+    ()=>RedirectToCreateOrganization,
+    "RedirectToOrganizationProfile",
+    ()=>RedirectToOrganizationProfile,
+    "RedirectToSignIn",
+    ()=>RedirectToSignIn,
+    "RedirectToSignUp",
+    ()=>RedirectToSignUp,
+    "RedirectToTasks",
+    ()=>RedirectToTasks,
+    "RedirectToUserProfile",
+    ()=>RedirectToUserProfile,
+    "SignedIn",
+    ()=>SignedIn,
+    "SignedOut",
+    ()=>SignedOut
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/clerk-react/dist/chunk-OT5FTIRN.mjs [app-ssr] (ecmascript) <locals>");
+// src/components/controlComponents.tsx
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$deprecated$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/deprecated.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$deprecated$2d$BqlFbLHj$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/deprecated-BqlFbLHj.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+// src/contexts/SessionContext.tsx
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$react$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/react/index.mjs [app-ssr] (ecmascript)");
+;
+;
+;
+;
+// src/components/controlComponents.tsx
+var SignedIn = ({ children, treatPendingAsSignedOut })=>{
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useAssertWrappedByClerkProvider"])("SignedIn");
+    const { userId } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useAuth"])({
+        treatPendingAsSignedOut
+    });
+    if (userId) {
+        return children;
+    }
+    return null;
+};
+var SignedOut = ({ children, treatPendingAsSignedOut })=>{
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useAssertWrappedByClerkProvider"])("SignedOut");
+    const { userId } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useAuth"])({
+        treatPendingAsSignedOut
+    });
+    if (userId === null) {
+        return children;
+    }
+    return null;
+};
+var ClerkLoaded = ({ children })=>{
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useAssertWrappedByClerkProvider"])("ClerkLoaded");
+    const isomorphicClerk = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useIsomorphicClerkContext"])();
+    if (!isomorphicClerk.loaded) {
+        return null;
+    }
+    return children;
+};
+var ClerkLoading = ({ children })=>{
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useAssertWrappedByClerkProvider"])("ClerkLoading");
+    const isomorphicClerk = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useIsomorphicClerkContext"])();
+    if (isomorphicClerk.status !== "loading") {
+        return null;
+    }
+    return children;
+};
+var ClerkFailed = ({ children })=>{
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useAssertWrappedByClerkProvider"])("ClerkFailed");
+    const isomorphicClerk = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useIsomorphicClerkContext"])();
+    if (isomorphicClerk.status !== "error") {
+        return null;
+    }
+    return children;
+};
+var ClerkDegraded = ({ children })=>{
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useAssertWrappedByClerkProvider"])("ClerkDegraded");
+    const isomorphicClerk = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useIsomorphicClerkContext"])();
+    if (isomorphicClerk.status !== "degraded") {
+        return null;
+    }
+    return children;
+};
+var Protect = ({ children, fallback, treatPendingAsSignedOut, ...restAuthorizedParams })=>{
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useAssertWrappedByClerkProvider"])("Protect");
+    const { isLoaded, has, userId } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useAuth"])({
+        treatPendingAsSignedOut
+    });
+    if (!isLoaded) {
+        return null;
+    }
+    const unauthorized = fallback != null ? fallback : null;
+    const authorized = children;
+    if (!userId) {
+        return unauthorized;
+    }
+    if (typeof restAuthorizedParams.condition === "function") {
+        if (restAuthorizedParams.condition(has)) {
+            return authorized;
+        }
+        return unauthorized;
+    }
+    if (restAuthorizedParams.role || restAuthorizedParams.permission || restAuthorizedParams.feature || restAuthorizedParams.plan) {
+        if (has(restAuthorizedParams)) {
+            return authorized;
+        }
+        return unauthorized;
+    }
+    return authorized;
+};
+var RedirectToSignIn = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, ...props })=>{
+    const { client, session } = clerk;
+    const hasSignedInSessions = client.signedInSessions ? client.signedInSessions.length > 0 : // Compat for clerk-js<5.54.0 (which was released with the `signedInSessions` property)
+    client.activeSessions && client.activeSessions.length > 0;
+    __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useEffect(()=>{
+        if (session === null && hasSignedInSessions) {
+            void clerk.redirectToAfterSignOut();
+        } else {
+            void clerk.redirectToSignIn(props);
+        }
+    }, []);
+    return null;
+}, "RedirectToSignIn");
+var RedirectToSignUp = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, ...props })=>{
+    __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useEffect(()=>{
+        void clerk.redirectToSignUp(props);
+    }, []);
+    return null;
+}, "RedirectToSignUp");
+var RedirectToTasks = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, ...props })=>{
+    __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useEffect(()=>{
+        void clerk.redirectToTasks(props);
+    }, []);
+    return null;
+}, "RedirectToTasks");
+var RedirectToUserProfile = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk })=>{
+    __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useEffect(()=>{
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$deprecated$2d$BqlFbLHj$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["deprecated"])("RedirectToUserProfile", "Use the `redirectToUserProfile()` method instead.");
+        void clerk.redirectToUserProfile();
+    }, []);
+    return null;
+}, "RedirectToUserProfile");
+var RedirectToOrganizationProfile = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk })=>{
+    __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useEffect(()=>{
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$deprecated$2d$BqlFbLHj$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["deprecated"])("RedirectToOrganizationProfile", "Use the `redirectToOrganizationProfile()` method instead.");
+        void clerk.redirectToOrganizationProfile();
+    }, []);
+    return null;
+}, "RedirectToOrganizationProfile");
+var RedirectToCreateOrganization = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk })=>{
+    __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useEffect(()=>{
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$deprecated$2d$BqlFbLHj$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["deprecated"])("RedirectToCreateOrganization", "Use the `redirectToCreateOrganization()` method instead.");
+        void clerk.redirectToCreateOrganization();
+    }, []);
+    return null;
+}, "RedirectToCreateOrganization");
+var AuthenticateWithRedirectCallback = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, ...handleRedirectCallbackParams })=>{
+    __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useEffect(()=>{
+        void clerk.handleRedirectCallback(handleRedirectCallbackParams);
+    }, []);
+    return null;
+}, "AuthenticateWithRedirectCallback");
+var MultisessionAppSupport = ({ children })=>{
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useAssertWrappedByClerkProvider"])("MultisessionAppSupport");
+    const session = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$react$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useSessionContext"])();
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, {
+        key: session ? session.id : "no-users"
+    }, children);
+};
+;
+ //# sourceMappingURL=chunk-VMBS36YX.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/handleValueOrFn-CcwnRX-K.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "handleValueOrFn",
+    ()=>handleValueOrFn
+]);
+//#region src/utils/handleValueOrFn.ts
+function handleValueOrFn(value, url, defaultValue) {
+    if (typeof value === "function") return value(url);
+    if (typeof value !== "undefined") return value;
+    if (typeof defaultValue !== "undefined") return defaultValue;
+}
+;
+ //# sourceMappingURL=handleValueOrFn-CcwnRX-K.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/utils-BjdCqECo.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "allSettled",
+    ()=>allSettled,
+    "fastDeepMergeAndKeep",
+    ()=>fastDeepMergeAndKeep,
+    "fastDeepMergeAndReplace",
+    ()=>fastDeepMergeAndReplace,
+    "logErrorInDevMode",
+    ()=>logErrorInDevMode
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$runtimeEnvironment$2d$BB2sO$2d$19$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/runtimeEnvironment-BB2sO-19.mjs [app-ssr] (ecmascript)");
+;
+//#region src/utils/allSettled.ts
+/**
+* A ES6 compatible utility that implements `Promise.allSettled`
+* @internal
+*/ function allSettled(iterable) {
+    const promises = Array.from(iterable).map((p)=>p.then((value)=>({
+                status: "fulfilled",
+                value
+            }), (reason)=>({
+                status: "rejected",
+                reason
+            })));
+    return Promise.all(promises);
+}
+//#endregion
+//#region src/utils/logErrorInDevMode.ts
+const logErrorInDevMode = (message)=>{
+    if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$runtimeEnvironment$2d$BB2sO$2d$19$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isDevelopmentEnvironment"])()) console.error(`Clerk: ${message}`);
+};
+//#endregion
+//#region src/utils/fastDeepMerge.ts
+/**
+* Merges 2 objects without creating new object references
+* The merged props will appear on the `target` object
+* If `target` already has a value for a given key it will not be overwritten
+*/ const fastDeepMergeAndReplace = (source, target)=>{
+    if (!source || !target) return;
+    for(const key in source)if (Object.prototype.hasOwnProperty.call(source, key) && source[key] !== null && typeof source[key] === `object`) {
+        if (target[key] === void 0) target[key] = new (Object.getPrototypeOf(source[key])).constructor();
+        fastDeepMergeAndReplace(source[key], target[key]);
+    } else if (Object.prototype.hasOwnProperty.call(source, key) && source[key] !== void 0) target[key] = source[key];
+};
+const fastDeepMergeAndKeep = (source, target)=>{
+    if (!source || !target) return;
+    for(const key in source)if (Object.prototype.hasOwnProperty.call(source, key) && source[key] !== null && typeof source[key] === `object`) {
+        if (target[key] === void 0) target[key] = new (Object.getPrototypeOf(source[key])).constructor();
+        fastDeepMergeAndKeep(source[key], target[key]);
+    } else if (Object.prototype.hasOwnProperty.call(source, key) && target[key] === void 0) target[key] = source[key];
+};
+;
+ //# sourceMappingURL=utils-BjdCqECo.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/instance-Cze6Nv61.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "isStaging",
+    ()=>isStaging
+]);
+//#region src/utils/instance.ts
+/**
+* Check if the frontendApi ends with a staging domain
+*/ function isStaging(frontendApi) {
+    return frontendApi.endsWith(".lclstage.dev") || frontendApi.endsWith(".stgstage.dev") || frontendApi.endsWith(".clerkstage.dev") || frontendApi.endsWith(".accountsstage.dev");
+}
+;
+ //# sourceMappingURL=instance-Cze6Nv61.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/utils/index.mjs [app-ssr] (ecmascript) <locals>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$runtimeEnvironment$2d$BB2sO$2d$19$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/runtimeEnvironment-BB2sO-19.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$handleValueOrFn$2d$CcwnRX$2d$K$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/handleValueOrFn-CcwnRX-K.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$noop$2d$B3MbDAfb$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/noop-B3MbDAfb.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$createDeferredPromise$2d$CjYZzUuU$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/createDeferredPromise-CjYZzUuU.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$utils$2d$BjdCqECo$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/utils-BjdCqECo.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$instance$2d$Cze6Nv61$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/instance-Cze6Nv61.mjs [app-ssr] (ecmascript)");
+;
+;
+;
+;
+;
+;
+;
+}),
+"[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-dom.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+module.exports = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/module.compiled.js [app-ssr] (ecmascript)").vendored['react-ssr'].ReactDOM; //# sourceMappingURL=react-dom.js.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/object-Be3MMNTQ.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "applyFunctionToObj",
+    ()=>applyFunctionToObj,
+    "filterProps",
+    ()=>filterProps,
+    "removeUndefined",
+    ()=>removeUndefined,
+    "without",
+    ()=>without
+]);
+//#region src/object.ts
+const without = (obj, ...props)=>{
+    const copy = {
+        ...obj
+    };
+    for (const prop of props)delete copy[prop];
+    return copy;
+};
+const removeUndefined = (obj)=>{
+    return Object.entries(obj).reduce((acc, [key, value])=>{
+        if (value !== void 0 && value !== null) acc[key] = value;
+        return acc;
+    }, {});
+};
+const applyFunctionToObj = (obj, fn)=>{
+    const result = {};
+    for(const key in obj)result[key] = fn(obj[key], key);
+    return result;
+};
+const filterProps = (obj, filter)=>{
+    const result = {};
+    for(const key in obj)if (obj[key] && filter(obj[key])) result[key] = obj[key];
+    return result;
+};
+;
+ //# sourceMappingURL=object-Be3MMNTQ.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/object.mjs [app-ssr] (ecmascript) <locals>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$object$2d$Be3MMNTQ$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/object-Be3MMNTQ.mjs [app-ssr] (ecmascript)");
+;
+;
+}),
+"[project]/web-client/node_modules/@clerk/clerk-react/dist/chunk-6WD75OPE.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "APIKeys",
+    ()=>APIKeys,
+    "CreateOrganization",
+    ()=>CreateOrganization,
+    "GoogleOneTap",
+    ()=>GoogleOneTap,
+    "OrganizationList",
+    ()=>OrganizationList,
+    "OrganizationProfile",
+    ()=>OrganizationProfile,
+    "OrganizationSwitcher",
+    ()=>OrganizationSwitcher,
+    "PricingTable",
+    ()=>PricingTable,
+    "SignIn",
+    ()=>SignIn,
+    "SignUp",
+    ()=>SignUp,
+    "TaskChooseOrganization",
+    ()=>TaskChooseOrganization,
+    "TaskResetPassword",
+    ()=>TaskResetPassword,
+    "UserAvatar",
+    ()=>UserAvatar,
+    "UserButton",
+    ()=>UserButton,
+    "UserProfile",
+    ()=>UserProfile,
+    "Waitlist",
+    ()=>Waitlist,
+    "assertSingleChild",
+    ()=>assertSingleChild,
+    "isConstructor",
+    ()=>isConstructor,
+    "normalizeWithDefaultValue",
+    ()=>normalizeWithDefaultValue,
+    "safeExecute",
+    ()=>safeExecute,
+    "withMaxAllowedInstancesGuard",
+    ()=>withMaxAllowedInstancesGuard
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/clerk-react/dist/chunk-OT5FTIRN.mjs [app-ssr] (ecmascript) <locals>");
+// src/components/uiComponents.tsx
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$utils$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/utils/index.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$utils$2d$BjdCqECo$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/utils-BjdCqECo.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$dom$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-dom.js [app-ssr] (ecmascript)");
+// src/components/ClerkHostRenderer.tsx
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$object$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/object.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$object$2d$Be3MMNTQ$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/object-Be3MMNTQ.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$react$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/react/index.mjs [app-ssr] (ecmascript)");
+;
+;
+;
+;
+var assertSingleChild = (children)=>(name)=>{
+        try {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Children.only(children);
+        } catch  {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["errorThrower"].throw((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["multipleChildrenInButtonComponent"])(name));
+        }
+    };
+var normalizeWithDefaultValue = (children, defaultText)=>{
+    if (!children) {
+        children = defaultText;
+    }
+    if (typeof children === "string") {
+        children = /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement("button", null, children);
+    }
+    return children;
+};
+var safeExecute = (cb)=>(...args)=>{
+        if (cb && typeof cb === "function") {
+            return cb(...args);
+        }
+    };
+// src/utils/isConstructor.ts
+function isConstructor(f) {
+    return typeof f === "function";
+}
+;
+var counts = /* @__PURE__ */ new Map();
+function useMaxAllowedInstancesGuard(name, error, maxCount = 1) {
+    __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useEffect(()=>{
+        const count = counts.get(name) || 0;
+        if (count == maxCount) {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["errorThrower"].throw(error);
+        }
+        counts.set(name, count + 1);
+        return ()=>{
+            counts.set(name, (counts.get(name) || 1) - 1);
+        };
+    }, []);
+}
+function withMaxAllowedInstancesGuard(WrappedComponent, name, error) {
+    const displayName = WrappedComponent.displayName || WrappedComponent.name || name || "Component";
+    const Hoc = (props)=>{
+        useMaxAllowedInstancesGuard(name, error);
+        return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(WrappedComponent, {
+            ...props
+        });
+    };
+    Hoc.displayName = `withMaxAllowedInstancesGuard(${displayName})`;
+    return Hoc;
+}
+;
+;
+var useCustomElementPortal = (elements)=>{
+    const [nodeMap, setNodeMap] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(/* @__PURE__ */ new Map());
+    return elements.map((el)=>({
+            id: el.id,
+            mount: (node)=>setNodeMap((prev)=>new Map(prev).set(String(el.id), node)),
+            unmount: ()=>setNodeMap((prev)=>{
+                    const newMap = new Map(prev);
+                    newMap.set(String(el.id), null);
+                    return newMap;
+                }),
+            portal: ()=>{
+                const node = nodeMap.get(String(el.id));
+                return node ? (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$dom$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createPortal"])(el.component, node) : null;
+            }
+        }));
+};
+;
+;
+;
+var isThatComponent = (v, component)=>{
+    return !!v && __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].isValidElement(v) && (v == null ? void 0 : v.type) === component;
+};
+// src/utils/useCustomPages.tsx
+var useUserProfileCustomPages = (children, options)=>{
+    const reorderItemsLabels = [
+        "account",
+        "security",
+        "billing",
+        "apiKeys"
+    ];
+    return useCustomPages({
+        children,
+        reorderItemsLabels,
+        LinkComponent: UserProfileLink,
+        PageComponent: UserProfilePage,
+        MenuItemsComponent: MenuItems,
+        componentName: "UserProfile"
+    }, options);
+};
+var useOrganizationProfileCustomPages = (children, options)=>{
+    const reorderItemsLabels = [
+        "general",
+        "members",
+        "billing",
+        "apiKeys"
+    ];
+    return useCustomPages({
+        children,
+        reorderItemsLabels,
+        LinkComponent: OrganizationProfileLink,
+        PageComponent: OrganizationProfilePage,
+        componentName: "OrganizationProfile"
+    }, options);
+};
+var useSanitizedChildren = (children)=>{
+    const sanitizedChildren = [];
+    const excludedComponents = [
+        OrganizationProfileLink,
+        OrganizationProfilePage,
+        MenuItems,
+        UserProfilePage,
+        UserProfileLink
+    ];
+    __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Children.forEach(children, (child)=>{
+        if (!excludedComponents.some((component)=>isThatComponent(child, component))) {
+            sanitizedChildren.push(child);
+        }
+    });
+    return sanitizedChildren;
+};
+var useCustomPages = (params, options)=>{
+    const { children, LinkComponent, PageComponent, MenuItemsComponent, reorderItemsLabels, componentName } = params;
+    const { allowForAnyChildren = false } = options || {};
+    const validChildren = [];
+    __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Children.forEach(children, (child)=>{
+        if (!isThatComponent(child, PageComponent) && !isThatComponent(child, LinkComponent) && !isThatComponent(child, MenuItemsComponent)) {
+            if (child && !allowForAnyChildren) {
+                (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$utils$2d$BjdCqECo$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["logErrorInDevMode"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["customPagesIgnoredComponent"])(componentName));
+            }
+            return;
+        }
+        const { props } = child;
+        const { children: children2, label, url, labelIcon } = props;
+        if (isThatComponent(child, PageComponent)) {
+            if (isReorderItem(props, reorderItemsLabels)) {
+                validChildren.push({
+                    label
+                });
+            } else if (isCustomPage(props)) {
+                validChildren.push({
+                    label,
+                    labelIcon,
+                    children: children2,
+                    url
+                });
+            } else {
+                (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$utils$2d$BjdCqECo$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["logErrorInDevMode"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["customPageWrongProps"])(componentName));
+                return;
+            }
+        }
+        if (isThatComponent(child, LinkComponent)) {
+            if (isExternalLink(props)) {
+                validChildren.push({
+                    label,
+                    labelIcon,
+                    url
+                });
+            } else {
+                (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$utils$2d$BjdCqECo$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["logErrorInDevMode"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["customLinkWrongProps"])(componentName));
+                return;
+            }
+        }
+    });
+    const customPageContents = [];
+    const customPageLabelIcons = [];
+    const customLinkLabelIcons = [];
+    validChildren.forEach((cp, index)=>{
+        if (isCustomPage(cp)) {
+            customPageContents.push({
+                component: cp.children,
+                id: index
+            });
+            customPageLabelIcons.push({
+                component: cp.labelIcon,
+                id: index
+            });
+            return;
+        }
+        if (isExternalLink(cp)) {
+            customLinkLabelIcons.push({
+                component: cp.labelIcon,
+                id: index
+            });
+        }
+    });
+    const customPageContentsPortals = useCustomElementPortal(customPageContents);
+    const customPageLabelIconsPortals = useCustomElementPortal(customPageLabelIcons);
+    const customLinkLabelIconsPortals = useCustomElementPortal(customLinkLabelIcons);
+    const customPages = [];
+    const customPagesPortals = [];
+    validChildren.forEach((cp, index)=>{
+        if (isReorderItem(cp, reorderItemsLabels)) {
+            customPages.push({
+                label: cp.label
+            });
+            return;
+        }
+        if (isCustomPage(cp)) {
+            const { portal: contentPortal, mount, unmount } = customPageContentsPortals.find((p)=>p.id === index);
+            const { portal: labelPortal, mount: mountIcon, unmount: unmountIcon } = customPageLabelIconsPortals.find((p)=>p.id === index);
+            customPages.push({
+                label: cp.label,
+                url: cp.url,
+                mount,
+                unmount,
+                mountIcon,
+                unmountIcon
+            });
+            customPagesPortals.push(contentPortal);
+            customPagesPortals.push(labelPortal);
+            return;
+        }
+        if (isExternalLink(cp)) {
+            const { portal: labelPortal, mount: mountIcon, unmount: unmountIcon } = customLinkLabelIconsPortals.find((p)=>p.id === index);
+            customPages.push({
+                label: cp.label,
+                url: cp.url,
+                mountIcon,
+                unmountIcon
+            });
+            customPagesPortals.push(labelPortal);
+            return;
+        }
+    });
+    return {
+        customPages,
+        customPagesPortals
+    };
+};
+var isReorderItem = (childProps, validItems)=>{
+    const { children, label, url, labelIcon } = childProps;
+    return !children && !url && !labelIcon && validItems.some((v)=>v === label);
+};
+var isCustomPage = (childProps)=>{
+    const { children, label, url, labelIcon } = childProps;
+    return !!children && !!url && !!labelIcon && !!label;
+};
+var isExternalLink = (childProps)=>{
+    const { children, label, url, labelIcon } = childProps;
+    return !children && !!url && !!labelIcon && !!label;
+};
+;
+;
+var useUserButtonCustomMenuItems = (children, options)=>{
+    var _a;
+    const reorderItemsLabels = [
+        "manageAccount",
+        "signOut"
+    ];
+    return useCustomMenuItems({
+        children,
+        reorderItemsLabels,
+        MenuItemsComponent: MenuItems,
+        MenuActionComponent: MenuAction,
+        MenuLinkComponent: MenuLink,
+        UserProfileLinkComponent: UserProfileLink,
+        UserProfilePageComponent: UserProfilePage,
+        allowForAnyChildren: (_a = options == null ? void 0 : options.allowForAnyChildren) != null ? _a : false
+    });
+};
+var useCustomMenuItems = ({ children, MenuItemsComponent, MenuActionComponent, MenuLinkComponent, UserProfileLinkComponent, UserProfilePageComponent, reorderItemsLabels, allowForAnyChildren = false })=>{
+    const validChildren = [];
+    const customMenuItems = [];
+    const customMenuItemsPortals = [];
+    __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Children.forEach(children, (child)=>{
+        if (!isThatComponent(child, MenuItemsComponent) && !isThatComponent(child, UserProfileLinkComponent) && !isThatComponent(child, UserProfilePageComponent)) {
+            if (child && !allowForAnyChildren) {
+                (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$utils$2d$BjdCqECo$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["logErrorInDevMode"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["userButtonIgnoredComponent"]);
+            }
+            return;
+        }
+        if (isThatComponent(child, UserProfileLinkComponent) || isThatComponent(child, UserProfilePageComponent)) {
+            return;
+        }
+        const { props } = child;
+        __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Children.forEach(props.children, (child2)=>{
+            if (!isThatComponent(child2, MenuActionComponent) && !isThatComponent(child2, MenuLinkComponent)) {
+                if (child2) {
+                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$utils$2d$BjdCqECo$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["logErrorInDevMode"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["customMenuItemsIgnoredComponent"]);
+                }
+                return;
+            }
+            const { props: props2 } = child2;
+            const { label, labelIcon, href, onClick, open } = props2;
+            if (isThatComponent(child2, MenuActionComponent)) {
+                if (isReorderItem2(props2, reorderItemsLabels)) {
+                    validChildren.push({
+                        label
+                    });
+                } else if (isCustomMenuItem(props2)) {
+                    const baseItem = {
+                        label,
+                        labelIcon
+                    };
+                    if (onClick !== void 0) {
+                        validChildren.push({
+                            ...baseItem,
+                            onClick
+                        });
+                    } else if (open !== void 0) {
+                        validChildren.push({
+                            ...baseItem,
+                            open: open.startsWith("/") ? open : `/${open}`
+                        });
+                    } else {
+                        (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$utils$2d$BjdCqECo$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["logErrorInDevMode"])("Custom menu item must have either onClick or open property");
+                        return;
+                    }
+                } else {
+                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$utils$2d$BjdCqECo$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["logErrorInDevMode"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["userButtonMenuItemsActionWrongsProps"]);
+                    return;
+                }
+            }
+            if (isThatComponent(child2, MenuLinkComponent)) {
+                if (isExternalLink2(props2)) {
+                    validChildren.push({
+                        label,
+                        labelIcon,
+                        href
+                    });
+                } else {
+                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$utils$2d$BjdCqECo$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["logErrorInDevMode"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["userButtonMenuItemLinkWrongProps"]);
+                    return;
+                }
+            }
+        });
+    });
+    const customMenuItemLabelIcons = [];
+    const customLinkLabelIcons = [];
+    validChildren.forEach((mi, index)=>{
+        if (isCustomMenuItem(mi)) {
+            customMenuItemLabelIcons.push({
+                component: mi.labelIcon,
+                id: index
+            });
+        }
+        if (isExternalLink2(mi)) {
+            customLinkLabelIcons.push({
+                component: mi.labelIcon,
+                id: index
+            });
+        }
+    });
+    const customMenuItemLabelIconsPortals = useCustomElementPortal(customMenuItemLabelIcons);
+    const customLinkLabelIconsPortals = useCustomElementPortal(customLinkLabelIcons);
+    validChildren.forEach((mi, index)=>{
+        if (isReorderItem2(mi, reorderItemsLabels)) {
+            customMenuItems.push({
+                label: mi.label
+            });
+        }
+        if (isCustomMenuItem(mi)) {
+            const { portal: iconPortal, mount: mountIcon, unmount: unmountIcon } = customMenuItemLabelIconsPortals.find((p)=>p.id === index);
+            const menuItem = {
+                label: mi.label,
+                mountIcon,
+                unmountIcon
+            };
+            if ("onClick" in mi) {
+                menuItem.onClick = mi.onClick;
+            } else if ("open" in mi) {
+                menuItem.open = mi.open;
+            }
+            customMenuItems.push(menuItem);
+            customMenuItemsPortals.push(iconPortal);
+        }
+        if (isExternalLink2(mi)) {
+            const { portal: iconPortal, mount: mountIcon, unmount: unmountIcon } = customLinkLabelIconsPortals.find((p)=>p.id === index);
+            customMenuItems.push({
+                label: mi.label,
+                href: mi.href,
+                mountIcon,
+                unmountIcon
+            });
+            customMenuItemsPortals.push(iconPortal);
+        }
+    });
+    return {
+        customMenuItems,
+        customMenuItemsPortals
+    };
+};
+var isReorderItem2 = (childProps, validItems)=>{
+    const { children, label, onClick, labelIcon } = childProps;
+    return !children && !onClick && !labelIcon && validItems.some((v)=>v === label);
+};
+var isCustomMenuItem = (childProps)=>{
+    const { label, labelIcon, onClick, open } = childProps;
+    return !!labelIcon && !!label && (typeof onClick === "function" || typeof open === "string");
+};
+var isExternalLink2 = (childProps)=>{
+    const { label, href, labelIcon } = childProps;
+    return !!href && !!labelIcon && !!label;
+};
+;
+var createAwaitableMutationObserver = (globalOptions)=>{
+    const isReady = globalOptions == null ? void 0 : globalOptions.isReady;
+    return (options)=>new Promise((resolve, reject)=>{
+            const { root = document == null ? void 0 : document.body, selector, timeout = 0 } = options;
+            if (!root) {
+                reject(new Error("No root element provided"));
+                return;
+            }
+            let elementToWatch = root;
+            if (selector) {
+                elementToWatch = root == null ? void 0 : root.querySelector(selector);
+            }
+            if (isReady(elementToWatch, selector)) {
+                resolve();
+                return;
+            }
+            const observer = new MutationObserver((mutationsList)=>{
+                for (const mutation of mutationsList){
+                    if (!elementToWatch && selector) {
+                        elementToWatch = root == null ? void 0 : root.querySelector(selector);
+                    }
+                    if (globalOptions.childList && mutation.type === "childList" || globalOptions.attributes && mutation.type === "attributes") {
+                        if (isReady(elementToWatch, selector)) {
+                            observer.disconnect();
+                            resolve();
+                            return;
+                        }
+                    }
+                }
+            });
+            observer.observe(root, globalOptions);
+            if (timeout > 0) {
+                setTimeout(()=>{
+                    observer.disconnect();
+                    reject(new Error(`Timeout waiting for ${selector}`));
+                }, timeout);
+            }
+        });
+};
+var waitForElementChildren = createAwaitableMutationObserver({
+    childList: true,
+    subtree: true,
+    isReady: (el, selector)=>{
+        var _a;
+        return !!(el == null ? void 0 : el.childElementCount) && ((_a = el == null ? void 0 : el.matches) == null ? void 0 : _a.call(el, selector)) && el.childElementCount > 0;
+    }
+});
+function useWaitForComponentMount(component, options) {
+    const watcherRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])();
+    const [status, setStatus] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("rendering");
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (!component) {
+            throw new Error("Clerk: no component name provided, unable to detect mount.");
+        }
+        if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+        ;
+    }, [
+        component,
+        options == null ? void 0 : options.selector
+    ]);
+    return status;
+}
+;
+;
+;
+var isMountProps = (props)=>{
+    return "mount" in props;
+};
+var isOpenProps = (props)=>{
+    return "open" in props;
+};
+var stripMenuItemIconHandlers = (menuItems)=>{
+    return menuItems == null ? void 0 : menuItems.map(({ mountIcon, unmountIcon, ...rest })=>rest);
+};
+var ClerkHostRenderer = class extends __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].PureComponent {
+    constructor(){
+        super(...arguments);
+        this.rootRef = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createRef();
+    }
+    componentDidUpdate(_prevProps) {
+        var _a, _b, _c, _d;
+        if (!isMountProps(_prevProps) || !isMountProps(this.props)) {
+            return;
+        }
+        const prevProps = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$object$2d$Be3MMNTQ$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["without"])(_prevProps.props, "customPages", "customMenuItems", "children");
+        const newProps = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$object$2d$Be3MMNTQ$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["without"])(this.props.props, "customPages", "customMenuItems", "children");
+        const customPagesChanged = ((_a = prevProps.customPages) == null ? void 0 : _a.length) !== ((_b = newProps.customPages) == null ? void 0 : _b.length);
+        const customMenuItemsChanged = ((_c = prevProps.customMenuItems) == null ? void 0 : _c.length) !== ((_d = newProps.customMenuItems) == null ? void 0 : _d.length);
+        const prevMenuItemsWithoutHandlers = stripMenuItemIconHandlers(_prevProps.props.customMenuItems);
+        const newMenuItemsWithoutHandlers = stripMenuItemIconHandlers(this.props.props.customMenuItems);
+        if (!(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$react$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isDeeplyEqual"])(prevProps, newProps) || !(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$react$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isDeeplyEqual"])(prevMenuItemsWithoutHandlers, newMenuItemsWithoutHandlers) || customPagesChanged || customMenuItemsChanged) {
+            if (this.rootRef.current) {
+                this.props.updateProps({
+                    node: this.rootRef.current,
+                    props: this.props.props
+                });
+            }
+        }
+    }
+    componentDidMount() {
+        if (this.rootRef.current) {
+            if (isMountProps(this.props)) {
+                this.props.mount(this.rootRef.current, this.props.props);
+            }
+            if (isOpenProps(this.props)) {
+                this.props.open(this.props.props);
+            }
+        }
+    }
+    componentWillUnmount() {
+        if (this.rootRef.current) {
+            if (isMountProps(this.props)) {
+                this.props.unmount(this.rootRef.current);
+            }
+            if (isOpenProps(this.props)) {
+                this.props.close();
+            }
+        }
+    }
+    render() {
+        const { hideRootHtmlElement = false } = this.props;
+        const rootAttributes = {
+            ref: this.rootRef,
+            ...this.props.rootProps,
+            ...this.props.component && {
+                "data-clerk-component": this.props.component
+            }
+        };
+        return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, !hideRootHtmlElement && /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement("div", {
+            ...rootAttributes
+        }), this.props.children);
+    }
+};
+// src/components/uiComponents.tsx
+var CustomPortalsRenderer = (props)=>{
+    var _a, _b;
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, (_a = props == null ? void 0 : props.customPagesPortals) == null ? void 0 : _a.map((portal, index)=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createElement"])(portal, {
+            key: index
+        })), (_b = props == null ? void 0 : props.customMenuItemsPortals) == null ? void 0 : _b.map((portal, index)=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createElement"])(portal, {
+            key: index
+        })));
+};
+var SignIn = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, component, fallback, ...props })=>{
+    const mountingStatus = useWaitForComponentMount(component);
+    const shouldShowFallback = mountingStatus === "rendering" || !clerk.loaded;
+    const rendererRootProps = {
+        ...shouldShowFallback && fallback && {
+            style: {
+                display: "none"
+            }
+        }
+    };
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, shouldShowFallback && fallback, clerk.loaded && /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(ClerkHostRenderer, {
+        component,
+        mount: clerk.mountSignIn,
+        unmount: clerk.unmountSignIn,
+        updateProps: clerk.__unstable__updateProps,
+        props,
+        rootProps: rendererRootProps
+    }));
+}, {
+    component: "SignIn",
+    renderWhileLoading: true
+});
+var SignUp = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, component, fallback, ...props })=>{
+    const mountingStatus = useWaitForComponentMount(component);
+    const shouldShowFallback = mountingStatus === "rendering" || !clerk.loaded;
+    const rendererRootProps = {
+        ...shouldShowFallback && fallback && {
+            style: {
+                display: "none"
+            }
+        }
+    };
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, shouldShowFallback && fallback, clerk.loaded && /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(ClerkHostRenderer, {
+        component,
+        mount: clerk.mountSignUp,
+        unmount: clerk.unmountSignUp,
+        updateProps: clerk.__unstable__updateProps,
+        props,
+        rootProps: rendererRootProps
+    }));
+}, {
+    component: "SignUp",
+    renderWhileLoading: true
+});
+function UserProfilePage({ children }) {
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$utils$2d$BjdCqECo$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["logErrorInDevMode"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["userProfilePageRenderedError"]);
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, children);
+}
+function UserProfileLink({ children }) {
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$utils$2d$BjdCqECo$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["logErrorInDevMode"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["userProfileLinkRenderedError"]);
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, children);
+}
+var _UserProfile = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, component, fallback, ...props })=>{
+    const mountingStatus = useWaitForComponentMount(component);
+    const shouldShowFallback = mountingStatus === "rendering" || !clerk.loaded;
+    const rendererRootProps = {
+        ...shouldShowFallback && fallback && {
+            style: {
+                display: "none"
+            }
+        }
+    };
+    const { customPages, customPagesPortals } = useUserProfileCustomPages(props.children);
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, shouldShowFallback && fallback, /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(ClerkHostRenderer, {
+        component,
+        mount: clerk.mountUserProfile,
+        unmount: clerk.unmountUserProfile,
+        updateProps: clerk.__unstable__updateProps,
+        props: {
+            ...props,
+            customPages
+        },
+        rootProps: rendererRootProps
+    }, /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(CustomPortalsRenderer, {
+        customPagesPortals
+    })));
+}, {
+    component: "UserProfile",
+    renderWhileLoading: true
+});
+var UserProfile = Object.assign(_UserProfile, {
+    Page: UserProfilePage,
+    Link: UserProfileLink
+});
+var UserButtonContext = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createContext"])({
+    mount: ()=>{},
+    unmount: ()=>{},
+    updateProps: ()=>{}
+});
+var _UserButton = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, component, fallback, ...props })=>{
+    const mountingStatus = useWaitForComponentMount(component);
+    const shouldShowFallback = mountingStatus === "rendering" || !clerk.loaded;
+    const rendererRootProps = {
+        ...shouldShowFallback && fallback && {
+            style: {
+                display: "none"
+            }
+        }
+    };
+    const { customPages, customPagesPortals } = useUserProfileCustomPages(props.children, {
+        allowForAnyChildren: !!props.__experimental_asProvider
+    });
+    const userProfileProps = {
+        ...props.userProfileProps,
+        customPages
+    };
+    const { customMenuItems, customMenuItemsPortals } = useUserButtonCustomMenuItems(props.children, {
+        allowForAnyChildren: !!props.__experimental_asProvider
+    });
+    const sanitizedChildren = useSanitizedChildren(props.children);
+    const passableProps = {
+        mount: clerk.mountUserButton,
+        unmount: clerk.unmountUserButton,
+        updateProps: clerk.__unstable__updateProps,
+        props: {
+            ...props,
+            userProfileProps,
+            customMenuItems
+        }
+    };
+    const portalProps = {
+        customPagesPortals,
+        customMenuItemsPortals
+    };
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(UserButtonContext.Provider, {
+        value: passableProps
+    }, shouldShowFallback && fallback, clerk.loaded && /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(ClerkHostRenderer, {
+        component,
+        ...passableProps,
+        hideRootHtmlElement: !!props.__experimental_asProvider,
+        rootProps: rendererRootProps
+    }, props.__experimental_asProvider ? sanitizedChildren : null, /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(CustomPortalsRenderer, {
+        ...portalProps
+    })));
+}, {
+    component: "UserButton",
+    renderWhileLoading: true
+});
+function MenuItems({ children }) {
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$utils$2d$BjdCqECo$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["logErrorInDevMode"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["userButtonMenuItemsRenderedError"]);
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, children);
+}
+function MenuAction({ children }) {
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$utils$2d$BjdCqECo$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["logErrorInDevMode"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["userButtonMenuActionRenderedError"]);
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, children);
+}
+function MenuLink({ children }) {
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$utils$2d$BjdCqECo$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["logErrorInDevMode"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["userButtonMenuLinkRenderedError"]);
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, children);
+}
+function UserButtonOutlet(outletProps) {
+    const providerProps = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useContext"])(UserButtonContext);
+    const portalProps = {
+        ...providerProps,
+        props: {
+            ...providerProps.props,
+            ...outletProps
+        }
+    };
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(ClerkHostRenderer, {
+        ...portalProps
+    });
+}
+var UserButton = Object.assign(_UserButton, {
+    UserProfilePage,
+    UserProfileLink,
+    MenuItems,
+    Action: MenuAction,
+    Link: MenuLink,
+    __experimental_Outlet: UserButtonOutlet
+});
+function OrganizationProfilePage({ children }) {
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$utils$2d$BjdCqECo$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["logErrorInDevMode"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["organizationProfilePageRenderedError"]);
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, children);
+}
+function OrganizationProfileLink({ children }) {
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$utils$2d$BjdCqECo$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["logErrorInDevMode"])(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["organizationProfileLinkRenderedError"]);
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, children);
+}
+var _OrganizationProfile = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, component, fallback, ...props })=>{
+    const mountingStatus = useWaitForComponentMount(component);
+    const shouldShowFallback = mountingStatus === "rendering" || !clerk.loaded;
+    const rendererRootProps = {
+        ...shouldShowFallback && fallback && {
+            style: {
+                display: "none"
+            }
+        }
+    };
+    const { customPages, customPagesPortals } = useOrganizationProfileCustomPages(props.children);
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, shouldShowFallback && fallback, clerk.loaded && /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(ClerkHostRenderer, {
+        component,
+        mount: clerk.mountOrganizationProfile,
+        unmount: clerk.unmountOrganizationProfile,
+        updateProps: clerk.__unstable__updateProps,
+        props: {
+            ...props,
+            customPages
+        },
+        rootProps: rendererRootProps
+    }, /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(CustomPortalsRenderer, {
+        customPagesPortals
+    })));
+}, {
+    component: "OrganizationProfile",
+    renderWhileLoading: true
+});
+var OrganizationProfile = Object.assign(_OrganizationProfile, {
+    Page: OrganizationProfilePage,
+    Link: OrganizationProfileLink
+});
+var CreateOrganization = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, component, fallback, ...props })=>{
+    const mountingStatus = useWaitForComponentMount(component);
+    const shouldShowFallback = mountingStatus === "rendering" || !clerk.loaded;
+    const rendererRootProps = {
+        ...shouldShowFallback && fallback && {
+            style: {
+                display: "none"
+            }
+        }
+    };
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, shouldShowFallback && fallback, clerk.loaded && /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(ClerkHostRenderer, {
+        component,
+        mount: clerk.mountCreateOrganization,
+        unmount: clerk.unmountCreateOrganization,
+        updateProps: clerk.__unstable__updateProps,
+        props,
+        rootProps: rendererRootProps
+    }));
+}, {
+    component: "CreateOrganization",
+    renderWhileLoading: true
+});
+var OrganizationSwitcherContext = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createContext"])({
+    mount: ()=>{},
+    unmount: ()=>{},
+    updateProps: ()=>{}
+});
+var _OrganizationSwitcher = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, component, fallback, ...props })=>{
+    const mountingStatus = useWaitForComponentMount(component);
+    const shouldShowFallback = mountingStatus === "rendering" || !clerk.loaded;
+    const rendererRootProps = {
+        ...shouldShowFallback && fallback && {
+            style: {
+                display: "none"
+            }
+        }
+    };
+    const { customPages, customPagesPortals } = useOrganizationProfileCustomPages(props.children, {
+        allowForAnyChildren: !!props.__experimental_asProvider
+    });
+    const organizationProfileProps = {
+        ...props.organizationProfileProps,
+        customPages
+    };
+    const sanitizedChildren = useSanitizedChildren(props.children);
+    const passableProps = {
+        mount: clerk.mountOrganizationSwitcher,
+        unmount: clerk.unmountOrganizationSwitcher,
+        updateProps: clerk.__unstable__updateProps,
+        props: {
+            ...props,
+            organizationProfileProps
+        },
+        rootProps: rendererRootProps,
+        component
+    };
+    clerk.__experimental_prefetchOrganizationSwitcher();
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(OrganizationSwitcherContext.Provider, {
+        value: passableProps
+    }, /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, shouldShowFallback && fallback, clerk.loaded && /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(ClerkHostRenderer, {
+        ...passableProps,
+        hideRootHtmlElement: !!props.__experimental_asProvider
+    }, props.__experimental_asProvider ? sanitizedChildren : null, /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(CustomPortalsRenderer, {
+        customPagesPortals
+    }))));
+}, {
+    component: "OrganizationSwitcher",
+    renderWhileLoading: true
+});
+function OrganizationSwitcherOutlet(outletProps) {
+    const providerProps = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useContext"])(OrganizationSwitcherContext);
+    const portalProps = {
+        ...providerProps,
+        props: {
+            ...providerProps.props,
+            ...outletProps
+        }
+    };
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(ClerkHostRenderer, {
+        ...portalProps
+    });
+}
+var OrganizationSwitcher = Object.assign(_OrganizationSwitcher, {
+    OrganizationProfilePage,
+    OrganizationProfileLink,
+    __experimental_Outlet: OrganizationSwitcherOutlet
+});
+var OrganizationList = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, component, fallback, ...props })=>{
+    const mountingStatus = useWaitForComponentMount(component);
+    const shouldShowFallback = mountingStatus === "rendering" || !clerk.loaded;
+    const rendererRootProps = {
+        ...shouldShowFallback && fallback && {
+            style: {
+                display: "none"
+            }
+        }
+    };
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, shouldShowFallback && fallback, clerk.loaded && /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(ClerkHostRenderer, {
+        component,
+        mount: clerk.mountOrganizationList,
+        unmount: clerk.unmountOrganizationList,
+        updateProps: clerk.__unstable__updateProps,
+        props,
+        rootProps: rendererRootProps
+    }));
+}, {
+    component: "OrganizationList",
+    renderWhileLoading: true
+});
+var GoogleOneTap = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, component, fallback, ...props })=>{
+    const mountingStatus = useWaitForComponentMount(component);
+    const shouldShowFallback = mountingStatus === "rendering" || !clerk.loaded;
+    const rendererRootProps = {
+        ...shouldShowFallback && fallback && {
+            style: {
+                display: "none"
+            }
+        }
+    };
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, shouldShowFallback && fallback, clerk.loaded && /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(ClerkHostRenderer, {
+        component,
+        open: clerk.openGoogleOneTap,
+        close: clerk.closeGoogleOneTap,
+        updateProps: clerk.__unstable__updateProps,
+        props,
+        rootProps: rendererRootProps
+    }));
+}, {
+    component: "GoogleOneTap",
+    renderWhileLoading: true
+});
+var Waitlist = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, component, fallback, ...props })=>{
+    const mountingStatus = useWaitForComponentMount(component);
+    const shouldShowFallback = mountingStatus === "rendering" || !clerk.loaded;
+    const rendererRootProps = {
+        ...shouldShowFallback && fallback && {
+            style: {
+                display: "none"
+            }
+        }
+    };
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, shouldShowFallback && fallback, clerk.loaded && /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(ClerkHostRenderer, {
+        component,
+        mount: clerk.mountWaitlist,
+        unmount: clerk.unmountWaitlist,
+        updateProps: clerk.__unstable__updateProps,
+        props,
+        rootProps: rendererRootProps
+    }));
+}, {
+    component: "Waitlist",
+    renderWhileLoading: true
+});
+var PricingTable = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, component, fallback, ...props })=>{
+    const mountingStatus = useWaitForComponentMount(component, {
+        // This attribute is added to the PricingTable root element after we've successfully fetched the plans asynchronously.
+        selector: '[data-component-status="ready"]'
+    });
+    const shouldShowFallback = mountingStatus === "rendering" || !clerk.loaded;
+    const rendererRootProps = {
+        ...shouldShowFallback && fallback && {
+            style: {
+                display: "none"
+            }
+        }
+    };
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, shouldShowFallback && fallback, clerk.loaded && /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(ClerkHostRenderer, {
+        component,
+        mount: clerk.mountPricingTable,
+        unmount: clerk.unmountPricingTable,
+        updateProps: clerk.__unstable__updateProps,
+        props,
+        rootProps: rendererRootProps
+    }));
+}, {
+    component: "PricingTable",
+    renderWhileLoading: true
+});
+var APIKeys = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, component, fallback, ...props })=>{
+    const mountingStatus = useWaitForComponentMount(component);
+    const shouldShowFallback = mountingStatus === "rendering" || !clerk.loaded;
+    const rendererRootProps = {
+        ...shouldShowFallback && fallback && {
+            style: {
+                display: "none"
+            }
+        }
+    };
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, shouldShowFallback && fallback, clerk.loaded && /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(ClerkHostRenderer, {
+        component,
+        mount: clerk.mountAPIKeys,
+        unmount: clerk.unmountAPIKeys,
+        updateProps: clerk.__unstable__updateProps,
+        props,
+        rootProps: rendererRootProps
+    }));
+}, {
+    component: "ApiKeys",
+    renderWhileLoading: true
+});
+var UserAvatar = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, component, fallback, ...props })=>{
+    const mountingStatus = useWaitForComponentMount(component);
+    const shouldShowFallback = mountingStatus === "rendering" || !clerk.loaded;
+    const rendererRootProps = {
+        ...shouldShowFallback && fallback && {
+            style: {
+                display: "none"
+            }
+        }
+    };
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, shouldShowFallback && fallback, clerk.loaded && /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(ClerkHostRenderer, {
+        component,
+        mount: clerk.mountUserAvatar,
+        unmount: clerk.unmountUserAvatar,
+        updateProps: clerk.__unstable__updateProps,
+        props,
+        rootProps: rendererRootProps
+    }));
+}, {
+    component: "UserAvatar",
+    renderWhileLoading: true
+});
+var TaskChooseOrganization = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, component, fallback, ...props })=>{
+    const mountingStatus = useWaitForComponentMount(component);
+    const shouldShowFallback = mountingStatus === "rendering" || !clerk.loaded;
+    const rendererRootProps = {
+        ...shouldShowFallback && fallback && {
+            style: {
+                display: "none"
+            }
+        }
+    };
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, shouldShowFallback && fallback, clerk.loaded && /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(ClerkHostRenderer, {
+        component,
+        mount: clerk.mountTaskChooseOrganization,
+        unmount: clerk.unmountTaskChooseOrganization,
+        updateProps: clerk.__unstable__updateProps,
+        props,
+        rootProps: rendererRootProps
+    }));
+}, {
+    component: "TaskChooseOrganization",
+    renderWhileLoading: true
+});
+var TaskResetPassword = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, component, fallback, ...props })=>{
+    const mountingStatus = useWaitForComponentMount(component);
+    const shouldShowFallback = mountingStatus === "rendering" || !clerk.loaded;
+    const rendererRootProps = {
+        ...shouldShowFallback && fallback && {
+            style: {
+                display: "none"
+            }
+        }
+    };
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].Fragment, null, shouldShowFallback && fallback, clerk.loaded && /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(ClerkHostRenderer, {
+        component,
+        mount: clerk.mountTaskResetPassword,
+        unmount: clerk.unmountTaskResetPassword,
+        updateProps: clerk.__unstable__updateProps,
+        props,
+        rootProps: rendererRootProps
+    }));
+}, {
+    component: "TaskResetPassword",
+    renderWhileLoading: true
+});
+;
+ //# sourceMappingURL=chunk-6WD75OPE.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/clerk-react/dist/chunk-OANWQR3B.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "__privateAdd",
+    ()=>__privateAdd,
+    "__privateGet",
+    ()=>__privateGet,
+    "__privateMethod",
+    ()=>__privateMethod,
+    "__privateSet",
+    ()=>__privateSet
+]);
+var __typeError = (msg)=>{
+    throw TypeError(msg);
+};
+var __accessCheck = (obj, member, msg)=>member.has(obj) || __typeError("Cannot " + msg);
+var __privateGet = (obj, member, getter)=>(__accessCheck(obj, member, "read from private field"), getter ? getter.call(obj) : member.get(obj));
+var __privateAdd = (obj, member, value)=>member.has(obj) ? __typeError("Cannot add the same private member more than once") : member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
+var __privateSet = (obj, member, value, setter)=>(__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
+var __privateMethod = (obj, member, method)=>(__accessCheck(obj, member, "access private method"), method);
+;
+ //# sourceMappingURL=chunk-OANWQR3B.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/retry-DAlTROH9.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "retry",
+    ()=>retry
+]);
+//#region src/retry.ts
+const defaultOptions = {
+    initialDelay: 125,
+    maxDelayBetweenRetries: 0,
+    factor: 2,
+    shouldRetry: (_, iteration)=>iteration < 5,
+    retryImmediately: false,
+    jitter: true
+};
+const RETRY_IMMEDIATELY_DELAY = 100;
+const sleep = async (ms)=>new Promise((s)=>setTimeout(s, ms));
+const applyJitter = (delay, jitter)=>{
+    return jitter ? delay * (1 + Math.random()) : delay;
+};
+const createExponentialDelayAsyncFn = (opts)=>{
+    let timesCalled = 0;
+    const calculateDelayInMs = ()=>{
+        const constant = opts.initialDelay;
+        const base = opts.factor;
+        let delay = constant * Math.pow(base, timesCalled);
+        delay = applyJitter(delay, opts.jitter);
+        return Math.min(opts.maxDelayBetweenRetries || delay, delay);
+    };
+    return async ()=>{
+        await sleep(calculateDelayInMs());
+        timesCalled++;
+    };
+};
+/**
+* Retries a callback until it succeeds or the shouldRetry function returns false.
+* See {@link RetryOptions} for the available options.
+*/ const retry = async (callback, options = {})=>{
+    let iterations = 0;
+    const { shouldRetry, initialDelay, maxDelayBetweenRetries, factor, retryImmediately, jitter, onBeforeRetry } = {
+        ...defaultOptions,
+        ...options
+    };
+    const delay = createExponentialDelayAsyncFn({
+        initialDelay,
+        maxDelayBetweenRetries,
+        factor,
+        jitter
+    });
+    while(true)try {
+        return await callback();
+    } catch (e) {
+        iterations++;
+        if (!shouldRetry(e, iterations)) throw e;
+        if (onBeforeRetry) await onBeforeRetry(iterations);
+        if (retryImmediately && iterations === 1) await sleep(applyJitter(RETRY_IMMEDIATELY_DELAY, jitter));
+        else await delay();
+    }
+};
+;
+ //# sourceMappingURL=retry-DAlTROH9.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/loadScript-t1vaIfy5.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "loadScript",
+    ()=>loadScript
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$retry$2d$DAlTROH9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/retry-DAlTROH9.mjs [app-ssr] (ecmascript)");
+;
+//#region src/loadScript.ts
+const NO_DOCUMENT_ERROR = "loadScript cannot be called when document does not exist";
+const NO_SRC_ERROR = "loadScript cannot be called without a src";
+async function loadScript(src = "", opts) {
+    const { async, defer, beforeLoad, crossOrigin, nonce } = opts || {};
+    const load = ()=>{
+        return new Promise((resolve, reject)=>{
+            if (!src) reject(new Error(NO_SRC_ERROR));
+            if (!document || !document.body) reject(new Error(NO_DOCUMENT_ERROR));
+            const script = document.createElement("script");
+            if (crossOrigin) script.setAttribute("crossorigin", crossOrigin);
+            script.async = async || false;
+            script.defer = defer || false;
+            script.addEventListener("load", ()=>{
+                script.remove();
+                resolve(script);
+            });
+            script.addEventListener("error", (event)=>{
+                script.remove();
+                reject(event.error ?? /* @__PURE__ */ new Error(`failed to load script: ${src}`));
+            });
+            script.src = src;
+            script.nonce = nonce;
+            beforeLoad?.(script);
+            document.body.appendChild(script);
+        });
+    };
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$retry$2d$DAlTROH9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["retry"])(load, {
+        shouldRetry: (_, iterations)=>iterations <= 5
+    });
+}
+;
+ //# sourceMappingURL=loadScript-t1vaIfy5.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/proxy-Bq8EHApG.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "isHttpOrHttps",
+    ()=>isHttpOrHttps,
+    "isProxyUrlRelative",
+    ()=>isProxyUrlRelative,
+    "isValidProxyUrl",
+    ()=>isValidProxyUrl,
+    "proxyUrlToAbsoluteURL",
+    ()=>proxyUrlToAbsoluteURL
+]);
+//#region src/proxy.ts
+function isValidProxyUrl(key) {
+    if (!key) return true;
+    return isHttpOrHttps(key) || isProxyUrlRelative(key);
+}
+function isHttpOrHttps(key) {
+    return /^http(s)?:\/\//.test(key || "");
+}
+function isProxyUrlRelative(key) {
+    return key.startsWith("/");
+}
+function proxyUrlToAbsoluteURL(url) {
+    if (!url) return "";
+    return isProxyUrlRelative(url) ? new URL(url, window.location.origin).toString() : url;
+}
+;
+ //# sourceMappingURL=proxy-Bq8EHApG.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/url-Cdy8w8vK.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "addClerkPrefix",
+    ()=>addClerkPrefix,
+    "cleanDoubleSlashes",
+    ()=>cleanDoubleSlashes,
+    "getClerkJsMajorVersionOrTag",
+    ()=>getClerkJsMajorVersionOrTag,
+    "getScriptUrl",
+    ()=>getScriptUrl,
+    "hasLeadingSlash",
+    ()=>hasLeadingSlash,
+    "hasTrailingSlash",
+    ()=>hasTrailingSlash,
+    "isAbsoluteUrl",
+    ()=>isAbsoluteUrl,
+    "isCurrentDevAccountPortalOrigin",
+    ()=>isCurrentDevAccountPortalOrigin,
+    "isLegacyDevAccountPortalOrigin",
+    ()=>isLegacyDevAccountPortalOrigin,
+    "isNonEmptyURL",
+    ()=>isNonEmptyURL,
+    "joinURL",
+    ()=>joinURL,
+    "parseSearchParams",
+    ()=>parseSearchParams,
+    "stripScheme",
+    ()=>stripScheme,
+    "withLeadingSlash",
+    ()=>withLeadingSlash,
+    "withTrailingSlash",
+    ()=>withTrailingSlash,
+    "withoutLeadingSlash",
+    ()=>withoutLeadingSlash,
+    "withoutTrailingSlash",
+    ()=>withoutTrailingSlash
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$constants$2d$ByUssRbE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/constants-ByUssRbE.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$instance$2d$Cze6Nv61$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/instance-Cze6Nv61.mjs [app-ssr] (ecmascript)");
+;
+;
+//#region src/url.ts
+function parseSearchParams(queryString = "") {
+    if (queryString.startsWith("?")) queryString = queryString.slice(1);
+    return new URLSearchParams(queryString);
+}
+function stripScheme(url = "") {
+    return (url || "").replace(/^.+:\/\//, "");
+}
+function addClerkPrefix(str) {
+    if (!str) return "";
+    let regex;
+    if (str.match(/^(clerk\.)+\w*$/)) regex = /(clerk\.)*(?=clerk\.)/;
+    else if (str.match(/\.clerk.accounts/)) return str;
+    else regex = /^(clerk\.)*/gi;
+    return `clerk.${str.replace(regex, "")}`;
+}
+/**
+*
+* Retrieve the clerk-js major tag using the major version from the pkgVersion
+* param or use the frontendApi to determine if the canary tag should be used.
+* The default tag is `latest`.
+*/ const getClerkJsMajorVersionOrTag = (frontendApi, version)=>{
+    if (!version && (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$instance$2d$Cze6Nv61$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isStaging"])(frontendApi)) return "canary";
+    if (!version) return "latest";
+    return version.split(".")[0] || "latest";
+};
+/**
+*
+* Retrieve the clerk-js script url from the frontendApi and the major tag
+* using the {@link getClerkJsMajorVersionOrTag} or a provided clerkJSVersion tag.
+*/ const getScriptUrl = (frontendApi, { clerkJSVersion })=>{
+    const noSchemeFrontendApi = frontendApi.replace(/http(s)?:\/\//, "");
+    const major = getClerkJsMajorVersionOrTag(frontendApi, clerkJSVersion);
+    return `https://${noSchemeFrontendApi}/npm/@clerk/clerk-js@${clerkJSVersion || major}/dist/clerk.browser.js`;
+};
+function isLegacyDevAccountPortalOrigin(host) {
+    return __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$constants$2d$ByUssRbE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["LEGACY_DEV_INSTANCE_SUFFIXES"].some((legacyDevSuffix)=>{
+        return host.startsWith("accounts.") && host.endsWith(legacyDevSuffix);
+    });
+}
+function isCurrentDevAccountPortalOrigin(host) {
+    return __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$constants$2d$ByUssRbE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CURRENT_DEV_INSTANCE_SUFFIXES"].some((currentDevSuffix)=>{
+        return host.endsWith(currentDevSuffix) && !host.endsWith(".clerk" + currentDevSuffix);
+    });
+}
+const TRAILING_SLASH_RE = /\/$|\/\?|\/#/;
+function hasTrailingSlash(input = "", respectQueryAndFragment) {
+    if (!respectQueryAndFragment) return input.endsWith("/");
+    return TRAILING_SLASH_RE.test(input);
+}
+function withTrailingSlash(input = "", respectQueryAndFragment) {
+    if (!respectQueryAndFragment) return input.endsWith("/") ? input : input + "/";
+    if (hasTrailingSlash(input, true)) return input || "/";
+    let path = input;
+    let fragment = "";
+    const fragmentIndex = input.indexOf("#");
+    if (fragmentIndex >= 0) {
+        path = input.slice(0, fragmentIndex);
+        fragment = input.slice(fragmentIndex);
+        if (!path) return fragment;
+    }
+    const [s0, ...s] = path.split("?");
+    return s0 + "/" + (s.length > 0 ? `?${s.join("?")}` : "") + fragment;
+}
+function withoutTrailingSlash(input = "", respectQueryAndFragment) {
+    if (!respectQueryAndFragment) return (hasTrailingSlash(input) ? input.slice(0, -1) : input) || "/";
+    if (!hasTrailingSlash(input, true)) return input || "/";
+    let path = input;
+    let fragment = "";
+    const fragmentIndex = input.indexOf("#");
+    if (fragmentIndex >= 0) {
+        path = input.slice(0, fragmentIndex);
+        fragment = input.slice(fragmentIndex);
+    }
+    const [s0, ...s] = path.split("?");
+    return (s0.slice(0, -1) || "/") + (s.length > 0 ? `?${s.join("?")}` : "") + fragment;
+}
+function hasLeadingSlash(input = "") {
+    return input.startsWith("/");
+}
+function withoutLeadingSlash(input = "") {
+    return (hasLeadingSlash(input) ? input.slice(1) : input) || "/";
+}
+function withLeadingSlash(input = "") {
+    return hasLeadingSlash(input) ? input : "/" + input;
+}
+function cleanDoubleSlashes(input = "") {
+    return input.split("://").map((string_)=>string_.replace(/\/{2,}/g, "/")).join("://");
+}
+function isNonEmptyURL(url) {
+    return url && url !== "/";
+}
+const JOIN_LEADING_SLASH_RE = /^\.?\//;
+function joinURL(base, ...input) {
+    let url = base || "";
+    for (const segment of input.filter((url$1)=>isNonEmptyURL(url$1)))if (url) {
+        const _segment = segment.replace(JOIN_LEADING_SLASH_RE, "");
+        url = withTrailingSlash(url) + _segment;
+    } else url = segment;
+    return url;
+}
+const ABSOLUTE_URL_REGEX = /^[a-zA-Z][a-zA-Z\d+\-.]*?:/;
+const isAbsoluteUrl = (url)=>ABSOLUTE_URL_REGEX.test(url);
+;
+ //# sourceMappingURL=url-Cdy8w8vK.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/versionSelector-BVy9SBJB.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "getMajorVersion",
+    ()=>getMajorVersion,
+    "versionSelector",
+    ()=>versionSelector
+]);
+//#region src/versionSelector.ts
+/**
+* This version selector is a bit complicated, so here is the flow:
+* 1. Use the clerkJSVersion prop on the provider
+* 2. Use the exact `@clerk/clerk-js` version if it is a `@snapshot` prerelease
+* 3. Use the prerelease tag of `@clerk/clerk-js` or the packageVersion provided
+* 4. Fallback to the major version of `@clerk/clerk-js` or the packageVersion provided
+* @param clerkJSVersion - The optional clerkJSVersion prop on the provider
+* @param packageVersion - The version of `@clerk/clerk-js` that will be used if an explicit version is not provided
+* @returns The npm tag, version or major version to use
+*/ const versionSelector = (clerkJSVersion, packageVersion = "5.120.0")=>{
+    if (clerkJSVersion) return clerkJSVersion;
+    const prereleaseTag = getPrereleaseTag(packageVersion);
+    if (prereleaseTag) {
+        if (prereleaseTag === "snapshot") return "5.120.0";
+        return prereleaseTag;
+    }
+    return getMajorVersion(packageVersion);
+};
+const getPrereleaseTag = (packageVersion)=>packageVersion.trim().replace(/^v/, "").match(/-(.+?)(\.|$)/)?.[1];
+const getMajorVersion = (packageVersion)=>packageVersion.trim().replace(/^v/, "").split(".")[0];
+;
+ //# sourceMappingURL=versionSelector-BVy9SBJB.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/loadClerkJsScript-B-3zV0fK.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "buildClerkJsScriptAttributes",
+    ()=>buildClerkJsScriptAttributes,
+    "clerkJsScriptUrl",
+    ()=>clerkJsScriptUrl,
+    "loadClerkJsScript",
+    ()=>loadClerkJsScript,
+    "setClerkJsLoadingErrorPackageName",
+    ()=>setClerkJsLoadingErrorPackageName
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$keys$2d$YNv6yjKk$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/keys-YNv6yjKk.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$error$2d$Dl9xmUf3$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/error-Dl9xmUf3.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$loadScript$2d$t1vaIfy5$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/loadScript-t1vaIfy5.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$proxy$2d$Bq8EHApG$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/proxy-Bq8EHApG.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$url$2d$Cdy8w8vK$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/url-Cdy8w8vK.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$versionSelector$2d$BVy9SBJB$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/versionSelector-BVy9SBJB.mjs [app-ssr] (ecmascript)");
+;
+;
+;
+;
+;
+;
+//#region src/loadClerkJsScript.ts
+const ERROR_CODE = "failed_to_load_clerk_js";
+const ERROR_CODE_TIMEOUT = "failed_to_load_clerk_js_timeout";
+const FAILED_TO_LOAD_ERROR = "Failed to load Clerk";
+const { isDevOrStagingUrl } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$keys$2d$YNv6yjKk$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createDevOrStagingUrlCache"])();
+const errorThrower = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$error$2d$Dl9xmUf3$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["buildErrorThrower"])({
+    packageName: "@clerk/shared"
+});
+/**
+* Sets the package name for error messages during ClerkJS script loading.
+*
+* @param packageName - The name of the package to use in error messages (e.g., '@clerk/clerk-react').
+* @example
+* ```typescript
+* setClerkJsLoadingErrorPackageName('@clerk/clerk-react');
+* ```
+*/ function setClerkJsLoadingErrorPackageName(packageName) {
+    errorThrower.setPackageName({
+        packageName
+    });
+}
+/**
+* Validates that window.Clerk exists and is properly initialized.
+* This ensures we don't have false positives where the script loads but Clerk is malformed.
+*
+* @returns `true` if window.Clerk exists and has the expected structure with a load method.
+*/ function isClerkProperlyLoaded() {
+    if ("TURBOPACK compile-time truthy", 1) return false;
+    //TURBOPACK unreachable
+    ;
+    const clerk = undefined;
+}
+/**
+* Checks if an existing script has a request error using Performance API.
+*
+* @param scriptUrl - The URL of the script to check.
+* @returns True if the script has failed to load due to a network/HTTP error.
+*/ function hasScriptRequestError(scriptUrl) {
+    if ("TURBOPACK compile-time truthy", 1) return false;
+    //TURBOPACK unreachable
+    ;
+    const entries = undefined;
+    const scriptEntry = undefined;
+}
+/**
+* Waits for Clerk to be properly loaded with a timeout mechanism.
+* Uses polling to check if Clerk becomes available within the specified timeout.
+*
+* @param timeoutMs - Maximum time to wait in milliseconds.
+* @param existingScript - The existing script element to wait for. Optional, for existing scripts.
+* @returns Promise that resolves with null if Clerk loads successfully, or rejects with an error if timeout is reached.
+*/ function waitForClerkWithTimeout(timeoutMs, existingScript) {
+    return new Promise((resolve, reject)=>{
+        let resolved = false;
+        const cleanup = (timeoutId$1, pollInterval$1)=>{
+            clearTimeout(timeoutId$1);
+            clearInterval(pollInterval$1);
+        };
+        existingScript?.addEventListener("error", ()=>{
+            cleanup(timeoutId, pollInterval);
+            reject(new __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$error$2d$Dl9xmUf3$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ClerkRuntimeError"](FAILED_TO_LOAD_ERROR, {
+                code: ERROR_CODE
+            }));
+        });
+        const checkAndResolve = ()=>{
+            if (resolved) return;
+            if (isClerkProperlyLoaded()) {
+                resolved = true;
+                cleanup(timeoutId, pollInterval);
+                resolve(null);
+            }
+        };
+        const handleTimeout = ()=>{
+            if (resolved) return;
+            resolved = true;
+            cleanup(timeoutId, pollInterval);
+            if (!isClerkProperlyLoaded()) reject(new __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$error$2d$Dl9xmUf3$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ClerkRuntimeError"](FAILED_TO_LOAD_ERROR, {
+                code: ERROR_CODE_TIMEOUT
+            }));
+            else resolve(null);
+        };
+        const timeoutId = setTimeout(handleTimeout, timeoutMs);
+        checkAndResolve();
+        const pollInterval = setInterval(()=>{
+            if (resolved) {
+                clearInterval(pollInterval);
+                return;
+            }
+            checkAndResolve();
+        }, 100);
+    });
+}
+/**
+* Hotloads the Clerk JS script with robust failure detection and retry logic.
+*
+* For existing scripts:
+* - If no request error detected: waits for timeout, then retries with loadScript if timeout expires
+* - If request error detected: immediately retries with loadScript.
+*
+* For new scripts: uses loadScript which has built-in retry logic via the retry utility.
+*
+* @param opts - The options used to build the Clerk JS script URL and load the script.
+*               Must include a `publishableKey` if no existing script is found.
+* @returns Promise that resolves with null if Clerk loads successfully, or rejects with an error.
+*
+* @example
+* ```typescript
+* try {
+*   await loadClerkJsScript({ publishableKey: 'pk_test_...' });
+*   console.log('Clerk loaded successfully');
+* } catch (error) {
+*   console.error('Failed to load Clerk:', error.message);
+* }
+* ```
+*/ const loadClerkJsScript = async (opts)=>{
+    const timeout = opts?.scriptLoadTimeout ?? 15e3;
+    if (isClerkProperlyLoaded()) return null;
+    if (!opts?.publishableKey) {
+        errorThrower.throwMissingPublishableKeyError();
+        return null;
+    }
+    const scriptUrl = clerkJsScriptUrl(opts);
+    const existingScript = document.querySelector("script[data-clerk-js-script]");
+    if (existingScript) if (hasScriptRequestError(scriptUrl)) existingScript.remove();
+    else try {
+        await waitForClerkWithTimeout(timeout, existingScript);
+        return null;
+    } catch  {
+        existingScript.remove();
+    }
+    const loadPromise = waitForClerkWithTimeout(timeout);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$loadScript$2d$t1vaIfy5$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["loadScript"])(scriptUrl, {
+        async: true,
+        crossOrigin: "anonymous",
+        nonce: opts.nonce,
+        beforeLoad: applyClerkJsScriptAttributes(opts)
+    }).catch((error)=>{
+        throw new __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$error$2d$Dl9xmUf3$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ClerkRuntimeError"](FAILED_TO_LOAD_ERROR + (error.message ? `, ${error.message}` : ""), {
+            code: ERROR_CODE,
+            cause: error
+        });
+    });
+    return loadPromise;
+};
+/**
+* Generates a Clerk JS script URL based on the provided options.
+*
+* @param opts - The options to use when building the Clerk JS script URL.
+* @returns The complete URL to the Clerk JS script.
+*
+* @example
+* ```typescript
+* const url = clerkJsScriptUrl({ publishableKey: 'pk_test_...' });
+* // Returns: "https://example.clerk.accounts.dev/npm/@clerk/clerk-js@5/dist/clerk.browser.js"
+* ```
+*/ const clerkJsScriptUrl = (opts)=>{
+    const { clerkJSUrl, clerkJSVariant, clerkJSVersion, proxyUrl, domain, publishableKey } = opts;
+    if (clerkJSUrl) return clerkJSUrl;
+    let scriptHost = "";
+    if (!!proxyUrl && (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$proxy$2d$Bq8EHApG$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isValidProxyUrl"])(proxyUrl)) scriptHost = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$proxy$2d$Bq8EHApG$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["proxyUrlToAbsoluteURL"])(proxyUrl).replace(/http(s)?:\/\//, "");
+    else if (domain && !isDevOrStagingUrl((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$keys$2d$YNv6yjKk$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["parsePublishableKey"])(publishableKey)?.frontendApi || "")) scriptHost = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$url$2d$Cdy8w8vK$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["addClerkPrefix"])(domain);
+    else scriptHost = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$keys$2d$YNv6yjKk$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["parsePublishableKey"])(publishableKey)?.frontendApi || "";
+    const variant = clerkJSVariant ? `${clerkJSVariant.replace(/\.+$/, "")}.` : "";
+    const version = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$versionSelector$2d$BVy9SBJB$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["versionSelector"])(clerkJSVersion);
+    return `https://${scriptHost}/npm/@clerk/clerk-js@${version}/dist/clerk.${variant}browser.js`;
+};
+/**
+* Builds an object of Clerk JS script attributes based on the provided options.
+*
+* @param options - The options containing the values for script attributes.
+* @returns An object containing data attributes to be applied to the script element.
+*/ const buildClerkJsScriptAttributes = (options)=>{
+    const obj = {};
+    if (options.publishableKey) obj["data-clerk-publishable-key"] = options.publishableKey;
+    if (options.proxyUrl) obj["data-clerk-proxy-url"] = options.proxyUrl;
+    if (options.domain) obj["data-clerk-domain"] = options.domain;
+    if (options.nonce) obj.nonce = options.nonce;
+    return obj;
+};
+/**
+* Returns a function that applies Clerk JS script attributes to a script element.
+*
+* @param options - The options containing the values for script attributes.
+* @returns A function that accepts a script element and applies the attributes to it.
+*/ const applyClerkJsScriptAttributes = (options)=>(script)=>{
+        const attributes = buildClerkJsScriptAttributes(options);
+        for(const attribute in attributes)script.setAttribute(attribute, attributes[attribute]);
+    };
+;
+ //# sourceMappingURL=loadClerkJsScript-B-3zV0fK.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/loadClerkJsScript.mjs [app-ssr] (ecmascript) <locals>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$constants$2d$ByUssRbE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/constants-ByUssRbE.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$isomorphicAtob$2d$DybBXGFR$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/isomorphicAtob-DybBXGFR.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$isomorphicBtoa$2d$Dr7WubZv$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/isomorphicBtoa-Dr7WubZv.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$keys$2d$YNv6yjKk$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/keys-YNv6yjKk.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$error$2d$Dl9xmUf3$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/error-Dl9xmUf3.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$instance$2d$Cze6Nv61$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/instance-Cze6Nv61.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$retry$2d$DAlTROH9$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/retry-DAlTROH9.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$loadScript$2d$t1vaIfy5$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/loadScript-t1vaIfy5.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$proxy$2d$Bq8EHApG$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/proxy-Bq8EHApG.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$url$2d$Cdy8w8vK$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/url-Cdy8w8vK.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$versionSelector$2d$BVy9SBJB$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/versionSelector-BVy9SBJB.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$loadClerkJsScript$2d$B$2d$3zV0fK$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/loadClerkJsScript-B-3zV0fK.mjs [app-ssr] (ecmascript)");
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/keys.mjs [app-ssr] (ecmascript) <locals>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$constants$2d$ByUssRbE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/constants-ByUssRbE.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$isomorphicAtob$2d$DybBXGFR$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/isomorphicAtob-DybBXGFR.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$isomorphicBtoa$2d$Dr7WubZv$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/isomorphicBtoa-Dr7WubZv.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$keys$2d$YNv6yjKk$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/keys-YNv6yjKk.mjs [app-ssr] (ecmascript)");
+;
+;
+;
+;
+;
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/deriveState-ChDqlleE.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "deriveState",
+    ()=>deriveState
+]);
+//#region src/deriveState.ts
+/**
+* Derives authentication state based on the current rendering context (SSR or client-side).
+*/ const deriveState = (clerkOperational, state, initialState)=>{
+    if (!clerkOperational && initialState) return deriveFromSsrInitialState(initialState);
+    return deriveFromClientSideState(state);
+};
+const deriveFromSsrInitialState = (initialState)=>{
+    const userId = initialState.userId;
+    const user = initialState.user;
+    const sessionId = initialState.sessionId;
+    const sessionStatus = initialState.sessionStatus;
+    const sessionClaims = initialState.sessionClaims;
+    return {
+        userId,
+        user,
+        sessionId,
+        session: initialState.session,
+        sessionStatus,
+        sessionClaims,
+        organization: initialState.organization,
+        orgId: initialState.orgId,
+        orgRole: initialState.orgRole,
+        orgPermissions: initialState.orgPermissions,
+        orgSlug: initialState.orgSlug,
+        actor: initialState.actor,
+        factorVerificationAge: initialState.factorVerificationAge
+    };
+};
+const deriveFromClientSideState = (state)=>{
+    const userId = state.user ? state.user.id : state.user;
+    const user = state.user;
+    const sessionId = state.session ? state.session.id : state.session;
+    const session = state.session;
+    const sessionStatus = state.session?.status;
+    const sessionClaims = state.session ? state.session.lastActiveToken?.jwt?.claims : null;
+    const factorVerificationAge = state.session ? state.session.factorVerificationAge : null;
+    const actor = session?.actor;
+    const organization = state.organization;
+    const orgId = state.organization ? state.organization.id : state.organization;
+    const orgSlug = organization?.slug;
+    const membership = organization ? user?.organizationMemberships?.find((om)=>om.organization.id === orgId) : organization;
+    const orgPermissions = membership ? membership.permissions : membership;
+    return {
+        userId,
+        user,
+        sessionId,
+        session,
+        sessionStatus,
+        sessionClaims,
+        organization,
+        orgId,
+        orgRole: membership ? membership.role : membership,
+        orgSlug,
+        orgPermissions,
+        actor,
+        factorVerificationAge
+    };
+};
+;
+ //# sourceMappingURL=deriveState-ChDqlleE.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/deriveState.mjs [app-ssr] (ecmascript) <locals>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$deriveState$2d$ChDqlleE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/deriveState-ChDqlleE.mjs [app-ssr] (ecmascript)");
+;
+;
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/browser-D5e8obql.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "inBrowser",
+    ()=>inBrowser,
+    "isBrowserOnline",
+    ()=>isBrowserOnline,
+    "isValidBrowser",
+    ()=>isValidBrowser,
+    "isValidBrowserOnline",
+    ()=>isValidBrowserOnline,
+    "userAgentIsRobot",
+    ()=>userAgentIsRobot
+]);
+//#region src/browser.ts
+/**
+* Checks if the window object is defined. You can also use this to check if something is happening on the client side.
+* @returns {boolean}
+*/ function inBrowser() {
+    return ("TURBOPACK compile-time value", "undefined") !== "undefined";
+}
+const botAgentRegex = new RegExp([
+    "bot",
+    "spider",
+    "crawl",
+    "APIs-Google",
+    "AdsBot",
+    "Googlebot",
+    "mediapartners",
+    "Google Favicon",
+    "FeedFetcher",
+    "Google-Read-Aloud",
+    "DuplexWeb-Google",
+    "googleweblight",
+    "bing",
+    "yandex",
+    "baidu",
+    "duckduck",
+    "yahoo",
+    "ecosia",
+    "ia_archiver",
+    "facebook",
+    "instagram",
+    "pinterest",
+    "reddit",
+    "slack",
+    "twitter",
+    "whatsapp",
+    "youtube",
+    "semrush"
+].join("|"), "i");
+/**
+* Checks if the user agent is a bot.
+* @param userAgent - Any user agent string
+* @returns {boolean}
+*/ function userAgentIsRobot(userAgent) {
+    return !userAgent ? false : botAgentRegex.test(userAgent);
+}
+/**
+* Checks if the current environment is a browser and the user agent is not a bot.
+* @returns {boolean}
+*/ function isValidBrowser() {
+    const navigator = inBrowser() ? "TURBOPACK unreachable" : null;
+    if ("TURBOPACK compile-time truthy", 1) return false;
+    //TURBOPACK unreachable
+    ;
+}
+/**
+* Checks if the current environment is a browser and if the navigator is online.
+* @returns {boolean}
+*/ function isBrowserOnline() {
+    const navigator = inBrowser() ? "TURBOPACK unreachable" : null;
+    if ("TURBOPACK compile-time truthy", 1) return false;
+    //TURBOPACK unreachable
+    ;
+    const isNavigatorOnline = undefined;
+}
+/**
+* Runs `isBrowserOnline` and `isValidBrowser` to check if the current environment is a valid browser and if the navigator is online.
+* @returns {boolean}
+*/ function isValidBrowserOnline() {
+    return isBrowserOnline() && isValidBrowser();
+}
+;
+ //# sourceMappingURL=browser-D5e8obql.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/browser.mjs [app-ssr] (ecmascript) <locals>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$browser$2d$D5e8obql$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/browser-D5e8obql.mjs [app-ssr] (ecmascript)");
+;
+;
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/eventBus-UpdW-1JB.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "createEventBus",
+    ()=>createEventBus
+]);
+//#region src/eventBus.ts
+/**
+* @internal
+*/ const _on = (eventToHandlersMap, latestPayloadMap, event, handler, opts)=>{
+    const { notify } = opts || {};
+    let handlers = eventToHandlersMap.get(event);
+    if (!handlers) {
+        handlers = [];
+        eventToHandlersMap.set(event, handlers);
+    }
+    handlers.push(handler);
+    if (notify && latestPayloadMap.has(event)) handler(latestPayloadMap.get(event));
+};
+/**
+* @internal
+*/ const _dispatch = (eventToHandlersMap, event, payload)=>(eventToHandlersMap.get(event) || []).map((h)=>h(payload));
+/**
+* @internal
+*/ const _off = (eventToHandlersMap, event, handler)=>{
+    const handlers = eventToHandlersMap.get(event);
+    if (handlers) if (handler) handlers.splice(handlers.indexOf(handler) >>> 0, 1);
+    else eventToHandlersMap.set(event, []);
+};
+/**
+* A ES6/2015 compatible 300 byte event bus
+*
+* Creates a strongly-typed event bus that enables publish/subscribe communication between components.
+*
+* @template Events - A record type that maps event names to their payload types
+* @returns An EventBus instance with the following methods:
+* - `on`: Subscribe to an event
+* - `onPreDispatch`: Subscribe to an event, triggered before regular subscribers
+* - `emit`: Publish an event with payload
+* - `off`: Unsubscribe from an event
+* - `offPreDispatch`: Unsubscribe from a pre-dispatch event
+*
+* @example
+* // Define event types
+* const eventBus = createEventBus<{
+*   'user-login': { userId: string; timestamp: number };
+*   'data-updated': { records: any[] };
+*   'error': Error;
+* }>();
+*
+* // Subscribe to events
+* eventBus.on('user-login', ({ userId, timestamp }) => {
+*   console.log(`User ${userId} logged in at ${timestamp}`);
+* });
+*
+* // Subscribe with immediate notification if event was already dispatched
+* eventBus.on('user-login', (payload) => {
+*   // This will be called immediately if 'user-login' was previously dispatched
+* }, { notify: true });
+*
+* // Publish an event
+* eventBus.emit('user-login', { userId: 'abc123', timestamp: Date.now() });
+*
+* // Unsubscribe from event
+* const handler = (payload) => console.log(payload);
+* eventBus.on('error', handler);
+* // Later...
+* eventBus.off('error', handler);
+*
+* // Unsubscribe all handlers for an event
+* eventBus.off('data-updated');
+*/ const createEventBus = ()=>{
+    const eventToHandlersMap = /* @__PURE__ */ new Map();
+    const latestPayloadMap = /* @__PURE__ */ new Map();
+    const eventToPredispatchHandlersMap = /* @__PURE__ */ new Map();
+    const emit = (event, payload)=>{
+        latestPayloadMap.set(event, payload);
+        _dispatch(eventToPredispatchHandlersMap, event, payload);
+        _dispatch(eventToHandlersMap, event, payload);
+    };
+    return {
+        on: (...args)=>_on(eventToHandlersMap, latestPayloadMap, ...args),
+        prioritizedOn: (...args)=>_on(eventToPredispatchHandlersMap, latestPayloadMap, ...args),
+        emit,
+        off: (...args)=>_off(eventToHandlersMap, ...args),
+        prioritizedOff: (...args)=>_off(eventToPredispatchHandlersMap, ...args),
+        internal: {
+            retrieveListeners: (event)=>eventToHandlersMap.get(event) || []
+        }
+    };
+};
+;
+ //# sourceMappingURL=eventBus-UpdW-1JB.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/shared/dist/runtime/clerkEventBus.mjs [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "clerkEvents",
+    ()=>clerkEvents,
+    "createClerkEventBus",
+    ()=>createClerkEventBus
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$eventBus$2d$UpdW$2d$1JB$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/eventBus-UpdW-1JB.mjs [app-ssr] (ecmascript)");
+;
+//#region src/clerkEventBus.ts
+const clerkEvents = {
+    Status: "status"
+};
+const createClerkEventBus = ()=>{
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$eventBus$2d$UpdW$2d$1JB$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createEventBus"])();
+};
+;
+ //# sourceMappingURL=clerkEventBus.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/clerk-react/dist/index.mjs [app-ssr] (ecmascript) <locals>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "ClerkProvider",
+    ()=>ClerkProvider,
+    "SignInButton",
+    ()=>SignInButton,
+    "SignInWithMetamaskButton",
+    ()=>SignInWithMetamaskButton,
+    "SignOutButton",
+    ()=>SignOutButton,
+    "SignUpButton",
+    ()=>SignUpButton
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$VMBS36YX$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/clerk-react/dist/chunk-VMBS36YX.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$6WD75OPE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/clerk-react/dist/chunk-6WD75OPE.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/clerk-react/dist/chunk-OT5FTIRN.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$react$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/react/index.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/clerk-react/dist/chunk-OANWQR3B.mjs [app-ssr] (ecmascript)");
+// src/index.ts
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$loadClerkJsScript$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/loadClerkJsScript.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$loadClerkJsScript$2d$B$2d$3zV0fK$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/loadClerkJsScript-B-3zV0fK.mjs [app-ssr] (ecmascript)");
+// src/components/SignInButton.tsx
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+// src/contexts/ClerkProvider.tsx
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$keys$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/keys.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$keys$2d$YNv6yjKk$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/keys-YNv6yjKk.mjs [app-ssr] (ecmascript)");
+// src/contexts/ClerkContextProvider.tsx
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$deriveState$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/deriveState.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$deriveState$2d$ChDqlleE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/deriveState-ChDqlleE.mjs [app-ssr] (ecmascript)");
+// src/isomorphicClerk.ts
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$browser$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/browser.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$browser$2d$D5e8obql$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/browser-D5e8obql.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$clerkEventBus$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/clerkEventBus.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$utils$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/utils/index.mjs [app-ssr] (ecmascript) <locals>");
+;
+;
+;
+;
+// src/polyfills.ts
+if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+;
+;
+;
+var SignInButton = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, children, ...props })=>{
+    const { // @ts-expect-error - appearance is a valid prop for SignInProps & SignInButtonPropsModal
+    appearance, signUpFallbackRedirectUrl, forceRedirectUrl, fallbackRedirectUrl, signUpForceRedirectUrl, mode, initialValues, withSignUp, oauthFlow, ...rest } = props;
+    children = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$6WD75OPE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["normalizeWithDefaultValue"])(children, "Sign in");
+    const child = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$6WD75OPE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["assertSingleChild"])(children)("SignInButton");
+    const clickHandler = ()=>{
+        const opts = {
+            forceRedirectUrl,
+            fallbackRedirectUrl,
+            signUpFallbackRedirectUrl,
+            signUpForceRedirectUrl,
+            initialValues,
+            withSignUp,
+            oauthFlow
+        };
+        if (mode === "modal") {
+            return clerk.openSignIn({
+                ...opts,
+                appearance
+            });
+        }
+        return clerk.redirectToSignIn({
+            ...opts,
+            signInFallbackRedirectUrl: fallbackRedirectUrl,
+            signInForceRedirectUrl: forceRedirectUrl
+        });
+    };
+    const wrappedChildClickHandler = async (e)=>{
+        if (child && typeof child === "object" && "props" in child) {
+            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$6WD75OPE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["safeExecute"])(child.props.onClick)(e);
+        }
+        return clickHandler();
+    };
+    const childProps = {
+        ...rest,
+        onClick: wrappedChildClickHandler
+    };
+    return __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].cloneElement(child, childProps);
+}, {
+    component: "SignInButton",
+    renderWhileLoading: true
+});
+;
+var SignInWithMetamaskButton = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, children, ...props })=>{
+    const { redirectUrl, ...rest } = props;
+    children = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$6WD75OPE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["normalizeWithDefaultValue"])(children, "Sign in with Metamask");
+    const child = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$6WD75OPE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["assertSingleChild"])(children)("SignInWithMetamaskButton");
+    const clickHandler = async ()=>{
+        async function authenticate() {
+            await clerk.authenticateWithMetamask({
+                redirectUrl: redirectUrl || void 0
+            });
+        }
+        void authenticate();
+    };
+    const wrappedChildClickHandler = async (e)=>{
+        await (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$6WD75OPE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["safeExecute"])(child.props.onClick)(e);
+        return clickHandler();
+    };
+    const childProps = {
+        ...rest,
+        onClick: wrappedChildClickHandler
+    };
+    return __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].cloneElement(child, childProps);
+}, {
+    component: "SignInWithMetamask",
+    renderWhileLoading: true
+});
+;
+var SignOutButton = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, children, ...props })=>{
+    const { redirectUrl = "/", signOutOptions, ...rest } = props;
+    children = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$6WD75OPE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["normalizeWithDefaultValue"])(children, "Sign out");
+    const child = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$6WD75OPE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["assertSingleChild"])(children)("SignOutButton");
+    const clickHandler = ()=>clerk.signOut({
+            redirectUrl,
+            ...signOutOptions
+        });
+    const wrappedChildClickHandler = async (e)=>{
+        await (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$6WD75OPE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["safeExecute"])(child.props.onClick)(e);
+        return clickHandler();
+    };
+    const childProps = {
+        ...rest,
+        onClick: wrappedChildClickHandler
+    };
+    return __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].cloneElement(child, childProps);
+}, {
+    component: "SignOutButton",
+    renderWhileLoading: true
+});
+;
+var SignUpButton = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["withClerk"])(({ clerk, children, ...props })=>{
+    const { // @ts-expect-error - appearance is a valid prop for SignUpProps & SignUpButtonPropsModal
+    appearance, // @ts-expect-error - unsafeMetadata is a valid prop for SignUpProps & SignUpButtonPropsModal
+    unsafeMetadata, fallbackRedirectUrl, forceRedirectUrl, signInFallbackRedirectUrl, signInForceRedirectUrl, mode, initialValues, oauthFlow, ...rest } = props;
+    children = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$6WD75OPE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["normalizeWithDefaultValue"])(children, "Sign up");
+    const child = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$6WD75OPE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["assertSingleChild"])(children)("SignUpButton");
+    const clickHandler = ()=>{
+        const opts = {
+            fallbackRedirectUrl,
+            forceRedirectUrl,
+            signInFallbackRedirectUrl,
+            signInForceRedirectUrl,
+            initialValues,
+            oauthFlow
+        };
+        if (mode === "modal") {
+            return clerk.openSignUp({
+                ...opts,
+                appearance,
+                unsafeMetadata
+            });
+        }
+        return clerk.redirectToSignUp({
+            ...opts,
+            signUpFallbackRedirectUrl: fallbackRedirectUrl,
+            signUpForceRedirectUrl: forceRedirectUrl
+        });
+    };
+    const wrappedChildClickHandler = async (e)=>{
+        if (child && typeof child === "object" && "props" in child) {
+            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$6WD75OPE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["safeExecute"])(child.props.onClick)(e);
+        }
+        return clickHandler();
+    };
+    const childProps = {
+        ...rest,
+        onClick: wrappedChildClickHandler
+    };
+    return __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].cloneElement(child, childProps);
+}, {
+    component: "SignUpButton",
+    renderWhileLoading: true
+});
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+var defaultSignInErrors = ()=>({
+        fields: {
+            identifier: null,
+            password: null,
+            code: null
+        },
+        raw: null,
+        global: null
+    });
+var defaultSignUpErrors = ()=>({
+        fields: {
+            firstName: null,
+            lastName: null,
+            emailAddress: null,
+            phoneNumber: null,
+            password: null,
+            username: null,
+            code: null,
+            captcha: null,
+            legalAccepted: null
+        },
+        raw: null,
+        global: null
+    });
+var StateProxy = class {
+    constructor(isomorphicClerk){
+        this.isomorphicClerk = isomorphicClerk;
+        this.signInSignalProxy = this.buildSignInProxy();
+        this.signUpSignalProxy = this.buildSignUpProxy();
+    }
+    signInSignal() {
+        return this.signInSignalProxy;
+    }
+    signUpSignal() {
+        return this.signUpSignalProxy;
+    }
+    buildSignInProxy() {
+        const gateProperty = this.gateProperty.bind(this);
+        const target = ()=>this.client.signIn.__internal_future;
+        return {
+            errors: defaultSignInErrors(),
+            fetchStatus: "idle",
+            signIn: {
+                status: "needs_identifier",
+                availableStrategies: [],
+                isTransferable: false,
+                get id () {
+                    return gateProperty(target, "id", void 0);
+                },
+                get supportedFirstFactors () {
+                    return gateProperty(target, "supportedFirstFactors", []);
+                },
+                get supportedSecondFactors () {
+                    return gateProperty(target, "supportedSecondFactors", []);
+                },
+                get secondFactorVerification () {
+                    return gateProperty(target, "secondFactorVerification", {
+                        status: null,
+                        error: null,
+                        expireAt: null,
+                        externalVerificationRedirectURL: null,
+                        nonce: null,
+                        attempts: null,
+                        message: null,
+                        strategy: null,
+                        verifiedAtClient: null,
+                        verifiedFromTheSameClient: ()=>false,
+                        __internal_toSnapshot: ()=>{
+                            throw new Error("__internal_toSnapshot called before Clerk is loaded");
+                        },
+                        pathRoot: "",
+                        reload: ()=>{
+                            throw new Error("__internal_toSnapshot called before Clerk is loaded");
+                        }
+                    });
+                },
+                get identifier () {
+                    return gateProperty(target, "identifier", null);
+                },
+                get createdSessionId () {
+                    return gateProperty(target, "createdSessionId", null);
+                },
+                get userData () {
+                    return gateProperty(target, "userData", {});
+                },
+                get firstFactorVerification () {
+                    return gateProperty(target, "firstFactorVerification", {
+                        status: null,
+                        error: null,
+                        expireAt: null,
+                        externalVerificationRedirectURL: null,
+                        nonce: null,
+                        attempts: null,
+                        message: null,
+                        strategy: null,
+                        verifiedAtClient: null,
+                        verifiedFromTheSameClient: ()=>false,
+                        __internal_toSnapshot: ()=>{
+                            throw new Error("__internal_toSnapshot called before Clerk is loaded");
+                        },
+                        pathRoot: "",
+                        reload: ()=>{
+                            throw new Error("__internal_toSnapshot called before Clerk is loaded");
+                        }
+                    });
+                },
+                create: this.gateMethod(target, "create"),
+                password: this.gateMethod(target, "password"),
+                sso: this.gateMethod(target, "sso"),
+                finalize: this.gateMethod(target, "finalize"),
+                emailCode: this.wrapMethods(()=>target().emailCode, [
+                    "sendCode",
+                    "verifyCode"
+                ]),
+                emailLink: this.wrapStruct(()=>target().emailLink, [
+                    "sendLink",
+                    "waitForVerification"
+                ], [
+                    "verification"
+                ], {
+                    verification: null
+                }),
+                resetPasswordEmailCode: this.wrapMethods(()=>target().resetPasswordEmailCode, [
+                    "sendCode",
+                    "verifyCode",
+                    "submitPassword"
+                ]),
+                phoneCode: this.wrapMethods(()=>target().phoneCode, [
+                    "sendCode",
+                    "verifyCode"
+                ]),
+                mfa: this.wrapMethods(()=>target().mfa, [
+                    "sendPhoneCode",
+                    "verifyPhoneCode",
+                    "verifyTOTP",
+                    "verifyBackupCode"
+                ]),
+                ticket: this.gateMethod(target, "ticket"),
+                passkey: this.gateMethod(target, "passkey"),
+                web3: this.gateMethod(target, "web3")
+            }
+        };
+    }
+    buildSignUpProxy() {
+        const gateProperty = this.gateProperty.bind(this);
+        const gateMethod = this.gateMethod.bind(this);
+        const wrapMethods = this.wrapMethods.bind(this);
+        const target = ()=>this.client.signUp.__internal_future;
+        return {
+            errors: defaultSignUpErrors(),
+            fetchStatus: "idle",
+            signUp: {
+                get id () {
+                    return gateProperty(target, "id", void 0);
+                },
+                get requiredFields () {
+                    return gateProperty(target, "requiredFields", []);
+                },
+                get optionalFields () {
+                    return gateProperty(target, "optionalFields", []);
+                },
+                get missingFields () {
+                    return gateProperty(target, "missingFields", []);
+                },
+                get username () {
+                    return gateProperty(target, "username", null);
+                },
+                get firstName () {
+                    return gateProperty(target, "firstName", null);
+                },
+                get lastName () {
+                    return gateProperty(target, "lastName", null);
+                },
+                get emailAddress () {
+                    return gateProperty(target, "emailAddress", null);
+                },
+                get phoneNumber () {
+                    return gateProperty(target, "phoneNumber", null);
+                },
+                get web3Wallet () {
+                    return gateProperty(target, "web3Wallet", null);
+                },
+                get hasPassword () {
+                    return gateProperty(target, "hasPassword", false);
+                },
+                get unsafeMetadata () {
+                    return gateProperty(target, "unsafeMetadata", {});
+                },
+                get createdSessionId () {
+                    return gateProperty(target, "createdSessionId", null);
+                },
+                get createdUserId () {
+                    return gateProperty(target, "createdUserId", null);
+                },
+                get abandonAt () {
+                    return gateProperty(target, "abandonAt", null);
+                },
+                get legalAcceptedAt () {
+                    return gateProperty(target, "legalAcceptedAt", null);
+                },
+                get locale () {
+                    return gateProperty(target, "locale", null);
+                },
+                get status () {
+                    return gateProperty(target, "status", "missing_requirements");
+                },
+                get unverifiedFields () {
+                    return gateProperty(target, "unverifiedFields", []);
+                },
+                get isTransferable () {
+                    return gateProperty(target, "isTransferable", false);
+                },
+                create: gateMethod(target, "create"),
+                update: gateMethod(target, "update"),
+                sso: gateMethod(target, "sso"),
+                password: gateMethod(target, "password"),
+                ticket: gateMethod(target, "ticket"),
+                web3: gateMethod(target, "web3"),
+                finalize: gateMethod(target, "finalize"),
+                verifications: wrapMethods(()=>target().verifications, [
+                    "sendEmailCode",
+                    "verifyEmailCode",
+                    "sendPhoneCode",
+                    "verifyPhoneCode"
+                ])
+            }
+        };
+    }
+    __internal_effect(_) {
+        throw new Error("__internal_effect called before Clerk is loaded");
+    }
+    __internal_computed(_) {
+        throw new Error("__internal_computed called before Clerk is loaded");
+    }
+    get client() {
+        const c = this.isomorphicClerk.client;
+        if (!c) {
+            throw new Error("Clerk client not ready");
+        }
+        return c;
+    }
+    gateProperty(getTarget, key, defaultValue) {
+        return (()=>{
+            if (!(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$browser$2d$D5e8obql$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["inBrowser"])() || !this.isomorphicClerk.loaded) {
+                return defaultValue;
+            }
+            const t = getTarget();
+            return t[key];
+        })();
+    }
+    gateMethod(getTarget, key) {
+        return async (...args)=>{
+            if (!(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$browser$2d$D5e8obql$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["inBrowser"])()) {
+                return __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["errorThrower"].throw(`Attempted to call a method (${key}) that is not supported on the server.`);
+            }
+            if (!this.isomorphicClerk.loaded) {
+                await new Promise((resolve)=>this.isomorphicClerk.addOnLoaded(resolve));
+            }
+            const t = getTarget();
+            return t[key].apply(t, args);
+        };
+    }
+    wrapMethods(getTarget, keys) {
+        return Object.fromEntries(keys.map((k)=>[
+                k,
+                this.gateMethod(getTarget, k)
+            ]));
+    }
+    wrapStruct(getTarget, methods, getters, fallbacks) {
+        const out = {};
+        for (const m of methods){
+            out[m] = this.gateMethod(getTarget, m);
+        }
+        for (const g of getters){
+            Object.defineProperty(out, g, {
+                get: ()=>this.gateProperty(getTarget, g, fallbacks[g]),
+                enumerable: true
+            });
+        }
+        return out;
+    }
+};
+// src/isomorphicClerk.ts
+if (typeof globalThis.__BUILD_DISABLE_RHC__ === "undefined") {
+    globalThis.__BUILD_DISABLE_RHC__ = false;
+}
+var SDK_METADATA = {
+    name: "@clerk/clerk-react",
+    version: "5.59.4",
+    environment: ("TURBOPACK compile-time value", "development")
+};
+var _status, _domain, _proxyUrl, _publishableKey, _eventBus, _stateProxy, _instance, _IsomorphicClerk_instances, waitForClerkJS_fn;
+var _IsomorphicClerk = class _IsomorphicClerk {
+    constructor(options){
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateAdd"])(this, _IsomorphicClerk_instances);
+        this.clerkjs = null;
+        this.preopenOneTap = null;
+        this.preopenUserVerification = null;
+        this.preopenEnableOrganizationsPrompt = null;
+        this.preopenSignIn = null;
+        this.preopenCheckout = null;
+        this.preopenPlanDetails = null;
+        this.preopenSubscriptionDetails = null;
+        this.preopenSignUp = null;
+        this.preopenUserProfile = null;
+        this.preopenOrganizationProfile = null;
+        this.preopenCreateOrganization = null;
+        this.preOpenWaitlist = null;
+        this.premountSignInNodes = /* @__PURE__ */ new Map();
+        this.premountSignUpNodes = /* @__PURE__ */ new Map();
+        this.premountUserAvatarNodes = /* @__PURE__ */ new Map();
+        this.premountUserProfileNodes = /* @__PURE__ */ new Map();
+        this.premountUserButtonNodes = /* @__PURE__ */ new Map();
+        this.premountOrganizationProfileNodes = /* @__PURE__ */ new Map();
+        this.premountCreateOrganizationNodes = /* @__PURE__ */ new Map();
+        this.premountOrganizationSwitcherNodes = /* @__PURE__ */ new Map();
+        this.premountOrganizationListNodes = /* @__PURE__ */ new Map();
+        this.premountMethodCalls = /* @__PURE__ */ new Map();
+        this.premountWaitlistNodes = /* @__PURE__ */ new Map();
+        this.premountPricingTableNodes = /* @__PURE__ */ new Map();
+        this.premountAPIKeysNodes = /* @__PURE__ */ new Map();
+        this.premountOAuthConsentNodes = /* @__PURE__ */ new Map();
+        this.premountTaskChooseOrganizationNodes = /* @__PURE__ */ new Map();
+        this.premountTaskResetPasswordNodes = /* @__PURE__ */ new Map();
+        // A separate Map of `addListener` method calls to handle multiple listeners.
+        this.premountAddListenerCalls = /* @__PURE__ */ new Map();
+        this.loadedListeners = [];
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateAdd"])(this, _status, "loading");
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateAdd"])(this, _domain);
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateAdd"])(this, _proxyUrl);
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateAdd"])(this, _publishableKey);
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateAdd"])(this, _eventBus, (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$clerkEventBus$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createClerkEventBus"])());
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateAdd"])(this, _stateProxy);
+        this.buildSignInUrl = (opts)=>{
+            const callback = ()=>{
+                var _a;
+                return ((_a = this.clerkjs) == null ? void 0 : _a.buildSignInUrl(opts)) || "";
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("buildSignInUrl", callback);
+            }
+        };
+        this.buildSignUpUrl = (opts)=>{
+            const callback = ()=>{
+                var _a;
+                return ((_a = this.clerkjs) == null ? void 0 : _a.buildSignUpUrl(opts)) || "";
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("buildSignUpUrl", callback);
+            }
+        };
+        this.buildAfterSignInUrl = (...args)=>{
+            const callback = ()=>{
+                var _a;
+                return ((_a = this.clerkjs) == null ? void 0 : _a.buildAfterSignInUrl(...args)) || "";
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("buildAfterSignInUrl", callback);
+            }
+        };
+        this.buildAfterSignUpUrl = (...args)=>{
+            const callback = ()=>{
+                var _a;
+                return ((_a = this.clerkjs) == null ? void 0 : _a.buildAfterSignUpUrl(...args)) || "";
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("buildAfterSignUpUrl", callback);
+            }
+        };
+        this.buildAfterSignOutUrl = ()=>{
+            const callback = ()=>{
+                var _a;
+                return ((_a = this.clerkjs) == null ? void 0 : _a.buildAfterSignOutUrl()) || "";
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("buildAfterSignOutUrl", callback);
+            }
+        };
+        this.buildNewSubscriptionRedirectUrl = ()=>{
+            const callback = ()=>{
+                var _a;
+                return ((_a = this.clerkjs) == null ? void 0 : _a.buildNewSubscriptionRedirectUrl()) || "";
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("buildNewSubscriptionRedirectUrl", callback);
+            }
+        };
+        this.buildAfterMultiSessionSingleSignOutUrl = ()=>{
+            const callback = ()=>{
+                var _a;
+                return ((_a = this.clerkjs) == null ? void 0 : _a.buildAfterMultiSessionSingleSignOutUrl()) || "";
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("buildAfterMultiSessionSingleSignOutUrl", callback);
+            }
+        };
+        this.buildUserProfileUrl = ()=>{
+            const callback = ()=>{
+                var _a;
+                return ((_a = this.clerkjs) == null ? void 0 : _a.buildUserProfileUrl()) || "";
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("buildUserProfileUrl", callback);
+            }
+        };
+        this.buildCreateOrganizationUrl = ()=>{
+            const callback = ()=>{
+                var _a;
+                return ((_a = this.clerkjs) == null ? void 0 : _a.buildCreateOrganizationUrl()) || "";
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("buildCreateOrganizationUrl", callback);
+            }
+        };
+        this.buildOrganizationProfileUrl = ()=>{
+            const callback = ()=>{
+                var _a;
+                return ((_a = this.clerkjs) == null ? void 0 : _a.buildOrganizationProfileUrl()) || "";
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("buildOrganizationProfileUrl", callback);
+            }
+        };
+        this.buildWaitlistUrl = ()=>{
+            const callback = ()=>{
+                var _a;
+                return ((_a = this.clerkjs) == null ? void 0 : _a.buildWaitlistUrl()) || "";
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("buildWaitlistUrl", callback);
+            }
+        };
+        this.buildTasksUrl = ()=>{
+            const callback = ()=>{
+                var _a;
+                return ((_a = this.clerkjs) == null ? void 0 : _a.buildTasksUrl()) || "";
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("buildTasksUrl", callback);
+            }
+        };
+        this.buildUrlWithAuth = (to)=>{
+            const callback = ()=>{
+                var _a;
+                return ((_a = this.clerkjs) == null ? void 0 : _a.buildUrlWithAuth(to)) || "";
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("buildUrlWithAuth", callback);
+            }
+        };
+        this.handleUnauthenticated = async ()=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.handleUnauthenticated();
+            };
+            if (this.clerkjs && this.loaded) {
+                void callback();
+            } else {
+                this.premountMethodCalls.set("handleUnauthenticated", callback);
+            }
+        };
+        this.on = (...args)=>{
+            var _a;
+            if ((_a = this.clerkjs) == null ? void 0 : _a.on) {
+                return this.clerkjs.on(...args);
+            } else {
+                (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateGet"])(this, _eventBus).on(...args);
+            }
+        };
+        this.off = (...args)=>{
+            var _a;
+            if ((_a = this.clerkjs) == null ? void 0 : _a.off) {
+                return this.clerkjs.off(...args);
+            } else {
+                (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateGet"])(this, _eventBus).off(...args);
+            }
+        };
+        /**
+     * @deprecated Please use `addStatusListener`. This api will be removed in the next major.
+     */ this.addOnLoaded = (cb)=>{
+            this.loadedListeners.push(cb);
+            if (this.loaded) {
+                this.emitLoaded();
+            }
+        };
+        /**
+     * @deprecated Please use `__internal_setStatus`. This api will be removed in the next major.
+     */ this.emitLoaded = ()=>{
+            this.loadedListeners.forEach((cb)=>cb());
+            this.loadedListeners = [];
+        };
+        this.beforeLoad = (clerkjs)=>{
+            if (!clerkjs) {
+                throw new Error("Failed to hydrate latest Clerk JS");
+            }
+        };
+        this.hydrateClerkJS = (clerkjs)=>{
+            var _a, _b;
+            if (!clerkjs) {
+                throw new Error("Failed to hydrate latest Clerk JS");
+            }
+            this.clerkjs = clerkjs;
+            this.premountMethodCalls.forEach((cb)=>cb());
+            this.premountAddListenerCalls.forEach((listenerHandlers, listener)=>{
+                listenerHandlers.nativeUnsubscribe = clerkjs.addListener(listener);
+            });
+            (_a = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateGet"])(this, _eventBus).internal.retrieveListeners("status")) == null ? void 0 : _a.forEach((listener)=>{
+                this.on("status", listener, {
+                    notify: true
+                });
+            });
+            (_b = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateGet"])(this, _eventBus).internal.retrieveListeners("queryClientStatus")) == null ? void 0 : _b.forEach((listener)=>{
+                this.on("queryClientStatus", listener, {
+                    notify: true
+                });
+            });
+            if (this.preopenSignIn !== null) {
+                clerkjs.openSignIn(this.preopenSignIn);
+            }
+            if (this.preopenCheckout !== null) {
+                clerkjs.__internal_openCheckout(this.preopenCheckout);
+            }
+            if (this.preopenPlanDetails !== null) {
+                clerkjs.__internal_openPlanDetails(this.preopenPlanDetails);
+            }
+            if (this.preopenSubscriptionDetails !== null) {
+                clerkjs.__internal_openSubscriptionDetails(this.preopenSubscriptionDetails);
+            }
+            if (this.preopenSignUp !== null) {
+                clerkjs.openSignUp(this.preopenSignUp);
+            }
+            if (this.preopenUserProfile !== null) {
+                clerkjs.openUserProfile(this.preopenUserProfile);
+            }
+            if (this.preopenUserVerification !== null) {
+                clerkjs.__internal_openReverification(this.preopenUserVerification);
+            }
+            if (this.preopenOneTap !== null) {
+                clerkjs.openGoogleOneTap(this.preopenOneTap);
+            }
+            if (this.preopenOrganizationProfile !== null) {
+                clerkjs.openOrganizationProfile(this.preopenOrganizationProfile);
+            }
+            if (this.preopenCreateOrganization !== null) {
+                clerkjs.openCreateOrganization(this.preopenCreateOrganization);
+            }
+            if (this.preOpenWaitlist !== null) {
+                clerkjs.openWaitlist(this.preOpenWaitlist);
+            }
+            if (this.preopenEnableOrganizationsPrompt) {
+                clerkjs.__internal_openEnableOrganizationsPrompt(this.preopenEnableOrganizationsPrompt);
+            }
+            this.premountSignInNodes.forEach((props, node)=>{
+                clerkjs.mountSignIn(node, props);
+            });
+            this.premountSignUpNodes.forEach((props, node)=>{
+                clerkjs.mountSignUp(node, props);
+            });
+            this.premountUserProfileNodes.forEach((props, node)=>{
+                clerkjs.mountUserProfile(node, props);
+            });
+            this.premountUserAvatarNodes.forEach((props, node)=>{
+                clerkjs.mountUserAvatar(node, props);
+            });
+            this.premountUserButtonNodes.forEach((props, node)=>{
+                clerkjs.mountUserButton(node, props);
+            });
+            this.premountOrganizationListNodes.forEach((props, node)=>{
+                clerkjs.mountOrganizationList(node, props);
+            });
+            this.premountWaitlistNodes.forEach((props, node)=>{
+                clerkjs.mountWaitlist(node, props);
+            });
+            this.premountPricingTableNodes.forEach((props, node)=>{
+                clerkjs.mountPricingTable(node, props);
+            });
+            this.premountAPIKeysNodes.forEach((props, node)=>{
+                clerkjs.mountAPIKeys(node, props);
+            });
+            this.premountOAuthConsentNodes.forEach((props, node)=>{
+                clerkjs.__internal_mountOAuthConsent(node, props);
+            });
+            this.premountTaskChooseOrganizationNodes.forEach((props, node)=>{
+                clerkjs.mountTaskChooseOrganization(node, props);
+            });
+            this.premountTaskResetPasswordNodes.forEach((props, node)=>{
+                clerkjs.mountTaskResetPassword(node, props);
+            });
+            if (typeof this.clerkjs.status === "undefined") {
+                (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateGet"])(this, _eventBus).emit(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$clerkEventBus$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["clerkEvents"].Status, "ready");
+            }
+            this.emitLoaded();
+            return this.clerkjs;
+        };
+        this.__experimental_checkout = (...args)=>{
+            var _a;
+            return (_a = this.clerkjs) == null ? void 0 : _a.__experimental_checkout(...args);
+        };
+        // TODO @userland-errors:
+        this.__unstable__updateProps = async (props)=>{
+            const clerkjs = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateMethod"])(this, _IsomorphicClerk_instances, waitForClerkJS_fn).call(this);
+            if (clerkjs && "__unstable__updateProps" in clerkjs) {
+                return clerkjs.__unstable__updateProps(props);
+            }
+        };
+        /**
+     * `setActive` can be used to set the active session and/or organization.
+     */ this.setActive = (params)=>{
+            if (this.clerkjs) {
+                return this.clerkjs.setActive(params);
+            } else {
+                return Promise.reject();
+            }
+        };
+        this.openSignIn = (props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.openSignIn(props);
+            } else {
+                this.preopenSignIn = props;
+            }
+        };
+        this.closeSignIn = ()=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.closeSignIn();
+            } else {
+                this.preopenSignIn = null;
+            }
+        };
+        this.__internal_openCheckout = (props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.__internal_openCheckout(props);
+            } else {
+                this.preopenCheckout = props;
+            }
+        };
+        this.__internal_closeCheckout = ()=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.__internal_closeCheckout();
+            } else {
+                this.preopenCheckout = null;
+            }
+        };
+        this.__internal_openPlanDetails = (props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.__internal_openPlanDetails(props);
+            } else {
+                this.preopenPlanDetails = props;
+            }
+        };
+        this.__internal_closePlanDetails = ()=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.__internal_closePlanDetails();
+            } else {
+                this.preopenPlanDetails = null;
+            }
+        };
+        this.__internal_openSubscriptionDetails = (props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.__internal_openSubscriptionDetails(props);
+            } else {
+                this.preopenSubscriptionDetails = props != null ? props : null;
+            }
+        };
+        this.__internal_closeSubscriptionDetails = ()=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.__internal_closeSubscriptionDetails();
+            } else {
+                this.preopenSubscriptionDetails = null;
+            }
+        };
+        this.__internal_openReverification = (props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.__internal_openReverification(props);
+            } else {
+                this.preopenUserVerification = props;
+            }
+        };
+        this.__internal_closeReverification = ()=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.__internal_closeReverification();
+            } else {
+                this.preopenUserVerification = null;
+            }
+        };
+        this.__internal_openEnableOrganizationsPrompt = (props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.__internal_openEnableOrganizationsPrompt(props);
+            } else {
+                this.preopenEnableOrganizationsPrompt = props;
+            }
+        };
+        this.__internal_closeEnableOrganizationsPrompt = ()=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.__internal_closeEnableOrganizationsPrompt();
+            } else {
+                this.preopenEnableOrganizationsPrompt = null;
+            }
+        };
+        this.openGoogleOneTap = (props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.openGoogleOneTap(props);
+            } else {
+                this.preopenOneTap = props;
+            }
+        };
+        this.closeGoogleOneTap = ()=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.closeGoogleOneTap();
+            } else {
+                this.preopenOneTap = null;
+            }
+        };
+        this.openUserProfile = (props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.openUserProfile(props);
+            } else {
+                this.preopenUserProfile = props;
+            }
+        };
+        this.closeUserProfile = ()=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.closeUserProfile();
+            } else {
+                this.preopenUserProfile = null;
+            }
+        };
+        this.openOrganizationProfile = (props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.openOrganizationProfile(props);
+            } else {
+                this.preopenOrganizationProfile = props;
+            }
+        };
+        this.closeOrganizationProfile = ()=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.closeOrganizationProfile();
+            } else {
+                this.preopenOrganizationProfile = null;
+            }
+        };
+        this.openCreateOrganization = (props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.openCreateOrganization(props);
+            } else {
+                this.preopenCreateOrganization = props;
+            }
+        };
+        this.closeCreateOrganization = ()=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.closeCreateOrganization();
+            } else {
+                this.preopenCreateOrganization = null;
+            }
+        };
+        this.openWaitlist = (props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.openWaitlist(props);
+            } else {
+                this.preOpenWaitlist = props;
+            }
+        };
+        this.closeWaitlist = ()=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.closeWaitlist();
+            } else {
+                this.preOpenWaitlist = null;
+            }
+        };
+        this.openSignUp = (props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.openSignUp(props);
+            } else {
+                this.preopenSignUp = props;
+            }
+        };
+        this.closeSignUp = ()=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.closeSignUp();
+            } else {
+                this.preopenSignUp = null;
+            }
+        };
+        this.mountSignIn = (node, props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.mountSignIn(node, props);
+            } else {
+                this.premountSignInNodes.set(node, props);
+            }
+        };
+        this.unmountSignIn = (node)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.unmountSignIn(node);
+            } else {
+                this.premountSignInNodes.delete(node);
+            }
+        };
+        this.mountSignUp = (node, props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.mountSignUp(node, props);
+            } else {
+                this.premountSignUpNodes.set(node, props);
+            }
+        };
+        this.unmountSignUp = (node)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.unmountSignUp(node);
+            } else {
+                this.premountSignUpNodes.delete(node);
+            }
+        };
+        this.mountUserAvatar = (node, props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.mountUserAvatar(node, props);
+            } else {
+                this.premountUserAvatarNodes.set(node, props);
+            }
+        };
+        this.unmountUserAvatar = (node)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.unmountUserAvatar(node);
+            } else {
+                this.premountUserAvatarNodes.delete(node);
+            }
+        };
+        this.mountUserProfile = (node, props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.mountUserProfile(node, props);
+            } else {
+                this.premountUserProfileNodes.set(node, props);
+            }
+        };
+        this.unmountUserProfile = (node)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.unmountUserProfile(node);
+            } else {
+                this.premountUserProfileNodes.delete(node);
+            }
+        };
+        this.mountOrganizationProfile = (node, props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.mountOrganizationProfile(node, props);
+            } else {
+                this.premountOrganizationProfileNodes.set(node, props);
+            }
+        };
+        this.unmountOrganizationProfile = (node)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.unmountOrganizationProfile(node);
+            } else {
+                this.premountOrganizationProfileNodes.delete(node);
+            }
+        };
+        this.mountCreateOrganization = (node, props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.mountCreateOrganization(node, props);
+            } else {
+                this.premountCreateOrganizationNodes.set(node, props);
+            }
+        };
+        this.unmountCreateOrganization = (node)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.unmountCreateOrganization(node);
+            } else {
+                this.premountCreateOrganizationNodes.delete(node);
+            }
+        };
+        this.mountOrganizationSwitcher = (node, props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.mountOrganizationSwitcher(node, props);
+            } else {
+                this.premountOrganizationSwitcherNodes.set(node, props);
+            }
+        };
+        this.unmountOrganizationSwitcher = (node)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.unmountOrganizationSwitcher(node);
+            } else {
+                this.premountOrganizationSwitcherNodes.delete(node);
+            }
+        };
+        this.__experimental_prefetchOrganizationSwitcher = ()=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.__experimental_prefetchOrganizationSwitcher();
+            };
+            if (this.clerkjs && this.loaded) {
+                void callback();
+            } else {
+                this.premountMethodCalls.set("__experimental_prefetchOrganizationSwitcher", callback);
+            }
+        };
+        this.mountOrganizationList = (node, props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.mountOrganizationList(node, props);
+            } else {
+                this.premountOrganizationListNodes.set(node, props);
+            }
+        };
+        this.unmountOrganizationList = (node)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.unmountOrganizationList(node);
+            } else {
+                this.premountOrganizationListNodes.delete(node);
+            }
+        };
+        this.mountUserButton = (node, userButtonProps)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.mountUserButton(node, userButtonProps);
+            } else {
+                this.premountUserButtonNodes.set(node, userButtonProps);
+            }
+        };
+        this.unmountUserButton = (node)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.unmountUserButton(node);
+            } else {
+                this.premountUserButtonNodes.delete(node);
+            }
+        };
+        this.mountWaitlist = (node, props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.mountWaitlist(node, props);
+            } else {
+                this.premountWaitlistNodes.set(node, props);
+            }
+        };
+        this.unmountWaitlist = (node)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.unmountWaitlist(node);
+            } else {
+                this.premountWaitlistNodes.delete(node);
+            }
+        };
+        this.mountPricingTable = (node, props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.mountPricingTable(node, props);
+            } else {
+                this.premountPricingTableNodes.set(node, props);
+            }
+        };
+        this.unmountPricingTable = (node)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.unmountPricingTable(node);
+            } else {
+                this.premountPricingTableNodes.delete(node);
+            }
+        };
+        this.mountAPIKeys = (node, props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.mountAPIKeys(node, props);
+            } else {
+                this.premountAPIKeysNodes.set(node, props);
+            }
+        };
+        this.unmountAPIKeys = (node)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.unmountAPIKeys(node);
+            } else {
+                this.premountAPIKeysNodes.delete(node);
+            }
+        };
+        this.__internal_mountOAuthConsent = (node, props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.__internal_mountOAuthConsent(node, props);
+            } else {
+                this.premountOAuthConsentNodes.set(node, props);
+            }
+        };
+        this.__internal_unmountOAuthConsent = (node)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.__internal_unmountOAuthConsent(node);
+            } else {
+                this.premountOAuthConsentNodes.delete(node);
+            }
+        };
+        this.mountTaskChooseOrganization = (node, props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.mountTaskChooseOrganization(node, props);
+            } else {
+                this.premountTaskChooseOrganizationNodes.set(node, props);
+            }
+        };
+        this.unmountTaskChooseOrganization = (node)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.unmountTaskChooseOrganization(node);
+            } else {
+                this.premountTaskChooseOrganizationNodes.delete(node);
+            }
+        };
+        this.mountTaskResetPassword = (node, props)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.mountTaskResetPassword(node, props);
+            } else {
+                this.premountTaskResetPasswordNodes.set(node, props);
+            }
+        };
+        this.unmountTaskResetPassword = (node)=>{
+            if (this.clerkjs && this.loaded) {
+                this.clerkjs.unmountTaskResetPassword(node);
+            } else {
+                this.premountTaskResetPasswordNodes.delete(node);
+            }
+        };
+        this.addListener = (listener)=>{
+            if (this.clerkjs) {
+                return this.clerkjs.addListener(listener);
+            } else {
+                const unsubscribe = ()=>{
+                    var _a;
+                    const listenerHandlers = this.premountAddListenerCalls.get(listener);
+                    if (listenerHandlers) {
+                        (_a = listenerHandlers.nativeUnsubscribe) == null ? void 0 : _a.call(listenerHandlers);
+                        this.premountAddListenerCalls.delete(listener);
+                    }
+                };
+                this.premountAddListenerCalls.set(listener, {
+                    unsubscribe,
+                    nativeUnsubscribe: void 0
+                });
+                return unsubscribe;
+            }
+        };
+        this.navigate = (to)=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.navigate(to);
+            };
+            if (this.clerkjs && this.loaded) {
+                void callback();
+            } else {
+                this.premountMethodCalls.set("navigate", callback);
+            }
+        };
+        this.redirectWithAuth = async (...args)=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.redirectWithAuth(...args);
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("redirectWithAuth", callback);
+                return;
+            }
+        };
+        this.redirectToSignIn = async (opts)=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.redirectToSignIn(opts);
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("redirectToSignIn", callback);
+                return;
+            }
+        };
+        this.redirectToSignUp = async (opts)=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.redirectToSignUp(opts);
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("redirectToSignUp", callback);
+                return;
+            }
+        };
+        this.redirectToUserProfile = async ()=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.redirectToUserProfile();
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("redirectToUserProfile", callback);
+                return;
+            }
+        };
+        this.redirectToAfterSignUp = ()=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.redirectToAfterSignUp();
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("redirectToAfterSignUp", callback);
+            }
+        };
+        this.redirectToAfterSignIn = ()=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.redirectToAfterSignIn();
+            };
+            if (this.clerkjs && this.loaded) {
+                callback();
+            } else {
+                this.premountMethodCalls.set("redirectToAfterSignIn", callback);
+            }
+        };
+        this.redirectToAfterSignOut = ()=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.redirectToAfterSignOut();
+            };
+            if (this.clerkjs && this.loaded) {
+                callback();
+            } else {
+                this.premountMethodCalls.set("redirectToAfterSignOut", callback);
+            }
+        };
+        this.redirectToOrganizationProfile = async ()=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.redirectToOrganizationProfile();
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("redirectToOrganizationProfile", callback);
+                return;
+            }
+        };
+        this.redirectToCreateOrganization = async ()=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.redirectToCreateOrganization();
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("redirectToCreateOrganization", callback);
+                return;
+            }
+        };
+        this.redirectToWaitlist = async ()=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.redirectToWaitlist();
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("redirectToWaitlist", callback);
+                return;
+            }
+        };
+        this.redirectToTasks = async (opts)=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.redirectToTasks(opts);
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("redirectToTasks", callback);
+                return;
+            }
+        };
+        this.handleRedirectCallback = async (params)=>{
+            var _a;
+            const callback = ()=>{
+                var _a2;
+                return (_a2 = this.clerkjs) == null ? void 0 : _a2.handleRedirectCallback(params);
+            };
+            if (this.clerkjs && this.loaded) {
+                void ((_a = callback()) == null ? void 0 : _a.catch(()=>{}));
+            } else {
+                this.premountMethodCalls.set("handleRedirectCallback", callback);
+            }
+        };
+        this.handleGoogleOneTapCallback = async (signInOrUp, params)=>{
+            var _a;
+            const callback = ()=>{
+                var _a2;
+                return (_a2 = this.clerkjs) == null ? void 0 : _a2.handleGoogleOneTapCallback(signInOrUp, params);
+            };
+            if (this.clerkjs && this.loaded) {
+                void ((_a = callback()) == null ? void 0 : _a.catch(()=>{}));
+            } else {
+                this.premountMethodCalls.set("handleGoogleOneTapCallback", callback);
+            }
+        };
+        this.handleEmailLinkVerification = async (params)=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.handleEmailLinkVerification(params);
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("handleEmailLinkVerification", callback);
+            }
+        };
+        this.authenticateWithMetamask = async (params)=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.authenticateWithMetamask(params);
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("authenticateWithMetamask", callback);
+            }
+        };
+        this.authenticateWithCoinbaseWallet = async (params)=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.authenticateWithCoinbaseWallet(params);
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("authenticateWithCoinbaseWallet", callback);
+            }
+        };
+        this.authenticateWithBase = async (params)=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.authenticateWithBase(params);
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("authenticateWithBase", callback);
+            }
+        };
+        this.authenticateWithOKXWallet = async (params)=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.authenticateWithOKXWallet(params);
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("authenticateWithOKXWallet", callback);
+            }
+        };
+        this.authenticateWithSolana = async (params)=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.authenticateWithSolana(params);
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("authenticateWithSolana", callback);
+            }
+        };
+        this.authenticateWithWeb3 = async (params)=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.authenticateWithWeb3(params);
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("authenticateWithWeb3", callback);
+            }
+        };
+        this.authenticateWithGoogleOneTap = async (params)=>{
+            const clerkjs = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateMethod"])(this, _IsomorphicClerk_instances, waitForClerkJS_fn).call(this);
+            return clerkjs.authenticateWithGoogleOneTap(params);
+        };
+        this.__internal_loadStripeJs = async ()=>{
+            const clerkjs = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateMethod"])(this, _IsomorphicClerk_instances, waitForClerkJS_fn).call(this);
+            return clerkjs.__internal_loadStripeJs();
+        };
+        this.createOrganization = async (params)=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.createOrganization(params);
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("createOrganization", callback);
+            }
+        };
+        this.getOrganization = async (organizationId)=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.getOrganization(organizationId);
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("getOrganization", callback);
+            }
+        };
+        this.joinWaitlist = async (params)=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.joinWaitlist(params);
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("joinWaitlist", callback);
+            }
+        };
+        this.signOut = async (...args)=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.signOut(...args);
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("signOut", callback);
+            }
+        };
+        this.__internal_attemptToEnableEnvironmentSetting = (options)=>{
+            const callback = ()=>{
+                var _a;
+                return (_a = this.clerkjs) == null ? void 0 : _a.__internal_attemptToEnableEnvironmentSetting(options);
+            };
+            if (this.clerkjs && this.loaded) {
+                return callback();
+            } else {
+                this.premountMethodCalls.set("__internal_attemptToEnableEnvironmentSetting", callback);
+            }
+        };
+        const { Clerk = null, publishableKey } = options || {};
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateSet"])(this, _publishableKey, publishableKey);
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateSet"])(this, _proxyUrl, options == null ? void 0 : options.proxyUrl);
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateSet"])(this, _domain, options == null ? void 0 : options.domain);
+        this.options = options;
+        this.Clerk = Clerk;
+        this.mode = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$browser$2d$D5e8obql$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["inBrowser"])() ? "browser" : "server";
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateSet"])(this, _stateProxy, new StateProxy(this));
+        if (!this.options.sdkMetadata) {
+            this.options.sdkMetadata = SDK_METADATA;
+        }
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateGet"])(this, _eventBus).emit(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$clerkEventBus$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["clerkEvents"].Status, "loading");
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateGet"])(this, _eventBus).prioritizedOn(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$clerkEventBus$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["clerkEvents"].Status, (status)=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateSet"])(this, _status, status));
+        if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateGet"])(this, _publishableKey)) {
+            void this.loadClerkJS();
+        }
+    }
+    get publishableKey() {
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateGet"])(this, _publishableKey);
+    }
+    get loaded() {
+        var _a;
+        return ((_a = this.clerkjs) == null ? void 0 : _a.loaded) || false;
+    }
+    get status() {
+        var _a;
+        if (!this.clerkjs) {
+            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateGet"])(this, _status);
+        }
+        return ((_a = this.clerkjs) == null ? void 0 : _a.status) || /**
+     * Support older clerk-js versions.
+     * If clerk-js is available but `.status` is missing it we need to fallback to `.loaded`.
+     * Since "degraded" an "error" did not exist before,
+     * map "loaded" to "ready" and "not loaded" to "loading".
+     */ (this.clerkjs.loaded ? "ready" : "loading");
+    }
+    static getOrCreateInstance(options) {
+        if (!(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$browser$2d$D5e8obql$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["inBrowser"])() || !(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateGet"])(this, _instance) || options.Clerk && (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateGet"])(this, _instance).Clerk !== options.Clerk || // Allow hot swapping PKs on the client
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateGet"])(this, _instance).publishableKey !== options.publishableKey) {
+            (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateSet"])(this, _instance, new _IsomorphicClerk(options));
+        }
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateGet"])(this, _instance);
+    }
+    static clearInstance() {
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateSet"])(this, _instance, null);
+    }
+    get domain() {
+        if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+        ;
+        if (typeof (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateGet"])(this, _domain) === "function") {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["errorThrower"].throw(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["unsupportedNonBrowserDomainOrProxyUrlFunction"]);
+        }
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateGet"])(this, _domain) || "";
+    }
+    get proxyUrl() {
+        if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+        ;
+        if (typeof (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateGet"])(this, _proxyUrl) === "function") {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["errorThrower"].throw(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["unsupportedNonBrowserDomainOrProxyUrlFunction"]);
+        }
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateGet"])(this, _proxyUrl) || "";
+    }
+    /**
+   * Accesses private options from the `Clerk` instance and defaults to
+   * `IsomorphicClerk` options when in SSR context.
+   *  @internal
+   */ __internal_getOption(key) {
+        var _a, _b;
+        return ((_a = this.clerkjs) == null ? void 0 : _a.__internal_getOption) ? (_b = this.clerkjs) == null ? void 0 : _b.__internal_getOption(key) : this.options[key];
+    }
+    get sdkMetadata() {
+        var _a;
+        return ((_a = this.clerkjs) == null ? void 0 : _a.sdkMetadata) || this.options.sdkMetadata || void 0;
+    }
+    get instanceType() {
+        var _a;
+        return (_a = this.clerkjs) == null ? void 0 : _a.instanceType;
+    }
+    get frontendApi() {
+        var _a;
+        return ((_a = this.clerkjs) == null ? void 0 : _a.frontendApi) || "";
+    }
+    get isStandardBrowser() {
+        var _a;
+        return ((_a = this.clerkjs) == null ? void 0 : _a.isStandardBrowser) || this.options.standardBrowser || false;
+    }
+    get __internal_queryClient() {
+        var _a;
+        return (_a = this.clerkjs) == null ? void 0 : _a.__internal_queryClient;
+    }
+    get isSatellite() {
+        if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+        ;
+        if (typeof this.options.isSatellite === "function") {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["errorThrower"].throw(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["unsupportedNonBrowserDomainOrProxyUrlFunction"]);
+        }
+        return false;
+    }
+    async loadClerkJS() {
+        var _a;
+        if (this.mode !== "browser" || this.loaded) {
+            return;
+        }
+        if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+        ;
+        try {
+            if (this.Clerk) {
+                let c;
+                if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$6WD75OPE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isConstructor"])(this.Clerk)) {
+                    c = new this.Clerk((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateGet"])(this, _publishableKey), {
+                        proxyUrl: this.proxyUrl,
+                        domain: this.domain
+                    });
+                    this.beforeLoad(c);
+                    await c.load(this.options);
+                } else {
+                    c = this.Clerk;
+                    if (!c.loaded) {
+                        this.beforeLoad(c);
+                        await c.load(this.options);
+                    }
+                }
+                /*TURBOPACK member replacement*/ __turbopack_context__.g.Clerk = c;
+            } else if (!__BUILD_DISABLE_RHC__) {
+                if (!/*TURBOPACK member replacement*/ __turbopack_context__.g.Clerk) {
+                    await (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$loadClerkJsScript$2d$B$2d$3zV0fK$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["loadClerkJsScript"])({
+                        ...this.options,
+                        publishableKey: (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateGet"])(this, _publishableKey),
+                        proxyUrl: this.proxyUrl,
+                        domain: this.domain,
+                        nonce: this.options.nonce
+                    });
+                }
+                if (!/*TURBOPACK member replacement*/ __turbopack_context__.g.Clerk) {
+                    throw new Error("Failed to download latest ClerkJS. Contact support@clerk.com.");
+                }
+                this.beforeLoad(/*TURBOPACK member replacement*/ __turbopack_context__.g.Clerk);
+                await /*TURBOPACK member replacement*/ __turbopack_context__.g.Clerk.load(this.options);
+            }
+            if ((_a = /*TURBOPACK member replacement*/ __turbopack_context__.g.Clerk) == null ? void 0 : _a.loaded) {
+                return this.hydrateClerkJS(/*TURBOPACK member replacement*/ __turbopack_context__.g.Clerk);
+            }
+            return;
+        } catch (err) {
+            const error = err;
+            (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateGet"])(this, _eventBus).emit(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$clerkEventBus$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["clerkEvents"].Status, "error");
+            console.error(error.stack || error.message || error);
+            return;
+        }
+    }
+    get version() {
+        var _a;
+        return (_a = this.clerkjs) == null ? void 0 : _a.version;
+    }
+    get client() {
+        if (this.clerkjs) {
+            return this.clerkjs.client;
+        } else {
+            return void 0;
+        }
+    }
+    get session() {
+        if (this.clerkjs) {
+            return this.clerkjs.session;
+        } else {
+            return void 0;
+        }
+    }
+    get user() {
+        if (this.clerkjs) {
+            return this.clerkjs.user;
+        } else {
+            return void 0;
+        }
+    }
+    get organization() {
+        if (this.clerkjs) {
+            return this.clerkjs.organization;
+        } else {
+            return void 0;
+        }
+    }
+    get telemetry() {
+        if (this.clerkjs) {
+            return this.clerkjs.telemetry;
+        } else {
+            return void 0;
+        }
+    }
+    get __unstable__environment() {
+        if (this.clerkjs) {
+            return this.clerkjs.__unstable__environment;
+        } else {
+            return void 0;
+        }
+    }
+    get isSignedIn() {
+        if (this.clerkjs) {
+            return this.clerkjs.isSignedIn;
+        } else {
+            return false;
+        }
+    }
+    get billing() {
+        var _a;
+        return (_a = this.clerkjs) == null ? void 0 : _a.billing;
+    }
+    get __internal_state() {
+        return this.loaded && this.clerkjs ? this.clerkjs.__internal_state : (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateGet"])(this, _stateProxy);
+    }
+    get apiKeys() {
+        var _a;
+        return (_a = this.clerkjs) == null ? void 0 : _a.apiKeys;
+    }
+    __unstable__setEnvironment(...args) {
+        if (this.clerkjs && "__unstable__setEnvironment" in this.clerkjs) {
+            this.clerkjs.__unstable__setEnvironment(args);
+        } else {
+            return void 0;
+        }
+    }
+};
+_status = new WeakMap();
+_domain = new WeakMap();
+_proxyUrl = new WeakMap();
+_publishableKey = new WeakMap();
+_eventBus = new WeakMap();
+_stateProxy = new WeakMap();
+_instance = new WeakMap();
+_IsomorphicClerk_instances = new WeakSet();
+waitForClerkJS_fn = function() {
+    return new Promise((resolve)=>{
+        this.addOnLoaded(()=>resolve(this.clerkjs));
+    });
+};
+(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__privateAdd"])(_IsomorphicClerk, _instance);
+var IsomorphicClerk = _IsomorphicClerk;
+// src/contexts/ClerkContextProvider.tsx
+function ClerkContextProvider(props) {
+    const { isomorphicClerkOptions, initialState, children } = props;
+    const { isomorphicClerk: clerk, clerkStatus } = useLoadedIsomorphicClerk(isomorphicClerkOptions);
+    const [state, setState] = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useState({
+        client: clerk.client,
+        session: clerk.session,
+        user: clerk.user,
+        organization: clerk.organization
+    });
+    __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useEffect(()=>{
+        return clerk.addListener((e)=>setState({
+                ...e
+            }));
+    }, []);
+    const derivedState = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$deriveState$2d$ChDqlleE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["deriveState"])(clerk.loaded, state, initialState);
+    const clerkCtx = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useMemo(()=>({
+            value: clerk
+        }), [
+        // Only update the clerk reference on status change
+        clerkStatus
+    ]);
+    const clientCtx = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useMemo(()=>({
+            value: state.client
+        }), [
+        state.client
+    ]);
+    const { sessionId, sessionStatus, sessionClaims, session, userId, user, orgId, actor, organization, orgRole, orgSlug, orgPermissions, factorVerificationAge } = derivedState;
+    const authCtx = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useMemo(()=>{
+        const value = {
+            sessionId,
+            sessionStatus,
+            sessionClaims,
+            userId,
+            actor,
+            orgId,
+            orgRole,
+            orgSlug,
+            orgPermissions,
+            factorVerificationAge
+        };
+        return {
+            value
+        };
+    }, [
+        sessionId,
+        sessionStatus,
+        userId,
+        actor,
+        orgId,
+        orgRole,
+        orgSlug,
+        factorVerificationAge,
+        sessionClaims == null ? void 0 : sessionClaims.__raw
+    ]);
+    const sessionCtx = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useMemo(()=>({
+            value: session
+        }), [
+        sessionId,
+        session
+    ]);
+    const userCtx = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useMemo(()=>({
+            value: user
+        }), [
+        userId,
+        user
+    ]);
+    const organizationCtx = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useMemo(()=>{
+        const value = {
+            organization
+        };
+        return {
+            value
+        };
+    }, [
+        orgId,
+        organization
+    ]);
+    return(// @ts-expect-error value passed is of type IsomorphicClerk where the context expects LoadedClerk
+    /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["IsomorphicClerkContext"].Provider, {
+        value: clerkCtx
+    }, /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$react$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ClientContext"].Provider, {
+        value: clientCtx
+    }, /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$react$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SessionContext"].Provider, {
+        value: sessionCtx
+    }, /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$react$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["OrganizationProvider"], {
+        ...organizationCtx.value
+    }, /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["AuthContext"].Provider, {
+        value: authCtx
+    }, /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$react$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["UserContext"].Provider, {
+        value: userCtx
+    }, /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$react$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["__experimental_CheckoutProvider"], {
+        value: void 0
+    }, children))))))));
+}
+var useLoadedIsomorphicClerk = (options)=>{
+    const isomorphicClerkRef = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useRef(IsomorphicClerk.getOrCreateInstance(options));
+    const [clerkStatus, setClerkStatus] = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useState(isomorphicClerkRef.current.status);
+    __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useEffect(()=>{
+        void isomorphicClerkRef.current.__unstable__updateProps({
+            appearance: options.appearance
+        });
+    }, [
+        options.appearance
+    ]);
+    __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useEffect(()=>{
+        void isomorphicClerkRef.current.__unstable__updateProps({
+            options
+        });
+    }, [
+        options.localization
+    ]);
+    __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useEffect(()=>{
+        isomorphicClerkRef.current.on("status", setClerkStatus);
+        return ()=>{
+            if (isomorphicClerkRef.current) {
+                isomorphicClerkRef.current.off("status", setClerkStatus);
+            }
+            IsomorphicClerk.clearInstance();
+        };
+    }, []);
+    return {
+        isomorphicClerk: isomorphicClerkRef.current,
+        clerkStatus
+    };
+};
+// src/contexts/ClerkProvider.tsx
+function ClerkProviderBase(props) {
+    const { initialState, children, __internal_bypassMissingPublishableKey, ...restIsomorphicClerkOptions } = props;
+    const { publishableKey = "", Clerk: userInitialisedClerk } = restIsomorphicClerkOptions;
+    if (!userInitialisedClerk && !__internal_bypassMissingPublishableKey) {
+        if (!publishableKey) {
+            __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["errorThrower"].throwMissingPublishableKeyError();
+        } else if (publishableKey && !(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$keys$2d$YNv6yjKk$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["isPublishableKey"])(publishableKey)) {
+            __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["errorThrower"].throwInvalidPublishableKeyError({
+                key: publishableKey
+            });
+        }
+    }
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(ClerkContextProvider, {
+        initialState,
+        isomorphicClerkOptions: restIsomorphicClerkOptions
+    }, children);
+}
+var ClerkProvider = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$6WD75OPE$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["withMaxAllowedInstancesGuard"])(ClerkProviderBase, "ClerkProvider", __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["multipleClerkProvidersError"]);
+ClerkProvider.displayName = "ClerkProvider";
+// src/index.ts
+(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["setErrorThrowerOptions"])({
+    packageName: "@clerk/clerk-react"
+});
+(0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$loadClerkJsScript$2d$B$2d$3zV0fK$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["setClerkJsLoadingErrorPackageName"])("@clerk/clerk-react");
+;
+ //# sourceMappingURL=index.mjs.map
+}),
+"[project]/web-client/node_modules/@clerk/clerk-react/dist/internal.mjs [app-ssr] (ecmascript) <locals>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "useRoutingProps",
+    ()=>useRoutingProps
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$VMBS36YX$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/clerk-react/dist/chunk-VMBS36YX.mjs [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/clerk-react/dist/chunk-OT5FTIRN.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OANWQR3B$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/clerk-react/dist/chunk-OANWQR3B.mjs [app-ssr] (ecmascript)");
+// src/internal.ts
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$loadClerkJsScript$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/loadClerkJsScript.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$shared$2f$dist$2f$runtime$2f$loadClerkJsScript$2d$B$2d$3zV0fK$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/shared/dist/runtime/loadClerkJsScript-B-3zV0fK.mjs [app-ssr] (ecmascript)");
+;
+;
+;
+// src/hooks/useRoutingProps.ts
+function useRoutingProps(componentName, props, routingOptions) {
+    const path = props.path || (routingOptions == null ? void 0 : routingOptions.path);
+    const routing = props.routing || (routingOptions == null ? void 0 : routingOptions.routing) || "path";
+    if (routing === "path") {
+        if (!path) {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["errorThrower"].throw((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["noPathProvidedError"])(componentName));
+        }
+        return {
+            ...routingOptions,
+            ...props,
+            routing: "path"
+        };
+    }
+    if (props.path) {
+        return __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["errorThrower"].throw((0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["incompatibleRoutingWithPathProvidedError"])(componentName));
+    }
+    return {
+        ...routingOptions,
+        ...props,
+        path: void 0
+    };
+}
+;
+;
+ //# sourceMappingURL=internal.mjs.map
+}),
+"[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/contexts/router-context.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+module.exports = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/module.compiled.js [app-ssr] (ecmascript)").vendored['contexts'].RouterContext; //# sourceMappingURL=router-context.js.map
+}),
+"[project]/web-client/node_modules/next/dist/client/compat/router.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "useRouter", {
+    enumerable: true,
+    get: function() {
+        return useRouter;
+    }
+});
+const _react = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+const _routercontextsharedruntime = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/contexts/router-context.js [app-ssr] (ecmascript)");
+function useRouter() {
+    return (0, _react.useContext)(_routercontextsharedruntime.RouterContext);
+}
+if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
+    Object.defineProperty(exports.default, '__esModule', {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=router.js.map
+}),
+"[project]/web-client/node_modules/next/compat/router.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+
+module.exports = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/compat/router.js [app-ssr] (ecmascript)");
+}),
+"[project]/web-client/node_modules/@clerk/nextjs/dist/esm/client-boundary/PromisifiedAuthProvider.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "PromisifiedAuthProvider",
+    ()=>PromisifiedAuthProvider,
+    "usePromisifiedAuth",
+    ()=>usePromisifiedAuth
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/clerk-react/dist/index.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/clerk-react/dist/chunk-OT5FTIRN.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$internal$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/clerk-react/dist/internal.mjs [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$compat$2f$router$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/next/compat/router.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+"use client";
+;
+;
+;
+;
+;
+const PromisifiedAuthContext = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createContext(null);
+function PromisifiedAuthProvider({ authPromise, children }) {
+    return /* @__PURE__ */ __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].createElement(PromisifiedAuthContext.Provider, {
+        value: authPromise
+    }, children);
+}
+function usePromisifiedAuth(options = {}) {
+    const isPagesRouter = (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$compat$2f$router$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
+    const valueFromContext = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useContext(PromisifiedAuthContext);
+    let resolvedData = valueFromContext;
+    if (valueFromContext && "then" in valueFromContext) {
+        resolvedData = __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].use(valueFromContext);
+    }
+    if ("TURBOPACK compile-time truthy", 1) {
+        if (isPagesRouter) {
+            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useAuth"])(options);
+        }
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$clerk$2d$react$2f$dist$2f$chunk$2d$OT5FTIRN$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["useDerivedAuth"])({
+            ...resolvedData,
+            ...options
+        });
+    } else //TURBOPACK unreachable
+    ;
+}
+;
+ //# sourceMappingURL=PromisifiedAuthProvider.js.map
+}),
+"[project]/web-client/node_modules/@clerk/nextjs/dist/esm/client-boundary/PromisifiedAuthProvider.js [app-ssr] (ecmascript) <export usePromisifiedAuth as useAuth>", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "useAuth",
+    ()=>__TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$nextjs$2f$dist$2f$esm$2f$client$2d$boundary$2f$PromisifiedAuthProvider$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["usePromisifiedAuth"]
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$web$2d$client$2f$node_modules$2f40$clerk$2f$nextjs$2f$dist$2f$esm$2f$client$2d$boundary$2f$PromisifiedAuthProvider$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/web-client/node_modules/@clerk/nextjs/dist/esm/client-boundary/PromisifiedAuthProvider.js [app-ssr] (ecmascript)");
+}),
+"[project]/web-client/node_modules/@swc/helpers/cjs/_interop_require_wildcard.cjs [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+function _getRequireWildcardCache(nodeInterop) {
+    if (typeof WeakMap !== "function") return null;
+    var cacheBabelInterop = new WeakMap();
+    var cacheNodeInterop = new WeakMap();
+    return (_getRequireWildcardCache = function(nodeInterop) {
+        return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
+    })(nodeInterop);
+}
+function _interop_require_wildcard(obj, nodeInterop) {
+    if (!nodeInterop && obj && obj.__esModule) return obj;
+    if (obj === null || typeof obj !== "object" && typeof obj !== "function") return {
+        default: obj
+    };
+    var cache = _getRequireWildcardCache(nodeInterop);
+    if (cache && cache.has(obj)) return cache.get(obj);
+    var newObj = {
+        __proto__: null
+    };
+    var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+    for(var key in obj){
+        if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
+            var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+            if (desc && (desc.get || desc.set)) Object.defineProperty(newObj, key, desc);
+            else newObj[key] = obj[key];
+        }
+    }
+    newObj.default = obj;
+    if (cache) cache.set(obj, newObj);
+    return newObj;
+}
+exports._ = _interop_require_wildcard;
+}),
+"[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/contexts/app-router-context.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+module.exports = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/module.compiled.js [app-ssr] (ecmascript)").vendored['contexts'].AppRouterContext; //# sourceMappingURL=app-router-context.js.map
+}),
+"[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/contexts/hooks-client-context.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+module.exports = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/module.compiled.js [app-ssr] (ecmascript)").vendored['contexts'].HooksClientContext; //# sourceMappingURL=hooks-client-context.js.map
+}),
+"[project]/web-client/node_modules/next/dist/shared/lib/segment.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    DEFAULT_SEGMENT_KEY: null,
+    NOT_FOUND_SEGMENT_KEY: null,
+    PAGE_SEGMENT_KEY: null,
+    addSearchParamsIfPageSegment: null,
+    computeSelectedLayoutSegment: null,
+    getSegmentValue: null,
+    getSelectedLayoutSegmentPath: null,
+    isGroupSegment: null,
+    isParallelRouteSegment: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    DEFAULT_SEGMENT_KEY: function() {
+        return DEFAULT_SEGMENT_KEY;
+    },
+    NOT_FOUND_SEGMENT_KEY: function() {
+        return NOT_FOUND_SEGMENT_KEY;
+    },
+    PAGE_SEGMENT_KEY: function() {
+        return PAGE_SEGMENT_KEY;
+    },
+    addSearchParamsIfPageSegment: function() {
+        return addSearchParamsIfPageSegment;
+    },
+    computeSelectedLayoutSegment: function() {
+        return computeSelectedLayoutSegment;
+    },
+    getSegmentValue: function() {
+        return getSegmentValue;
+    },
+    getSelectedLayoutSegmentPath: function() {
+        return getSelectedLayoutSegmentPath;
+    },
+    isGroupSegment: function() {
+        return isGroupSegment;
+    },
+    isParallelRouteSegment: function() {
+        return isParallelRouteSegment;
+    }
+});
+function getSegmentValue(segment) {
+    return Array.isArray(segment) ? segment[1] : segment;
+}
+function isGroupSegment(segment) {
+    // Use array[0] for performant purpose
+    return segment[0] === '(' && segment.endsWith(')');
+}
+function isParallelRouteSegment(segment) {
+    return segment.startsWith('@') && segment !== '@children';
+}
+function addSearchParamsIfPageSegment(segment, searchParams) {
+    const isPageSegment = segment.includes(PAGE_SEGMENT_KEY);
+    if (isPageSegment) {
+        const stringifiedQuery = JSON.stringify(searchParams);
+        return stringifiedQuery !== '{}' ? PAGE_SEGMENT_KEY + '?' + stringifiedQuery : PAGE_SEGMENT_KEY;
+    }
+    return segment;
+}
+function computeSelectedLayoutSegment(segments, parallelRouteKey) {
+    if (!segments || segments.length === 0) {
+        return null;
+    }
+    // For 'children', use first segment; for other parallel routes, use last segment
+    const rawSegment = parallelRouteKey === 'children' ? segments[0] : segments[segments.length - 1];
+    // If the default slot is showing, return null since it's not technically "selected" (it's a fallback)
+    // Returning an internal value like `__DEFAULT__` would be confusing
+    return rawSegment === DEFAULT_SEGMENT_KEY ? null : rawSegment;
+}
+function getSelectedLayoutSegmentPath(tree, parallelRouteKey, first = true, segmentPath = []) {
+    let node;
+    if (first) {
+        // Use the provided parallel route key on the first parallel route
+        node = tree[1][parallelRouteKey];
+    } else {
+        // After first parallel route prefer children, if there's no children pick the first parallel route.
+        const parallelRoutes = tree[1];
+        node = parallelRoutes.children ?? Object.values(parallelRoutes)[0];
+    }
+    if (!node) return segmentPath;
+    const segment = node[0];
+    let segmentValue = getSegmentValue(segment);
+    if (!segmentValue || segmentValue.startsWith(PAGE_SEGMENT_KEY)) {
+        return segmentPath;
+    }
+    segmentPath.push(segmentValue);
+    return getSelectedLayoutSegmentPath(node, parallelRouteKey, false, segmentPath);
+}
+const PAGE_SEGMENT_KEY = '__PAGE__';
+const DEFAULT_SEGMENT_KEY = '__DEFAULT__';
+const NOT_FOUND_SEGMENT_KEY = '/_not-found'; //# sourceMappingURL=segment.js.map
+}),
+"[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/contexts/server-inserted-html.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+module.exports = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/module.compiled.js [app-ssr] (ecmascript)").vendored['contexts'].ServerInsertedHtml; //# sourceMappingURL=server-inserted-html.js.map
+}),
+"[project]/web-client/node_modules/next/dist/client/components/unrecognized-action-error.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    UnrecognizedActionError: null,
+    unstable_isUnrecognizedActionError: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    UnrecognizedActionError: function() {
+        return UnrecognizedActionError;
+    },
+    unstable_isUnrecognizedActionError: function() {
+        return unstable_isUnrecognizedActionError;
+    }
+});
+class UnrecognizedActionError extends Error {
+    constructor(...args){
+        super(...args);
+        this.name = 'UnrecognizedActionError';
+    }
+}
+function unstable_isUnrecognizedActionError(error) {
+    return !!(error && typeof error === 'object' && error instanceof UnrecognizedActionError);
+}
+if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
+    Object.defineProperty(exports.default, '__esModule', {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=unrecognized-action-error.js.map
+}),
+"[project]/web-client/node_modules/next/dist/client/components/readonly-url-search-params.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+/**
+ * ReadonlyURLSearchParams implementation shared between client and server.
+ * This file is intentionally not marked as 'use client' or 'use server'
+ * so it can be imported by both environments.
+ */ /** @internal */ Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "ReadonlyURLSearchParams", {
+    enumerable: true,
+    get: function() {
+        return ReadonlyURLSearchParams;
+    }
+});
+class ReadonlyURLSearchParamsError extends Error {
+    constructor(){
+        super('Method unavailable on `ReadonlyURLSearchParams`. Read more: https://nextjs.org/docs/app/api-reference/functions/use-search-params#updating-searchparams');
+    }
+}
+class ReadonlyURLSearchParams extends URLSearchParams {
+    /** @deprecated Method unavailable on `ReadonlyURLSearchParams`. Read more: https://nextjs.org/docs/app/api-reference/functions/use-search-params#updating-searchparams */ append() {
+        throw new ReadonlyURLSearchParamsError();
+    }
+    /** @deprecated Method unavailable on `ReadonlyURLSearchParams`. Read more: https://nextjs.org/docs/app/api-reference/functions/use-search-params#updating-searchparams */ delete() {
+        throw new ReadonlyURLSearchParamsError();
+    }
+    /** @deprecated Method unavailable on `ReadonlyURLSearchParams`. Read more: https://nextjs.org/docs/app/api-reference/functions/use-search-params#updating-searchparams */ set() {
+        throw new ReadonlyURLSearchParamsError();
+    }
+    /** @deprecated Method unavailable on `ReadonlyURLSearchParams`. Read more: https://nextjs.org/docs/app/api-reference/functions/use-search-params#updating-searchparams */ sort() {
+        throw new ReadonlyURLSearchParamsError();
+    }
+}
+if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
+    Object.defineProperty(exports.default, '__esModule', {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=readonly-url-search-params.js.map
+}),
+"[project]/web-client/node_modules/next/dist/client/components/redirect-status-code.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "RedirectStatusCode", {
+    enumerable: true,
+    get: function() {
+        return RedirectStatusCode;
+    }
+});
+var RedirectStatusCode = /*#__PURE__*/ function(RedirectStatusCode) {
+    RedirectStatusCode[RedirectStatusCode["SeeOther"] = 303] = "SeeOther";
+    RedirectStatusCode[RedirectStatusCode["TemporaryRedirect"] = 307] = "TemporaryRedirect";
+    RedirectStatusCode[RedirectStatusCode["PermanentRedirect"] = 308] = "PermanentRedirect";
+    return RedirectStatusCode;
+}({});
+if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
+    Object.defineProperty(exports.default, '__esModule', {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=redirect-status-code.js.map
+}),
+"[project]/web-client/node_modules/next/dist/client/components/redirect-error.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    REDIRECT_ERROR_CODE: null,
+    RedirectType: null,
+    isRedirectError: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    REDIRECT_ERROR_CODE: function() {
+        return REDIRECT_ERROR_CODE;
+    },
+    RedirectType: function() {
+        return RedirectType;
+    },
+    isRedirectError: function() {
+        return isRedirectError;
+    }
+});
+const _redirectstatuscode = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/redirect-status-code.js [app-ssr] (ecmascript)");
+const REDIRECT_ERROR_CODE = 'NEXT_REDIRECT';
+var RedirectType = /*#__PURE__*/ function(RedirectType) {
+    RedirectType["push"] = "push";
+    RedirectType["replace"] = "replace";
+    return RedirectType;
+}({});
+function isRedirectError(error) {
+    if (typeof error !== 'object' || error === null || !('digest' in error) || typeof error.digest !== 'string') {
+        return false;
+    }
+    const digest = error.digest.split(';');
+    const [errorCode, type] = digest;
+    const destination = digest.slice(2, -2).join(';');
+    const status = digest.at(-2);
+    const statusCode = Number(status);
+    return errorCode === REDIRECT_ERROR_CODE && (type === 'replace' || type === 'push') && typeof destination === 'string' && !isNaN(statusCode) && statusCode in _redirectstatuscode.RedirectStatusCode;
+}
+if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
+    Object.defineProperty(exports.default, '__esModule', {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=redirect-error.js.map
+}),
+"[project]/web-client/node_modules/next/dist/client/components/redirect.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    getRedirectError: null,
+    getRedirectStatusCodeFromError: null,
+    getRedirectTypeFromError: null,
+    getURLFromRedirectError: null,
+    permanentRedirect: null,
+    redirect: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    getRedirectError: function() {
+        return getRedirectError;
+    },
+    getRedirectStatusCodeFromError: function() {
+        return getRedirectStatusCodeFromError;
+    },
+    getRedirectTypeFromError: function() {
+        return getRedirectTypeFromError;
+    },
+    getURLFromRedirectError: function() {
+        return getURLFromRedirectError;
+    },
+    permanentRedirect: function() {
+        return permanentRedirect;
+    },
+    redirect: function() {
+        return redirect;
+    }
+});
+const _redirectstatuscode = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/redirect-status-code.js [app-ssr] (ecmascript)");
+const _redirecterror = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/redirect-error.js [app-ssr] (ecmascript)");
+const actionAsyncStorage = ("TURBOPACK compile-time truthy", 1) ? __turbopack_context__.r("[externals]/next/dist/server/app-render/action-async-storage.external.js [external] (next/dist/server/app-render/action-async-storage.external.js, cjs)").actionAsyncStorage : "TURBOPACK unreachable";
+function getRedirectError(url, type, statusCode = _redirectstatuscode.RedirectStatusCode.TemporaryRedirect) {
+    const error = Object.defineProperty(new Error(_redirecterror.REDIRECT_ERROR_CODE), "__NEXT_ERROR_CODE", {
+        value: "E394",
+        enumerable: false,
+        configurable: true
+    });
+    error.digest = `${_redirecterror.REDIRECT_ERROR_CODE};${type};${url};${statusCode};`;
+    return error;
+}
+function redirect(/** The URL to redirect to */ url, type) {
+    type ??= actionAsyncStorage?.getStore()?.isAction ? _redirecterror.RedirectType.push : _redirecterror.RedirectType.replace;
+    throw getRedirectError(url, type, _redirectstatuscode.RedirectStatusCode.TemporaryRedirect);
+}
+function permanentRedirect(/** The URL to redirect to */ url, type = _redirecterror.RedirectType.replace) {
+    throw getRedirectError(url, type, _redirectstatuscode.RedirectStatusCode.PermanentRedirect);
+}
+function getURLFromRedirectError(error) {
+    if (!(0, _redirecterror.isRedirectError)(error)) return null;
+    // Slices off the beginning of the digest that contains the code and the
+    // separating ';'.
+    return error.digest.split(';').slice(2, -2).join(';');
+}
+function getRedirectTypeFromError(error) {
+    if (!(0, _redirecterror.isRedirectError)(error)) {
+        throw Object.defineProperty(new Error('Not a redirect error'), "__NEXT_ERROR_CODE", {
+            value: "E260",
+            enumerable: false,
+            configurable: true
+        });
+    }
+    return error.digest.split(';', 2)[1];
+}
+function getRedirectStatusCodeFromError(error) {
+    if (!(0, _redirecterror.isRedirectError)(error)) {
+        throw Object.defineProperty(new Error('Not a redirect error'), "__NEXT_ERROR_CODE", {
+            value: "E260",
+            enumerable: false,
+            configurable: true
+        });
+    }
+    return Number(error.digest.split(';').at(-2));
+}
+if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
+    Object.defineProperty(exports.default, '__esModule', {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=redirect.js.map
+}),
+"[project]/web-client/node_modules/next/dist/client/components/http-access-fallback/http-access-fallback.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    HTTPAccessErrorStatus: null,
+    HTTP_ERROR_FALLBACK_ERROR_CODE: null,
+    getAccessFallbackErrorTypeByStatus: null,
+    getAccessFallbackHTTPStatus: null,
+    isHTTPAccessFallbackError: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    HTTPAccessErrorStatus: function() {
+        return HTTPAccessErrorStatus;
+    },
+    HTTP_ERROR_FALLBACK_ERROR_CODE: function() {
+        return HTTP_ERROR_FALLBACK_ERROR_CODE;
+    },
+    getAccessFallbackErrorTypeByStatus: function() {
+        return getAccessFallbackErrorTypeByStatus;
+    },
+    getAccessFallbackHTTPStatus: function() {
+        return getAccessFallbackHTTPStatus;
+    },
+    isHTTPAccessFallbackError: function() {
+        return isHTTPAccessFallbackError;
+    }
+});
+const HTTPAccessErrorStatus = {
+    NOT_FOUND: 404,
+    FORBIDDEN: 403,
+    UNAUTHORIZED: 401
+};
+const ALLOWED_CODES = new Set(Object.values(HTTPAccessErrorStatus));
+const HTTP_ERROR_FALLBACK_ERROR_CODE = 'NEXT_HTTP_ERROR_FALLBACK';
+function isHTTPAccessFallbackError(error) {
+    if (typeof error !== 'object' || error === null || !('digest' in error) || typeof error.digest !== 'string') {
+        return false;
+    }
+    const [prefix, httpStatus] = error.digest.split(';');
+    return prefix === HTTP_ERROR_FALLBACK_ERROR_CODE && ALLOWED_CODES.has(Number(httpStatus));
+}
+function getAccessFallbackHTTPStatus(error) {
+    const httpStatus = error.digest.split(';')[1];
+    return Number(httpStatus);
+}
+function getAccessFallbackErrorTypeByStatus(status) {
+    switch(status){
+        case 401:
+            return 'unauthorized';
+        case 403:
+            return 'forbidden';
+        case 404:
+            return 'not-found';
+        default:
+            return;
+    }
+}
+if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
+    Object.defineProperty(exports.default, '__esModule', {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=http-access-fallback.js.map
+}),
+"[project]/web-client/node_modules/next/dist/client/components/not-found.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "notFound", {
+    enumerable: true,
+    get: function() {
+        return notFound;
+    }
+});
+const _httpaccessfallback = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/http-access-fallback/http-access-fallback.js [app-ssr] (ecmascript)");
+/**
+ * This function allows you to render the [not-found.js file](https://nextjs.org/docs/app/api-reference/file-conventions/not-found)
+ * within a route segment as well as inject a tag.
+ *
+ * `notFound()` can be used in
+ * [Server Components](https://nextjs.org/docs/app/building-your-application/rendering/server-components),
+ * [Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers), and
+ * [Server Actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations).
+ *
+ * - In a Server Component, this will insert a `<meta name="robots" content="noindex" />` meta tag and set the status code to 404.
+ * - In a Route Handler or Server Action, it will serve a 404 to the caller.
+ *
+ * Read more: [Next.js Docs: `notFound`](https://nextjs.org/docs/app/api-reference/functions/not-found)
+ */ const DIGEST = `${_httpaccessfallback.HTTP_ERROR_FALLBACK_ERROR_CODE};404`;
+function notFound() {
+    const error = Object.defineProperty(new Error(DIGEST), "__NEXT_ERROR_CODE", {
+        value: "E394",
+        enumerable: false,
+        configurable: true
+    });
+    error.digest = DIGEST;
+    throw error;
+}
+if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
+    Object.defineProperty(exports.default, '__esModule', {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=not-found.js.map
+}),
+"[project]/web-client/node_modules/next/dist/client/components/forbidden.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "forbidden", {
+    enumerable: true,
+    get: function() {
+        return forbidden;
+    }
+});
+const _httpaccessfallback = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/http-access-fallback/http-access-fallback.js [app-ssr] (ecmascript)");
+// TODO: Add `forbidden` docs
+/**
+ * @experimental
+ * This function allows you to render the [forbidden.js file](https://nextjs.org/docs/app/api-reference/file-conventions/forbidden)
+ * within a route segment as well as inject a tag.
+ *
+ * `forbidden()` can be used in
+ * [Server Components](https://nextjs.org/docs/app/building-your-application/rendering/server-components),
+ * [Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers), and
+ * [Server Actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations).
+ *
+ * Read more: [Next.js Docs: `forbidden`](https://nextjs.org/docs/app/api-reference/functions/forbidden)
+ */ const DIGEST = `${_httpaccessfallback.HTTP_ERROR_FALLBACK_ERROR_CODE};403`;
+function forbidden() {
+    if ("TURBOPACK compile-time truthy", 1) {
+        throw Object.defineProperty(new Error(`\`forbidden()\` is experimental and only allowed to be enabled when \`experimental.authInterrupts\` is enabled.`), "__NEXT_ERROR_CODE", {
+            value: "E488",
+            enumerable: false,
+            configurable: true
+        });
+    }
+    const error = Object.defineProperty(new Error(DIGEST), "__NEXT_ERROR_CODE", {
+        value: "E394",
+        enumerable: false,
+        configurable: true
+    });
+    error.digest = DIGEST;
+    throw error;
+}
+if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
+    Object.defineProperty(exports.default, '__esModule', {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=forbidden.js.map
+}),
+"[project]/web-client/node_modules/next/dist/client/components/unauthorized.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "unauthorized", {
+    enumerable: true,
+    get: function() {
+        return unauthorized;
+    }
+});
+const _httpaccessfallback = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/http-access-fallback/http-access-fallback.js [app-ssr] (ecmascript)");
+// TODO: Add `unauthorized` docs
+/**
+ * @experimental
+ * This function allows you to render the [unauthorized.js file](https://nextjs.org/docs/app/api-reference/file-conventions/unauthorized)
+ * within a route segment as well as inject a tag.
+ *
+ * `unauthorized()` can be used in
+ * [Server Components](https://nextjs.org/docs/app/building-your-application/rendering/server-components),
+ * [Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers), and
+ * [Server Actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations).
+ *
+ *
+ * Read more: [Next.js Docs: `unauthorized`](https://nextjs.org/docs/app/api-reference/functions/unauthorized)
+ */ const DIGEST = `${_httpaccessfallback.HTTP_ERROR_FALLBACK_ERROR_CODE};401`;
+function unauthorized() {
+    if ("TURBOPACK compile-time truthy", 1) {
+        throw Object.defineProperty(new Error(`\`unauthorized()\` is experimental and only allowed to be used when \`experimental.authInterrupts\` is enabled.`), "__NEXT_ERROR_CODE", {
+            value: "E411",
+            enumerable: false,
+            configurable: true
+        });
+    }
+    const error = Object.defineProperty(new Error(DIGEST), "__NEXT_ERROR_CODE", {
+        value: "E394",
+        enumerable: false,
+        configurable: true
+    });
+    error.digest = DIGEST;
+    throw error;
+}
+if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
+    Object.defineProperty(exports.default, '__esModule', {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=unauthorized.js.map
+}),
+"[project]/web-client/node_modules/next/dist/server/dynamic-rendering-utils.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    isHangingPromiseRejectionError: null,
+    makeDevtoolsIOAwarePromise: null,
+    makeHangingPromise: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    isHangingPromiseRejectionError: function() {
+        return isHangingPromiseRejectionError;
+    },
+    makeDevtoolsIOAwarePromise: function() {
+        return makeDevtoolsIOAwarePromise;
+    },
+    makeHangingPromise: function() {
+        return makeHangingPromise;
+    }
+});
+function isHangingPromiseRejectionError(err) {
+    if (typeof err !== 'object' || err === null || !('digest' in err)) {
+        return false;
+    }
+    return err.digest === HANGING_PROMISE_REJECTION;
+}
+const HANGING_PROMISE_REJECTION = 'HANGING_PROMISE_REJECTION';
+class HangingPromiseRejectionError extends Error {
+    constructor(route, expression){
+        super(`During prerendering, ${expression} rejects when the prerender is complete. Typically these errors are handled by React but if you move ${expression} to a different context by using \`setTimeout\`, \`after\`, or similar functions you may observe this error and you should handle it in that context. This occurred at route "${route}".`), this.route = route, this.expression = expression, this.digest = HANGING_PROMISE_REJECTION;
+    }
+}
+const abortListenersBySignal = new WeakMap();
+function makeHangingPromise(signal, route, expression) {
+    if (signal.aborted) {
+        return Promise.reject(new HangingPromiseRejectionError(route, expression));
+    } else {
+        const hangingPromise = new Promise((_, reject)=>{
+            const boundRejection = reject.bind(null, new HangingPromiseRejectionError(route, expression));
+            let currentListeners = abortListenersBySignal.get(signal);
+            if (currentListeners) {
+                currentListeners.push(boundRejection);
+            } else {
+                const listeners = [
+                    boundRejection
+                ];
+                abortListenersBySignal.set(signal, listeners);
+                signal.addEventListener('abort', ()=>{
+                    for(let i = 0; i < listeners.length; i++){
+                        listeners[i]();
+                    }
+                }, {
+                    once: true
+                });
+            }
+        });
+        // We are fine if no one actually awaits this promise. We shouldn't consider this an unhandled rejection so
+        // we attach a noop catch handler here to suppress this warning. If you actually await somewhere or construct
+        // your own promise out of it you'll need to ensure you handle the error when it rejects.
+        hangingPromise.catch(ignoreReject);
+        return hangingPromise;
+    }
+}
+function ignoreReject() {}
+function makeDevtoolsIOAwarePromise(underlying, requestStore, stage) {
+    if (requestStore.stagedRendering) {
+        // We resolve each stage in a timeout, so React DevTools will pick this up as IO.
+        return requestStore.stagedRendering.delayUntilStage(stage, undefined, underlying);
+    }
+    // in React DevTools if we resolve in a setTimeout we will observe
+    // the promise resolution as something that can suspend a boundary or root.
+    return new Promise((resolve)=>{
+        // Must use setTimeout to be considered IO React DevTools. setImmediate will not work.
+        setTimeout(()=>{
+            resolve(underlying);
+        }, 0);
+    });
+} //# sourceMappingURL=dynamic-rendering-utils.js.map
+}),
+"[project]/web-client/node_modules/next/dist/server/lib/router-utils/is-postpone.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "isPostpone", {
+    enumerable: true,
+    get: function() {
+        return isPostpone;
+    }
+});
+const REACT_POSTPONE_TYPE = Symbol.for('react.postpone');
+function isPostpone(error) {
+    return typeof error === 'object' && error !== null && error.$$typeof === REACT_POSTPONE_TYPE;
+} //# sourceMappingURL=is-postpone.js.map
+}),
+"[project]/web-client/node_modules/next/dist/shared/lib/lazy-dynamic/bailout-to-csr.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+// This has to be a shared module which is shared between client component error boundary and dynamic component
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    BailoutToCSRError: null,
+    isBailoutToCSRError: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    BailoutToCSRError: function() {
+        return BailoutToCSRError;
+    },
+    isBailoutToCSRError: function() {
+        return isBailoutToCSRError;
+    }
+});
+const BAILOUT_TO_CSR = 'BAILOUT_TO_CLIENT_SIDE_RENDERING';
+class BailoutToCSRError extends Error {
+    constructor(reason){
+        super(`Bail out to client-side rendering: ${reason}`), this.reason = reason, this.digest = BAILOUT_TO_CSR;
+    }
+}
+function isBailoutToCSRError(err) {
+    if (typeof err !== 'object' || err === null || !('digest' in err)) {
+        return false;
+    }
+    return err.digest === BAILOUT_TO_CSR;
+} //# sourceMappingURL=bailout-to-csr.js.map
+}),
+"[project]/web-client/node_modules/next/dist/client/components/is-next-router-error.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "isNextRouterError", {
+    enumerable: true,
+    get: function() {
+        return isNextRouterError;
+    }
+});
+const _httpaccessfallback = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/http-access-fallback/http-access-fallback.js [app-ssr] (ecmascript)");
+const _redirecterror = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/redirect-error.js [app-ssr] (ecmascript)");
+function isNextRouterError(error) {
+    return (0, _redirecterror.isRedirectError)(error) || (0, _httpaccessfallback.isHTTPAccessFallbackError)(error);
+}
+if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
+    Object.defineProperty(exports.default, '__esModule', {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=is-next-router-error.js.map
+}),
+"[project]/web-client/node_modules/next/dist/client/components/hooks-server-context.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    DynamicServerError: null,
+    isDynamicServerError: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    DynamicServerError: function() {
+        return DynamicServerError;
+    },
+    isDynamicServerError: function() {
+        return isDynamicServerError;
+    }
+});
+const DYNAMIC_ERROR_CODE = 'DYNAMIC_SERVER_USAGE';
+class DynamicServerError extends Error {
+    constructor(description){
+        super(`Dynamic server usage: ${description}`), this.description = description, this.digest = DYNAMIC_ERROR_CODE;
+    }
+}
+function isDynamicServerError(err) {
+    if (typeof err !== 'object' || err === null || !('digest' in err) || typeof err.digest !== 'string') {
+        return false;
+    }
+    return err.digest === DYNAMIC_ERROR_CODE;
+}
+if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
+    Object.defineProperty(exports.default, '__esModule', {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=hooks-server-context.js.map
+}),
+"[project]/web-client/node_modules/next/dist/client/components/static-generation-bailout.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    StaticGenBailoutError: null,
+    isStaticGenBailoutError: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    StaticGenBailoutError: function() {
+        return StaticGenBailoutError;
+    },
+    isStaticGenBailoutError: function() {
+        return isStaticGenBailoutError;
+    }
+});
+const NEXT_STATIC_GEN_BAILOUT = 'NEXT_STATIC_GEN_BAILOUT';
+class StaticGenBailoutError extends Error {
+    constructor(...args){
+        super(...args), this.code = NEXT_STATIC_GEN_BAILOUT;
+    }
+}
+function isStaticGenBailoutError(error) {
+    if (typeof error !== 'object' || error === null || !('code' in error)) {
+        return false;
+    }
+    return error.code === NEXT_STATIC_GEN_BAILOUT;
+}
+if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
+    Object.defineProperty(exports.default, '__esModule', {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=static-generation-bailout.js.map
+}),
+"[project]/web-client/node_modules/next/dist/lib/framework/boundary-constants.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    METADATA_BOUNDARY_NAME: null,
+    OUTLET_BOUNDARY_NAME: null,
+    ROOT_LAYOUT_BOUNDARY_NAME: null,
+    VIEWPORT_BOUNDARY_NAME: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    METADATA_BOUNDARY_NAME: function() {
+        return METADATA_BOUNDARY_NAME;
+    },
+    OUTLET_BOUNDARY_NAME: function() {
+        return OUTLET_BOUNDARY_NAME;
+    },
+    ROOT_LAYOUT_BOUNDARY_NAME: function() {
+        return ROOT_LAYOUT_BOUNDARY_NAME;
+    },
+    VIEWPORT_BOUNDARY_NAME: function() {
+        return VIEWPORT_BOUNDARY_NAME;
+    }
+});
+const METADATA_BOUNDARY_NAME = '__next_metadata_boundary__';
+const VIEWPORT_BOUNDARY_NAME = '__next_viewport_boundary__';
+const OUTLET_BOUNDARY_NAME = '__next_outlet_boundary__';
+const ROOT_LAYOUT_BOUNDARY_NAME = '__next_root_layout_boundary__'; //# sourceMappingURL=boundary-constants.js.map
+}),
+"[project]/web-client/node_modules/next/dist/lib/scheduler.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    atLeastOneTask: null,
+    scheduleImmediate: null,
+    scheduleOnNextTick: null,
+    waitAtLeastOneReactRenderTask: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    atLeastOneTask: function() {
+        return atLeastOneTask;
+    },
+    scheduleImmediate: function() {
+        return scheduleImmediate;
+    },
+    scheduleOnNextTick: function() {
+        return scheduleOnNextTick;
+    },
+    waitAtLeastOneReactRenderTask: function() {
+        return waitAtLeastOneReactRenderTask;
+    }
+});
+const scheduleOnNextTick = (cb)=>{
+    // We use Promise.resolve().then() here so that the operation is scheduled at
+    // the end of the promise job queue, we then add it to the next process tick
+    // to ensure it's evaluated afterwards.
+    //
+    // This was inspired by the implementation of the DataLoader interface: https://github.com/graphql/dataloader/blob/d336bd15282664e0be4b4a657cb796f09bafbc6b/src/index.js#L213-L255
+    //
+    Promise.resolve().then(()=>{
+        if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+        ;
+        else {
+            process.nextTick(cb);
+        }
+    });
+};
+const scheduleImmediate = (cb)=>{
+    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+    ;
+    else {
+        setImmediate(cb);
+    }
+};
+function atLeastOneTask() {
+    return new Promise((resolve)=>scheduleImmediate(resolve));
+}
+function waitAtLeastOneReactRenderTask() {
+    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+    ;
+    else {
+        return new Promise((r)=>setImmediate(r));
+    }
+} //# sourceMappingURL=scheduler.js.map
+}),
+"[project]/web-client/node_modules/next/dist/shared/lib/invariant-error.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "InvariantError", {
+    enumerable: true,
+    get: function() {
+        return InvariantError;
+    }
+});
+class InvariantError extends Error {
+    constructor(message, options){
+        super(`Invariant: ${message.endsWith('.') ? message : message + '.'} This is a bug in Next.js.`, options);
+        this.name = 'InvariantError';
+    }
+} //# sourceMappingURL=invariant-error.js.map
+}),
+"[project]/web-client/node_modules/next/dist/server/app-render/dynamic-rendering.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+/**
+ * The functions provided by this module are used to communicate certain properties
+ * about the currently running code so that Next.js can make decisions on how to handle
+ * the current execution in different rendering modes such as pre-rendering, resuming, and SSR.
+ *
+ * Today Next.js treats all code as potentially static. Certain APIs may only make sense when dynamically rendering.
+ * Traditionally this meant deopting the entire render to dynamic however with PPR we can now deopt parts
+ * of a React tree as dynamic while still keeping other parts static. There are really two different kinds of
+ * Dynamic indications.
+ *
+ * The first is simply an intention to be dynamic. unstable_noStore is an example of this where
+ * the currently executing code simply declares that the current scope is dynamic but if you use it
+ * inside unstable_cache it can still be cached. This type of indication can be removed if we ever
+ * make the default dynamic to begin with because the only way you would ever be static is inside
+ * a cache scope which this indication does not affect.
+ *
+ * The second is an indication that a dynamic data source was read. This is a stronger form of dynamic
+ * because it means that it is inappropriate to cache this at all. using a dynamic data source inside
+ * unstable_cache should error. If you want to use some dynamic data inside unstable_cache you should
+ * read that data outside the cache and pass it in as an argument to the cached function.
+ */ Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    Postpone: null,
+    PreludeState: null,
+    abortAndThrowOnSynchronousRequestDataAccess: null,
+    abortOnSynchronousPlatformIOAccess: null,
+    accessedDynamicData: null,
+    annotateDynamicAccess: null,
+    consumeDynamicAccess: null,
+    createDynamicTrackingState: null,
+    createDynamicValidationState: null,
+    createHangingInputAbortSignal: null,
+    createRenderInBrowserAbortSignal: null,
+    delayUntilRuntimeStage: null,
+    formatDynamicAPIAccesses: null,
+    getFirstDynamicReason: null,
+    getStaticShellDisallowedDynamicReasons: null,
+    isDynamicPostpone: null,
+    isPrerenderInterruptedError: null,
+    logDisallowedDynamicError: null,
+    markCurrentScopeAsDynamic: null,
+    postponeWithTracking: null,
+    throwIfDisallowedDynamic: null,
+    throwToInterruptStaticGeneration: null,
+    trackAllowedDynamicAccess: null,
+    trackDynamicDataInDynamicRender: null,
+    trackDynamicHoleInRuntimeShell: null,
+    trackDynamicHoleInStaticShell: null,
+    useDynamicRouteParams: null,
+    useDynamicSearchParams: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    Postpone: function() {
+        return Postpone;
+    },
+    PreludeState: function() {
+        return PreludeState;
+    },
+    abortAndThrowOnSynchronousRequestDataAccess: function() {
+        return abortAndThrowOnSynchronousRequestDataAccess;
+    },
+    abortOnSynchronousPlatformIOAccess: function() {
+        return abortOnSynchronousPlatformIOAccess;
+    },
+    accessedDynamicData: function() {
+        return accessedDynamicData;
+    },
+    annotateDynamicAccess: function() {
+        return annotateDynamicAccess;
+    },
+    consumeDynamicAccess: function() {
+        return consumeDynamicAccess;
+    },
+    createDynamicTrackingState: function() {
+        return createDynamicTrackingState;
+    },
+    createDynamicValidationState: function() {
+        return createDynamicValidationState;
+    },
+    createHangingInputAbortSignal: function() {
+        return createHangingInputAbortSignal;
+    },
+    createRenderInBrowserAbortSignal: function() {
+        return createRenderInBrowserAbortSignal;
+    },
+    delayUntilRuntimeStage: function() {
+        return delayUntilRuntimeStage;
+    },
+    formatDynamicAPIAccesses: function() {
+        return formatDynamicAPIAccesses;
+    },
+    getFirstDynamicReason: function() {
+        return getFirstDynamicReason;
+    },
+    getStaticShellDisallowedDynamicReasons: function() {
+        return getStaticShellDisallowedDynamicReasons;
+    },
+    isDynamicPostpone: function() {
+        return isDynamicPostpone;
+    },
+    isPrerenderInterruptedError: function() {
+        return isPrerenderInterruptedError;
+    },
+    logDisallowedDynamicError: function() {
+        return logDisallowedDynamicError;
+    },
+    markCurrentScopeAsDynamic: function() {
+        return markCurrentScopeAsDynamic;
+    },
+    postponeWithTracking: function() {
+        return postponeWithTracking;
+    },
+    throwIfDisallowedDynamic: function() {
+        return throwIfDisallowedDynamic;
+    },
+    throwToInterruptStaticGeneration: function() {
+        return throwToInterruptStaticGeneration;
+    },
+    trackAllowedDynamicAccess: function() {
+        return trackAllowedDynamicAccess;
+    },
+    trackDynamicDataInDynamicRender: function() {
+        return trackDynamicDataInDynamicRender;
+    },
+    trackDynamicHoleInRuntimeShell: function() {
+        return trackDynamicHoleInRuntimeShell;
+    },
+    trackDynamicHoleInStaticShell: function() {
+        return trackDynamicHoleInStaticShell;
+    },
+    useDynamicRouteParams: function() {
+        return useDynamicRouteParams;
+    },
+    useDynamicSearchParams: function() {
+        return useDynamicSearchParams;
+    }
+});
+const _react = /*#__PURE__*/ _interop_require_default(__turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)"));
+const _hooksservercontext = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/hooks-server-context.js [app-ssr] (ecmascript)");
+const _staticgenerationbailout = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/static-generation-bailout.js [app-ssr] (ecmascript)");
+const _workunitasyncstorageexternal = __turbopack_context__.r("[externals]/next/dist/server/app-render/work-unit-async-storage.external.js [external] (next/dist/server/app-render/work-unit-async-storage.external.js, cjs)");
+const _workasyncstorageexternal = __turbopack_context__.r("[externals]/next/dist/server/app-render/work-async-storage.external.js [external] (next/dist/server/app-render/work-async-storage.external.js, cjs)");
+const _dynamicrenderingutils = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/dynamic-rendering-utils.js [app-ssr] (ecmascript)");
+const _boundaryconstants = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/lib/framework/boundary-constants.js [app-ssr] (ecmascript)");
+const _scheduler = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/lib/scheduler.js [app-ssr] (ecmascript)");
+const _bailouttocsr = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/shared/lib/lazy-dynamic/bailout-to-csr.js [app-ssr] (ecmascript)");
+const _invarianterror = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/shared/lib/invariant-error.js [app-ssr] (ecmascript)");
+function _interop_require_default(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
+const hasPostpone = typeof _react.default.unstable_postpone === 'function';
+function createDynamicTrackingState(isDebugDynamicAccesses) {
+    return {
+        isDebugDynamicAccesses,
+        dynamicAccesses: [],
+        syncDynamicErrorWithStack: null
+    };
+}
+function createDynamicValidationState() {
+    return {
+        hasSuspenseAboveBody: false,
+        hasDynamicMetadata: false,
+        dynamicMetadata: null,
+        hasDynamicViewport: false,
+        hasAllowedDynamic: false,
+        dynamicErrors: []
+    };
+}
+function getFirstDynamicReason(trackingState) {
+    var _trackingState_dynamicAccesses_;
+    return (_trackingState_dynamicAccesses_ = trackingState.dynamicAccesses[0]) == null ? void 0 : _trackingState_dynamicAccesses_.expression;
+}
+function markCurrentScopeAsDynamic(store, workUnitStore, expression) {
+    if (workUnitStore) {
+        switch(workUnitStore.type){
+            case 'cache':
+            case 'unstable-cache':
+                // Inside cache scopes, marking a scope as dynamic has no effect,
+                // because the outer cache scope creates a cache boundary. This is
+                // subtly different from reading a dynamic data source, which is
+                // forbidden inside a cache scope.
+                return;
+            case 'private-cache':
+                // A private cache scope is already dynamic by definition.
+                return;
+            case 'prerender-legacy':
+            case 'prerender-ppr':
+            case 'request':
+                break;
+            default:
+                workUnitStore;
+        }
+    }
+    // If we're forcing dynamic rendering or we're forcing static rendering, we
+    // don't need to do anything here because the entire page is already dynamic
+    // or it's static and it should not throw or postpone here.
+    if (store.forceDynamic || store.forceStatic) return;
+    if (store.dynamicShouldError) {
+        throw Object.defineProperty(new _staticgenerationbailout.StaticGenBailoutError(`Route ${store.route} with \`dynamic = "error"\` couldn't be rendered statically because it used \`${expression}\`. See more info here: https://nextjs.org/docs/app/building-your-application/rendering/static-and-dynamic#dynamic-rendering`), "__NEXT_ERROR_CODE", {
+            value: "E553",
+            enumerable: false,
+            configurable: true
+        });
+    }
+    if (workUnitStore) {
+        switch(workUnitStore.type){
+            case 'prerender-ppr':
+                return postponeWithTracking(store.route, expression, workUnitStore.dynamicTracking);
+            case 'prerender-legacy':
+                workUnitStore.revalidate = 0;
+                // We aren't prerendering, but we are generating a static page. We need
+                // to bail out of static generation.
+                const err = Object.defineProperty(new _hooksservercontext.DynamicServerError(`Route ${store.route} couldn't be rendered statically because it used ${expression}. See more info here: https://nextjs.org/docs/messages/dynamic-server-error`), "__NEXT_ERROR_CODE", {
+                    value: "E550",
+                    enumerable: false,
+                    configurable: true
+                });
+                store.dynamicUsageDescription = expression;
+                store.dynamicUsageStack = err.stack;
+                throw err;
+            case 'request':
+                if ("TURBOPACK compile-time truthy", 1) {
+                    workUnitStore.usedDynamic = true;
+                }
+                break;
+            default:
+                workUnitStore;
+        }
+    }
+}
+function throwToInterruptStaticGeneration(expression, store, prerenderStore) {
+    // We aren't prerendering but we are generating a static page. We need to bail out of static generation
+    const err = Object.defineProperty(new _hooksservercontext.DynamicServerError(`Route ${store.route} couldn't be rendered statically because it used \`${expression}\`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error`), "__NEXT_ERROR_CODE", {
+        value: "E558",
+        enumerable: false,
+        configurable: true
+    });
+    prerenderStore.revalidate = 0;
+    store.dynamicUsageDescription = expression;
+    store.dynamicUsageStack = err.stack;
+    throw err;
+}
+function trackDynamicDataInDynamicRender(workUnitStore) {
+    switch(workUnitStore.type){
+        case 'cache':
+        case 'unstable-cache':
+            // Inside cache scopes, marking a scope as dynamic has no effect,
+            // because the outer cache scope creates a cache boundary. This is
+            // subtly different from reading a dynamic data source, which is
+            // forbidden inside a cache scope.
+            return;
+        case 'private-cache':
+            // A private cache scope is already dynamic by definition.
+            return;
+        case 'prerender':
+        case 'prerender-runtime':
+        case 'prerender-legacy':
+        case 'prerender-ppr':
+        case 'prerender-client':
+            break;
+        case 'request':
+            if ("TURBOPACK compile-time truthy", 1) {
+                workUnitStore.usedDynamic = true;
+            }
+            break;
+        default:
+            workUnitStore;
+    }
+}
+function abortOnSynchronousDynamicDataAccess(route, expression, prerenderStore) {
+    const reason = `Route ${route} needs to bail out of prerendering at this point because it used ${expression}.`;
+    const error = createPrerenderInterruptedError(reason);
+    prerenderStore.controller.abort(error);
+    const dynamicTracking = prerenderStore.dynamicTracking;
+    if (dynamicTracking) {
+        dynamicTracking.dynamicAccesses.push({
+            // When we aren't debugging, we don't need to create another error for the
+            // stack trace.
+            stack: dynamicTracking.isDebugDynamicAccesses ? new Error().stack : undefined,
+            expression
+        });
+    }
+}
+function abortOnSynchronousPlatformIOAccess(route, expression, errorWithStack, prerenderStore) {
+    const dynamicTracking = prerenderStore.dynamicTracking;
+    abortOnSynchronousDynamicDataAccess(route, expression, prerenderStore);
+    // It is important that we set this tracking value after aborting. Aborts are executed
+    // synchronously except for the case where you abort during render itself. By setting this
+    // value late we can use it to determine if any of the aborted tasks are the task that
+    // called the sync IO expression in the first place.
+    if (dynamicTracking) {
+        if (dynamicTracking.syncDynamicErrorWithStack === null) {
+            dynamicTracking.syncDynamicErrorWithStack = errorWithStack;
+        }
+    }
+}
+function abortAndThrowOnSynchronousRequestDataAccess(route, expression, errorWithStack, prerenderStore) {
+    const prerenderSignal = prerenderStore.controller.signal;
+    if (prerenderSignal.aborted === false) {
+        // TODO it would be better to move this aborted check into the callsite so we can avoid making
+        // the error object when it isn't relevant to the aborting of the prerender however
+        // since we need the throw semantics regardless of whether we abort it is easier to land
+        // this way. See how this was handled with `abortOnSynchronousPlatformIOAccess` for a closer
+        // to ideal implementation
+        abortOnSynchronousDynamicDataAccess(route, expression, prerenderStore);
+        // It is important that we set this tracking value after aborting. Aborts are executed
+        // synchronously except for the case where you abort during render itself. By setting this
+        // value late we can use it to determine if any of the aborted tasks are the task that
+        // called the sync IO expression in the first place.
+        const dynamicTracking = prerenderStore.dynamicTracking;
+        if (dynamicTracking) {
+            if (dynamicTracking.syncDynamicErrorWithStack === null) {
+                dynamicTracking.syncDynamicErrorWithStack = errorWithStack;
+            }
+        }
+    }
+    throw createPrerenderInterruptedError(`Route ${route} needs to bail out of prerendering at this point because it used ${expression}.`);
+}
+function Postpone({ reason, route }) {
+    const prerenderStore = _workunitasyncstorageexternal.workUnitAsyncStorage.getStore();
+    const dynamicTracking = prerenderStore && prerenderStore.type === 'prerender-ppr' ? prerenderStore.dynamicTracking : null;
+    postponeWithTracking(route, reason, dynamicTracking);
+}
+function postponeWithTracking(route, expression, dynamicTracking) {
+    assertPostpone();
+    if (dynamicTracking) {
+        dynamicTracking.dynamicAccesses.push({
+            // When we aren't debugging, we don't need to create another error for the
+            // stack trace.
+            stack: dynamicTracking.isDebugDynamicAccesses ? new Error().stack : undefined,
+            expression
+        });
+    }
+    _react.default.unstable_postpone(createPostponeReason(route, expression));
+}
+function createPostponeReason(route, expression) {
+    return `Route ${route} needs to bail out of prerendering at this point because it used ${expression}. ` + `React throws this special object to indicate where. It should not be caught by ` + `your own try/catch. Learn more: https://nextjs.org/docs/messages/ppr-caught-error`;
+}
+function isDynamicPostpone(err) {
+    if (typeof err === 'object' && err !== null && typeof err.message === 'string') {
+        return isDynamicPostponeReason(err.message);
+    }
+    return false;
+}
+function isDynamicPostponeReason(reason) {
+    return reason.includes('needs to bail out of prerendering at this point because it used') && reason.includes('Learn more: https://nextjs.org/docs/messages/ppr-caught-error');
+}
+if (isDynamicPostponeReason(createPostponeReason('%%%', '^^^')) === false) {
+    throw Object.defineProperty(new Error('Invariant: isDynamicPostpone misidentified a postpone reason. This is a bug in Next.js'), "__NEXT_ERROR_CODE", {
+        value: "E296",
+        enumerable: false,
+        configurable: true
+    });
+}
+const NEXT_PRERENDER_INTERRUPTED = 'NEXT_PRERENDER_INTERRUPTED';
+function createPrerenderInterruptedError(message) {
+    const error = Object.defineProperty(new Error(message), "__NEXT_ERROR_CODE", {
+        value: "E394",
+        enumerable: false,
+        configurable: true
+    });
+    error.digest = NEXT_PRERENDER_INTERRUPTED;
+    return error;
+}
+function isPrerenderInterruptedError(error) {
+    return typeof error === 'object' && error !== null && error.digest === NEXT_PRERENDER_INTERRUPTED && 'name' in error && 'message' in error && error instanceof Error;
+}
+function accessedDynamicData(dynamicAccesses) {
+    return dynamicAccesses.length > 0;
+}
+function consumeDynamicAccess(serverDynamic, clientDynamic) {
+    // We mutate because we only call this once we are no longer writing
+    // to the dynamicTrackingState and it's more efficient than creating a new
+    // array.
+    serverDynamic.dynamicAccesses.push(...clientDynamic.dynamicAccesses);
+    return serverDynamic.dynamicAccesses;
+}
+function formatDynamicAPIAccesses(dynamicAccesses) {
+    return dynamicAccesses.filter((access)=>typeof access.stack === 'string' && access.stack.length > 0).map(({ expression, stack })=>{
+        stack = stack.split('\n') // Remove the "Error: " prefix from the first line of the stack trace as
+        // well as the first 4 lines of the stack trace which is the distance
+        // from the user code and the `new Error().stack` call.
+        .slice(4).filter((line)=>{
+            // Exclude Next.js internals from the stack trace.
+            if (line.includes('node_modules/next/')) {
+                return false;
+            }
+            // Exclude anonymous functions from the stack trace.
+            if (line.includes(' (<anonymous>)')) {
+                return false;
+            }
+            // Exclude Node.js internals from the stack trace.
+            if (line.includes(' (node:')) {
+                return false;
+            }
+            return true;
+        }).join('\n');
+        return `Dynamic API Usage Debug - ${expression}:\n${stack}`;
+    });
+}
+function assertPostpone() {
+    if (!hasPostpone) {
+        throw Object.defineProperty(new Error(`Invariant: React.unstable_postpone is not defined. This suggests the wrong version of React was loaded. This is a bug in Next.js`), "__NEXT_ERROR_CODE", {
+            value: "E224",
+            enumerable: false,
+            configurable: true
+        });
+    }
+}
+function createRenderInBrowserAbortSignal() {
+    const controller = new AbortController();
+    controller.abort(Object.defineProperty(new _bailouttocsr.BailoutToCSRError('Render in Browser'), "__NEXT_ERROR_CODE", {
+        value: "E721",
+        enumerable: false,
+        configurable: true
+    }));
+    return controller.signal;
+}
+function createHangingInputAbortSignal(workUnitStore) {
+    switch(workUnitStore.type){
+        case 'prerender':
+        case 'prerender-runtime':
+            const controller = new AbortController();
+            if (workUnitStore.cacheSignal) {
+                // If we have a cacheSignal it means we're in a prospective render. If
+                // the input we're waiting on is coming from another cache, we do want
+                // to wait for it so that we can resolve this cache entry too.
+                workUnitStore.cacheSignal.inputReady().then(()=>{
+                    controller.abort();
+                });
+            } else {
+                // Otherwise we're in the final render and we should already have all
+                // our caches filled.
+                // If the prerender uses stages, we have wait until the runtime stage,
+                // at which point all runtime inputs will be resolved.
+                // (otherwise, a runtime prerender might consider `cookies()` hanging
+                //  even though they'd resolve in the next task.)
+                //
+                // We might still be waiting on some microtasks so we
+                // wait one tick before giving up. When we give up, we still want to
+                // render the content of this cache as deeply as we can so that we can
+                // suspend as deeply as possible in the tree or not at all if we don't
+                // end up waiting for the input.
+                const runtimeStagePromise = (0, _workunitasyncstorageexternal.getRuntimeStagePromise)(workUnitStore);
+                if (runtimeStagePromise) {
+                    runtimeStagePromise.then(()=>(0, _scheduler.scheduleOnNextTick)(()=>controller.abort()));
+                } else {
+                    (0, _scheduler.scheduleOnNextTick)(()=>controller.abort());
+                }
+            }
+            return controller.signal;
+        case 'prerender-client':
+        case 'prerender-ppr':
+        case 'prerender-legacy':
+        case 'request':
+        case 'cache':
+        case 'private-cache':
+        case 'unstable-cache':
+            return undefined;
+        default:
+            workUnitStore;
+    }
+}
+function annotateDynamicAccess(expression, prerenderStore) {
+    const dynamicTracking = prerenderStore.dynamicTracking;
+    if (dynamicTracking) {
+        dynamicTracking.dynamicAccesses.push({
+            stack: dynamicTracking.isDebugDynamicAccesses ? new Error().stack : undefined,
+            expression
+        });
+    }
+}
+function useDynamicRouteParams(expression) {
+    const workStore = _workasyncstorageexternal.workAsyncStorage.getStore();
+    const workUnitStore = _workunitasyncstorageexternal.workUnitAsyncStorage.getStore();
+    if (workStore && workUnitStore) {
+        switch(workUnitStore.type){
+            case 'prerender-client':
+            case 'prerender':
+                {
+                    const fallbackParams = workUnitStore.fallbackRouteParams;
+                    if (fallbackParams && fallbackParams.size > 0) {
+                        // We are in a prerender with cacheComponents semantics. We are going to
+                        // hang here and never resolve. This will cause the currently
+                        // rendering component to effectively be a dynamic hole.
+                        _react.default.use((0, _dynamicrenderingutils.makeHangingPromise)(workUnitStore.renderSignal, workStore.route, expression));
+                    }
+                    break;
+                }
+            case 'prerender-ppr':
+                {
+                    const fallbackParams = workUnitStore.fallbackRouteParams;
+                    if (fallbackParams && fallbackParams.size > 0) {
+                        return postponeWithTracking(workStore.route, expression, workUnitStore.dynamicTracking);
+                    }
+                    break;
+                }
+            case 'prerender-runtime':
+                throw Object.defineProperty(new _invarianterror.InvariantError(`\`${expression}\` was called during a runtime prerender. Next.js should be preventing ${expression} from being included in server components statically, but did not in this case.`), "__NEXT_ERROR_CODE", {
+                    value: "E771",
+                    enumerable: false,
+                    configurable: true
+                });
+            case 'cache':
+            case 'private-cache':
+                throw Object.defineProperty(new _invarianterror.InvariantError(`\`${expression}\` was called inside a cache scope. Next.js should be preventing ${expression} from being included in server components statically, but did not in this case.`), "__NEXT_ERROR_CODE", {
+                    value: "E745",
+                    enumerable: false,
+                    configurable: true
+                });
+            case 'prerender-legacy':
+            case 'request':
+            case 'unstable-cache':
+                break;
+            default:
+                workUnitStore;
+        }
+    }
+}
+function useDynamicSearchParams(expression) {
+    const workStore = _workasyncstorageexternal.workAsyncStorage.getStore();
+    const workUnitStore = _workunitasyncstorageexternal.workUnitAsyncStorage.getStore();
+    if (!workStore) {
+        // We assume pages router context and just return
+        return;
+    }
+    if (!workUnitStore) {
+        (0, _workunitasyncstorageexternal.throwForMissingRequestStore)(expression);
+    }
+    switch(workUnitStore.type){
+        case 'prerender-client':
+            {
+                _react.default.use((0, _dynamicrenderingutils.makeHangingPromise)(workUnitStore.renderSignal, workStore.route, expression));
+                break;
+            }
+        case 'prerender-legacy':
+        case 'prerender-ppr':
+            {
+                if (workStore.forceStatic) {
+                    return;
+                }
+                throw Object.defineProperty(new _bailouttocsr.BailoutToCSRError(expression), "__NEXT_ERROR_CODE", {
+                    value: "E394",
+                    enumerable: false,
+                    configurable: true
+                });
+            }
+        case 'prerender':
+        case 'prerender-runtime':
+            throw Object.defineProperty(new _invarianterror.InvariantError(`\`${expression}\` was called from a Server Component. Next.js should be preventing ${expression} from being included in server components statically, but did not in this case.`), "__NEXT_ERROR_CODE", {
+                value: "E795",
+                enumerable: false,
+                configurable: true
+            });
+        case 'cache':
+        case 'unstable-cache':
+        case 'private-cache':
+            throw Object.defineProperty(new _invarianterror.InvariantError(`\`${expression}\` was called inside a cache scope. Next.js should be preventing ${expression} from being included in server components statically, but did not in this case.`), "__NEXT_ERROR_CODE", {
+                value: "E745",
+                enumerable: false,
+                configurable: true
+            });
+        case 'request':
+            return;
+        default:
+            workUnitStore;
+    }
+}
+const hasSuspenseRegex = /\n\s+at Suspense \(<anonymous>\)/;
+// Common implicit body tags that React will treat as body when placed directly in html
+const bodyAndImplicitTags = 'body|div|main|section|article|aside|header|footer|nav|form|p|span|h1|h2|h3|h4|h5|h6';
+// Detects when RootLayoutBoundary (our framework marker component) appears
+// after Suspense in the component stack, indicating the root layout is wrapped
+// within a Suspense boundary. Ensures no body/html/implicit-body components are in between.
+//
+// Example matches:
+//   at Suspense (<anonymous>)
+//   at __next_root_layout_boundary__ (<anonymous>)
+//
+// Or with other components in between (but not body/html/implicit-body):
+//   at Suspense (<anonymous>)
+//   at SomeComponent (<anonymous>)
+//   at __next_root_layout_boundary__ (<anonymous>)
+const hasSuspenseBeforeRootLayoutWithoutBodyOrImplicitBodyRegex = new RegExp(`\\n\\s+at Suspense \\(<anonymous>\\)(?:(?!\\n\\s+at (?:${bodyAndImplicitTags}) \\(<anonymous>\\))[\\s\\S])*?\\n\\s+at ${_boundaryconstants.ROOT_LAYOUT_BOUNDARY_NAME} \\([^\\n]*\\)`);
+const hasMetadataRegex = new RegExp(`\\n\\s+at ${_boundaryconstants.METADATA_BOUNDARY_NAME}[\\n\\s]`);
+const hasViewportRegex = new RegExp(`\\n\\s+at ${_boundaryconstants.VIEWPORT_BOUNDARY_NAME}[\\n\\s]`);
+const hasOutletRegex = new RegExp(`\\n\\s+at ${_boundaryconstants.OUTLET_BOUNDARY_NAME}[\\n\\s]`);
+function trackAllowedDynamicAccess(workStore, componentStack, dynamicValidation, clientDynamic) {
+    if (hasOutletRegex.test(componentStack)) {
+        // We don't need to track that this is dynamic. It is only so when something else is also dynamic.
+        return;
+    } else if (hasMetadataRegex.test(componentStack)) {
+        dynamicValidation.hasDynamicMetadata = true;
+        return;
+    } else if (hasViewportRegex.test(componentStack)) {
+        dynamicValidation.hasDynamicViewport = true;
+        return;
+    } else if (hasSuspenseBeforeRootLayoutWithoutBodyOrImplicitBodyRegex.test(componentStack)) {
+        // For Suspense within body, the prelude wouldn't be empty so it wouldn't violate the empty static shells rule.
+        // But if you have Suspense above body, the prelude is empty but we allow that because having Suspense
+        // is an explicit signal from the user that they acknowledge the empty shell and want dynamic rendering.
+        dynamicValidation.hasAllowedDynamic = true;
+        dynamicValidation.hasSuspenseAboveBody = true;
+        return;
+    } else if (hasSuspenseRegex.test(componentStack)) {
+        // this error had a Suspense boundary above it so we don't need to report it as a source
+        // of disallowed
+        dynamicValidation.hasAllowedDynamic = true;
+        return;
+    } else if (clientDynamic.syncDynamicErrorWithStack) {
+        // This task was the task that called the sync error.
+        dynamicValidation.dynamicErrors.push(clientDynamic.syncDynamicErrorWithStack);
+        return;
+    } else {
+        const message = `Route "${workStore.route}": Uncached data was accessed outside of ` + '<Suspense>. This delays the entire page from rendering, resulting in a ' + 'slow user experience. Learn more: ' + 'https://nextjs.org/docs/messages/blocking-route';
+        const error = createErrorWithComponentOrOwnerStack(message, componentStack);
+        dynamicValidation.dynamicErrors.push(error);
+        return;
+    }
+}
+function trackDynamicHoleInRuntimeShell(workStore, componentStack, dynamicValidation, clientDynamic) {
+    if (hasOutletRegex.test(componentStack)) {
+        // We don't need to track that this is dynamic. It is only so when something else is also dynamic.
+        return;
+    } else if (hasMetadataRegex.test(componentStack)) {
+        const message = `Route "${workStore.route}": Uncached data or \`connection()\` was accessed inside \`generateMetadata\`. Except for this instance, the page would have been entirely prerenderable which may have been the intended behavior. See more info here: https://nextjs.org/docs/messages/next-prerender-dynamic-metadata`;
+        const error = createErrorWithComponentOrOwnerStack(message, componentStack);
+        dynamicValidation.dynamicMetadata = error;
+        return;
+    } else if (hasViewportRegex.test(componentStack)) {
+        const message = `Route "${workStore.route}": Uncached data or \`connection()\` was accessed inside \`generateViewport\`. This delays the entire page from rendering, resulting in a slow user experience. Learn more: https://nextjs.org/docs/messages/next-prerender-dynamic-viewport`;
+        const error = createErrorWithComponentOrOwnerStack(message, componentStack);
+        dynamicValidation.dynamicErrors.push(error);
+        return;
+    } else if (hasSuspenseBeforeRootLayoutWithoutBodyOrImplicitBodyRegex.test(componentStack)) {
+        // For Suspense within body, the prelude wouldn't be empty so it wouldn't violate the empty static shells rule.
+        // But if you have Suspense above body, the prelude is empty but we allow that because having Suspense
+        // is an explicit signal from the user that they acknowledge the empty shell and want dynamic rendering.
+        dynamicValidation.hasAllowedDynamic = true;
+        dynamicValidation.hasSuspenseAboveBody = true;
+        return;
+    } else if (hasSuspenseRegex.test(componentStack)) {
+        // this error had a Suspense boundary above it so we don't need to report it as a source
+        // of disallowed
+        dynamicValidation.hasAllowedDynamic = true;
+        return;
+    } else if (clientDynamic.syncDynamicErrorWithStack) {
+        // This task was the task that called the sync error.
+        dynamicValidation.dynamicErrors.push(clientDynamic.syncDynamicErrorWithStack);
+        return;
+    } else {
+        const message = `Route "${workStore.route}": Uncached data or \`connection()\` was accessed outside of \`<Suspense>\`. This delays the entire page from rendering, resulting in a slow user experience. Learn more: https://nextjs.org/docs/messages/blocking-route`;
+        const error = createErrorWithComponentOrOwnerStack(message, componentStack);
+        dynamicValidation.dynamicErrors.push(error);
+        return;
+    }
+}
+function trackDynamicHoleInStaticShell(workStore, componentStack, dynamicValidation, clientDynamic) {
+    if (hasOutletRegex.test(componentStack)) {
+        // We don't need to track that this is dynamic. It is only so when something else is also dynamic.
+        return;
+    } else if (hasMetadataRegex.test(componentStack)) {
+        const message = `Route "${workStore.route}": Runtime data such as \`cookies()\`, \`headers()\`, \`params\`, or \`searchParams\` was accessed inside \`generateMetadata\` or you have file-based metadata such as icons that depend on dynamic params segments. Except for this instance, the page would have been entirely prerenderable which may have been the intended behavior. See more info here: https://nextjs.org/docs/messages/next-prerender-dynamic-metadata`;
+        const error = createErrorWithComponentOrOwnerStack(message, componentStack);
+        dynamicValidation.dynamicMetadata = error;
+        return;
+    } else if (hasViewportRegex.test(componentStack)) {
+        const message = `Route "${workStore.route}": Runtime data such as \`cookies()\`, \`headers()\`, \`params\`, or \`searchParams\` was accessed inside \`generateViewport\`. This delays the entire page from rendering, resulting in a slow user experience. Learn more: https://nextjs.org/docs/messages/next-prerender-dynamic-viewport`;
+        const error = createErrorWithComponentOrOwnerStack(message, componentStack);
+        dynamicValidation.dynamicErrors.push(error);
+        return;
+    } else if (hasSuspenseBeforeRootLayoutWithoutBodyOrImplicitBodyRegex.test(componentStack)) {
+        // For Suspense within body, the prelude wouldn't be empty so it wouldn't violate the empty static shells rule.
+        // But if you have Suspense above body, the prelude is empty but we allow that because having Suspense
+        // is an explicit signal from the user that they acknowledge the empty shell and want dynamic rendering.
+        dynamicValidation.hasAllowedDynamic = true;
+        dynamicValidation.hasSuspenseAboveBody = true;
+        return;
+    } else if (hasSuspenseRegex.test(componentStack)) {
+        // this error had a Suspense boundary above it so we don't need to report it as a source
+        // of disallowed
+        dynamicValidation.hasAllowedDynamic = true;
+        return;
+    } else if (clientDynamic.syncDynamicErrorWithStack) {
+        // This task was the task that called the sync error.
+        dynamicValidation.dynamicErrors.push(clientDynamic.syncDynamicErrorWithStack);
+        return;
+    } else {
+        const message = `Route "${workStore.route}": Runtime data such as \`cookies()\`, \`headers()\`, \`params\`, or \`searchParams\` was accessed outside of \`<Suspense>\`. This delays the entire page from rendering, resulting in a slow user experience. Learn more: https://nextjs.org/docs/messages/blocking-route`;
+        const error = createErrorWithComponentOrOwnerStack(message, componentStack);
+        dynamicValidation.dynamicErrors.push(error);
+        return;
+    }
+}
+/**
+ * In dev mode, we prefer using the owner stack, otherwise the provided
+ * component stack is used.
+ */ function createErrorWithComponentOrOwnerStack(message, componentStack) {
+    const ownerStack = ("TURBOPACK compile-time value", "development") !== 'production' && _react.default.captureOwnerStack ? _react.default.captureOwnerStack() : null;
+    const error = Object.defineProperty(new Error(message), "__NEXT_ERROR_CODE", {
+        value: "E394",
+        enumerable: false,
+        configurable: true
+    });
+    // TODO go back to owner stack here if available. This is temporarily using componentStack to get the right
+    //
+    error.stack = error.name + ': ' + message + (ownerStack || componentStack);
+    return error;
+}
+var PreludeState = /*#__PURE__*/ function(PreludeState) {
+    PreludeState[PreludeState["Full"] = 0] = "Full";
+    PreludeState[PreludeState["Empty"] = 1] = "Empty";
+    PreludeState[PreludeState["Errored"] = 2] = "Errored";
+    return PreludeState;
+}({});
+function logDisallowedDynamicError(workStore, error) {
+    console.error(error);
+    if (!workStore.dev) {
+        if (workStore.hasReadableErrorStacks) {
+            console.error(`To get a more detailed stack trace and pinpoint the issue, start the app in development mode by running \`next dev\`, then open "${workStore.route}" in your browser to investigate the error.`);
+        } else {
+            console.error(`To get a more detailed stack trace and pinpoint the issue, try one of the following:
+  - Start the app in development mode by running \`next dev\`, then open "${workStore.route}" in your browser to investigate the error.
+  - Rerun the production build with \`next build --debug-prerender\` to generate better stack traces.`);
+        }
+    }
+}
+function throwIfDisallowedDynamic(workStore, prelude, dynamicValidation, serverDynamic) {
+    if (serverDynamic.syncDynamicErrorWithStack) {
+        logDisallowedDynamicError(workStore, serverDynamic.syncDynamicErrorWithStack);
+        throw new _staticgenerationbailout.StaticGenBailoutError();
+    }
+    if (prelude !== 0) {
+        if (dynamicValidation.hasSuspenseAboveBody) {
+            // This route has opted into allowing fully dynamic rendering
+            // by including a Suspense boundary above the body. In this case
+            // a lack of a shell is not considered disallowed so we simply return
+            return;
+        }
+        // We didn't have any sync bailouts but there may be user code which
+        // blocked the root. We would have captured these during the prerender
+        // and can log them here and then terminate the build/validating render
+        const dynamicErrors = dynamicValidation.dynamicErrors;
+        if (dynamicErrors.length > 0) {
+            for(let i = 0; i < dynamicErrors.length; i++){
+                logDisallowedDynamicError(workStore, dynamicErrors[i]);
+            }
+            throw new _staticgenerationbailout.StaticGenBailoutError();
+        }
+        // If we got this far then the only other thing that could be blocking
+        // the root is dynamic Viewport. If this is dynamic then
+        // you need to opt into that by adding a Suspense boundary above the body
+        // to indicate your are ok with fully dynamic rendering.
+        if (dynamicValidation.hasDynamicViewport) {
+            console.error(`Route "${workStore.route}" has a \`generateViewport\` that depends on Request data (\`cookies()\`, etc...) or uncached external data (\`fetch(...)\`, etc...) without explicitly allowing fully dynamic rendering. See more info here: https://nextjs.org/docs/messages/next-prerender-dynamic-viewport`);
+            throw new _staticgenerationbailout.StaticGenBailoutError();
+        }
+        if (prelude === 1) {
+            // If we ever get this far then we messed up the tracking of invalid dynamic.
+            // We still adhere to the constraint that you must produce a shell but invite the
+            // user to report this as a bug in Next.js.
+            console.error(`Route "${workStore.route}" did not produce a static shell and Next.js was unable to determine a reason. This is a bug in Next.js.`);
+            throw new _staticgenerationbailout.StaticGenBailoutError();
+        }
+    } else {
+        if (dynamicValidation.hasAllowedDynamic === false && dynamicValidation.hasDynamicMetadata) {
+            console.error(`Route "${workStore.route}" has a \`generateMetadata\` that depends on Request data (\`cookies()\`, etc...) or uncached external data (\`fetch(...)\`, etc...) when the rest of the route does not. See more info here: https://nextjs.org/docs/messages/next-prerender-dynamic-metadata`);
+            throw new _staticgenerationbailout.StaticGenBailoutError();
+        }
+    }
+}
+function getStaticShellDisallowedDynamicReasons(workStore, prelude, dynamicValidation) {
+    if (dynamicValidation.hasSuspenseAboveBody) {
+        // This route has opted into allowing fully dynamic rendering
+        // by including a Suspense boundary above the body. In this case
+        // a lack of a shell is not considered disallowed so we simply return
+        return [];
+    }
+    if (prelude !== 0) {
+        // We didn't have any sync bailouts but there may be user code which
+        // blocked the root. We would have captured these during the prerender
+        // and can log them here and then terminate the build/validating render
+        const dynamicErrors = dynamicValidation.dynamicErrors;
+        if (dynamicErrors.length > 0) {
+            return dynamicErrors;
+        }
+        if (prelude === 1) {
+            // If we ever get this far then we messed up the tracking of invalid dynamic.
+            // We still adhere to the constraint that you must produce a shell but invite the
+            // user to report this as a bug in Next.js.
+            return [
+                Object.defineProperty(new _invarianterror.InvariantError(`Route "${workStore.route}" did not produce a static shell and Next.js was unable to determine a reason.`), "__NEXT_ERROR_CODE", {
+                    value: "E936",
+                    enumerable: false,
+                    configurable: true
+                })
+            ];
+        }
+    } else {
+        // We have a prelude but we might still have dynamic metadata without any other dynamic access
+        if (dynamicValidation.hasAllowedDynamic === false && dynamicValidation.dynamicErrors.length === 0 && dynamicValidation.dynamicMetadata) {
+            return [
+                dynamicValidation.dynamicMetadata
+            ];
+        }
+    }
+    // We had a non-empty prelude and there are no dynamic holes
+    return [];
+}
+function delayUntilRuntimeStage(prerenderStore, result) {
+    if (prerenderStore.runtimeStagePromise) {
+        return prerenderStore.runtimeStagePromise.then(()=>result);
+    }
+    return result;
+} //# sourceMappingURL=dynamic-rendering.js.map
+}),
+"[project]/web-client/node_modules/next/dist/client/components/unstable-rethrow.server.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "unstable_rethrow", {
+    enumerable: true,
+    get: function() {
+        return unstable_rethrow;
+    }
+});
+const _dynamicrenderingutils = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/dynamic-rendering-utils.js [app-ssr] (ecmascript)");
+const _ispostpone = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/lib/router-utils/is-postpone.js [app-ssr] (ecmascript)");
+const _bailouttocsr = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/shared/lib/lazy-dynamic/bailout-to-csr.js [app-ssr] (ecmascript)");
+const _isnextroutererror = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/is-next-router-error.js [app-ssr] (ecmascript)");
+const _dynamicrendering = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/app-render/dynamic-rendering.js [app-ssr] (ecmascript)");
+const _hooksservercontext = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/hooks-server-context.js [app-ssr] (ecmascript)");
+function unstable_rethrow(error) {
+    if ((0, _isnextroutererror.isNextRouterError)(error) || (0, _bailouttocsr.isBailoutToCSRError)(error) || (0, _hooksservercontext.isDynamicServerError)(error) || (0, _dynamicrendering.isDynamicPostpone)(error) || (0, _ispostpone.isPostpone)(error) || (0, _dynamicrenderingutils.isHangingPromiseRejectionError)(error) || (0, _dynamicrendering.isPrerenderInterruptedError)(error)) {
+        throw error;
+    }
+    if (error instanceof Error && 'cause' in error) {
+        unstable_rethrow(error.cause);
+    }
+}
+if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
+    Object.defineProperty(exports.default, '__esModule', {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=unstable-rethrow.server.js.map
+}),
+"[project]/web-client/node_modules/next/dist/client/components/unstable-rethrow.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+/**
+ * This function should be used to rethrow internal Next.js errors so that they can be handled by the framework.
+ * When wrapping an API that uses errors to interrupt control flow, you should use this function before you do any error handling.
+ * This function will rethrow the error if it is a Next.js error so it can be handled, otherwise it will do nothing.
+ *
+ * Read more: [Next.js Docs: `unstable_rethrow`](https://nextjs.org/docs/app/api-reference/functions/unstable_rethrow)
+ */ Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "unstable_rethrow", {
+    enumerable: true,
+    get: function() {
+        return unstable_rethrow;
+    }
+});
+const unstable_rethrow = ("TURBOPACK compile-time truthy", 1) ? __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/unstable-rethrow.server.js [app-ssr] (ecmascript)").unstable_rethrow : "TURBOPACK unreachable";
+if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
+    Object.defineProperty(exports.default, '__esModule', {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=unstable-rethrow.js.map
+}),
+"[project]/web-client/node_modules/next/dist/client/components/navigation.react-server.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    ReadonlyURLSearchParams: null,
+    RedirectType: null,
+    forbidden: null,
+    notFound: null,
+    permanentRedirect: null,
+    redirect: null,
+    unauthorized: null,
+    unstable_isUnrecognizedActionError: null,
+    unstable_rethrow: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    ReadonlyURLSearchParams: function() {
+        return _readonlyurlsearchparams.ReadonlyURLSearchParams;
+    },
+    RedirectType: function() {
+        return _redirecterror.RedirectType;
+    },
+    forbidden: function() {
+        return _forbidden.forbidden;
+    },
+    notFound: function() {
+        return _notfound.notFound;
+    },
+    permanentRedirect: function() {
+        return _redirect.permanentRedirect;
+    },
+    redirect: function() {
+        return _redirect.redirect;
+    },
+    unauthorized: function() {
+        return _unauthorized.unauthorized;
+    },
+    unstable_isUnrecognizedActionError: function() {
+        return unstable_isUnrecognizedActionError;
+    },
+    unstable_rethrow: function() {
+        return _unstablerethrow.unstable_rethrow;
+    }
+});
+const _readonlyurlsearchparams = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/readonly-url-search-params.js [app-ssr] (ecmascript)");
+const _redirect = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/redirect.js [app-ssr] (ecmascript)");
+const _redirecterror = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/redirect-error.js [app-ssr] (ecmascript)");
+const _notfound = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/not-found.js [app-ssr] (ecmascript)");
+const _forbidden = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/forbidden.js [app-ssr] (ecmascript)");
+const _unauthorized = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/unauthorized.js [app-ssr] (ecmascript)");
+const _unstablerethrow = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/unstable-rethrow.js [app-ssr] (ecmascript)");
+function unstable_isUnrecognizedActionError() {
+    throw Object.defineProperty(new Error('`unstable_isUnrecognizedActionError` can only be used on the client.'), "__NEXT_ERROR_CODE", {
+        value: "E776",
+        enumerable: false,
+        configurable: true
+    });
+}
+if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
+    Object.defineProperty(exports.default, '__esModule', {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=navigation.react-server.js.map
+}),
+"[project]/web-client/node_modules/next/dist/client/components/navigation.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    ReadonlyURLSearchParams: null,
+    RedirectType: null,
+    ServerInsertedHTMLContext: null,
+    forbidden: null,
+    notFound: null,
+    permanentRedirect: null,
+    redirect: null,
+    unauthorized: null,
+    unstable_isUnrecognizedActionError: null,
+    unstable_rethrow: null,
+    useParams: null,
+    usePathname: null,
+    useRouter: null,
+    useSearchParams: null,
+    useSelectedLayoutSegment: null,
+    useSelectedLayoutSegments: null,
+    useServerInsertedHTML: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    // We need the same class that was used to instantiate the context value
+    // Otherwise instanceof checks will fail in usercode
+    ReadonlyURLSearchParams: function() {
+        return _hooksclientcontextsharedruntime.ReadonlyURLSearchParams;
+    },
+    RedirectType: function() {
+        return _navigationreactserver.RedirectType;
+    },
+    ServerInsertedHTMLContext: function() {
+        return _serverinsertedhtmlsharedruntime.ServerInsertedHTMLContext;
+    },
+    forbidden: function() {
+        return _navigationreactserver.forbidden;
+    },
+    notFound: function() {
+        return _navigationreactserver.notFound;
+    },
+    permanentRedirect: function() {
+        return _navigationreactserver.permanentRedirect;
+    },
+    redirect: function() {
+        return _navigationreactserver.redirect;
+    },
+    unauthorized: function() {
+        return _navigationreactserver.unauthorized;
+    },
+    unstable_isUnrecognizedActionError: function() {
+        return _unrecognizedactionerror.unstable_isUnrecognizedActionError;
+    },
+    unstable_rethrow: function() {
+        return _navigationreactserver.unstable_rethrow;
+    },
+    useParams: function() {
+        return useParams;
+    },
+    usePathname: function() {
+        return usePathname;
+    },
+    useRouter: function() {
+        return useRouter;
+    },
+    useSearchParams: function() {
+        return useSearchParams;
+    },
+    useSelectedLayoutSegment: function() {
+        return useSelectedLayoutSegment;
+    },
+    useSelectedLayoutSegments: function() {
+        return useSelectedLayoutSegments;
+    },
+    useServerInsertedHTML: function() {
+        return _serverinsertedhtmlsharedruntime.useServerInsertedHTML;
+    }
+});
+const _interop_require_wildcard = __turbopack_context__.r("[project]/web-client/node_modules/@swc/helpers/cjs/_interop_require_wildcard.cjs [app-ssr] (ecmascript)");
+const _react = /*#__PURE__*/ _interop_require_wildcard._(__turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)"));
+const _approutercontextsharedruntime = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/contexts/app-router-context.js [app-ssr] (ecmascript)");
+const _hooksclientcontextsharedruntime = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/contexts/hooks-client-context.js [app-ssr] (ecmascript)");
+const _segment = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/shared/lib/segment.js [app-ssr] (ecmascript)");
+const _serverinsertedhtmlsharedruntime = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/contexts/server-inserted-html.js [app-ssr] (ecmascript)");
+const _unrecognizedactionerror = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/unrecognized-action-error.js [app-ssr] (ecmascript)");
+const _navigationreactserver = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/navigation.react-server.js [app-ssr] (ecmascript)");
+const useDynamicRouteParams = ("TURBOPACK compile-time truthy", 1) ? __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/app-render/dynamic-rendering.js [app-ssr] (ecmascript)").useDynamicRouteParams : "TURBOPACK unreachable";
+const useDynamicSearchParams = ("TURBOPACK compile-time truthy", 1) ? __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/app-render/dynamic-rendering.js [app-ssr] (ecmascript)").useDynamicSearchParams : "TURBOPACK unreachable";
+function useSearchParams() {
+    useDynamicSearchParams?.('useSearchParams()');
+    const searchParams = (0, _react.useContext)(_hooksclientcontextsharedruntime.SearchParamsContext);
+    // In the case where this is `null`, the compat types added in
+    // `next-env.d.ts` will add a new overload that changes the return type to
+    // include `null`.
+    const readonlySearchParams = (0, _react.useMemo)(()=>{
+        if (!searchParams) {
+            // When the router is not ready in pages, we won't have the search params
+            // available.
+            return null;
+        }
+        return new _hooksclientcontextsharedruntime.ReadonlyURLSearchParams(searchParams);
+    }, [
+        searchParams
+    ]);
+    // Instrument with Suspense DevTools (dev-only)
+    if (("TURBOPACK compile-time value", "development") !== 'production' && 'use' in _react.default) {
+        const navigationPromises = (0, _react.use)(_hooksclientcontextsharedruntime.NavigationPromisesContext);
+        if (navigationPromises) {
+            return (0, _react.use)(navigationPromises.searchParams);
+        }
+    }
+    return readonlySearchParams;
+}
+function usePathname() {
+    useDynamicRouteParams?.('usePathname()');
+    // In the case where this is `null`, the compat types added in `next-env.d.ts`
+    // will add a new overload that changes the return type to include `null`.
+    const pathname = (0, _react.useContext)(_hooksclientcontextsharedruntime.PathnameContext);
+    // Instrument with Suspense DevTools (dev-only)
+    if (("TURBOPACK compile-time value", "development") !== 'production' && 'use' in _react.default) {
+        const navigationPromises = (0, _react.use)(_hooksclientcontextsharedruntime.NavigationPromisesContext);
+        if (navigationPromises) {
+            return (0, _react.use)(navigationPromises.pathname);
+        }
+    }
+    return pathname;
+}
+function useRouter() {
+    const router = (0, _react.useContext)(_approutercontextsharedruntime.AppRouterContext);
+    if (router === null) {
+        throw Object.defineProperty(new Error('invariant expected app router to be mounted'), "__NEXT_ERROR_CODE", {
+            value: "E238",
+            enumerable: false,
+            configurable: true
+        });
+    }
+    return router;
+}
+function useParams() {
+    useDynamicRouteParams?.('useParams()');
+    const params = (0, _react.useContext)(_hooksclientcontextsharedruntime.PathParamsContext);
+    // Instrument with Suspense DevTools (dev-only)
+    if (("TURBOPACK compile-time value", "development") !== 'production' && 'use' in _react.default) {
+        const navigationPromises = (0, _react.use)(_hooksclientcontextsharedruntime.NavigationPromisesContext);
+        if (navigationPromises) {
+            return (0, _react.use)(navigationPromises.params);
+        }
+    }
+    return params;
+}
+function useSelectedLayoutSegments(parallelRouteKey = 'children') {
+    useDynamicRouteParams?.('useSelectedLayoutSegments()');
+    const context = (0, _react.useContext)(_approutercontextsharedruntime.LayoutRouterContext);
+    // @ts-expect-error This only happens in `pages`. Type is overwritten in navigation.d.ts
+    if (!context) return null;
+    // Instrument with Suspense DevTools (dev-only)
+    if (("TURBOPACK compile-time value", "development") !== 'production' && 'use' in _react.default) {
+        const navigationPromises = (0, _react.use)(_hooksclientcontextsharedruntime.NavigationPromisesContext);
+        if (navigationPromises) {
+            const promise = navigationPromises.selectedLayoutSegmentsPromises?.get(parallelRouteKey);
+            if (promise) {
+                // We should always have a promise here, but if we don't, it's not worth erroring over.
+                // We just won't be able to instrument it, but can still provide the value.
+                return (0, _react.use)(promise);
+            }
+        }
+    }
+    return (0, _segment.getSelectedLayoutSegmentPath)(context.parentTree, parallelRouteKey);
+}
+function useSelectedLayoutSegment(parallelRouteKey = 'children') {
+    useDynamicRouteParams?.('useSelectedLayoutSegment()');
+    const navigationPromises = (0, _react.useContext)(_hooksclientcontextsharedruntime.NavigationPromisesContext);
+    const selectedLayoutSegments = useSelectedLayoutSegments(parallelRouteKey);
+    // Instrument with Suspense DevTools (dev-only)
+    if (("TURBOPACK compile-time value", "development") !== 'production' && navigationPromises && 'use' in _react.default) {
+        const promise = navigationPromises.selectedLayoutSegmentPromises?.get(parallelRouteKey);
+        if (promise) {
+            // We should always have a promise here, but if we don't, it's not worth erroring over.
+            // We just won't be able to instrument it, but can still provide the value.
+            return (0, _react.use)(promise);
+        }
+    }
+    return (0, _segment.computeSelectedLayoutSegment)(selectedLayoutSegments, parallelRouteKey);
+}
+if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
+    Object.defineProperty(exports.default, '__esModule', {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=navigation.js.map
+}),
+"[project]/web-client/node_modules/next/navigation.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+
+module.exports = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/components/navigation.js [app-ssr] (ecmascript)");
+}),
+"[project]/web-client/node_modules/@swc/helpers/cjs/_interop_require_default.cjs [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+function _interop_require_default(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
+exports._ = _interop_require_default;
+}),
+"[project]/web-client/node_modules/next/dist/shared/lib/utils/warn-once.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "warnOnce", {
+    enumerable: true,
+    get: function() {
+        return warnOnce;
+    }
+});
+let warnOnce = (_)=>{};
+if ("TURBOPACK compile-time truthy", 1) {
+    const warnings = new Set();
+    warnOnce = (msg)=>{
+        if (!warnings.has(msg)) {
+            console.warn(msg);
+        }
+        warnings.add(msg);
+    };
+} //# sourceMappingURL=warn-once.js.map
+}),
+"[project]/web-client/node_modules/next/dist/shared/lib/deployment-id.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+// This could also be a variable instead of a function, but some unit tests want to change the ID at
+// runtime. Even though that would never happen in a real deployment.
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    getDeploymentId: null,
+    getDeploymentIdQueryOrEmptyString: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    getDeploymentId: function() {
+        return getDeploymentId;
+    },
+    getDeploymentIdQueryOrEmptyString: function() {
+        return getDeploymentIdQueryOrEmptyString;
+    }
+});
+function getDeploymentId() {
+    return "TURBOPACK compile-time value", false;
+}
+function getDeploymentIdQueryOrEmptyString() {
+    let deploymentId = getDeploymentId();
+    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+    ;
+    return '';
+} //# sourceMappingURL=deployment-id.js.map
+}),
+"[project]/web-client/node_modules/next/dist/shared/lib/image-blur-svg.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+/**
+ * A shared function, used on both client and server, to generate a SVG blur placeholder.
+ */ Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "getImageBlurSvg", {
+    enumerable: true,
+    get: function() {
+        return getImageBlurSvg;
+    }
+});
+function getImageBlurSvg({ widthInt, heightInt, blurWidth, blurHeight, blurDataURL, objectFit }) {
+    const std = 20;
+    const svgWidth = blurWidth ? blurWidth * 40 : widthInt;
+    const svgHeight = blurHeight ? blurHeight * 40 : heightInt;
+    const viewBox = svgWidth && svgHeight ? `viewBox='0 0 ${svgWidth} ${svgHeight}'` : '';
+    const preserveAspectRatio = viewBox ? 'none' : objectFit === 'contain' ? 'xMidYMid' : objectFit === 'cover' ? 'xMidYMid slice' : 'none';
+    return `%3Csvg xmlns='http://www.w3.org/2000/svg' ${viewBox}%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='${std}'/%3E%3CfeColorMatrix values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 100 -1' result='s'/%3E%3CfeFlood x='0' y='0' width='100%25' height='100%25'/%3E%3CfeComposite operator='out' in='s'/%3E%3CfeComposite in2='SourceGraphic'/%3E%3CfeGaussianBlur stdDeviation='${std}'/%3E%3C/filter%3E%3Cimage width='100%25' height='100%25' x='0' y='0' preserveAspectRatio='${preserveAspectRatio}' style='filter: url(%23b);' href='${blurDataURL}'/%3E%3C/svg%3E`;
+} //# sourceMappingURL=image-blur-svg.js.map
+}),
+"[project]/web-client/node_modules/next/dist/shared/lib/image-config.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    VALID_LOADERS: null,
+    imageConfigDefault: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    VALID_LOADERS: function() {
+        return VALID_LOADERS;
+    },
+    imageConfigDefault: function() {
+        return imageConfigDefault;
+    }
+});
+const VALID_LOADERS = [
+    'default',
+    'imgix',
+    'cloudinary',
+    'akamai',
+    'custom'
+];
+const imageConfigDefault = {
+    deviceSizes: [
+        640,
+        750,
+        828,
+        1080,
+        1200,
+        1920,
+        2048,
+        3840
+    ],
+    imageSizes: [
+        32,
+        48,
+        64,
+        96,
+        128,
+        256,
+        384
+    ],
+    path: '/_next/image',
+    loader: 'default',
+    loaderFile: '',
+    /**
+   * @deprecated Use `remotePatterns` instead to protect your application from malicious users.
+   */ domains: [],
+    disableStaticImages: false,
+    minimumCacheTTL: 14400,
+    formats: [
+        'image/webp'
+    ],
+    maximumRedirects: 3,
+    dangerouslyAllowLocalIP: false,
+    dangerouslyAllowSVG: false,
+    contentSecurityPolicy: `script-src 'none'; frame-src 'none'; sandbox;`,
+    contentDispositionType: 'attachment',
+    localPatterns: undefined,
+    remotePatterns: [],
+    qualities: [
+        75
+    ],
+    unoptimized: false
+}; //# sourceMappingURL=image-config.js.map
+}),
+"[project]/web-client/node_modules/next/dist/shared/lib/get-img-props.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "getImgProps", {
+    enumerable: true,
+    get: function() {
+        return getImgProps;
+    }
+});
+const _warnonce = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/shared/lib/utils/warn-once.js [app-ssr] (ecmascript)");
+const _deploymentid = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/shared/lib/deployment-id.js [app-ssr] (ecmascript)");
+const _imageblursvg = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/shared/lib/image-blur-svg.js [app-ssr] (ecmascript)");
+const _imageconfig = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/shared/lib/image-config.js [app-ssr] (ecmascript)");
+const VALID_LOADING_VALUES = [
+    'lazy',
+    'eager',
+    undefined
+];
+// Object-fit values that are not valid background-size values
+const INVALID_BACKGROUND_SIZE_VALUES = [
+    '-moz-initial',
+    'fill',
+    'none',
+    'scale-down',
+    undefined
+];
+function isStaticRequire(src) {
+    return src.default !== undefined;
+}
+function isStaticImageData(src) {
+    return src.src !== undefined;
+}
+function isStaticImport(src) {
+    return !!src && typeof src === 'object' && (isStaticRequire(src) || isStaticImageData(src));
+}
+const allImgs = new Map();
+let perfObserver;
+function getInt(x) {
+    if (typeof x === 'undefined') {
+        return x;
+    }
+    if (typeof x === 'number') {
+        return Number.isFinite(x) ? x : NaN;
+    }
+    if (typeof x === 'string' && /^[0-9]+$/.test(x)) {
+        return parseInt(x, 10);
+    }
+    return NaN;
+}
+function getWidths({ deviceSizes, allSizes }, width, sizes) {
+    if (sizes) {
+        // Find all the "vw" percent sizes used in the sizes prop
+        const viewportWidthRe = /(^|\s)(1?\d?\d)vw/g;
+        const percentSizes = [];
+        for(let match; match = viewportWidthRe.exec(sizes); match){
+            percentSizes.push(parseInt(match[2]));
+        }
+        if (percentSizes.length) {
+            const smallestRatio = Math.min(...percentSizes) * 0.01;
+            return {
+                widths: allSizes.filter((s)=>s >= deviceSizes[0] * smallestRatio),
+                kind: 'w'
+            };
+        }
+        return {
+            widths: allSizes,
+            kind: 'w'
+        };
+    }
+    if (typeof width !== 'number') {
+        return {
+            widths: deviceSizes,
+            kind: 'w'
+        };
+    }
+    const widths = [
+        ...new Set(// > are actually 3x in the green color, but only 1.5x in the red and
+        // > blue colors. Showing a 3x resolution image in the app vs a 2x
+        // > resolution image will be visually the same, though the 3x image
+        // > takes significantly more data. Even true 3x resolution screens are
+        // > wasteful as the human eye cannot see that level of detail without
+        // > something like a magnifying glass.
+        // https://blog.twitter.com/engineering/en_us/topics/infrastructure/2019/capping-image-fidelity-on-ultra-high-resolution-devices.html
+        [
+            width,
+            width * 2 /*, width * 3*/ 
+        ].map((w)=>allSizes.find((p)=>p >= w) || allSizes[allSizes.length - 1]))
+    ];
+    return {
+        widths,
+        kind: 'x'
+    };
+}
+function generateImgAttrs({ config, src, unoptimized, width, quality, sizes, loader }) {
+    if (unoptimized) {
+        const deploymentId = (0, _deploymentid.getDeploymentId)();
+        if (src.startsWith('/') && !src.startsWith('//') && deploymentId) {
+            const sep = src.includes('?') ? '&' : '?';
+            src = `${src}${sep}dpl=${deploymentId}`;
+        }
+        return {
+            src,
+            srcSet: undefined,
+            sizes: undefined
+        };
+    }
+    const { widths, kind } = getWidths(config, width, sizes);
+    const last = widths.length - 1;
+    return {
+        sizes: !sizes && kind === 'w' ? '100vw' : sizes,
+        srcSet: widths.map((w, i)=>`${loader({
+                config,
+                src,
+                quality,
+                width: w
+            })} ${kind === 'w' ? w : i + 1}${kind}`).join(', '),
+        // It's intended to keep `src` the last attribute because React updates
+        // attributes in order. If we keep `src` the first one, Safari will
+        // immediately start to fetch `src`, before `sizes` and `srcSet` are even
+        // updated by React. That causes multiple unnecessary requests if `srcSet`
+        // and `sizes` are defined.
+        // This bug cannot be reproduced in Chrome or Firefox.
+        src: loader({
+            config,
+            src,
+            quality,
+            width: widths[last]
+        })
+    };
+}
+function getImgProps({ src, sizes, unoptimized = false, priority = false, preload = false, loading, className, quality, width, height, fill = false, style, overrideSrc, onLoad, onLoadingComplete, placeholder = 'empty', blurDataURL, fetchPriority, decoding = 'async', layout, objectFit, objectPosition, lazyBoundary, lazyRoot, ...rest }, _state) {
+    const { imgConf, showAltText, blurComplete, defaultLoader } = _state;
+    let config;
+    let c = imgConf || _imageconfig.imageConfigDefault;
+    if ('allSizes' in c) {
+        config = c;
+    } else {
+        const allSizes = [
+            ...c.deviceSizes,
+            ...c.imageSizes
+        ].sort((a, b)=>a - b);
+        const deviceSizes = c.deviceSizes.sort((a, b)=>a - b);
+        const qualities = c.qualities?.sort((a, b)=>a - b);
+        config = {
+            ...c,
+            allSizes,
+            deviceSizes,
+            qualities
+        };
+    }
+    if (typeof defaultLoader === 'undefined') {
+        throw Object.defineProperty(new Error('images.loaderFile detected but the file is missing default export.\nRead more: https://nextjs.org/docs/messages/invalid-images-config'), "__NEXT_ERROR_CODE", {
+            value: "E163",
+            enumerable: false,
+            configurable: true
+        });
+    }
+    let loader = rest.loader || defaultLoader;
+    // Remove property so it's not spread on <img> element
+    delete rest.loader;
+    delete rest.srcSet;
+    // This special value indicates that the user
+    // didn't define a "loader" prop or "loader" config.
+    const isDefaultLoader = '__next_img_default' in loader;
+    if (isDefaultLoader) {
+        if (config.loader === 'custom') {
+            throw Object.defineProperty(new Error(`Image with src "${src}" is missing "loader" prop.` + `\nRead more: https://nextjs.org/docs/messages/next-image-missing-loader`), "__NEXT_ERROR_CODE", {
+                value: "E252",
+                enumerable: false,
+                configurable: true
+            });
+        }
+    } else {
+        // The user defined a "loader" prop or config.
+        // Since the config object is internal only, we
+        // must not pass it to the user-defined "loader".
+        const customImageLoader = loader;
+        loader = (obj)=>{
+            const { config: _, ...opts } = obj;
+            return customImageLoader(opts);
+        };
+    }
+    if (layout) {
+        if (layout === 'fill') {
+            fill = true;
+        }
+        const layoutToStyle = {
+            intrinsic: {
+                maxWidth: '100%',
+                height: 'auto'
+            },
+            responsive: {
+                width: '100%',
+                height: 'auto'
+            }
+        };
+        const layoutToSizes = {
+            responsive: '100vw',
+            fill: '100vw'
+        };
+        const layoutStyle = layoutToStyle[layout];
+        if (layoutStyle) {
+            style = {
+                ...style,
+                ...layoutStyle
+            };
+        }
+        const layoutSizes = layoutToSizes[layout];
+        if (layoutSizes && !sizes) {
+            sizes = layoutSizes;
+        }
+    }
+    let staticSrc = '';
+    let widthInt = getInt(width);
+    let heightInt = getInt(height);
+    let blurWidth;
+    let blurHeight;
+    if (isStaticImport(src)) {
+        const staticImageData = isStaticRequire(src) ? src.default : src;
+        if (!staticImageData.src) {
+            throw Object.defineProperty(new Error(`An object should only be passed to the image component src parameter if it comes from a static image import. It must include src. Received ${JSON.stringify(staticImageData)}`), "__NEXT_ERROR_CODE", {
+                value: "E460",
+                enumerable: false,
+                configurable: true
+            });
+        }
+        if (!staticImageData.height || !staticImageData.width) {
+            throw Object.defineProperty(new Error(`An object should only be passed to the image component src parameter if it comes from a static image import. It must include height and width. Received ${JSON.stringify(staticImageData)}`), "__NEXT_ERROR_CODE", {
+                value: "E48",
+                enumerable: false,
+                configurable: true
+            });
+        }
+        blurWidth = staticImageData.blurWidth;
+        blurHeight = staticImageData.blurHeight;
+        blurDataURL = blurDataURL || staticImageData.blurDataURL;
+        staticSrc = staticImageData.src;
+        if (!fill) {
+            if (!widthInt && !heightInt) {
+                widthInt = staticImageData.width;
+                heightInt = staticImageData.height;
+            } else if (widthInt && !heightInt) {
+                const ratio = widthInt / staticImageData.width;
+                heightInt = Math.round(staticImageData.height * ratio);
+            } else if (!widthInt && heightInt) {
+                const ratio = heightInt / staticImageData.height;
+                widthInt = Math.round(staticImageData.width * ratio);
+            }
+        }
+    }
+    src = typeof src === 'string' ? src : staticSrc;
+    let isLazy = !priority && !preload && (loading === 'lazy' || typeof loading === 'undefined');
+    if (!src || src.startsWith('data:') || src.startsWith('blob:')) {
+        // https://developer.mozilla.org/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
+        unoptimized = true;
+        isLazy = false;
+    }
+    if (config.unoptimized) {
+        unoptimized = true;
+    }
+    if (isDefaultLoader && !config.dangerouslyAllowSVG && src.split('?', 1)[0].endsWith('.svg')) {
+        // Special case to make svg serve as-is to avoid proxying
+        // through the built-in Image Optimization API.
+        unoptimized = true;
+    }
+    const qualityInt = getInt(quality);
+    if ("TURBOPACK compile-time truthy", 1) {
+        if (config.output === 'export' && isDefaultLoader && !unoptimized) {
+            throw Object.defineProperty(new Error(`Image Optimization using the default loader is not compatible with \`{ output: 'export' }\`.
+  Possible solutions:
+    - Remove \`{ output: 'export' }\` and run "next start" to run server mode including the Image Optimization API.
+    - Configure \`{ images: { unoptimized: true } }\` in \`next.config.js\` to disable the Image Optimization API.
+  Read more: https://nextjs.org/docs/messages/export-image-api`), "__NEXT_ERROR_CODE", {
+                value: "E500",
+                enumerable: false,
+                configurable: true
+            });
+        }
+        if (!src) {
+            // React doesn't show the stack trace and there's
+            // no `src` to help identify which image, so we
+            // instead console.error(ref) during mount.
+            unoptimized = true;
+        } else {
+            if (fill) {
+                if (width) {
+                    throw Object.defineProperty(new Error(`Image with src "${src}" has both "width" and "fill" properties. Only one should be used.`), "__NEXT_ERROR_CODE", {
+                        value: "E96",
+                        enumerable: false,
+                        configurable: true
+                    });
+                }
+                if (height) {
+                    throw Object.defineProperty(new Error(`Image with src "${src}" has both "height" and "fill" properties. Only one should be used.`), "__NEXT_ERROR_CODE", {
+                        value: "E115",
+                        enumerable: false,
+                        configurable: true
+                    });
+                }
+                if (style?.position && style.position !== 'absolute') {
+                    throw Object.defineProperty(new Error(`Image with src "${src}" has both "fill" and "style.position" properties. Images with "fill" always use position absolute - it cannot be modified.`), "__NEXT_ERROR_CODE", {
+                        value: "E216",
+                        enumerable: false,
+                        configurable: true
+                    });
+                }
+                if (style?.width && style.width !== '100%') {
+                    throw Object.defineProperty(new Error(`Image with src "${src}" has both "fill" and "style.width" properties. Images with "fill" always use width 100% - it cannot be modified.`), "__NEXT_ERROR_CODE", {
+                        value: "E73",
+                        enumerable: false,
+                        configurable: true
+                    });
+                }
+                if (style?.height && style.height !== '100%') {
+                    throw Object.defineProperty(new Error(`Image with src "${src}" has both "fill" and "style.height" properties. Images with "fill" always use height 100% - it cannot be modified.`), "__NEXT_ERROR_CODE", {
+                        value: "E404",
+                        enumerable: false,
+                        configurable: true
+                    });
+                }
+            } else {
+                if (typeof widthInt === 'undefined') {
+                    throw Object.defineProperty(new Error(`Image with src "${src}" is missing required "width" property.`), "__NEXT_ERROR_CODE", {
+                        value: "E451",
+                        enumerable: false,
+                        configurable: true
+                    });
+                } else if (isNaN(widthInt)) {
+                    throw Object.defineProperty(new Error(`Image with src "${src}" has invalid "width" property. Expected a numeric value in pixels but received "${width}".`), "__NEXT_ERROR_CODE", {
+                        value: "E66",
+                        enumerable: false,
+                        configurable: true
+                    });
+                }
+                if (typeof heightInt === 'undefined') {
+                    throw Object.defineProperty(new Error(`Image with src "${src}" is missing required "height" property.`), "__NEXT_ERROR_CODE", {
+                        value: "E397",
+                        enumerable: false,
+                        configurable: true
+                    });
+                } else if (isNaN(heightInt)) {
+                    throw Object.defineProperty(new Error(`Image with src "${src}" has invalid "height" property. Expected a numeric value in pixels but received "${height}".`), "__NEXT_ERROR_CODE", {
+                        value: "E444",
+                        enumerable: false,
+                        configurable: true
+                    });
+                }
+                // eslint-disable-next-line no-control-regex
+                if (/^[\x00-\x20]/.test(src)) {
+                    throw Object.defineProperty(new Error(`Image with src "${src}" cannot start with a space or control character. Use src.trimStart() to remove it or encodeURIComponent(src) to keep it.`), "__NEXT_ERROR_CODE", {
+                        value: "E176",
+                        enumerable: false,
+                        configurable: true
+                    });
+                }
+                // eslint-disable-next-line no-control-regex
+                if (/[\x00-\x20]$/.test(src)) {
+                    throw Object.defineProperty(new Error(`Image with src "${src}" cannot end with a space or control character. Use src.trimEnd() to remove it or encodeURIComponent(src) to keep it.`), "__NEXT_ERROR_CODE", {
+                        value: "E21",
+                        enumerable: false,
+                        configurable: true
+                    });
+                }
+            }
+        }
+        if (!VALID_LOADING_VALUES.includes(loading)) {
+            throw Object.defineProperty(new Error(`Image with src "${src}" has invalid "loading" property. Provided "${loading}" should be one of ${VALID_LOADING_VALUES.map(String).join(',')}.`), "__NEXT_ERROR_CODE", {
+                value: "E357",
+                enumerable: false,
+                configurable: true
+            });
+        }
+        if (priority && loading === 'lazy') {
+            throw Object.defineProperty(new Error(`Image with src "${src}" has both "priority" and "loading='lazy'" properties. Only one should be used.`), "__NEXT_ERROR_CODE", {
+                value: "E218",
+                enumerable: false,
+                configurable: true
+            });
+        }
+        if (preload && loading === 'lazy') {
+            throw Object.defineProperty(new Error(`Image with src "${src}" has both "preload" and "loading='lazy'" properties. Only one should be used.`), "__NEXT_ERROR_CODE", {
+                value: "E803",
+                enumerable: false,
+                configurable: true
+            });
+        }
+        if (preload && priority) {
+            throw Object.defineProperty(new Error(`Image with src "${src}" has both "preload" and "priority" properties. Only "preload" should be used.`), "__NEXT_ERROR_CODE", {
+                value: "E802",
+                enumerable: false,
+                configurable: true
+            });
+        }
+        if (placeholder !== 'empty' && placeholder !== 'blur' && !placeholder.startsWith('data:image/')) {
+            throw Object.defineProperty(new Error(`Image with src "${src}" has invalid "placeholder" property "${placeholder}".`), "__NEXT_ERROR_CODE", {
+                value: "E431",
+                enumerable: false,
+                configurable: true
+            });
+        }
+        if (placeholder !== 'empty') {
+            if (widthInt && heightInt && widthInt * heightInt < 1600) {
+                (0, _warnonce.warnOnce)(`Image with src "${src}" is smaller than 40x40. Consider removing the "placeholder" property to improve performance.`);
+            }
+        }
+        if (qualityInt && config.qualities && !config.qualities.includes(qualityInt)) {
+            (0, _warnonce.warnOnce)(`Image with src "${src}" is using quality "${qualityInt}" which is not configured in images.qualities [${config.qualities.join(', ')}]. Please update your config to [${[
+                ...config.qualities,
+                qualityInt
+            ].sort().join(', ')}].` + `\nRead more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities`);
+        }
+        if (placeholder === 'blur' && !blurDataURL) {
+            const VALID_BLUR_EXT = [
+                'jpeg',
+                'png',
+                'webp',
+                'avif'
+            ] // should match next-image-loader
+            ;
+            throw Object.defineProperty(new Error(`Image with src "${src}" has "placeholder='blur'" property but is missing the "blurDataURL" property.
+        Possible solutions:
+          - Add a "blurDataURL" property, the contents should be a small Data URL to represent the image
+          - Change the "src" property to a static import with one of the supported file types: ${VALID_BLUR_EXT.join(',')} (animated images not supported)
+          - Remove the "placeholder" property, effectively no blur effect
+        Read more: https://nextjs.org/docs/messages/placeholder-blur-data-url`), "__NEXT_ERROR_CODE", {
+                value: "E371",
+                enumerable: false,
+                configurable: true
+            });
+        }
+        if ('ref' in rest) {
+            (0, _warnonce.warnOnce)(`Image with src "${src}" is using unsupported "ref" property. Consider using the "onLoad" property instead.`);
+        }
+        if (!unoptimized && !isDefaultLoader) {
+            const urlStr = loader({
+                config,
+                src,
+                width: widthInt || 400,
+                quality: qualityInt || 75
+            });
+            let url;
+            try {
+                url = new URL(urlStr);
+            } catch (err) {}
+            if (urlStr === src || url && url.pathname === src && !url.search) {
+                (0, _warnonce.warnOnce)(`Image with src "${src}" has a "loader" property that does not implement width. Please implement it or use the "unoptimized" property instead.` + `\nRead more: https://nextjs.org/docs/messages/next-image-missing-loader-width`);
+            }
+        }
+        if (onLoadingComplete) {
+            (0, _warnonce.warnOnce)(`Image with src "${src}" is using deprecated "onLoadingComplete" property. Please use the "onLoad" property instead.`);
+        }
+        for (const [legacyKey, legacyValue] of Object.entries({
+            layout,
+            objectFit,
+            objectPosition,
+            lazyBoundary,
+            lazyRoot
+        })){
+            if (legacyValue) {
+                (0, _warnonce.warnOnce)(`Image with src "${src}" has legacy prop "${legacyKey}". Did you forget to run the codemod?` + `\nRead more: https://nextjs.org/docs/messages/next-image-upgrade-to-13`);
+            }
+        }
+        if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+        ;
+    }
+    const imgStyle = Object.assign(fill ? {
+        position: 'absolute',
+        height: '100%',
+        width: '100%',
+        left: 0,
+        top: 0,
+        right: 0,
+        bottom: 0,
+        objectFit,
+        objectPosition
+    } : {}, showAltText ? {} : {
+        color: 'transparent'
+    }, style);
+    const backgroundImage = !blurComplete && placeholder !== 'empty' ? placeholder === 'blur' ? `url("data:image/svg+xml;charset=utf-8,${(0, _imageblursvg.getImageBlurSvg)({
+        widthInt,
+        heightInt,
+        blurWidth,
+        blurHeight,
+        blurDataURL: blurDataURL || '',
+        objectFit: imgStyle.objectFit
+    })}")` : `url("${placeholder}")` // assume `data:image/`
+     : null;
+    const backgroundSize = !INVALID_BACKGROUND_SIZE_VALUES.includes(imgStyle.objectFit) ? imgStyle.objectFit : imgStyle.objectFit === 'fill' ? '100% 100%' // the background-size equivalent of `fill`
+     : 'cover';
+    let placeholderStyle = backgroundImage ? {
+        backgroundSize,
+        backgroundPosition: imgStyle.objectPosition || '50% 50%',
+        backgroundRepeat: 'no-repeat',
+        backgroundImage
+    } : {};
+    if ("TURBOPACK compile-time truthy", 1) {
+        if (placeholderStyle.backgroundImage && placeholder === 'blur' && blurDataURL?.startsWith('/')) {
+            // During `next dev`, we don't want to generate blur placeholders with webpack
+            // because it can delay starting the dev server. Instead, `next-image-loader.js`
+            // will inline a special url to lazily generate the blur placeholder at request time.
+            placeholderStyle.backgroundImage = `url("${blurDataURL}")`;
+        }
+    }
+    const imgAttributes = generateImgAttrs({
+        config,
+        src,
+        unoptimized,
+        width: widthInt,
+        quality: qualityInt,
+        sizes,
+        loader
+    });
+    const loadingFinal = isLazy ? 'lazy' : loading;
+    if ("TURBOPACK compile-time truthy", 1) {
+        if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+        ;
+    }
+    const props = {
+        ...rest,
+        loading: loadingFinal,
+        fetchPriority,
+        width: widthInt,
+        height: heightInt,
+        decoding,
+        className,
+        style: {
+            ...imgStyle,
+            ...placeholderStyle
+        },
+        sizes: imgAttributes.sizes,
+        srcSet: imgAttributes.srcSet,
+        src: overrideSrc || imgAttributes.src
+    };
+    const meta = {
+        unoptimized,
+        preload: preload || priority,
+        placeholder,
+        fill
+    };
+    return {
+        props,
+        meta
+    };
+} //# sourceMappingURL=get-img-props.js.map
+}),
+"[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-runtime.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+module.exports = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/module.compiled.js [app-ssr] (ecmascript)").vendored['react-ssr'].ReactJsxRuntime; //# sourceMappingURL=react-jsx-runtime.js.map
+}),
+"[project]/web-client/node_modules/next/dist/shared/lib/side-effect.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: function() {
+        return SideEffect;
+    }
+});
+const _react = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+const isServer = ("TURBOPACK compile-time value", "undefined") === 'undefined';
+const useClientOnlyLayoutEffect = ("TURBOPACK compile-time truthy", 1) ? ()=>{} : "TURBOPACK unreachable";
+const useClientOnlyEffect = ("TURBOPACK compile-time truthy", 1) ? ()=>{} : "TURBOPACK unreachable";
+function SideEffect(props) {
+    const { headManager, reduceComponentsToState } = props;
+    function emitChange() {
+        if (headManager && headManager.mountedInstances) {
+            const headElements = _react.Children.toArray(Array.from(headManager.mountedInstances).filter(Boolean));
+            headManager.updateHead(reduceComponentsToState(headElements));
+        }
+    }
+    if ("TURBOPACK compile-time truthy", 1) {
+        headManager?.mountedInstances?.add(props.children);
+        emitChange();
+    }
+    useClientOnlyLayoutEffect(()=>{
+        headManager?.mountedInstances?.add(props.children);
+        return ()=>{
+            headManager?.mountedInstances?.delete(props.children);
+        };
+    });
+    // We need to call `updateHead` method whenever the `SideEffect` is trigger in all
+    // life-cycles: mount, update, unmount. However, if there are multiple `SideEffect`s
+    // being rendered, we only trigger the method from the last one.
+    // This is ensured by keeping the last unflushed `updateHead` in the `_pendingUpdate`
+    // singleton in the layout effect pass, and actually trigger it in the effect pass.
+    useClientOnlyLayoutEffect(()=>{
+        if (headManager) {
+            headManager._pendingUpdate = emitChange;
+        }
+        return ()=>{
+            if (headManager) {
+                headManager._pendingUpdate = emitChange;
+            }
+        };
+    });
+    useClientOnlyEffect(()=>{
+        if (headManager && headManager._pendingUpdate) {
+            headManager._pendingUpdate();
+            headManager._pendingUpdate = null;
+        }
+        return ()=>{
+            if (headManager && headManager._pendingUpdate) {
+                headManager._pendingUpdate();
+                headManager._pendingUpdate = null;
+            }
+        };
+    });
+    return null;
+} //# sourceMappingURL=side-effect.js.map
+}),
+"[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/contexts/head-manager-context.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+module.exports = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/module.compiled.js [app-ssr] (ecmascript)").vendored['contexts'].HeadManagerContext; //# sourceMappingURL=head-manager-context.js.map
+}),
+"[project]/web-client/node_modules/next/dist/shared/lib/head.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    default: null,
+    defaultHead: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    default: function() {
+        return _default;
+    },
+    defaultHead: function() {
+        return defaultHead;
+    }
+});
+const _interop_require_default = __turbopack_context__.r("[project]/web-client/node_modules/@swc/helpers/cjs/_interop_require_default.cjs [app-ssr] (ecmascript)");
+const _interop_require_wildcard = __turbopack_context__.r("[project]/web-client/node_modules/@swc/helpers/cjs/_interop_require_wildcard.cjs [app-ssr] (ecmascript)");
+const _jsxruntime = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-runtime.js [app-ssr] (ecmascript)");
+const _react = /*#__PURE__*/ _interop_require_wildcard._(__turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)"));
+const _sideeffect = /*#__PURE__*/ _interop_require_default._(__turbopack_context__.r("[project]/web-client/node_modules/next/dist/shared/lib/side-effect.js [app-ssr] (ecmascript)"));
+const _headmanagercontextsharedruntime = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/contexts/head-manager-context.js [app-ssr] (ecmascript)");
+const _warnonce = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/shared/lib/utils/warn-once.js [app-ssr] (ecmascript)");
+function defaultHead() {
+    const head = [
+        /*#__PURE__*/ (0, _jsxruntime.jsx)("meta", {
+            charSet: "utf-8"
+        }, "charset"),
+        /*#__PURE__*/ (0, _jsxruntime.jsx)("meta", {
+            name: "viewport",
+            content: "width=device-width"
+        }, "viewport")
+    ];
+    return head;
+}
+function onlyReactElement(list, child) {
+    // React children can be "string" or "number" in this case we ignore them for backwards compat
+    if (typeof child === 'string' || typeof child === 'number') {
+        return list;
+    }
+    // Adds support for React.Fragment
+    if (child.type === _react.default.Fragment) {
+        return list.concat(_react.default.Children.toArray(child.props.children).reduce((fragmentList, fragmentChild)=>{
+            if (typeof fragmentChild === 'string' || typeof fragmentChild === 'number') {
+                return fragmentList;
+            }
+            return fragmentList.concat(fragmentChild);
+        }, []));
+    }
+    return list.concat(child);
+}
+const METATYPES = [
+    'name',
+    'httpEquiv',
+    'charSet',
+    'itemProp'
+];
+/*
+ returns a function for filtering head child elements
+ which shouldn't be duplicated, like <title/>
+ Also adds support for deduplicated `key` properties
+*/ function unique() {
+    const keys = new Set();
+    const tags = new Set();
+    const metaTypes = new Set();
+    const metaCategories = {};
+    return (h)=>{
+        let isUnique = true;
+        let hasKey = false;
+        if (h.key && typeof h.key !== 'number' && h.key.indexOf('$') > 0) {
+            hasKey = true;
+            const key = h.key.slice(h.key.indexOf('$') + 1);
+            if (keys.has(key)) {
+                isUnique = false;
+            } else {
+                keys.add(key);
+            }
+        }
+        // eslint-disable-next-line default-case
+        switch(h.type){
+            case 'title':
+            case 'base':
+                if (tags.has(h.type)) {
+                    isUnique = false;
+                } else {
+                    tags.add(h.type);
+                }
+                break;
+            case 'meta':
+                for(let i = 0, len = METATYPES.length; i < len; i++){
+                    const metatype = METATYPES[i];
+                    if (!h.props.hasOwnProperty(metatype)) continue;
+                    if (metatype === 'charSet') {
+                        if (metaTypes.has(metatype)) {
+                            isUnique = false;
+                        } else {
+                            metaTypes.add(metatype);
+                        }
+                    } else {
+                        const category = h.props[metatype];
+                        const categories = metaCategories[metatype] || new Set();
+                        if ((metatype !== 'name' || !hasKey) && categories.has(category)) {
+                            isUnique = false;
+                        } else {
+                            categories.add(category);
+                            metaCategories[metatype] = categories;
+                        }
+                    }
+                }
+                break;
+        }
+        return isUnique;
+    };
+}
+/**
+ *
+ * @param headChildrenElements List of children of <Head>
+ */ function reduceComponents(headChildrenElements) {
+    return headChildrenElements.reduce(onlyReactElement, []).reverse().concat(defaultHead().reverse()).filter(unique()).reverse().map((c, i)=>{
+        const key = c.key || i;
+        if ("TURBOPACK compile-time truthy", 1) {
+            // omit JSON-LD structured data snippets from the warning
+            if (c.type === 'script' && c.props['type'] !== 'application/ld+json') {
+                const srcMessage = c.props['src'] ? `<script> tag with src="${c.props['src']}"` : `inline <script>`;
+                (0, _warnonce.warnOnce)(`Do not add <script> tags using next/head (see ${srcMessage}). Use next/script instead. \nSee more info here: https://nextjs.org/docs/messages/no-script-tags-in-head-component`);
+            } else if (c.type === 'link' && c.props['rel'] === 'stylesheet') {
+                (0, _warnonce.warnOnce)(`Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="${c.props['href']}"). Use Document instead. \nSee more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component`);
+            }
+        }
+        return /*#__PURE__*/ _react.default.cloneElement(c, {
+            key
+        });
+    });
+}
+/**
+ * This component injects elements to `<head>` of your page.
+ * To avoid duplicated `tags` in `<head>` you can use the `key` property, which will make sure every tag is only rendered once.
+ */ function Head({ children }) {
+    const headManager = (0, _react.useContext)(_headmanagercontextsharedruntime.HeadManagerContext);
+    return /*#__PURE__*/ (0, _jsxruntime.jsx)(_sideeffect.default, {
+        reduceComponentsToState: reduceComponents,
+        headManager: headManager,
+        children: children
+    });
+}
+const _default = Head;
+if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
+    Object.defineProperty(exports.default, '__esModule', {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=head.js.map
+}),
+"[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/contexts/image-config-context.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+module.exports = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/module.compiled.js [app-ssr] (ecmascript)").vendored['contexts'].ImageConfigContext; //# sourceMappingURL=image-config-context.js.map
+}),
+"[project]/web-client/node_modules/next/dist/shared/lib/find-closest-quality.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "findClosestQuality", {
+    enumerable: true,
+    get: function() {
+        return findClosestQuality;
+    }
+});
+function findClosestQuality(quality, config) {
+    const q = quality || 75;
+    if (!config?.qualities?.length) {
+        return q;
+    }
+    return config.qualities.reduce((prev, cur)=>Math.abs(cur - q) < Math.abs(prev - q) ? cur : prev, 0);
+} //# sourceMappingURL=find-closest-quality.js.map
+}),
+"[project]/web-client/node_modules/next/dist/compiled/picomatch/index.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+
+(()=>{
+    "use strict";
+    var t = {
+        170: (t, e, u)=>{
+            const n = u(510);
+            const isWindows = ()=>{
+                if (typeof navigator !== "undefined" && navigator.platform) {
+                    const t = navigator.platform.toLowerCase();
+                    return t === "win32" || t === "windows";
+                }
+                if (typeof process !== "undefined" && process.platform) {
+                    return process.platform === "win32";
+                }
+                return false;
+            };
+            function picomatch(t, e, u = false) {
+                if (e && (e.windows === null || e.windows === undefined)) {
+                    e = {
+                        ...e,
+                        windows: isWindows()
+                    };
+                }
+                return n(t, e, u);
+            }
+            Object.assign(picomatch, n);
+            t.exports = picomatch;
+        },
+        154: (t)=>{
+            const e = "\\\\/";
+            const u = `[^${e}]`;
+            const n = "\\.";
+            const o = "\\+";
+            const s = "\\?";
+            const r = "\\/";
+            const a = "(?=.)";
+            const i = "[^/]";
+            const c = `(?:${r}|$)`;
+            const p = `(?:^|${r})`;
+            const l = `${n}{1,2}${c}`;
+            const f = `(?!${n})`;
+            const A = `(?!${p}${l})`;
+            const _ = `(?!${n}{0,1}${c})`;
+            const R = `(?!${l})`;
+            const E = `[^.${r}]`;
+            const h = `${i}*?`;
+            const g = "/";
+            const b = {
+                DOT_LITERAL: n,
+                PLUS_LITERAL: o,
+                QMARK_LITERAL: s,
+                SLASH_LITERAL: r,
+                ONE_CHAR: a,
+                QMARK: i,
+                END_ANCHOR: c,
+                DOTS_SLASH: l,
+                NO_DOT: f,
+                NO_DOTS: A,
+                NO_DOT_SLASH: _,
+                NO_DOTS_SLASH: R,
+                QMARK_NO_DOT: E,
+                STAR: h,
+                START_ANCHOR: p,
+                SEP: g
+            };
+            const C = {
+                ...b,
+                SLASH_LITERAL: `[${e}]`,
+                QMARK: u,
+                STAR: `${u}*?`,
+                DOTS_SLASH: `${n}{1,2}(?:[${e}]|$)`,
+                NO_DOT: `(?!${n})`,
+                NO_DOTS: `(?!(?:^|[${e}])${n}{1,2}(?:[${e}]|$))`,
+                NO_DOT_SLASH: `(?!${n}{0,1}(?:[${e}]|$))`,
+                NO_DOTS_SLASH: `(?!${n}{1,2}(?:[${e}]|$))`,
+                QMARK_NO_DOT: `[^.${e}]`,
+                START_ANCHOR: `(?:^|[${e}])`,
+                END_ANCHOR: `(?:[${e}]|$)`,
+                SEP: "\\"
+            };
+            const y = {
+                alnum: "a-zA-Z0-9",
+                alpha: "a-zA-Z",
+                ascii: "\\x00-\\x7F",
+                blank: " \\t",
+                cntrl: "\\x00-\\x1F\\x7F",
+                digit: "0-9",
+                graph: "\\x21-\\x7E",
+                lower: "a-z",
+                print: "\\x20-\\x7E ",
+                punct: "\\-!\"#$%&'()\\*+,./:;<=>?@[\\]^_`{|}~",
+                space: " \\t\\r\\n\\v\\f",
+                upper: "A-Z",
+                word: "A-Za-z0-9_",
+                xdigit: "A-Fa-f0-9"
+            };
+            t.exports = {
+                MAX_LENGTH: 1024 * 64,
+                POSIX_REGEX_SOURCE: y,
+                REGEX_BACKSLASH: /\\(?![*+?^${}(|)[\]])/g,
+                REGEX_NON_SPECIAL_CHARS: /^[^@![\].,$*+?^{}()|\\/]+/,
+                REGEX_SPECIAL_CHARS: /[-*+?.^${}(|)[\]]/,
+                REGEX_SPECIAL_CHARS_BACKREF: /(\\?)((\W)(\3*))/g,
+                REGEX_SPECIAL_CHARS_GLOBAL: /([-*+?.^${}(|)[\]])/g,
+                REGEX_REMOVE_BACKSLASH: /(?:\[.*?[^\\]\]|\\(?=.))/g,
+                REPLACEMENTS: {
+                    "***": "*",
+                    "**/**": "**",
+                    "**/**/**": "**"
+                },
+                CHAR_0: 48,
+                CHAR_9: 57,
+                CHAR_UPPERCASE_A: 65,
+                CHAR_LOWERCASE_A: 97,
+                CHAR_UPPERCASE_Z: 90,
+                CHAR_LOWERCASE_Z: 122,
+                CHAR_LEFT_PARENTHESES: 40,
+                CHAR_RIGHT_PARENTHESES: 41,
+                CHAR_ASTERISK: 42,
+                CHAR_AMPERSAND: 38,
+                CHAR_AT: 64,
+                CHAR_BACKWARD_SLASH: 92,
+                CHAR_CARRIAGE_RETURN: 13,
+                CHAR_CIRCUMFLEX_ACCENT: 94,
+                CHAR_COLON: 58,
+                CHAR_COMMA: 44,
+                CHAR_DOT: 46,
+                CHAR_DOUBLE_QUOTE: 34,
+                CHAR_EQUAL: 61,
+                CHAR_EXCLAMATION_MARK: 33,
+                CHAR_FORM_FEED: 12,
+                CHAR_FORWARD_SLASH: 47,
+                CHAR_GRAVE_ACCENT: 96,
+                CHAR_HASH: 35,
+                CHAR_HYPHEN_MINUS: 45,
+                CHAR_LEFT_ANGLE_BRACKET: 60,
+                CHAR_LEFT_CURLY_BRACE: 123,
+                CHAR_LEFT_SQUARE_BRACKET: 91,
+                CHAR_LINE_FEED: 10,
+                CHAR_NO_BREAK_SPACE: 160,
+                CHAR_PERCENT: 37,
+                CHAR_PLUS: 43,
+                CHAR_QUESTION_MARK: 63,
+                CHAR_RIGHT_ANGLE_BRACKET: 62,
+                CHAR_RIGHT_CURLY_BRACE: 125,
+                CHAR_RIGHT_SQUARE_BRACKET: 93,
+                CHAR_SEMICOLON: 59,
+                CHAR_SINGLE_QUOTE: 39,
+                CHAR_SPACE: 32,
+                CHAR_TAB: 9,
+                CHAR_UNDERSCORE: 95,
+                CHAR_VERTICAL_LINE: 124,
+                CHAR_ZERO_WIDTH_NOBREAK_SPACE: 65279,
+                extglobChars (t) {
+                    return {
+                        "!": {
+                            type: "negate",
+                            open: "(?:(?!(?:",
+                            close: `))${t.STAR})`
+                        },
+                        "?": {
+                            type: "qmark",
+                            open: "(?:",
+                            close: ")?"
+                        },
+                        "+": {
+                            type: "plus",
+                            open: "(?:",
+                            close: ")+"
+                        },
+                        "*": {
+                            type: "star",
+                            open: "(?:",
+                            close: ")*"
+                        },
+                        "@": {
+                            type: "at",
+                            open: "(?:",
+                            close: ")"
+                        }
+                    };
+                },
+                globChars (t) {
+                    return t === true ? C : b;
+                }
+            };
+        },
+        697: (t, e, u)=>{
+            const n = u(154);
+            const o = u(96);
+            const { MAX_LENGTH: s, POSIX_REGEX_SOURCE: r, REGEX_NON_SPECIAL_CHARS: a, REGEX_SPECIAL_CHARS_BACKREF: i, REPLACEMENTS: c } = n;
+            const expandRange = (t, e)=>{
+                if (typeof e.expandRange === "function") {
+                    return e.expandRange(...t, e);
+                }
+                t.sort();
+                const u = `[${t.join("-")}]`;
+                try {
+                    new RegExp(u);
+                } catch (e) {
+                    return t.map((t)=>o.escapeRegex(t)).join("..");
+                }
+                return u;
+            };
+            const syntaxError = (t, e)=>`Missing ${t}: "${e}" - use "\\\\${e}" to match literal characters`;
+            const parse = (t, e)=>{
+                if (typeof t !== "string") {
+                    throw new TypeError("Expected a string");
+                }
+                t = c[t] || t;
+                const u = {
+                    ...e
+                };
+                const p = typeof u.maxLength === "number" ? Math.min(s, u.maxLength) : s;
+                let l = t.length;
+                if (l > p) {
+                    throw new SyntaxError(`Input length: ${l}, exceeds maximum allowed length: ${p}`);
+                }
+                const f = {
+                    type: "bos",
+                    value: "",
+                    output: u.prepend || ""
+                };
+                const A = [
+                    f
+                ];
+                const _ = u.capture ? "" : "?:";
+                const R = n.globChars(u.windows);
+                const E = n.extglobChars(R);
+                const { DOT_LITERAL: h, PLUS_LITERAL: g, SLASH_LITERAL: b, ONE_CHAR: C, DOTS_SLASH: y, NO_DOT: $, NO_DOT_SLASH: x, NO_DOTS_SLASH: S, QMARK: H, QMARK_NO_DOT: v, STAR: d, START_ANCHOR: L } = R;
+                const globstar = (t)=>`(${_}(?:(?!${L}${t.dot ? y : h}).)*?)`;
+                const T = u.dot ? "" : $;
+                const O = u.dot ? H : v;
+                let k = u.bash === true ? globstar(u) : d;
+                if (u.capture) {
+                    k = `(${k})`;
+                }
+                if (typeof u.noext === "boolean") {
+                    u.noextglob = u.noext;
+                }
+                const m = {
+                    input: t,
+                    index: -1,
+                    start: 0,
+                    dot: u.dot === true,
+                    consumed: "",
+                    output: "",
+                    prefix: "",
+                    backtrack: false,
+                    negated: false,
+                    brackets: 0,
+                    braces: 0,
+                    parens: 0,
+                    quotes: 0,
+                    globstar: false,
+                    tokens: A
+                };
+                t = o.removePrefix(t, m);
+                l = t.length;
+                const w = [];
+                const N = [];
+                const I = [];
+                let B = f;
+                let G;
+                const eos = ()=>m.index === l - 1;
+                const D = m.peek = (e = 1)=>t[m.index + e];
+                const M = m.advance = ()=>t[++m.index] || "";
+                const remaining = ()=>t.slice(m.index + 1);
+                const consume = (t = "", e = 0)=>{
+                    m.consumed += t;
+                    m.index += e;
+                };
+                const append = (t)=>{
+                    m.output += t.output != null ? t.output : t.value;
+                    consume(t.value);
+                };
+                const negate = ()=>{
+                    let t = 1;
+                    while(D() === "!" && (D(2) !== "(" || D(3) === "?")){
+                        M();
+                        m.start++;
+                        t++;
+                    }
+                    if (t % 2 === 0) {
+                        return false;
+                    }
+                    m.negated = true;
+                    m.start++;
+                    return true;
+                };
+                const increment = (t)=>{
+                    m[t]++;
+                    I.push(t);
+                };
+                const decrement = (t)=>{
+                    m[t]--;
+                    I.pop();
+                };
+                const push = (t)=>{
+                    if (B.type === "globstar") {
+                        const e = m.braces > 0 && (t.type === "comma" || t.type === "brace");
+                        const u = t.extglob === true || w.length && (t.type === "pipe" || t.type === "paren");
+                        if (t.type !== "slash" && t.type !== "paren" && !e && !u) {
+                            m.output = m.output.slice(0, -B.output.length);
+                            B.type = "star";
+                            B.value = "*";
+                            B.output = k;
+                            m.output += B.output;
+                        }
+                    }
+                    if (w.length && t.type !== "paren") {
+                        w[w.length - 1].inner += t.value;
+                    }
+                    if (t.value || t.output) append(t);
+                    if (B && B.type === "text" && t.type === "text") {
+                        B.output = (B.output || B.value) + t.value;
+                        B.value += t.value;
+                        return;
+                    }
+                    t.prev = B;
+                    A.push(t);
+                    B = t;
+                };
+                const extglobOpen = (t, e)=>{
+                    const n = {
+                        ...E[e],
+                        conditions: 1,
+                        inner: ""
+                    };
+                    n.prev = B;
+                    n.parens = m.parens;
+                    n.output = m.output;
+                    const o = (u.capture ? "(" : "") + n.open;
+                    increment("parens");
+                    push({
+                        type: t,
+                        value: e,
+                        output: m.output ? "" : C
+                    });
+                    push({
+                        type: "paren",
+                        extglob: true,
+                        value: M(),
+                        output: o
+                    });
+                    w.push(n);
+                };
+                const extglobClose = (t)=>{
+                    let n = t.close + (u.capture ? ")" : "");
+                    let o;
+                    if (t.type === "negate") {
+                        let s = k;
+                        if (t.inner && t.inner.length > 1 && t.inner.includes("/")) {
+                            s = globstar(u);
+                        }
+                        if (s !== k || eos() || /^\)+$/.test(remaining())) {
+                            n = t.close = `)$))${s}`;
+                        }
+                        if (t.inner.includes("*") && (o = remaining()) && /^\.[^\\/.]+$/.test(o)) {
+                            const u = parse(o, {
+                                ...e,
+                                fastpaths: false
+                            }).output;
+                            n = t.close = `)${u})${s})`;
+                        }
+                        if (t.prev.type === "bos") {
+                            m.negatedExtglob = true;
+                        }
+                    }
+                    push({
+                        type: "paren",
+                        extglob: true,
+                        value: G,
+                        output: n
+                    });
+                    decrement("parens");
+                };
+                if (u.fastpaths !== false && !/(^[*!]|[/()[\]{}"])/.test(t)) {
+                    let n = false;
+                    let s = t.replace(i, (t, e, u, o, s, r)=>{
+                        if (o === "\\") {
+                            n = true;
+                            return t;
+                        }
+                        if (o === "?") {
+                            if (e) {
+                                return e + o + (s ? H.repeat(s.length) : "");
+                            }
+                            if (r === 0) {
+                                return O + (s ? H.repeat(s.length) : "");
+                            }
+                            return H.repeat(u.length);
+                        }
+                        if (o === ".") {
+                            return h.repeat(u.length);
+                        }
+                        if (o === "*") {
+                            if (e) {
+                                return e + o + (s ? k : "");
+                            }
+                            return k;
+                        }
+                        return e ? t : `\\${t}`;
+                    });
+                    if (n === true) {
+                        if (u.unescape === true) {
+                            s = s.replace(/\\/g, "");
+                        } else {
+                            s = s.replace(/\\+/g, (t)=>t.length % 2 === 0 ? "\\\\" : t ? "\\" : "");
+                        }
+                    }
+                    if (s === t && u.contains === true) {
+                        m.output = t;
+                        return m;
+                    }
+                    m.output = o.wrapOutput(s, m, e);
+                    return m;
+                }
+                while(!eos()){
+                    G = M();
+                    if (G === "\0") {
+                        continue;
+                    }
+                    if (G === "\\") {
+                        const t = D();
+                        if (t === "/" && u.bash !== true) {
+                            continue;
+                        }
+                        if (t === "." || t === ";") {
+                            continue;
+                        }
+                        if (!t) {
+                            G += "\\";
+                            push({
+                                type: "text",
+                                value: G
+                            });
+                            continue;
+                        }
+                        const e = /^\\+/.exec(remaining());
+                        let n = 0;
+                        if (e && e[0].length > 2) {
+                            n = e[0].length;
+                            m.index += n;
+                            if (n % 2 !== 0) {
+                                G += "\\";
+                            }
+                        }
+                        if (u.unescape === true) {
+                            G = M();
+                        } else {
+                            G += M();
+                        }
+                        if (m.brackets === 0) {
+                            push({
+                                type: "text",
+                                value: G
+                            });
+                            continue;
+                        }
+                    }
+                    if (m.brackets > 0 && (G !== "]" || B.value === "[" || B.value === "[^")) {
+                        if (u.posix !== false && G === ":") {
+                            const t = B.value.slice(1);
+                            if (t.includes("[")) {
+                                B.posix = true;
+                                if (t.includes(":")) {
+                                    const t = B.value.lastIndexOf("[");
+                                    const e = B.value.slice(0, t);
+                                    const u = B.value.slice(t + 2);
+                                    const n = r[u];
+                                    if (n) {
+                                        B.value = e + n;
+                                        m.backtrack = true;
+                                        M();
+                                        if (!f.output && A.indexOf(B) === 1) {
+                                            f.output = C;
+                                        }
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
+                        if (G === "[" && D() !== ":" || G === "-" && D() === "]") {
+                            G = `\\${G}`;
+                        }
+                        if (G === "]" && (B.value === "[" || B.value === "[^")) {
+                            G = `\\${G}`;
+                        }
+                        if (u.posix === true && G === "!" && B.value === "[") {
+                            G = "^";
+                        }
+                        B.value += G;
+                        append({
+                            value: G
+                        });
+                        continue;
+                    }
+                    if (m.quotes === 1 && G !== '"') {
+                        G = o.escapeRegex(G);
+                        B.value += G;
+                        append({
+                            value: G
+                        });
+                        continue;
+                    }
+                    if (G === '"') {
+                        m.quotes = m.quotes === 1 ? 0 : 1;
+                        if (u.keepQuotes === true) {
+                            push({
+                                type: "text",
+                                value: G
+                            });
+                        }
+                        continue;
+                    }
+                    if (G === "(") {
+                        increment("parens");
+                        push({
+                            type: "paren",
+                            value: G
+                        });
+                        continue;
+                    }
+                    if (G === ")") {
+                        if (m.parens === 0 && u.strictBrackets === true) {
+                            throw new SyntaxError(syntaxError("opening", "("));
+                        }
+                        const t = w[w.length - 1];
+                        if (t && m.parens === t.parens + 1) {
+                            extglobClose(w.pop());
+                            continue;
+                        }
+                        push({
+                            type: "paren",
+                            value: G,
+                            output: m.parens ? ")" : "\\)"
+                        });
+                        decrement("parens");
+                        continue;
+                    }
+                    if (G === "[") {
+                        if (u.nobracket === true || !remaining().includes("]")) {
+                            if (u.nobracket !== true && u.strictBrackets === true) {
+                                throw new SyntaxError(syntaxError("closing", "]"));
+                            }
+                            G = `\\${G}`;
+                        } else {
+                            increment("brackets");
+                        }
+                        push({
+                            type: "bracket",
+                            value: G
+                        });
+                        continue;
+                    }
+                    if (G === "]") {
+                        if (u.nobracket === true || B && B.type === "bracket" && B.value.length === 1) {
+                            push({
+                                type: "text",
+                                value: G,
+                                output: `\\${G}`
+                            });
+                            continue;
+                        }
+                        if (m.brackets === 0) {
+                            if (u.strictBrackets === true) {
+                                throw new SyntaxError(syntaxError("opening", "["));
+                            }
+                            push({
+                                type: "text",
+                                value: G,
+                                output: `\\${G}`
+                            });
+                            continue;
+                        }
+                        decrement("brackets");
+                        const t = B.value.slice(1);
+                        if (B.posix !== true && t[0] === "^" && !t.includes("/")) {
+                            G = `/${G}`;
+                        }
+                        B.value += G;
+                        append({
+                            value: G
+                        });
+                        if (u.literalBrackets === false || o.hasRegexChars(t)) {
+                            continue;
+                        }
+                        const e = o.escapeRegex(B.value);
+                        m.output = m.output.slice(0, -B.value.length);
+                        if (u.literalBrackets === true) {
+                            m.output += e;
+                            B.value = e;
+                            continue;
+                        }
+                        B.value = `(${_}${e}|${B.value})`;
+                        m.output += B.value;
+                        continue;
+                    }
+                    if (G === "{" && u.nobrace !== true) {
+                        increment("braces");
+                        const t = {
+                            type: "brace",
+                            value: G,
+                            output: "(",
+                            outputIndex: m.output.length,
+                            tokensIndex: m.tokens.length
+                        };
+                        N.push(t);
+                        push(t);
+                        continue;
+                    }
+                    if (G === "}") {
+                        const t = N[N.length - 1];
+                        if (u.nobrace === true || !t) {
+                            push({
+                                type: "text",
+                                value: G,
+                                output: G
+                            });
+                            continue;
+                        }
+                        let e = ")";
+                        if (t.dots === true) {
+                            const t = A.slice();
+                            const n = [];
+                            for(let e = t.length - 1; e >= 0; e--){
+                                A.pop();
+                                if (t[e].type === "brace") {
+                                    break;
+                                }
+                                if (t[e].type !== "dots") {
+                                    n.unshift(t[e].value);
+                                }
+                            }
+                            e = expandRange(n, u);
+                            m.backtrack = true;
+                        }
+                        if (t.comma !== true && t.dots !== true) {
+                            const u = m.output.slice(0, t.outputIndex);
+                            const n = m.tokens.slice(t.tokensIndex);
+                            t.value = t.output = "\\{";
+                            G = e = "\\}";
+                            m.output = u;
+                            for (const t of n){
+                                m.output += t.output || t.value;
+                            }
+                        }
+                        push({
+                            type: "brace",
+                            value: G,
+                            output: e
+                        });
+                        decrement("braces");
+                        N.pop();
+                        continue;
+                    }
+                    if (G === "|") {
+                        if (w.length > 0) {
+                            w[w.length - 1].conditions++;
+                        }
+                        push({
+                            type: "text",
+                            value: G
+                        });
+                        continue;
+                    }
+                    if (G === ",") {
+                        let t = G;
+                        const e = N[N.length - 1];
+                        if (e && I[I.length - 1] === "braces") {
+                            e.comma = true;
+                            t = "|";
+                        }
+                        push({
+                            type: "comma",
+                            value: G,
+                            output: t
+                        });
+                        continue;
+                    }
+                    if (G === "/") {
+                        if (B.type === "dot" && m.index === m.start + 1) {
+                            m.start = m.index + 1;
+                            m.consumed = "";
+                            m.output = "";
+                            A.pop();
+                            B = f;
+                            continue;
+                        }
+                        push({
+                            type: "slash",
+                            value: G,
+                            output: b
+                        });
+                        continue;
+                    }
+                    if (G === ".") {
+                        if (m.braces > 0 && B.type === "dot") {
+                            if (B.value === ".") B.output = h;
+                            const t = N[N.length - 1];
+                            B.type = "dots";
+                            B.output += G;
+                            B.value += G;
+                            t.dots = true;
+                            continue;
+                        }
+                        if (m.braces + m.parens === 0 && B.type !== "bos" && B.type !== "slash") {
+                            push({
+                                type: "text",
+                                value: G,
+                                output: h
+                            });
+                            continue;
+                        }
+                        push({
+                            type: "dot",
+                            value: G,
+                            output: h
+                        });
+                        continue;
+                    }
+                    if (G === "?") {
+                        const t = B && B.value === "(";
+                        if (!t && u.noextglob !== true && D() === "(" && D(2) !== "?") {
+                            extglobOpen("qmark", G);
+                            continue;
+                        }
+                        if (B && B.type === "paren") {
+                            const t = D();
+                            let e = G;
+                            if (B.value === "(" && !/[!=<:]/.test(t) || t === "<" && !/<([!=]|\w+>)/.test(remaining())) {
+                                e = `\\${G}`;
+                            }
+                            push({
+                                type: "text",
+                                value: G,
+                                output: e
+                            });
+                            continue;
+                        }
+                        if (u.dot !== true && (B.type === "slash" || B.type === "bos")) {
+                            push({
+                                type: "qmark",
+                                value: G,
+                                output: v
+                            });
+                            continue;
+                        }
+                        push({
+                            type: "qmark",
+                            value: G,
+                            output: H
+                        });
+                        continue;
+                    }
+                    if (G === "!") {
+                        if (u.noextglob !== true && D() === "(") {
+                            if (D(2) !== "?" || !/[!=<:]/.test(D(3))) {
+                                extglobOpen("negate", G);
+                                continue;
+                            }
+                        }
+                        if (u.nonegate !== true && m.index === 0) {
+                            negate();
+                            continue;
+                        }
+                    }
+                    if (G === "+") {
+                        if (u.noextglob !== true && D() === "(" && D(2) !== "?") {
+                            extglobOpen("plus", G);
+                            continue;
+                        }
+                        if (B && B.value === "(" || u.regex === false) {
+                            push({
+                                type: "plus",
+                                value: G,
+                                output: g
+                            });
+                            continue;
+                        }
+                        if (B && (B.type === "bracket" || B.type === "paren" || B.type === "brace") || m.parens > 0) {
+                            push({
+                                type: "plus",
+                                value: G
+                            });
+                            continue;
+                        }
+                        push({
+                            type: "plus",
+                            value: g
+                        });
+                        continue;
+                    }
+                    if (G === "@") {
+                        if (u.noextglob !== true && D() === "(" && D(2) !== "?") {
+                            push({
+                                type: "at",
+                                extglob: true,
+                                value: G,
+                                output: ""
+                            });
+                            continue;
+                        }
+                        push({
+                            type: "text",
+                            value: G
+                        });
+                        continue;
+                    }
+                    if (G !== "*") {
+                        if (G === "$" || G === "^") {
+                            G = `\\${G}`;
+                        }
+                        const t = a.exec(remaining());
+                        if (t) {
+                            G += t[0];
+                            m.index += t[0].length;
+                        }
+                        push({
+                            type: "text",
+                            value: G
+                        });
+                        continue;
+                    }
+                    if (B && (B.type === "globstar" || B.star === true)) {
+                        B.type = "star";
+                        B.star = true;
+                        B.value += G;
+                        B.output = k;
+                        m.backtrack = true;
+                        m.globstar = true;
+                        consume(G);
+                        continue;
+                    }
+                    let e = remaining();
+                    if (u.noextglob !== true && /^\([^?]/.test(e)) {
+                        extglobOpen("star", G);
+                        continue;
+                    }
+                    if (B.type === "star") {
+                        if (u.noglobstar === true) {
+                            consume(G);
+                            continue;
+                        }
+                        const n = B.prev;
+                        const o = n.prev;
+                        const s = n.type === "slash" || n.type === "bos";
+                        const r = o && (o.type === "star" || o.type === "globstar");
+                        if (u.bash === true && (!s || e[0] && e[0] !== "/")) {
+                            push({
+                                type: "star",
+                                value: G,
+                                output: ""
+                            });
+                            continue;
+                        }
+                        const a = m.braces > 0 && (n.type === "comma" || n.type === "brace");
+                        const i = w.length && (n.type === "pipe" || n.type === "paren");
+                        if (!s && n.type !== "paren" && !a && !i) {
+                            push({
+                                type: "star",
+                                value: G,
+                                output: ""
+                            });
+                            continue;
+                        }
+                        while(e.slice(0, 3) === "/**"){
+                            const u = t[m.index + 4];
+                            if (u && u !== "/") {
+                                break;
+                            }
+                            e = e.slice(3);
+                            consume("/**", 3);
+                        }
+                        if (n.type === "bos" && eos()) {
+                            B.type = "globstar";
+                            B.value += G;
+                            B.output = globstar(u);
+                            m.output = B.output;
+                            m.globstar = true;
+                            consume(G);
+                            continue;
+                        }
+                        if (n.type === "slash" && n.prev.type !== "bos" && !r && eos()) {
+                            m.output = m.output.slice(0, -(n.output + B.output).length);
+                            n.output = `(?:${n.output}`;
+                            B.type = "globstar";
+                            B.output = globstar(u) + (u.strictSlashes ? ")" : "|$)");
+                            B.value += G;
+                            m.globstar = true;
+                            m.output += n.output + B.output;
+                            consume(G);
+                            continue;
+                        }
+                        if (n.type === "slash" && n.prev.type !== "bos" && e[0] === "/") {
+                            const t = e[1] !== void 0 ? "|$" : "";
+                            m.output = m.output.slice(0, -(n.output + B.output).length);
+                            n.output = `(?:${n.output}`;
+                            B.type = "globstar";
+                            B.output = `${globstar(u)}${b}|${b}${t})`;
+                            B.value += G;
+                            m.output += n.output + B.output;
+                            m.globstar = true;
+                            consume(G + M());
+                            push({
+                                type: "slash",
+                                value: "/",
+                                output: ""
+                            });
+                            continue;
+                        }
+                        if (n.type === "bos" && e[0] === "/") {
+                            B.type = "globstar";
+                            B.value += G;
+                            B.output = `(?:^|${b}|${globstar(u)}${b})`;
+                            m.output = B.output;
+                            m.globstar = true;
+                            consume(G + M());
+                            push({
+                                type: "slash",
+                                value: "/",
+                                output: ""
+                            });
+                            continue;
+                        }
+                        m.output = m.output.slice(0, -B.output.length);
+                        B.type = "globstar";
+                        B.output = globstar(u);
+                        B.value += G;
+                        m.output += B.output;
+                        m.globstar = true;
+                        consume(G);
+                        continue;
+                    }
+                    const n = {
+                        type: "star",
+                        value: G,
+                        output: k
+                    };
+                    if (u.bash === true) {
+                        n.output = ".*?";
+                        if (B.type === "bos" || B.type === "slash") {
+                            n.output = T + n.output;
+                        }
+                        push(n);
+                        continue;
+                    }
+                    if (B && (B.type === "bracket" || B.type === "paren") && u.regex === true) {
+                        n.output = G;
+                        push(n);
+                        continue;
+                    }
+                    if (m.index === m.start || B.type === "slash" || B.type === "dot") {
+                        if (B.type === "dot") {
+                            m.output += x;
+                            B.output += x;
+                        } else if (u.dot === true) {
+                            m.output += S;
+                            B.output += S;
+                        } else {
+                            m.output += T;
+                            B.output += T;
+                        }
+                        if (D() !== "*") {
+                            m.output += C;
+                            B.output += C;
+                        }
+                    }
+                    push(n);
+                }
+                while(m.brackets > 0){
+                    if (u.strictBrackets === true) throw new SyntaxError(syntaxError("closing", "]"));
+                    m.output = o.escapeLast(m.output, "[");
+                    decrement("brackets");
+                }
+                while(m.parens > 0){
+                    if (u.strictBrackets === true) throw new SyntaxError(syntaxError("closing", ")"));
+                    m.output = o.escapeLast(m.output, "(");
+                    decrement("parens");
+                }
+                while(m.braces > 0){
+                    if (u.strictBrackets === true) throw new SyntaxError(syntaxError("closing", "}"));
+                    m.output = o.escapeLast(m.output, "{");
+                    decrement("braces");
+                }
+                if (u.strictSlashes !== true && (B.type === "star" || B.type === "bracket")) {
+                    push({
+                        type: "maybe_slash",
+                        value: "",
+                        output: `${b}?`
+                    });
+                }
+                if (m.backtrack === true) {
+                    m.output = "";
+                    for (const t of m.tokens){
+                        m.output += t.output != null ? t.output : t.value;
+                        if (t.suffix) {
+                            m.output += t.suffix;
+                        }
+                    }
+                }
+                return m;
+            };
+            parse.fastpaths = (t, e)=>{
+                const u = {
+                    ...e
+                };
+                const r = typeof u.maxLength === "number" ? Math.min(s, u.maxLength) : s;
+                const a = t.length;
+                if (a > r) {
+                    throw new SyntaxError(`Input length: ${a}, exceeds maximum allowed length: ${r}`);
+                }
+                t = c[t] || t;
+                const { DOT_LITERAL: i, SLASH_LITERAL: p, ONE_CHAR: l, DOTS_SLASH: f, NO_DOT: A, NO_DOTS: _, NO_DOTS_SLASH: R, STAR: E, START_ANCHOR: h } = n.globChars(u.windows);
+                const g = u.dot ? _ : A;
+                const b = u.dot ? R : A;
+                const C = u.capture ? "" : "?:";
+                const y = {
+                    negated: false,
+                    prefix: ""
+                };
+                let $ = u.bash === true ? ".*?" : E;
+                if (u.capture) {
+                    $ = `(${$})`;
+                }
+                const globstar = (t)=>{
+                    if (t.noglobstar === true) return $;
+                    return `(${C}(?:(?!${h}${t.dot ? f : i}).)*?)`;
+                };
+                const create = (t)=>{
+                    switch(t){
+                        case "*":
+                            return `${g}${l}${$}`;
+                        case ".*":
+                            return `${i}${l}${$}`;
+                        case "*.*":
+                            return `${g}${$}${i}${l}${$}`;
+                        case "*/*":
+                            return `${g}${$}${p}${l}${b}${$}`;
+                        case "**":
+                            return g + globstar(u);
+                        case "**/*":
+                            return `(?:${g}${globstar(u)}${p})?${b}${l}${$}`;
+                        case "**/*.*":
+                            return `(?:${g}${globstar(u)}${p})?${b}${$}${i}${l}${$}`;
+                        case "**/.*":
+                            return `(?:${g}${globstar(u)}${p})?${i}${l}${$}`;
+                        default:
+                            {
+                                const e = /^(.*?)\.(\w+)$/.exec(t);
+                                if (!e) return;
+                                const u = create(e[1]);
+                                if (!u) return;
+                                return u + i + e[2];
+                            }
+                    }
+                };
+                const x = o.removePrefix(t, y);
+                let S = create(x);
+                if (S && u.strictSlashes !== true) {
+                    S += `${p}?`;
+                }
+                return S;
+            };
+            t.exports = parse;
+        },
+        510: (t, e, u)=>{
+            const n = u(716);
+            const o = u(697);
+            const s = u(96);
+            const r = u(154);
+            const isObject = (t)=>t && typeof t === "object" && !Array.isArray(t);
+            const picomatch = (t, e, u = false)=>{
+                if (Array.isArray(t)) {
+                    const n = t.map((t)=>picomatch(t, e, u));
+                    const arrayMatcher = (t)=>{
+                        for (const e of n){
+                            const u = e(t);
+                            if (u) return u;
+                        }
+                        return false;
+                    };
+                    return arrayMatcher;
+                }
+                const n = isObject(t) && t.tokens && t.input;
+                if (t === "" || typeof t !== "string" && !n) {
+                    throw new TypeError("Expected pattern to be a non-empty string");
+                }
+                const o = e || {};
+                const s = o.windows;
+                const r = n ? picomatch.compileRe(t, e) : picomatch.makeRe(t, e, false, true);
+                const a = r.state;
+                delete r.state;
+                let isIgnored = ()=>false;
+                if (o.ignore) {
+                    const t = {
+                        ...e,
+                        ignore: null,
+                        onMatch: null,
+                        onResult: null
+                    };
+                    isIgnored = picomatch(o.ignore, t, u);
+                }
+                const matcher = (u, n = false)=>{
+                    const { isMatch: i, match: c, output: p } = picomatch.test(u, r, e, {
+                        glob: t,
+                        posix: s
+                    });
+                    const l = {
+                        glob: t,
+                        state: a,
+                        regex: r,
+                        posix: s,
+                        input: u,
+                        output: p,
+                        match: c,
+                        isMatch: i
+                    };
+                    if (typeof o.onResult === "function") {
+                        o.onResult(l);
+                    }
+                    if (i === false) {
+                        l.isMatch = false;
+                        return n ? l : false;
+                    }
+                    if (isIgnored(u)) {
+                        if (typeof o.onIgnore === "function") {
+                            o.onIgnore(l);
+                        }
+                        l.isMatch = false;
+                        return n ? l : false;
+                    }
+                    if (typeof o.onMatch === "function") {
+                        o.onMatch(l);
+                    }
+                    return n ? l : true;
+                };
+                if (u) {
+                    matcher.state = a;
+                }
+                return matcher;
+            };
+            picomatch.test = (t, e, u, { glob: n, posix: o } = {})=>{
+                if (typeof t !== "string") {
+                    throw new TypeError("Expected input to be a string");
+                }
+                if (t === "") {
+                    return {
+                        isMatch: false,
+                        output: ""
+                    };
+                }
+                const r = u || {};
+                const a = r.format || (o ? s.toPosixSlashes : null);
+                let i = t === n;
+                let c = i && a ? a(t) : t;
+                if (i === false) {
+                    c = a ? a(t) : t;
+                    i = c === n;
+                }
+                if (i === false || r.capture === true) {
+                    if (r.matchBase === true || r.basename === true) {
+                        i = picomatch.matchBase(t, e, u, o);
+                    } else {
+                        i = e.exec(c);
+                    }
+                }
+                return {
+                    isMatch: Boolean(i),
+                    match: i,
+                    output: c
+                };
+            };
+            picomatch.matchBase = (t, e, u)=>{
+                const n = e instanceof RegExp ? e : picomatch.makeRe(e, u);
+                return n.test(s.basename(t));
+            };
+            picomatch.isMatch = (t, e, u)=>picomatch(e, u)(t);
+            picomatch.parse = (t, e)=>{
+                if (Array.isArray(t)) return t.map((t)=>picomatch.parse(t, e));
+                return o(t, {
+                    ...e,
+                    fastpaths: false
+                });
+            };
+            picomatch.scan = (t, e)=>n(t, e);
+            picomatch.compileRe = (t, e, u = false, n = false)=>{
+                if (u === true) {
+                    return t.output;
+                }
+                const o = e || {};
+                const s = o.contains ? "" : "^";
+                const r = o.contains ? "" : "$";
+                let a = `${s}(?:${t.output})${r}`;
+                if (t && t.negated === true) {
+                    a = `^(?!${a}).*$`;
+                }
+                const i = picomatch.toRegex(a, e);
+                if (n === true) {
+                    i.state = t;
+                }
+                return i;
+            };
+            picomatch.makeRe = (t, e = {}, u = false, n = false)=>{
+                if (!t || typeof t !== "string") {
+                    throw new TypeError("Expected a non-empty string");
+                }
+                let s = {
+                    negated: false,
+                    fastpaths: true
+                };
+                if (e.fastpaths !== false && (t[0] === "." || t[0] === "*")) {
+                    s.output = o.fastpaths(t, e);
+                }
+                if (!s.output) {
+                    s = o(t, e);
+                }
+                return picomatch.compileRe(s, e, u, n);
+            };
+            picomatch.toRegex = (t, e)=>{
+                try {
+                    const u = e || {};
+                    return new RegExp(t, u.flags || (u.nocase ? "i" : ""));
+                } catch (t) {
+                    if (e && e.debug === true) throw t;
+                    return /$^/;
+                }
+            };
+            picomatch.constants = r;
+            t.exports = picomatch;
+        },
+        716: (t, e, u)=>{
+            const n = u(96);
+            const { CHAR_ASTERISK: o, CHAR_AT: s, CHAR_BACKWARD_SLASH: r, CHAR_COMMA: a, CHAR_DOT: i, CHAR_EXCLAMATION_MARK: c, CHAR_FORWARD_SLASH: p, CHAR_LEFT_CURLY_BRACE: l, CHAR_LEFT_PARENTHESES: f, CHAR_LEFT_SQUARE_BRACKET: A, CHAR_PLUS: _, CHAR_QUESTION_MARK: R, CHAR_RIGHT_CURLY_BRACE: E, CHAR_RIGHT_PARENTHESES: h, CHAR_RIGHT_SQUARE_BRACKET: g } = u(154);
+            const isPathSeparator = (t)=>t === p || t === r;
+            const depth = (t)=>{
+                if (t.isPrefix !== true) {
+                    t.depth = t.isGlobstar ? Infinity : 1;
+                }
+            };
+            const scan = (t, e)=>{
+                const u = e || {};
+                const b = t.length - 1;
+                const C = u.parts === true || u.scanToEnd === true;
+                const y = [];
+                const $ = [];
+                const x = [];
+                let S = t;
+                let H = -1;
+                let v = 0;
+                let d = 0;
+                let L = false;
+                let T = false;
+                let O = false;
+                let k = false;
+                let m = false;
+                let w = false;
+                let N = false;
+                let I = false;
+                let B = false;
+                let G = false;
+                let D = 0;
+                let M;
+                let P;
+                let K = {
+                    value: "",
+                    depth: 0,
+                    isGlob: false
+                };
+                const eos = ()=>H >= b;
+                const peek = ()=>S.charCodeAt(H + 1);
+                const advance = ()=>{
+                    M = P;
+                    return S.charCodeAt(++H);
+                };
+                while(H < b){
+                    P = advance();
+                    let t;
+                    if (P === r) {
+                        N = K.backslashes = true;
+                        P = advance();
+                        if (P === l) {
+                            w = true;
+                        }
+                        continue;
+                    }
+                    if (w === true || P === l) {
+                        D++;
+                        while(eos() !== true && (P = advance())){
+                            if (P === r) {
+                                N = K.backslashes = true;
+                                advance();
+                                continue;
+                            }
+                            if (P === l) {
+                                D++;
+                                continue;
+                            }
+                            if (w !== true && P === i && (P = advance()) === i) {
+                                L = K.isBrace = true;
+                                O = K.isGlob = true;
+                                G = true;
+                                if (C === true) {
+                                    continue;
+                                }
+                                break;
+                            }
+                            if (w !== true && P === a) {
+                                L = K.isBrace = true;
+                                O = K.isGlob = true;
+                                G = true;
+                                if (C === true) {
+                                    continue;
+                                }
+                                break;
+                            }
+                            if (P === E) {
+                                D--;
+                                if (D === 0) {
+                                    w = false;
+                                    L = K.isBrace = true;
+                                    G = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (C === true) {
+                            continue;
+                        }
+                        break;
+                    }
+                    if (P === p) {
+                        y.push(H);
+                        $.push(K);
+                        K = {
+                            value: "",
+                            depth: 0,
+                            isGlob: false
+                        };
+                        if (G === true) continue;
+                        if (M === i && H === v + 1) {
+                            v += 2;
+                            continue;
+                        }
+                        d = H + 1;
+                        continue;
+                    }
+                    if (u.noext !== true) {
+                        const t = P === _ || P === s || P === o || P === R || P === c;
+                        if (t === true && peek() === f) {
+                            O = K.isGlob = true;
+                            k = K.isExtglob = true;
+                            G = true;
+                            if (P === c && H === v) {
+                                B = true;
+                            }
+                            if (C === true) {
+                                while(eos() !== true && (P = advance())){
+                                    if (P === r) {
+                                        N = K.backslashes = true;
+                                        P = advance();
+                                        continue;
+                                    }
+                                    if (P === h) {
+                                        O = K.isGlob = true;
+                                        G = true;
+                                        break;
+                                    }
+                                }
+                                continue;
+                            }
+                            break;
+                        }
+                    }
+                    if (P === o) {
+                        if (M === o) m = K.isGlobstar = true;
+                        O = K.isGlob = true;
+                        G = true;
+                        if (C === true) {
+                            continue;
+                        }
+                        break;
+                    }
+                    if (P === R) {
+                        O = K.isGlob = true;
+                        G = true;
+                        if (C === true) {
+                            continue;
+                        }
+                        break;
+                    }
+                    if (P === A) {
+                        while(eos() !== true && (t = advance())){
+                            if (t === r) {
+                                N = K.backslashes = true;
+                                advance();
+                                continue;
+                            }
+                            if (t === g) {
+                                T = K.isBracket = true;
+                                O = K.isGlob = true;
+                                G = true;
+                                break;
+                            }
+                        }
+                        if (C === true) {
+                            continue;
+                        }
+                        break;
+                    }
+                    if (u.nonegate !== true && P === c && H === v) {
+                        I = K.negated = true;
+                        v++;
+                        continue;
+                    }
+                    if (u.noparen !== true && P === f) {
+                        O = K.isGlob = true;
+                        if (C === true) {
+                            while(eos() !== true && (P = advance())){
+                                if (P === f) {
+                                    N = K.backslashes = true;
+                                    P = advance();
+                                    continue;
+                                }
+                                if (P === h) {
+                                    G = true;
+                                    break;
+                                }
+                            }
+                            continue;
+                        }
+                        break;
+                    }
+                    if (O === true) {
+                        G = true;
+                        if (C === true) {
+                            continue;
+                        }
+                        break;
+                    }
+                }
+                if (u.noext === true) {
+                    k = false;
+                    O = false;
+                }
+                let U = S;
+                let X = "";
+                let F = "";
+                if (v > 0) {
+                    X = S.slice(0, v);
+                    S = S.slice(v);
+                    d -= v;
+                }
+                if (U && O === true && d > 0) {
+                    U = S.slice(0, d);
+                    F = S.slice(d);
+                } else if (O === true) {
+                    U = "";
+                    F = S;
+                } else {
+                    U = S;
+                }
+                if (U && U !== "" && U !== "/" && U !== S) {
+                    if (isPathSeparator(U.charCodeAt(U.length - 1))) {
+                        U = U.slice(0, -1);
+                    }
+                }
+                if (u.unescape === true) {
+                    if (F) F = n.removeBackslashes(F);
+                    if (U && N === true) {
+                        U = n.removeBackslashes(U);
+                    }
+                }
+                const Q = {
+                    prefix: X,
+                    input: t,
+                    start: v,
+                    base: U,
+                    glob: F,
+                    isBrace: L,
+                    isBracket: T,
+                    isGlob: O,
+                    isExtglob: k,
+                    isGlobstar: m,
+                    negated: I,
+                    negatedExtglob: B
+                };
+                if (u.tokens === true) {
+                    Q.maxDepth = 0;
+                    if (!isPathSeparator(P)) {
+                        $.push(K);
+                    }
+                    Q.tokens = $;
+                }
+                if (u.parts === true || u.tokens === true) {
+                    let e;
+                    for(let n = 0; n < y.length; n++){
+                        const o = e ? e + 1 : v;
+                        const s = y[n];
+                        const r = t.slice(o, s);
+                        if (u.tokens) {
+                            if (n === 0 && v !== 0) {
+                                $[n].isPrefix = true;
+                                $[n].value = X;
+                            } else {
+                                $[n].value = r;
+                            }
+                            depth($[n]);
+                            Q.maxDepth += $[n].depth;
+                        }
+                        if (n !== 0 || r !== "") {
+                            x.push(r);
+                        }
+                        e = s;
+                    }
+                    if (e && e + 1 < t.length) {
+                        const n = t.slice(e + 1);
+                        x.push(n);
+                        if (u.tokens) {
+                            $[$.length - 1].value = n;
+                            depth($[$.length - 1]);
+                            Q.maxDepth += $[$.length - 1].depth;
+                        }
+                    }
+                    Q.slashes = y;
+                    Q.parts = x;
+                }
+                return Q;
+            };
+            t.exports = scan;
+        },
+        96: (t, e, u)=>{
+            const { REGEX_BACKSLASH: n, REGEX_REMOVE_BACKSLASH: o, REGEX_SPECIAL_CHARS: s, REGEX_SPECIAL_CHARS_GLOBAL: r } = u(154);
+            e.isObject = (t)=>t !== null && typeof t === "object" && !Array.isArray(t);
+            e.hasRegexChars = (t)=>s.test(t);
+            e.isRegexChar = (t)=>t.length === 1 && e.hasRegexChars(t);
+            e.escapeRegex = (t)=>t.replace(r, "\\$1");
+            e.toPosixSlashes = (t)=>t.replace(n, "/");
+            e.removeBackslashes = (t)=>t.replace(o, (t)=>t === "\\" ? "" : t);
+            e.escapeLast = (t, u, n)=>{
+                const o = t.lastIndexOf(u, n);
+                if (o === -1) return t;
+                if (t[o - 1] === "\\") return e.escapeLast(t, u, o - 1);
+                return `${t.slice(0, o)}\\${t.slice(o)}`;
+            };
+            e.removePrefix = (t, e = {})=>{
+                let u = t;
+                if (u.startsWith("./")) {
+                    u = u.slice(2);
+                    e.prefix = "./";
+                }
+                return u;
+            };
+            e.wrapOutput = (t, e = {}, u = {})=>{
+                const n = u.contains ? "" : "^";
+                const o = u.contains ? "" : "$";
+                let s = `${n}(?:${t})${o}`;
+                if (e.negated === true) {
+                    s = `(?:^(?!${s}).*$)`;
+                }
+                return s;
+            };
+            e.basename = (t, { windows: e } = {})=>{
+                const u = t.split(e ? /[\\/]/ : "/");
+                const n = u[u.length - 1];
+                if (n === "") {
+                    return u[u.length - 2];
+                }
+                return n;
+            };
+        }
+    };
+    var e = {};
+    function __nccwpck_require__(u) {
+        var n = e[u];
+        if (n !== undefined) {
+            return n.exports;
+        }
+        var o = e[u] = {
+            exports: {}
+        };
+        var s = true;
+        try {
+            t[u](o, o.exports, __nccwpck_require__);
+            s = false;
+        } finally{
+            if (s) delete e[u];
+        }
+        return o.exports;
+    }
+    if (typeof __nccwpck_require__ !== "undefined") __nccwpck_require__.ab = ("TURBOPACK compile-time value", "/ROOT/web-client/node_modules/next/dist/compiled/picomatch") + "/";
+    var u = __nccwpck_require__(170);
+    module.exports = u;
+})();
+}),
+"[project]/web-client/node_modules/next/dist/shared/lib/match-local-pattern.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    hasLocalMatch: null,
+    matchLocalPattern: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    hasLocalMatch: function() {
+        return hasLocalMatch;
+    },
+    matchLocalPattern: function() {
+        return matchLocalPattern;
+    }
+});
+const _picomatch = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/compiled/picomatch/index.js [app-ssr] (ecmascript)");
+function matchLocalPattern(pattern, url) {
+    if (pattern.search !== undefined) {
+        if (pattern.search !== url.search) {
+            return false;
+        }
+    }
+    if (!(0, _picomatch.makeRe)(pattern.pathname ?? '**', {
+        dot: true
+    }).test(url.pathname)) {
+        return false;
+    }
+    return true;
+}
+function hasLocalMatch(localPatterns, urlPathAndQuery) {
+    if (!localPatterns) {
+        // if the user didn't define "localPatterns", we allow all local images
+        return true;
+    }
+    const url = new URL(urlPathAndQuery, 'http://n');
+    return localPatterns.some((p)=>matchLocalPattern(p, url));
+} //# sourceMappingURL=match-local-pattern.js.map
+}),
+"[project]/web-client/node_modules/next/dist/shared/lib/match-remote-pattern.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    hasRemoteMatch: null,
+    matchRemotePattern: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    hasRemoteMatch: function() {
+        return hasRemoteMatch;
+    },
+    matchRemotePattern: function() {
+        return matchRemotePattern;
+    }
+});
+const _picomatch = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/compiled/picomatch/index.js [app-ssr] (ecmascript)");
+function matchRemotePattern(pattern, url) {
+    if (pattern.protocol !== undefined) {
+        if (pattern.protocol.replace(/:$/, '') !== url.protocol.replace(/:$/, '')) {
+            return false;
+        }
+    }
+    if (pattern.port !== undefined) {
+        if (pattern.port !== url.port) {
+            return false;
+        }
+    }
+    if (pattern.hostname === undefined) {
+        throw Object.defineProperty(new Error(`Pattern should define hostname but found\n${JSON.stringify(pattern)}`), "__NEXT_ERROR_CODE", {
+            value: "E410",
+            enumerable: false,
+            configurable: true
+        });
+    } else {
+        if (!(0, _picomatch.makeRe)(pattern.hostname).test(url.hostname)) {
+            return false;
+        }
+    }
+    if (pattern.search !== undefined) {
+        if (pattern.search !== url.search) {
+            return false;
+        }
+    }
+    // Should be the same as writeImagesManifest()
+    if (!(0, _picomatch.makeRe)(pattern.pathname ?? '**', {
+        dot: true
+    }).test(url.pathname)) {
+        return false;
+    }
+    return true;
+}
+function hasRemoteMatch(domains, remotePatterns, url) {
+    return domains.some((domain)=>url.hostname === domain) || remotePatterns.some((p)=>matchRemotePattern(p, url));
+} //# sourceMappingURL=match-remote-pattern.js.map
+}),
+"[project]/web-client/node_modules/next/dist/shared/lib/image-loader.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: function() {
+        return _default;
+    }
+});
+const _findclosestquality = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/shared/lib/find-closest-quality.js [app-ssr] (ecmascript)");
+const _deploymentid = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/shared/lib/deployment-id.js [app-ssr] (ecmascript)");
+function defaultLoader({ config, src, width, quality }) {
+    if (src.startsWith('/') && src.includes('?') && config.localPatterns?.length === 1 && config.localPatterns[0].pathname === '**' && config.localPatterns[0].search === '') {
+        throw Object.defineProperty(new Error(`Image with src "${src}" is using a query string which is not configured in images.localPatterns.` + `\nRead more: https://nextjs.org/docs/messages/next-image-unconfigured-localpatterns`), "__NEXT_ERROR_CODE", {
+            value: "E871",
+            enumerable: false,
+            configurable: true
+        });
+    }
+    if ("TURBOPACK compile-time truthy", 1) {
+        const missingValues = [];
+        // these should always be provided but make sure they are
+        if (!src) missingValues.push('src');
+        if (!width) missingValues.push('width');
+        if (missingValues.length > 0) {
+            throw Object.defineProperty(new Error(`Next Image Optimization requires ${missingValues.join(', ')} to be provided. Make sure you pass them as props to the \`next/image\` component. Received: ${JSON.stringify({
+                src,
+                width,
+                quality
+            })}`), "__NEXT_ERROR_CODE", {
+                value: "E188",
+                enumerable: false,
+                configurable: true
+            });
+        }
+        if (src.startsWith('//')) {
+            throw Object.defineProperty(new Error(`Failed to parse src "${src}" on \`next/image\`, protocol-relative URL (//) must be changed to an absolute URL (http:// or https://)`), "__NEXT_ERROR_CODE", {
+                value: "E360",
+                enumerable: false,
+                configurable: true
+            });
+        }
+        if (src.startsWith('/') && config.localPatterns) {
+            if ("TURBOPACK compile-time truthy", 1) {
+                // We use dynamic require because this should only error in development
+                const { hasLocalMatch } = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/shared/lib/match-local-pattern.js [app-ssr] (ecmascript)");
+                if (!hasLocalMatch(config.localPatterns, src)) {
+                    throw Object.defineProperty(new Error(`Invalid src prop (${src}) on \`next/image\` does not match \`images.localPatterns\` configured in your \`next.config.js\`\n` + `See more info: https://nextjs.org/docs/messages/next-image-unconfigured-localpatterns`), "__NEXT_ERROR_CODE", {
+                        value: "E426",
+                        enumerable: false,
+                        configurable: true
+                    });
+                }
+            }
+        }
+        if (!src.startsWith('/') && (config.domains || config.remotePatterns)) {
+            let parsedSrc;
+            try {
+                parsedSrc = new URL(src);
+            } catch (err) {
+                console.error(err);
+                throw Object.defineProperty(new Error(`Failed to parse src "${src}" on \`next/image\`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)`), "__NEXT_ERROR_CODE", {
+                    value: "E63",
+                    enumerable: false,
+                    configurable: true
+                });
+            }
+            if ("TURBOPACK compile-time truthy", 1) {
+                // We use dynamic require because this should only error in development
+                const { hasRemoteMatch } = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/shared/lib/match-remote-pattern.js [app-ssr] (ecmascript)");
+                if (!hasRemoteMatch(config.domains, config.remotePatterns, parsedSrc)) {
+                    throw Object.defineProperty(new Error(`Invalid src prop (${src}) on \`next/image\`, hostname "${parsedSrc.hostname}" is not configured under images in your \`next.config.js\`\n` + `See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host`), "__NEXT_ERROR_CODE", {
+                        value: "E231",
+                        enumerable: false,
+                        configurable: true
+                    });
+                }
+            }
+        }
+    }
+    const q = (0, _findclosestquality.findClosestQuality)(quality, config);
+    let deploymentId = (0, _deploymentid.getDeploymentId)();
+    return `${config.path}?url=${encodeURIComponent(src)}&w=${width}&q=${q}${src.startsWith('/') && deploymentId ? `&dpl=${deploymentId}` : ''}`;
+}
+// We use this to determine if the import is the default loader
+// or a custom loader defined by the user in next.config.js
+defaultLoader.__next_img_default = true;
+const _default = defaultLoader; //# sourceMappingURL=image-loader.js.map
+}),
+"[project]/web-client/node_modules/next/dist/client/use-merged-ref.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "useMergedRef", {
+    enumerable: true,
+    get: function() {
+        return useMergedRef;
+    }
+});
+const _react = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+function useMergedRef(refA, refB) {
+    const cleanupA = (0, _react.useRef)(null);
+    const cleanupB = (0, _react.useRef)(null);
+    // NOTE: In theory, we could skip the wrapping if only one of the refs is non-null.
+    // (this happens often if the user doesn't pass a ref to Link/Form/Image)
+    // But this can cause us to leak a cleanup-ref into user code (previously via `<Link legacyBehavior>`),
+    // and the user might pass that ref into ref-merging library that doesn't support cleanup refs
+    // (because it hasn't been updated for React 19)
+    // which can then cause things to blow up, because a cleanup-returning ref gets called with `null`.
+    // So in practice, it's safer to be defensive and always wrap the ref, even on React 19.
+    return (0, _react.useCallback)((current)=>{
+        if (current === null) {
+            const cleanupFnA = cleanupA.current;
+            if (cleanupFnA) {
+                cleanupA.current = null;
+                cleanupFnA();
+            }
+            const cleanupFnB = cleanupB.current;
+            if (cleanupFnB) {
+                cleanupB.current = null;
+                cleanupFnB();
+            }
+        } else {
+            if (refA) {
+                cleanupA.current = applyRef(refA, current);
+            }
+            if (refB) {
+                cleanupB.current = applyRef(refB, current);
+            }
+        }
+    }, [
+        refA,
+        refB
+    ]);
+}
+function applyRef(refA, current) {
+    if (typeof refA === 'function') {
+        const cleanup = refA(current);
+        if (typeof cleanup === 'function') {
+            return cleanup;
+        } else {
+            return ()=>refA(null);
+        }
+    } else {
+        refA.current = current;
+        return ()=>{
+            refA.current = null;
+        };
+    }
+}
+if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
+    Object.defineProperty(exports.default, '__esModule', {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=use-merged-ref.js.map
+}),
+"[project]/web-client/node_modules/next/dist/client/image-component.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+Object.defineProperty(exports, "Image", {
+    enumerable: true,
+    get: function() {
+        return Image;
+    }
+});
+const _interop_require_default = __turbopack_context__.r("[project]/web-client/node_modules/@swc/helpers/cjs/_interop_require_default.cjs [app-ssr] (ecmascript)");
+const _interop_require_wildcard = __turbopack_context__.r("[project]/web-client/node_modules/@swc/helpers/cjs/_interop_require_wildcard.cjs [app-ssr] (ecmascript)");
+const _jsxruntime = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-runtime.js [app-ssr] (ecmascript)");
+const _react = /*#__PURE__*/ _interop_require_wildcard._(__turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)"));
+const _reactdom = /*#__PURE__*/ _interop_require_default._(__turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-dom.js [app-ssr] (ecmascript)"));
+const _head = /*#__PURE__*/ _interop_require_default._(__turbopack_context__.r("[project]/web-client/node_modules/next/dist/shared/lib/head.js [app-ssr] (ecmascript)"));
+const _getimgprops = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/shared/lib/get-img-props.js [app-ssr] (ecmascript)");
+const _imageconfig = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/shared/lib/image-config.js [app-ssr] (ecmascript)");
+const _imageconfigcontextsharedruntime = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/contexts/image-config-context.js [app-ssr] (ecmascript)");
+const _warnonce = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/shared/lib/utils/warn-once.js [app-ssr] (ecmascript)");
+const _routercontextsharedruntime = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/server/route-modules/app-page/vendored/contexts/router-context.js [app-ssr] (ecmascript)");
+const _imageloader = /*#__PURE__*/ _interop_require_default._(__turbopack_context__.r("[project]/web-client/node_modules/next/dist/shared/lib/image-loader.js [app-ssr] (ecmascript)"));
+const _usemergedref = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/use-merged-ref.js [app-ssr] (ecmascript)");
+// This is replaced by webpack define plugin
+const configEnv = ("TURBOPACK compile-time value", {
+    "deviceSizes": ("TURBOPACK compile-time value", [
+        ("TURBOPACK compile-time value", 640),
+        ("TURBOPACK compile-time value", 750),
+        ("TURBOPACK compile-time value", 828),
+        ("TURBOPACK compile-time value", 1080),
+        ("TURBOPACK compile-time value", 1200),
+        ("TURBOPACK compile-time value", 1920),
+        ("TURBOPACK compile-time value", 2048),
+        ("TURBOPACK compile-time value", 3840)
+    ]),
+    "imageSizes": ("TURBOPACK compile-time value", [
+        ("TURBOPACK compile-time value", 32),
+        ("TURBOPACK compile-time value", 48),
+        ("TURBOPACK compile-time value", 64),
+        ("TURBOPACK compile-time value", 96),
+        ("TURBOPACK compile-time value", 128),
+        ("TURBOPACK compile-time value", 256),
+        ("TURBOPACK compile-time value", 384)
+    ]),
+    "qualities": ("TURBOPACK compile-time value", [
+        ("TURBOPACK compile-time value", 75)
+    ]),
+    "path": ("TURBOPACK compile-time value", "/_next/image"),
+    "loader": ("TURBOPACK compile-time value", "default"),
+    "dangerouslyAllowSVG": ("TURBOPACK compile-time value", false),
+    "unoptimized": ("TURBOPACK compile-time value", false),
+    "domains": ("TURBOPACK compile-time value", []),
+    "remotePatterns": ("TURBOPACK compile-time value", [
+        ("TURBOPACK compile-time value", {
+            "protocol": ("TURBOPACK compile-time value", "https"),
+            "hostname": ("TURBOPACK compile-time value", "res.cloudinary.com")
+        })
+    ]),
+    "localPatterns": ("TURBOPACK compile-time value", [
+        ("TURBOPACK compile-time value", {
+            "pathname": ("TURBOPACK compile-time value", "**"),
+            "search": ("TURBOPACK compile-time value", "")
+        })
+    ])
+});
+if ("TURBOPACK compile-time truthy", 1) {
+    ;
+    globalThis.__NEXT_IMAGE_IMPORTED = true;
+}
+// See https://stackoverflow.com/q/39777833/266535 for why we use this ref
+// handler instead of the img's onLoad attribute.
+function handleLoading(img, placeholder, onLoadRef, onLoadingCompleteRef, setBlurComplete, unoptimized, sizesInput) {
+    const src = img?.src;
+    if (!img || img['data-loaded-src'] === src) {
+        return;
+    }
+    img['data-loaded-src'] = src;
+    const p = 'decode' in img ? img.decode() : Promise.resolve();
+    p.catch(()=>{}).then(()=>{
+        if (!img.parentElement || !img.isConnected) {
+            // Exit early in case of race condition:
+            // - onload() is called
+            // - decode() is called but incomplete
+            // - unmount is called
+            // - decode() completes
+            return;
+        }
+        if (placeholder !== 'empty') {
+            setBlurComplete(true);
+        }
+        if (onLoadRef?.current) {
+            // Since we don't have the SyntheticEvent here,
+            // we must create one with the same shape.
+            // See https://reactjs.org/docs/events.html
+            const event = new Event('load');
+            Object.defineProperty(event, 'target', {
+                writable: false,
+                value: img
+            });
+            let prevented = false;
+            let stopped = false;
+            onLoadRef.current({
+                ...event,
+                nativeEvent: event,
+                currentTarget: img,
+                target: img,
+                isDefaultPrevented: ()=>prevented,
+                isPropagationStopped: ()=>stopped,
+                persist: ()=>{},
+                preventDefault: ()=>{
+                    prevented = true;
+                    event.preventDefault();
+                },
+                stopPropagation: ()=>{
+                    stopped = true;
+                    event.stopPropagation();
+                }
+            });
+        }
+        if (onLoadingCompleteRef?.current) {
+            onLoadingCompleteRef.current(img);
+        }
+        if ("TURBOPACK compile-time truthy", 1) {
+            const origSrc = new URL(src, 'http://n').searchParams.get('url') || src;
+            if (img.getAttribute('data-nimg') === 'fill') {
+                if (!unoptimized && (!sizesInput || sizesInput === '100vw')) {
+                    let widthViewportRatio = img.getBoundingClientRect().width / window.innerWidth;
+                    if (widthViewportRatio < 0.6) {
+                        if (sizesInput === '100vw') {
+                            (0, _warnonce.warnOnce)(`Image with src "${origSrc}" has "fill" prop and "sizes" prop of "100vw", but image is not rendered at full viewport width. Please adjust "sizes" to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes`);
+                        } else {
+                            (0, _warnonce.warnOnce)(`Image with src "${origSrc}" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes`);
+                        }
+                    }
+                }
+                if (img.parentElement) {
+                    const { position } = window.getComputedStyle(img.parentElement);
+                    const valid = [
+                        'absolute',
+                        'fixed',
+                        'relative'
+                    ];
+                    if (!valid.includes(position)) {
+                        (0, _warnonce.warnOnce)(`Image with src "${origSrc}" has "fill" and parent element with invalid "position". Provided "${position}" should be one of ${valid.map(String).join(',')}.`);
+                    }
+                }
+                if (img.height === 0) {
+                    (0, _warnonce.warnOnce)(`Image with src "${origSrc}" has "fill" and a height value of 0. This is likely because the parent element of the image has not been styled to have a set height.`);
+                }
+            }
+            const heightModified = img.height.toString() !== img.getAttribute('height');
+            const widthModified = img.width.toString() !== img.getAttribute('width');
+            if (heightModified && !widthModified || !heightModified && widthModified) {
+                (0, _warnonce.warnOnce)(`Image with src "${origSrc}" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.`);
+            }
+        }
+    });
+}
+function getDynamicProps(fetchPriority) {
+    if (Boolean(_react.use)) {
+        // In React 19.0.0 or newer, we must use camelCase
+        // prop to avoid "Warning: Invalid DOM property".
+        // See https://github.com/facebook/react/pull/25927
+        return {
+            fetchPriority
+        };
+    }
+    // In React 18.2.0 or older, we must use lowercase prop
+    // to avoid "Warning: Invalid DOM property".
+    return {
+        fetchpriority: fetchPriority
+    };
+}
+const ImageElement = /*#__PURE__*/ (0, _react.forwardRef)(({ src, srcSet, sizes, height, width, decoding, className, style, fetchPriority, placeholder, loading, unoptimized, fill, onLoadRef, onLoadingCompleteRef, setBlurComplete, setShowAltText, sizesInput, onLoad, onError, ...rest }, forwardedRef)=>{
+    const ownRef = (0, _react.useCallback)((img)=>{
+        if (!img) {
+            return;
+        }
+        if (onError) {
+            // If the image has an error before react hydrates, then the error is lost.
+            // The workaround is to wait until the image is mounted which is after hydration,
+            // then we set the src again to trigger the error handler (if there was an error).
+            // eslint-disable-next-line no-self-assign
+            img.src = img.src;
+        }
+        if ("TURBOPACK compile-time truthy", 1) {
+            if (!src) {
+                console.error(`Image is missing required "src" property:`, img);
+            }
+            if (img.getAttribute('alt') === null) {
+                console.error(`Image is missing required "alt" property. Please add Alternative Text to describe the image for screen readers and search engines.`);
+            }
+        }
+        if (img.complete) {
+            handleLoading(img, placeholder, onLoadRef, onLoadingCompleteRef, setBlurComplete, unoptimized, sizesInput);
+        }
+    }, [
+        src,
+        placeholder,
+        onLoadRef,
+        onLoadingCompleteRef,
+        setBlurComplete,
+        onError,
+        unoptimized,
+        sizesInput
+    ]);
+    const ref = (0, _usemergedref.useMergedRef)(forwardedRef, ownRef);
+    return /*#__PURE__*/ (0, _jsxruntime.jsx)("img", {
+        ...rest,
+        ...getDynamicProps(fetchPriority),
+        // It's intended to keep `loading` before `src` because React updates
+        // props in order which causes Safari/Firefox to not lazy load properly.
+        // See https://github.com/facebook/react/issues/25883
+        loading: loading,
+        width: width,
+        height: height,
+        decoding: decoding,
+        "data-nimg": fill ? 'fill' : '1',
+        className: className,
+        style: style,
+        // It's intended to keep `src` the last attribute because React updates
+        // attributes in order. If we keep `src` the first one, Safari will
+        // immediately start to fetch `src`, before `sizes` and `srcSet` are even
+        // updated by React. That causes multiple unnecessary requests if `srcSet`
+        // and `sizes` are defined.
+        // This bug cannot be reproduced in Chrome or Firefox.
+        sizes: sizes,
+        srcSet: srcSet,
+        src: src,
+        ref: ref,
+        onLoad: (event)=>{
+            const img = event.currentTarget;
+            handleLoading(img, placeholder, onLoadRef, onLoadingCompleteRef, setBlurComplete, unoptimized, sizesInput);
+        },
+        onError: (event)=>{
+            // if the real image fails to load, this will ensure "alt" is visible
+            setShowAltText(true);
+            if (placeholder !== 'empty') {
+                // If the real image fails to load, this will still remove the placeholder.
+                setBlurComplete(true);
+            }
+            if (onError) {
+                onError(event);
+            }
+        }
+    });
+});
+function ImagePreload({ isAppRouter, imgAttributes }) {
+    const opts = {
+        as: 'image',
+        imageSrcSet: imgAttributes.srcSet,
+        imageSizes: imgAttributes.sizes,
+        crossOrigin: imgAttributes.crossOrigin,
+        referrerPolicy: imgAttributes.referrerPolicy,
+        ...getDynamicProps(imgAttributes.fetchPriority)
+    };
+    if (isAppRouter && _reactdom.default.preload) {
+        _reactdom.default.preload(imgAttributes.src, opts);
+        return null;
+    }
+    return /*#__PURE__*/ (0, _jsxruntime.jsx)(_head.default, {
+        children: /*#__PURE__*/ (0, _jsxruntime.jsx)("link", {
+            rel: "preload",
+            // Note how we omit the `href` attribute, as it would only be relevant
+            // for browsers that do not support `imagesrcset`, and in those cases
+            // it would cause the incorrect image to be preloaded.
+            //
+            // https://html.spec.whatwg.org/multipage/semantics.html#attr-link-imagesrcset
+            href: imgAttributes.srcSet ? undefined : imgAttributes.src,
+            ...opts
+        }, '__nimg-' + imgAttributes.src + imgAttributes.srcSet + imgAttributes.sizes)
+    });
+}
+const Image = /*#__PURE__*/ (0, _react.forwardRef)((props, forwardedRef)=>{
+    const pagesRouter = (0, _react.useContext)(_routercontextsharedruntime.RouterContext);
+    // We're in the app directory if there is no pages router.
+    const isAppRouter = !pagesRouter;
+    const configContext = (0, _react.useContext)(_imageconfigcontextsharedruntime.ImageConfigContext);
+    const config = (0, _react.useMemo)(()=>{
+        const c = configEnv || configContext || _imageconfig.imageConfigDefault;
+        const allSizes = [
+            ...c.deviceSizes,
+            ...c.imageSizes
+        ].sort((a, b)=>a - b);
+        const deviceSizes = c.deviceSizes.sort((a, b)=>a - b);
+        const qualities = c.qualities?.sort((a, b)=>a - b);
+        return {
+            ...c,
+            allSizes,
+            deviceSizes,
+            qualities,
+            // During the SSR, configEnv (__NEXT_IMAGE_OPTS) does not include
+            // security sensitive configs like `localPatterns`, which is needed
+            // during the server render to ensure it's validated. Therefore use
+            // configContext, which holds the config from the server for validation.
+            localPatterns: ("TURBOPACK compile-time truthy", 1) ? configContext?.localPatterns : "TURBOPACK unreachable"
+        };
+    }, [
+        configContext
+    ]);
+    const { onLoad, onLoadingComplete } = props;
+    const onLoadRef = (0, _react.useRef)(onLoad);
+    (0, _react.useEffect)(()=>{
+        onLoadRef.current = onLoad;
+    }, [
+        onLoad
+    ]);
+    const onLoadingCompleteRef = (0, _react.useRef)(onLoadingComplete);
+    (0, _react.useEffect)(()=>{
+        onLoadingCompleteRef.current = onLoadingComplete;
+    }, [
+        onLoadingComplete
+    ]);
+    const [blurComplete, setBlurComplete] = (0, _react.useState)(false);
+    const [showAltText, setShowAltText] = (0, _react.useState)(false);
+    const { props: imgAttributes, meta: imgMeta } = (0, _getimgprops.getImgProps)(props, {
+        defaultLoader: _imageloader.default,
+        imgConf: config,
+        blurComplete,
+        showAltText
+    });
+    return /*#__PURE__*/ (0, _jsxruntime.jsxs)(_jsxruntime.Fragment, {
+        children: [
+            /*#__PURE__*/ (0, _jsxruntime.jsx)(ImageElement, {
+                ...imgAttributes,
+                unoptimized: imgMeta.unoptimized,
+                placeholder: imgMeta.placeholder,
+                fill: imgMeta.fill,
+                onLoadRef: onLoadRef,
+                onLoadingCompleteRef: onLoadingCompleteRef,
+                setBlurComplete: setBlurComplete,
+                setShowAltText: setShowAltText,
+                sizesInput: props.sizes,
+                ref: forwardedRef
+            }),
+            imgMeta.preload ? /*#__PURE__*/ (0, _jsxruntime.jsx)(ImagePreload, {
+                isAppRouter: isAppRouter,
+                imgAttributes: imgAttributes
+            }) : null
+        ]
+    });
+});
+if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
+    Object.defineProperty(exports.default, '__esModule', {
+        value: true
+    });
+    Object.assign(exports.default, exports);
+    module.exports = exports.default;
+} //# sourceMappingURL=image-component.js.map
+}),
+"[project]/web-client/node_modules/next/dist/shared/lib/image-external.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+0 && (module.exports = {
+    default: null,
+    getImageProps: null
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    default: function() {
+        return _default;
+    },
+    getImageProps: function() {
+        return getImageProps;
+    }
+});
+const _interop_require_default = __turbopack_context__.r("[project]/web-client/node_modules/@swc/helpers/cjs/_interop_require_default.cjs [app-ssr] (ecmascript)");
+const _getimgprops = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/shared/lib/get-img-props.js [app-ssr] (ecmascript)");
+const _imagecomponent = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/client/image-component.js [app-ssr] (ecmascript)");
+const _imageloader = /*#__PURE__*/ _interop_require_default._(__turbopack_context__.r("[project]/web-client/node_modules/next/dist/shared/lib/image-loader.js [app-ssr] (ecmascript)"));
+function getImageProps(imgProps) {
+    const { props } = (0, _getimgprops.getImgProps)(imgProps, {
+        defaultLoader: _imageloader.default,
+        // This is replaced by webpack define plugin
+        imgConf: ("TURBOPACK compile-time value", {
+            "deviceSizes": ("TURBOPACK compile-time value", [
+                ("TURBOPACK compile-time value", 640),
+                ("TURBOPACK compile-time value", 750),
+                ("TURBOPACK compile-time value", 828),
+                ("TURBOPACK compile-time value", 1080),
+                ("TURBOPACK compile-time value", 1200),
+                ("TURBOPACK compile-time value", 1920),
+                ("TURBOPACK compile-time value", 2048),
+                ("TURBOPACK compile-time value", 3840)
+            ]),
+            "imageSizes": ("TURBOPACK compile-time value", [
+                ("TURBOPACK compile-time value", 32),
+                ("TURBOPACK compile-time value", 48),
+                ("TURBOPACK compile-time value", 64),
+                ("TURBOPACK compile-time value", 96),
+                ("TURBOPACK compile-time value", 128),
+                ("TURBOPACK compile-time value", 256),
+                ("TURBOPACK compile-time value", 384)
+            ]),
+            "qualities": ("TURBOPACK compile-time value", [
+                ("TURBOPACK compile-time value", 75)
+            ]),
+            "path": ("TURBOPACK compile-time value", "/_next/image"),
+            "loader": ("TURBOPACK compile-time value", "default"),
+            "dangerouslyAllowSVG": ("TURBOPACK compile-time value", false),
+            "unoptimized": ("TURBOPACK compile-time value", false),
+            "domains": ("TURBOPACK compile-time value", []),
+            "remotePatterns": ("TURBOPACK compile-time value", [
+                ("TURBOPACK compile-time value", {
+                    "protocol": ("TURBOPACK compile-time value", "https"),
+                    "hostname": ("TURBOPACK compile-time value", "res.cloudinary.com")
+                })
+            ]),
+            "localPatterns": ("TURBOPACK compile-time value", [
+                ("TURBOPACK compile-time value", {
+                    "pathname": ("TURBOPACK compile-time value", "**"),
+                    "search": ("TURBOPACK compile-time value", "")
+                })
+            ])
+        })
+    });
+    // Normally we don't care about undefined props because we pass to JSX,
+    // but this exported function could be used by the end user for anything
+    // so we delete undefined props to clean it up a little.
+    for (const [key, value] of Object.entries(props)){
+        if (value === undefined) {
+            delete props[key];
+        }
+    }
+    return {
+        props
+    };
+}
+const _default = _imagecomponent.Image; //# sourceMappingURL=image-external.js.map
+}),
+"[project]/web-client/node_modules/next/image.js [app-ssr] (ecmascript)", ((__turbopack_context__, module, exports) => {
+
+module.exports = __turbopack_context__.r("[project]/web-client/node_modules/next/dist/shared/lib/image-external.js [app-ssr] (ecmascript)");
+}),
+];
+
+//# sourceMappingURL=b7ac1_e0a06830._.js.map

@@ -49,10 +49,8 @@ app.use(clerkMiddleware()); // adds auth object under the req => req.auth
 
 // CORS: credentials + headers for Admin (Authorization, cookies)
 const allowedOrigins = [
-  "https://riocomfort-app.sevalla.app",
-  "https://riocomfortfoodsapi-yelm3.sevalla.app",
-  "https://riocomfortfoods-oksxz.sevalla.app",
-  // Railway PWA / API hosts
+  // Production PWA / API hosts
+  "https://riocomfortfoods-production.up.railway.app",
   "https://rio-comfort-foods-production.up.railway.app",
   "https://rio-comfort-foods.up.railway.app",
   ...(ENV.ALLOWED_ORIGINS ? ENV.ALLOWED_ORIGINS.split(",").map((o) => o.trim()).filter(Boolean) : []),
