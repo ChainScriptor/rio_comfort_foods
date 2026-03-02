@@ -164,9 +164,13 @@ const CartScreen = () => {
         itemCount: cartItems.length,
       });
 
-      Alert.alert("Επιτυχία", "Η παραγγελία σας ολοκληρώθηκε! Ο διαχειριστής θα την επεξεργαστεί σύντομα.", [
-        { text: "Εντάξει", onPress: () => {} },
-      ]);
+      if (Platform.OS === "web") {
+        window.alert("Επιτυχής παραγγελία! Η παραγγελία σας ολοκληρώθηκε. Ο διαχειριστής θα την επεξεργαστεί σύντομα.");
+      } else {
+        Alert.alert("Επιτυχία", "Η παραγγελία σας ολοκληρώθηκε! Ο διαχειριστής θα την επεξεργαστεί σύντομα.", [
+          { text: "Εντάξει", onPress: () => {} },
+        ]);
+      }
       clearCart();
     } catch (error: any) {
       Sentry.logger.error("Order creation failed", {
