@@ -210,16 +210,17 @@ const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
   // On web (PWA) χρησιμοποιούμε απλό View grid ώστε τα scroll gestures
   // να περνάνε στο εξωτερικό ScrollView, με σταθερά 2 προϊόντα ανά σειρά.
   if (isWeb) {
+    const webCols = 2;
     return (
       <View style={{ flexDirection: "row", flexWrap: "wrap", paddingBottom: 24 }}>
         {products.map((product, index) => {
-          const isLastInRow = (index % cols) === cols - 1;
+          const isLastInRow = (index % webCols) === webCols - 1;
           return (
             <View
               key={product._id}
               style={{
-                width: itemWidth,
-                marginRight: isLastInRow ? 0 : gap,
+                width: "48%",
+                marginRight: isLastInRow ? 0 : "4%",
                 marginBottom: gap,
               }}
             >
