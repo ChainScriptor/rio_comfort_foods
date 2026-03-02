@@ -3,7 +3,7 @@ import SafeScreen from "@/components/SafeScreen";
 import useProducts from "@/hooks/useProducts";
 import useCategories from "@/hooks/useCategories";
 import useBanners from "@/hooks/useBanners";
-import { getOptimizedUrl } from "@/lib/utils";
+import { getOptimizedUrl, normalizeText } from "@/lib/utils";
 
 import SearchIcon from "@/assets/icons/SearchIcon.svg";
 import OptionsIcon from "@/assets/icons/OptionsIcon.svg";
@@ -40,21 +40,27 @@ const ShopScreen = () => {
   const filteredProducts = useMemo(() => {
     if (!products) return [];
 
-    let filtered = products;
+    // Αν υπάρχει αναζήτηση, αγνοούμε την επιλεγμένη κατηγορία
+    // και ψάχνουμε σε ΟΛΑ τα προϊόντα, με case- & accent-insensitive σύγκριση.
+    const query = searchQuery.trim();
+    if (query) {
+      const normalizedQuery = normalizeText(query);
+      return products.filter((product) => {
+        const name = normalizeText(product.name || "");
+        const category = normalizeText(product.category || "");
+        return (
+          name.includes(normalizedQuery) ||
+          category.includes(normalizedQuery)
+        );
+      });
+    }
 
-    // filtering by category
+    // Χωρίς αναζήτηση, φιλτράρουμε μόνο βάσει κατηγορίας.
     if (selectedCategory !== "Όλα") {
-      filtered = filtered.filter((product) => product.category === selectedCategory);
+      return products.filter((product) => product.category === selectedCategory);
     }
 
-    // filtering by searh query
-    if (searchQuery.trim()) {
-      filtered = filtered.filter((product) =>
-        product.name.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
-
-    return filtered;
+    return products;
   }, [products, selectedCategory, searchQuery]);
 
   return (

@@ -13,6 +13,17 @@ export const capitalizeFirstLetter = (text: string) => {
   return text.charAt(0).toUpperCase() + text.slice(1);
 };
 
+/**
+ * Κάνει το κείμενο πεζό και αφαιρεί τόνους/διακριτικά,
+ * ώστε οι συγκρίσεις να είναι case-insensitive και accent-insensitive.
+ */
+export const normalizeText = (text: string) => {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+};
+
 export const formatDate = (dateString: string) => {
   const date = new Date(dateString);
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });

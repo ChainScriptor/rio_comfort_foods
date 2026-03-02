@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PlusIcon, PencilIcon, Trash2Icon, XIcon, TagIcon, CheckCircle2Icon, XCircleIcon, ImageIcon, MoveIcon } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { categoryApi } from "../lib/api";
@@ -176,6 +176,22 @@ function CategoriesPage() {
     queryFn: categoryApi.getAll,
   });
 
+  // Τοπική κατάσταση για την τρέχουσα σειρά κατηγοριών (ώστε το drag & drop να δουλεύει άμεσα).
+  const [orderedCategories, setOrderedCategories] = useState([]);
+
+  // Κάθε φορά που αλλάζουν οι κατηγορίες από το API, υπολόγισε τη σειρά με βάση το order/createdAt.
+  useEffect(() => {
+    const sorted = [...categories].sort((a, b) => {
+      const orderA = a.order ?? 0;
+      const orderB = b.order ?? 0;
+      if (orderA === orderB) {
+        return (a.createdAt || "").localeCompare(b.createdAt || "");
+      }
+      return orderA - orderB;
+    });
+    setOrderedCategories(sorted);
+  }, [categories]);
+
   // Mutations
   const createCategoryMutation = useMutation({
     mutationFn: categoryApi.create,
@@ -280,18 +296,8 @@ function CategoriesPage() {
     });
   };
 
-  const activeCategories = categories.filter((cat) => cat.isActive).length;
-  const inactiveCategories = categories.filter((cat) => !cat.isActive).length;
-
-  // Sort categories by custom order (fallback to created order)
-  const sortedCategories = [...categories].sort((a, b) => {
-    const orderA = a.order ?? 0;
-    const orderB = b.order ?? 0;
-    if (orderA === orderB) {
-      return (a.createdAt || "").localeCompare(b.createdAt || "");
-    }
-    return orderA - orderB;
-  });
+  const activeCategories = orderedCategories.filter((cat) => cat.isActive).length;
+  const inactiveCategories = orderedCategories.filter((cat) => !cat.isActive).length;
 
   // Drag and Drop Handlers
   const sensors = useSensors(
@@ -308,11 +314,18 @@ function CategoriesPage() {
   const handleDragEnd = (event) => {
     const { active, over } = event;
 
-    if (active.id !== over?.id) {
-      const oldIndex = sortedCategories.findIndex((cat) => cat._id === active.id);
-      const newIndex = sortedCategories.findIndex((cat) => cat._id === over.id);
+    if (!over || active.id === over.id) return;
 
-      const reordered = arrayMove(sortedCategories, oldIndex, newIndex);
+    if (active.id !== over.id) {
+      const oldIndex = orderedCategories.findIndex((cat) => cat._id === active.id);
+      const newIndex = orderedCategories.findIndex((cat) => cat._id === over.id);
+
+      if (oldIndex === -1 || newIndex === -1) return;
+
+      const reordered = arrayMove(orderedCategories, oldIndex, newIndex);
+
+      // Ενημέρωσε άμεσα την τοπική κατάσταση για να δει ο χρήστης τη νέα σειρά.
+      setOrderedCategories(reordered);
 
       // Persist new order to backend (sequential order values)
       reordered.forEach((cat, index) => {
@@ -386,7 +399,7 @@ function CategoriesPage() {
               onDragEnd={handleDragEnd}
             >
               <SortableContext
-                items={sortedCategories.map((cat) => cat._id)}
+                items={orderedCategories.map((cat) => cat._id)}
                 strategy={verticalListSortingStrategy}
               >
                 <div className="overflow-x-auto">
@@ -401,7 +414,7 @@ function CategoriesPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      {sortedCategories.map((category, index) => (
+                      {orderedCategories.map((category, index) => (
                         <SortableCategoryRow
                           key={category._id}
                           category={category}

@@ -23,7 +23,7 @@ import { ActivityIndicator, Alert, ScrollView, Text, TouchableOpacity, View, Mod
 function OrdersScreen() {
   const { data: orders, isLoading, isError, refetch: refetchOrders } = useOrders();
   const { createReviewAsync, isCreatingReview } = useReviews();
-  const { addToCart, clearCart, isAddingToCart } = useCart();
+  const { addToCart, clearCart } = useCart();
 
   const [showRatingModal, setShowRatingModal] = useState(false);
   const [showReorderModal, setShowReorderModal] = useState(false);
@@ -137,38 +137,37 @@ function OrdersScreen() {
     }
 
     try {
-      // Clear cart first (wait for it to complete)
-      await new Promise<void>((resolve) => {
-        clearCart(undefined, {
-          onSuccess: () => resolve(),
-          onError: () => resolve(), // Continue even if clear fails
+      // Clear cart first (fire-and-forget, χωρίς να μπλοκάρουμε το UI)
+      clearCart(undefined, {
+        onError: (error: any) => {
+          console.error("Error clearing cart before reorder:", error);
+        },
+      });
+
+      // Πρόσθεσε όλα τα προϊόντα στο καλάθι "παράλληλα" για να είναι πιο γρήγορο.
+      const addPromises = itemsToAdd.map((reorderItem) => {
+        const item = reorderItem.item;
+        if (!item.product || !item.product._id) return Promise.resolve();
+
+        return new Promise<void>((resolve) => {
+          addToCart(
+            {
+              productId: item.product!._id,
+              quantity: reorderItem.quantity,
+              selectedUnit: item.selectedUnit || undefined,
+            },
+            {
+              onSuccess: () => resolve(),
+              onError: (error: any) => {
+                console.error("Error adding item to cart:", error);
+                resolve(); // Συνεχίζουμε ακόμη κι αν κάποιο αποτύχει
+              },
+            }
+          );
         });
       });
 
-      // Add all items to cart sequentially
-      for (const reorderItem of itemsToAdd) {
-        const item = reorderItem.item;
-        if (item.product && item.product._id) {
-          await new Promise<void>((resolve) => {
-            addToCart(
-              {
-                productId: item.product!._id,
-                quantity: reorderItem.quantity,
-                selectedUnit: item.selectedUnit || undefined,
-              },
-              {
-                onSuccess: () => resolve(),
-                onError: (error: any) => {
-                  console.error("Error adding item to cart:", error);
-                  resolve(); // Continue even if one fails
-                },
-              }
-            );
-          });
-          // Small delay to avoid race conditions
-          await new Promise((resolve) => setTimeout(resolve, 100));
-        }
-      }
+      await Promise.all(addPromises);
 
       Alert.alert("Επιτυχία", "Η παραγγελία προστέθηκε στο καλάθι!", [
         {
@@ -423,7 +422,7 @@ function OrdersScreen() {
                 className="bg-primary rounded-2xl py-4 flex-row items-center justify-center"
                 activeOpacity={0.8}
                 onPress={handleAddToCart}
-                disabled={isAddingToCart || reorderItems.length === 0}
+                disabled={reorderItems.length === 0}
               >
                 {isAddingToCart ? (
                   <ActivityIndicator size="small" color="#121212" />
