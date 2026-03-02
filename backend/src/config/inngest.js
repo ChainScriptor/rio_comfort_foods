@@ -15,11 +15,6 @@ const syncUser = inngest.createFunction(
     await connectDB();
     const { id, email_addresses, first_name, last_name, image_url, public_metadata } = event.data;
 
-    // Only create user if they have invitation (customerId in publicMetadata)
-    if (!public_metadata?.customerId) {
-      return;
-    }
-
     // Verify invitation was accepted by checking invitation status
     // Clerk automatically updates invitation status to "accepted" when user completes sign-up
     try {
@@ -74,13 +69,19 @@ const syncUser = inngest.createFunction(
     const newUser = {
       clerkId: id,
       email: email_addresses[0]?.email_address,
-      name: `${first_name || ""} ${last_name || ""}` || "User",
+      name: `${first_name || ""} ${last_name || ""}`.trim() || "User",
       imageUrl: image_url,
       addresses: [],
       wishlist: [],
     };
 
-    await User.create(newUser);
+    // Upsert για να αποφύγουμε duplicate key errors αν ο χρήστης έχει ήδη δημιουργηθεί
+    // από το API (π.χ. στο πρώτο του request).
+    await User.findOneAndUpdate(
+      { clerkId: id },
+      { $setOnInsert: newUser },
+      { new: true, upsert: true }
+    );
   }
 );
 

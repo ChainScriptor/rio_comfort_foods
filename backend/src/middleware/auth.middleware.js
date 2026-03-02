@@ -12,29 +12,37 @@ export const protectRoute = [
       const clerkId = req.auth().userId;
       if (!clerkId) return res.status(401).json({ message: "Unauthorized - invalid token" });
 
-      // Check if user exists in database first (for backward compatibility with existing users)
-      const user = await User.findOne({ clerkId });
+      // Βρες ή δημιούργησε τον χρήστη στη δική μας βάση, με βάση τα στοιχεία του Clerk.
+      let user = await User.findOne({ clerkId });
 
-      // If user doesn't exist in database, check if they have invitation
       if (!user) {
         try {
           const clerkUser = await clerkClient.users.getUser(clerkId);
-          const hasInvitation = clerkUser.publicMetadata?.customerId != null;
+          const email = clerkUser.emailAddresses?.[0]?.emailAddress || clerkUser.primaryEmailAddress?.emailAddress;
+          const firstName = clerkUser.firstName || "";
+          const lastName = clerkUser.lastName || "";
+          const name = `${firstName} ${lastName}`.trim() || "User";
 
-          if (!hasInvitation) {
-            return res.status(403).json({
-              message: "Access denied. Only invited users can access this application."
-            });
-          }
-          // If they have invitation but no user in DB, return 404 (user will be created by Inngest)
-          return res.status(404).json({ message: "User not found. Please wait a moment and try again." });
+          const newUserData = {
+            clerkId,
+            email,
+            name,
+            imageUrl: clerkUser.imageUrl || "",
+            addresses: [],
+            wishlist: [],
+          };
+
+          // Upsert για αποφυγή race conditions / duplicate key errors.
+          user = await User.findOneAndUpdate(
+            { clerkId },
+            { $setOnInsert: newUserData },
+            { new: true, upsert: true }
+          );
         } catch (clerkError) {
-          return res.status(500).json({ message: "Error verifying user access" });
+          console.error("Error syncing Clerk user to DB:", clerkError);
+          return res.status(500).json({ message: "Error syncing user profile" });
         }
       }
-
-      // For existing users in database, allow access (backward compatibility)
-      // For new users, they must have invitation (checked above)
 
       req.user = user;
 

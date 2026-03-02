@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { orderApi } from "../lib/api";
 import { formatDate, formatTime, formatDateTime, formatDateWithDayName } from "../lib/utils";
-import { PrinterIcon, CalendarIcon, EyeIcon, XIcon, PackageIcon } from "lucide-react";
+import { PrinterIcon, CalendarIcon, EyeIcon, XIcon, PackageIcon, Trash2Icon } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 const STORE_LOCATIONS = [
@@ -46,6 +46,15 @@ function OrdersPage() {
     },
   });
 
+  const deleteOrderMutation = useMutation({
+    mutationFn: orderApi.delete,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["orders"] });
+      queryClient.invalidateQueries({ queryKey: ["dashboardStats"] });
+      setSelectedOrder(null);
+    },
+  });
+
   const handleStatusChange = (orderId, newStatus) => {
     updateStatusMutation.mutate({ orderId, status: newStatus });
   };
@@ -87,6 +96,13 @@ function OrdersPage() {
       window.print();
       setShowPrintView(false);
     }, 100);
+  };
+
+  const handleDeleteOrder = (orderId) => {
+    if (!window.confirm("Είστε σίγουροι ότι θέλετε να διαγράψετε οριστικά αυτή την παραγγελία;")) {
+      return;
+    }
+    deleteOrderMutation.mutate(orderId);
   };
 
   return (
@@ -420,6 +436,7 @@ function OrdersPage() {
                       <th>Σύνολο</th>
                       <th>Κατάσταση</th>
                       <th>Ημερομηνία</th>
+                      <th>Ενέργειες</th>
                     </tr>
                   </thead>
 
@@ -490,6 +507,21 @@ function OrdersPage() {
                               <div className="opacity-60">{formatDate(order.createdAt)}</div>
                               <div className="opacity-40 text-xs">{formatTime(order.createdAt)}</div>
                             </div>
+                          </td>
+
+                          <td>
+                            <button
+                              onClick={() => handleDeleteOrder(order._id)}
+                              className="btn btn-xs btn-error btn-outline"
+                              title="Διαγραφή παραγγελίας"
+                              disabled={deleteOrderMutation.isPending}
+                            >
+                              {deleteOrderMutation.isPending ? (
+                                <span className="loading loading-spinner loading-xs" />
+                              ) : (
+                                <Trash2Icon className="w-3 h-3" />
+                              )}
+                            </button>
                           </td>
                         </tr>
                       );
@@ -663,7 +695,26 @@ function OrdersPage() {
                 </div>
               </div>
 
-              <div className="modal-action">
+              <div className="modal-action flex justify-between">
+                <button
+                  onClick={() => {
+                    if (window.confirm("Σίγουρα θέλετε να διαγράψετε αυτή την παραγγελία;")) {
+                      deleteOrderMutation.mutate(selectedOrder._id);
+                    }
+                  }}
+                  className="btn btn-error btn-outline"
+                  disabled={deleteOrderMutation.isPending}
+                >
+                  {deleteOrderMutation.isPending ? (
+                    <span className="loading loading-spinner loading-xs" />
+                  ) : (
+                    <>
+                      <Trash2Icon className="w-4 h-4 mr-1" />
+                      Διαγραφή
+                    </>
+                  )}
+                </button>
+
                 <button onClick={() => setSelectedOrder(null)} className="btn">
                   Κλείσιμο
                 </button>

@@ -23,7 +23,7 @@ import { ActivityIndicator, Alert, ScrollView, Text, TouchableOpacity, View, Mod
 function OrdersScreen() {
   const { data: orders, isLoading, isError, refetch: refetchOrders } = useOrders();
   const { createReviewAsync, isCreatingReview } = useReviews();
-  const { addToCart, clearCart } = useCart();
+  const { addToCart, clearCart, isAddingToCart } = useCart();
 
   const [showRatingModal, setShowRatingModal] = useState(false);
   const [showReorderModal, setShowReorderModal] = useState(false);

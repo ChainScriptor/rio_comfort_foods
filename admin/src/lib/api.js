@@ -37,6 +37,11 @@ export const orderApi = {
     const { data } = await axiosInstance.patch(`/admin/orders/${orderId}/delivery-date`, { deliveryDate });
     return data;
   },
+
+  delete: async (orderId) => {
+    const { data } = await axiosInstance.delete(`/admin/orders/${orderId}`);
+    return data;
+  },
 };
 
 export const inviteApi = {

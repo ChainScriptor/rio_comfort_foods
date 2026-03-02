@@ -141,6 +141,24 @@ export async function getAllOrders(_, res) {
   }
 }
 
+export async function deleteOrder(req, res) {
+  try {
+    const { orderId } = req.params;
+
+    const order = await Order.findById(orderId);
+    if (!order) {
+      return res.status(404).json({ error: "Order not found" });
+    }
+
+    await Order.findByIdAndDelete(orderId);
+
+    res.status(200).json({ message: "Order deleted successfully" });
+  } catch (error) {
+    console.error("[Admin] deleteOrder error:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
 export async function updateOrderStatus(req, res) {
   try {
     const { orderId } = req.params;
