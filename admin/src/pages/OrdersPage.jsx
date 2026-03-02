@@ -228,16 +228,6 @@ function OrdersPage() {
                   padding-bottom: 0.5cm;
                   page-break-after: avoid;
                 }
-                .print-page-footer {
-                  position: fixed;
-                  bottom: 0.5cm;
-                  right: 0.7cm;
-                  font-size: 9pt;
-                  color: #555555;
-                }
-                .print-page-footer::after {
-                  content: "Σελίδα " counter(page) " από " counter(pages);
-                }
               }
               @media screen {
                 .print-only {
@@ -408,7 +398,6 @@ function OrdersPage() {
                 });
               })()}
             </div>
-            <div className="print-page-footer" />
           </div>
         </>
       )}
