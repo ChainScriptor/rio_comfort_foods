@@ -3,7 +3,7 @@ import { useAuth, useUser } from "@clerk/clerk-expo";
 import { useFocusEffect } from "expo-router";
 import { useCallback } from "react";
 
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView, Text, TouchableOpacity, View, Platform } from "react-native";
 import { Image } from "expo-image";
 import { Icon } from "@/components/Icon";
 import PersonIcon from "@/assets/icons/PersonIcon.svg";
@@ -112,49 +112,55 @@ const ProfileScreen = () => {
           ))}
         </View>
 
-        {/* NOTIFICATONS BTN */}
-        <View className="mb-3 mx-6 bg-surface rounded-2xl p-4">
-          <TouchableOpacity
-            className="flex-row items-center justify-between py-2"
-            activeOpacity={0.7}
-          >
-            <View className="flex-row items-center">
-              <NotificationsIcon width={22} height={22} stroke="#FFFFFF" color="#FFFFFF" />
-              <Text className="text-text-primary font-semibold ml-3">Ειδοποιήσεις</Text>
+        {/* NOTIFICATIONS / PRIVACY LINKS */}
+        {/* Στο PWA (web) κρύβουμε Ειδοποιήσεις, Απόρρητο & Ασφάλεια και Πολιτική Απορρήτου */}
+        {Platform.OS !== "web" && (
+          <>
+            {/* NOTIFICATONS BTN */}
+            <View className="mb-3 mx-6 bg-surface rounded-2xl p-4">
+              <TouchableOpacity
+                className="flex-row items-center justify-between py-2"
+                activeOpacity={0.7}
+              >
+                <View className="flex-row items-center">
+                  <NotificationsIcon width={22} height={22} stroke="#FFFFFF" color="#FFFFFF" />
+                  <Text className="text-text-primary font-semibold ml-3">Ειδοποιήσεις</Text>
+                </View>
+                <ChevronForwardIcon width={20} height={20} stroke="#666" color="#666" />
+              </TouchableOpacity>
             </View>
-            <ChevronForwardIcon width={20} height={20} stroke="#666" color="#666" />
-          </TouchableOpacity>
-        </View>
 
-        {/* PRIVACY AND SECURTIY LINK */}
-        <View className="mb-3 mx-6 bg-surface rounded-2xl p-4">
-          <TouchableOpacity
-            className="flex-row items-center justify-between py-2"
-            activeOpacity={0.7}
-            onPress={() => router.push("/(profile)/privacy-security")}
-          >
-            <View className="flex-row items-center">
-              <ShieldCheckIcon width={22} height={22} stroke="#FFFFFF" color="#FFFFFF" />
-              <Text className="text-text-primary font-semibold ml-3">Απόρρητο & Ασφάλεια</Text>
+            {/* PRIVACY AND SECURITY LINK */}
+            <View className="mb-3 mx-6 bg-surface rounded-2xl p-4">
+              <TouchableOpacity
+                className="flex-row items-center justify-between py-2"
+                activeOpacity={0.7}
+                onPress={() => router.push("/(profile)/privacy-security")}
+              >
+                <View className="flex-row items-center">
+                  <ShieldCheckIcon width={22} height={22} stroke="#FFFFFF" color="#FFFFFF" />
+                  <Text className="text-text-primary font-semibold ml-3">Απόρρητο & Ασφάλεια</Text>
+                </View>
+                <ChevronForwardIcon width={20} height={20} stroke="#666" color="#666" />
+              </TouchableOpacity>
             </View>
-            <ChevronForwardIcon width={20} height={20} stroke="#666" color="#666" />
-          </TouchableOpacity>
-        </View>
 
-        {/* PRIVACY POLICY LINK */}
-        <View className="mb-3 mx-6 bg-surface rounded-2xl p-4">
-          <TouchableOpacity
-            className="flex-row items-center justify-between py-2"
-            activeOpacity={0.7}
-            onPress={() => router.push("/privacy")}
-          >
-            <View className="flex-row items-center">
-              <DocumentTextIcon width={22} height={22} stroke="#FFFFFF" color="#FFFFFF" />
-              <Text className="text-text-primary font-semibold ml-3">Πολιτική Απορρήτου</Text>
+            {/* PRIVACY POLICY LINK */}
+            <View className="mb-3 mx-6 bg-surface rounded-2xl p-4">
+              <TouchableOpacity
+                className="flex-row items-center justify-between py-2"
+                activeOpacity={0.7}
+                onPress={() => router.push("/privacy")}
+              >
+                <View className="flex-row items-center">
+                  <DocumentTextIcon width={22} height={22} stroke="#FFFFFF" color="#FFFFFF" />
+                  <Text className="text-text-primary font-semibold ml-3">Πολιτική Απορρήτου</Text>
+                </View>
+                <ChevronForwardIcon width={20} height={20} stroke="#666" color="#666" />
+              </TouchableOpacity>
             </View>
-            <ChevronForwardIcon width={20} height={20} stroke="#666" color="#666" />
-          </TouchableOpacity>
-        </View>
+          </>
+        )}
 
         {/* SIGNOUT BTN */}
         <TouchableOpacity

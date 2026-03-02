@@ -8,7 +8,7 @@ import LocationIcon from "@/assets/icons/LocationIcon.svg";
 import PlusCircleIcon from "@/assets/icons/PlusCircleIcon.svg";
 import AlertCircleIcon from "@/assets/icons/AlertCircleIcon.svg";
 import { useState } from "react";
-import { ActivityIndicator, Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Alert, ScrollView, Text, TouchableOpacity, View, Platform } from "react-native";
 
 function AddressesScreen() {
   const {
@@ -66,10 +66,27 @@ function AddressesScreen() {
   };
 
   const handleDeleteAddress = (addressId: string, storeLocation: string) => {
-    Alert.alert("Διαγραφή Διεύθυνσης", `Είστε σίγουροι ότι θέλετε να διαγράψετε την διεύθυνση ${storeLocation}`, [
-      { text: "Ακύρωση", style: "cancel" },
-      { text: "Διαγραφή", style: "destructive", onPress: () => deleteAddress(addressId) },
-    ]);
+    // Στο web (PWA) το React Native Alert δεν υποστηρίζει πολλαπλά buttons,
+    // οπότε χρησιμοποιούμε window.confirm για να δουλεύει σωστά το delete.
+    if (Platform.OS === "web") {
+      // eslint-disable-next-line no-alert
+      const confirmed = window.confirm(
+        `Είστε σίγουροι ότι θέλετε να διαγράψετε τη διεύθυνση "${storeLocation}";`
+      );
+      if (!confirmed) return;
+      deleteAddress(addressId);
+      return;
+    }
+
+    // Native (iOS / Android): κανονικό Alert με δύο επιλογές
+    Alert.alert(
+      "Διαγραφή Διεύθυνσης",
+      `Είστε σίγουροι ότι θέλετε να διαγράψετε την διεύθυνση ${storeLocation}`,
+      [
+        { text: "Ακύρωση", style: "cancel" },
+        { text: "Διαγραφή", style: "destructive", onPress: () => deleteAddress(addressId) },
+      ]
+    );
   };
 
   const handleSaveAddress = () => {

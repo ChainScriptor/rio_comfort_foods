@@ -134,14 +134,9 @@ const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
   // Full-width layout on all screens (desktop & mobile), with side padding
   const contentWidth = windowWidth - PADDING * 2;
   const gap = isWeb ? GAP_WEB : GAP_MOBILE;
-  const numColumns = isWeb
-    ? contentWidth >= WEB_BREAKPOINT_LG
-      ? Math.min(4, Math.floor(contentWidth / (MIN_COLUMN_WIDTH + gap)))
-      : contentWidth >= WEB_BREAKPOINT
-        ? Math.min(3, Math.floor(contentWidth / (MIN_COLUMN_WIDTH + gap)))
-        : 2
-    : 2;
-  const cols = Math.max(2, numColumns);
+  // Ζητούμενο: 2 προϊόντα ανά σειρά στο PWA (web).
+  // Σε mobile κρατάμε επίσης 2 στήλες.
+  const cols = 2;
   const itemWidth = (contentWidth - gap * (cols - 1)) / cols;
   const imageHeight = isWeb ? Math.round(itemWidth * 0.85) : 176;
 
@@ -213,8 +208,7 @@ const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
   const estimatedRowHeight = imageHeight + 140;
 
   // On web (PWA) χρησιμοποιούμε απλό View grid ώστε τα scroll gestures
-  // να περνάνε στο εξωτερικό ScrollView, αλλά πλέον προσαρμόζουμε
-  // δυναμικά τις στήλες ανάλογα με το πλάτος της οθόνης.
+  // να περνάνε στο εξωτερικό ScrollView, με σταθερά 2 προϊόντα ανά σειρά.
   if (isWeb) {
     return (
       <View style={{ flexDirection: "row", flexWrap: "wrap", paddingBottom: 24 }}>

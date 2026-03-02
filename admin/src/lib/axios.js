@@ -6,8 +6,10 @@ const baseURL = import.meta.env.VITE_API_URL || "/api";
 const axiosInstance = axios.create({
   baseURL,
   withCredentials: true,
+  // Μην ορίζεις global "Content-Type": έτσι ο browser/axios
+  // επιλέγει μόνος του: application/json για JSON,
+  // multipart/form-data για FormData (π.χ. uploads banner image).
   headers: {
-    "Content-Type": "application/json",
     Accept: "application/json",
   },
 });

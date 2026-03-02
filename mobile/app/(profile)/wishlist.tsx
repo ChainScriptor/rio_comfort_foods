@@ -11,7 +11,7 @@ import AlertCircleIcon from "@/assets/icons/AlertCircleIcon.svg";
 import { Image } from "expo-image";
 import { router } from "expo-router";
 import { useState, useMemo } from "react";
-import { ActivityIndicator, Alert, ScrollView, Text, TouchableOpacity, View, TextInput } from "react-native";
+import { ActivityIndicator, Alert, ScrollView, Text, TouchableOpacity, View, TextInput, Platform } from "react-native";
 
 function WishlistScreen() {
   const { wishlist, isLoading, isError, removeFromWishlist, isRemovingFromWishlist } =
@@ -32,15 +32,31 @@ function WishlistScreen() {
   }, [wishlist, searchQuery]);
 
   const handleRemoveFromWishlist = (productId: string, productName: string) => {
-    Alert.alert("Αφαίρεση από λίστα επιθυμιών", `Αφαίρεση ${productName} από τη λίστα επιθυμιών`, [
-      { text: "Ακύρωση", style: "cancel" },
-      {
-        text: "Αφαίρεση",
-        style: "destructive",
+    // Στο web (PWA) το React Native Alert δεν υποστηρίζει πολλαπλά buttons,
+    // οπότε κάνουμε απευθείας confirm μέσω window.confirm.
+    if (Platform.OS === "web") {
+      // eslint-disable-next-line no-alert
+      const confirmed = window.confirm(
+        `Αφαίρεση ${productName} από τη λίστα επιθυμιών;`
+      );
+      if (!confirmed) return;
+      removeFromWishlist(productId);
+      return;
+    }
 
-        onPress: () => removeFromWishlist(productId),
-      },
-    ]);
+    // Native (iOS / Android): κλασικό Alert με δύο επιλογές
+    Alert.alert(
+      "Αφαίρεση από λίστα επιθυμιών",
+      `Αφαίρεση ${productName} από τη λίστα επιθυμιών`,
+      [
+        { text: "Ακύρωση", style: "cancel" },
+        {
+          text: "Αφαίρεση",
+          style: "destructive",
+          onPress: () => removeFromWishlist(productId),
+        },
+      ]
+    );
   };
 
   const handleAddToCart = (productId: string, productName: string, selectedUnit?: string) => {
