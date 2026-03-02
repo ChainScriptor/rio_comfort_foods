@@ -228,6 +228,35 @@ function OrdersPage() {
                   padding-bottom: 0.5cm;
                   page-break-after: avoid;
                 }
+                .print-order-table {
+                  display: table;
+                  width: 100%;
+                  margin-bottom: 0.4cm;
+                  page-break-inside: auto;
+                }
+                .print-order-table thead {
+                  display: table-header-group;
+                }
+                .print-order-table thead th {
+                  font-size: 12pt;
+                  font-weight: bold;
+                  color: #000000;
+                  background-color: #FFFF00 !important;
+                  padding: 0.2cm 0.2cm;
+                  text-align: left;
+                  border-bottom: 1px solid #000;
+                  page-break-after: avoid;
+                }
+                .print-order-table tbody td {
+                  font-size: 11pt;
+                  padding: 0.15cm 0.2cm;
+                  vertical-align: top;
+                  border-bottom: 1px dotted #ccc;
+                  color: #000000;
+                }
+                .print-order-table tbody tr {
+                  page-break-inside: avoid;
+                }
               }
               @media screen {
                 .print-only {
@@ -313,7 +342,7 @@ function OrdersPage() {
                         
                         return (
                           <div key={addressKey} style={{ marginBottom: addressGroupIndex < Object.keys(ordersByAddress).length - 1 ? "0.4cm" : "0" }}>
-                            {/* All orders for this address - display all products in sequence */}
+                            {/* All orders for this address - each order as table so header (store name) repeats on page break */}
                             {addressOrders.map((order, orderIndex) => {
                               // Determine if this is a supplementary order (multiple orders for same address on same day)
                               const isSupplementary = addressOrderCount > 1 && orderIndex > 0;
@@ -334,60 +363,36 @@ function OrdersPage() {
                                 return "τμχ"; // pieces
                               };
 
+                              if (allOrderItems.length === 0) return <div key={order._id} />;
+
                               return (
-                                <div key={order._id} style={{ marginBottom: orderIndex < addressOrders.length - 1 ? "0.2cm" : "0" }}>
-                                  {/* Customer Name with first product on same line */}
-                                  {allOrderItems.length > 0 && (
-                                    <>
-                                      <div style={{ fontSize: "12pt", fontWeight: "bold", color: "#000000", marginBottom: "0.1cm", display: "flex", alignItems: "flex-start" }}>
-                                        <span style={{ backgroundColor: "#FFFF00", padding: "0.1cm 0.2cm", display: "inline-block", minWidth: "4cm", flexShrink: 0 }}>
-                                          {displayName}
-                                        </span>
-                                        <span style={{ marginLeft: "0.3cm", flex: "1" }}>
-                                          -  ({getUnitLabel(allOrderItems[0])}: {allOrderItems[0].quantity}) {allOrderItems[0].name}
-                                        </span>
-                                      </div>
-                                      {/* Remaining products from this order */}
-                                      {allOrderItems.slice(1).map((item, itemIndex) => (
-                                        <div
-                                          key={`${order._id}-${itemIndex}`}
-                                          style={{
-                                            fontSize: "11pt",
-                                            fontWeight: "bold",
-                                            color: "#000000",
-                                            marginBottom: "0.1cm",
-                                            display: "flex",
-                                            alignItems: "flex-start"
-                                          }}
-                                        >
-                                          <span style={{ minWidth: "4cm", flexShrink: 0 }}></span>
-                                          <span style={{ marginLeft: "0.3cm", flex: "1" }}>
-                                            -  ({getUnitLabel(item)}: {item.quantity}) {item.name}
-                                          </span>
-                                        </div>
-                                      ))}
-                                      {/* Comments */}
-                                      {order.comments && (
-                                        <div
-                                          style={{
-                                            fontSize: "10pt",
-                                            fontStyle: "italic",
-                                            color: "#666",
-                                            marginTop: "0.1cm",
-                                            marginBottom: "0.1cm",
-                                            display: "flex",
-                                            alignItems: "flex-start"
-                                          }}
-                                        >
-                                          <span style={{ minWidth: "4cm", flexShrink: 0 }}></span>
-                                          <span style={{ marginLeft: "0.3cm", flex: "1" }}>
-                                            💬 {order.comments}
-                                          </span>
-                                        </div>
-                                      )}
-                                    </>
-                                  )}
-                                </div>
+                                <table key={order._id} className="print-order-table" style={{ marginBottom: orderIndex < addressOrders.length - 1 ? "0.3cm" : "0" }}>
+                                  <thead>
+                                    <tr>
+                                      <th colSpan={2}>
+                                        {displayName}
+                                      </th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {allOrderItems.map((item, itemIndex) => (
+                                      <tr key={`${order._id}-${itemIndex}`}>
+                                        <td style={{ width: "0.5cm" }} />
+                                        <td>
+                                          ({getUnitLabel(item)}: {item.quantity}) {item.name}
+                                        </td>
+                                      </tr>
+                                    ))}
+                                    {order.comments && (
+                                      <tr>
+                                        <td style={{ width: "0.5cm" }} />
+                                        <td style={{ fontSize: "10pt", fontStyle: "italic", color: "#666" }}>
+                                          💬 {order.comments}
+                                        </td>
+                                      </tr>
+                                    )}
+                                  </tbody>
+                                </table>
                               );
                             })}
                           </div>
@@ -637,9 +642,6 @@ function OrdersPage() {
                         <div className="flex items-center gap-4 mt-1 text-sm text-base-content/70">
                           <span>Ποσότητα: {item.quantity}</span>
                           <span>Τιμή: -</span>
-                          <span className="font-semibold text-base-content">
-                            Υποσύνολο: -
-                          </span>
                         </div>
                       </div>
                     </div>
@@ -649,15 +651,7 @@ function OrdersPage() {
 
               {/* ORDER SUMMARY */}
               <div className="border-t border-base-300 pt-4">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-base-content/70">Υποσύνολο:</span>
-                  <span className="font-medium">-</span>
-                </div>
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-base-content/70">Φόρος (5%):</span>
-                  <span className="font-medium">-</span>
-                </div>
-                <div className="flex justify-between items-center text-lg font-bold pt-2 border-t border-base-300">
+                <div className="flex justify-between items-center text-lg font-bold">
                   <span>Σύνολο:</span>
                   <span>-</span>
                 </div>
