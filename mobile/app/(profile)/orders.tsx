@@ -13,7 +13,6 @@ import CloseIcon from "@/assets/icons/CloseIcon.svg";
 import CartIcon from "@/assets/icons/CartIcon.svg";
 import MinusIcon from "@/assets/icons/MinusIcon.svg";
 import PlusIcon from "@/assets/icons/PlusIcon.svg";
-import TrashIcon from "@/assets/icons/TrashIcon.svg";
 import AlertCircleIcon from "@/assets/icons/AlertCircleIcon.svg";
 import ReceiptIcon from "@/assets/icons/ReceiptIcon.svg";
 import { Image } from "expo-image";
@@ -124,23 +123,6 @@ function OrdersScreen() {
       updated[index].quantity = newQuantity;
       return updated;
     });
-  };
-
-  const handleRemoveItem = (index: number) => {
-    Alert.alert(
-      "Αφαίρεση Προϊόντος",
-      "Είστε σίγουροι ότι θέλετε να αφαιρέσετε αυτό το προϊόν;",
-      [
-        { text: "Ακύρωση", style: "cancel" },
-        {
-          text: "Αφαίρεση",
-          style: "destructive",
-          onPress: () => {
-            setReorderItems((prev) => prev.filter((_, i) => i !== index));
-          },
-        },
-      ]
-    );
   };
 
   const handleAddToCart = async () => {
@@ -426,13 +408,6 @@ function OrdersScreen() {
                                 <PlusIcon width={16} height={16} stroke="#121212" color="#121212" />
                               </TouchableOpacity>
 
-                              <TouchableOpacity
-                                className="ml-auto bg-red-500/10 rounded-full w-8 h-8 items-center justify-center"
-                                onPress={() => handleRemoveItem(index)}
-                                activeOpacity={0.7}
-                              >
-                                <TrashIcon width={16} height={16} stroke="#EF4444" color="#EF4444" />
-                              </TouchableOpacity>
                             </View>
                           </View>
                         </View>

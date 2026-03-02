@@ -169,16 +169,21 @@ export async function removeFromWishlist(req, res) {
     const { productId } = req.params;
     const user = req.user;
 
-    // check if product is already in the wishlist
-    if (!user.wishlist.includes(productId)) {
+    // Normalize ids to strings for comparison (wishlist is an array of ObjectIds)
+    const wishlistIds = (user.wishlist || []).map((id) => id.toString());
+
+    if (!wishlistIds.includes(productId.toString())) {
       return res.status(400).json({ error: "Product not found in wishlist" });
     }
 
-    user.wishlist.pull(productId);
+    user.wishlist = user.wishlist.filter(
+      (id) => id.toString() !== productId.toString()
+    );
     await user.save();
 
     res.status(200).json({ message: "Product removed from wishlist", wishlist: user.wishlist });
   } catch (error) {
+    console.error("Error removing from wishlist:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 }
