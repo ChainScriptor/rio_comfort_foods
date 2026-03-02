@@ -214,6 +214,42 @@ const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
 
   const estimatedRowHeight = imageHeight + 140;
 
+  // On web (PWA) χρησιμοποιούμε απλό View grid ώστε τα scroll gestures
+  // να περνάνε στο εξωτερικό ScrollView και να μην φαίνεται ότι "κολλάει".
+  if (isWeb) {
+    return (
+      <View style={{ flexDirection: "row", flexWrap: "wrap", paddingBottom: 24 }}>
+        {products.map((product, index) => {
+          const isLastInRow = (index % cols) === cols - 1;
+          return (
+            <View
+              key={product._id}
+              style={{
+                width: itemWidth,
+                marginRight: isLastInRow ? 0 : gap,
+                marginBottom: gap,
+              }}
+            >
+              <ProductGridItem
+                product={product}
+                onAddToCart={handleAddToCart}
+                onToggleWishlist={toggleWishlist}
+                isInWishlist={isInWishlist}
+                isAddingToCart={isAddingToCart}
+                isAddingToWishlist={isAddingToWishlist}
+                isRemovingFromWishlist={isRemovingFromWishlist}
+                itemWidth={itemWidth}
+                imageHeight={imageHeight}
+                isWeb={isWeb}
+              />
+            </View>
+          );
+        })}
+        {products.length === 0 && <NoProductsFound />}
+      </View>
+    );
+  }
+
   return (
     <FlashList
       data={products}
