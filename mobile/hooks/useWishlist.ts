@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useApi } from "@/lib/api";
 import { Product } from "@/types";
 import { useState, useCallback } from "react";
+import { Alert } from "react-native";
 
 const useWishlist = () => {
   const api = useApi();
@@ -65,6 +66,10 @@ const useWishlist = () => {
       return { previousWishlist };
     },
     onError: (err, productId, context) => {
+      Alert.alert(
+        "Σφάλμα",
+        "Δεν ήταν δυνατή η προσθήκη του προϊόντος στη λίστα επιθυμιών. Προσπαθήστε ξανά."
+      );
       // Remove from pending additions on error
       setPendingAdditions((prev) => {
         const next = new Set(prev);
@@ -85,6 +90,8 @@ const useWishlist = () => {
       });
       // Refetch to get the actual data from server
       queryClient.invalidateQueries({ queryKey: ["wishlist"] });
+      // Also refresh products so τα εικονίδια καρδιάς συγχρονίζονται παντού
+      queryClient.invalidateQueries({ queryKey: ["products"] });
     },
   });
 
@@ -116,6 +123,10 @@ const useWishlist = () => {
       return { previousWishlist };
     },
     onError: (err, productId, context) => {
+      Alert.alert(
+        "Σφάλμα",
+        "Δεν ήταν δυνατή η αφαίρεση του προϊόντος από τη λίστα επιθυμιών. Προσπαθήστε ξανά."
+      );
       // Remove from pending removals on error
       setPendingRemovals((prev) => {
         const next = new Set(prev);
@@ -135,6 +146,8 @@ const useWishlist = () => {
         return next;
       });
       queryClient.invalidateQueries({ queryKey: ["wishlist"] });
+      // Ενημέρωσε και τα products ώστε να φύγει αυτόματα η καρδιά από την αρχική
+      queryClient.invalidateQueries({ queryKey: ["products"] });
     },
   });
 

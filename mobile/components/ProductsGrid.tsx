@@ -27,7 +27,6 @@ const GAP_WEB = 24;
 const MIN_COLUMN_WIDTH = 140;
 const WEB_BREAKPOINT = 768;
 const WEB_BREAKPOINT_LG = 1024;
-const WEB_MAX_CONTENT_WIDTH = 1200;
 
 interface ProductsGridProps {
   isLoading: boolean;
@@ -132,9 +131,8 @@ const ProductGridItem = React.memo(function ProductGridItem({
 const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
   const { width: windowWidth } = useWindowDimensions();
   const isWeb = Platform.OS === "web";
-  const contentWidth = isWeb
-    ? Math.min(windowWidth, WEB_MAX_CONTENT_WIDTH) - PADDING * 2
-    : windowWidth - PADDING * 2;
+  // Full-width layout on all screens (desktop & mobile), with side padding
+  const contentWidth = windowWidth - PADDING * 2;
   const gap = isWeb ? GAP_WEB : GAP_MOBILE;
   const numColumns = isWeb
     ? contentWidth >= WEB_BREAKPOINT_LG
@@ -215,20 +213,19 @@ const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
   const estimatedRowHeight = imageHeight + 140;
 
   // On web (PWA) χρησιμοποιούμε απλό View grid ώστε τα scroll gestures
-  // να περνάνε στο εξωτερικό ScrollView και να μην φαίνεται ότι "κολλάει".
-  // Εδώ κρατάμε σταθερά 2 στήλες (2-2 προϊόντα).
+  // να περνάνε στο εξωτερικό ScrollView, αλλά πλέον προσαρμόζουμε
+  // δυναμικά τις στήλες ανάλογα με το πλάτος της οθόνης.
   if (isWeb) {
-    const webCols = 2;
     return (
       <View style={{ flexDirection: "row", flexWrap: "wrap", paddingBottom: 24 }}>
         {products.map((product, index) => {
-          const isLastInRow = (index % webCols) === webCols - 1;
+          const isLastInRow = (index % cols) === cols - 1;
           return (
             <View
               key={product._id}
               style={{
-                width: "48%",
-                marginRight: isLastInRow ? 0 : "4%",
+                width: itemWidth,
+                marginRight: isLastInRow ? 0 : gap,
                 marginBottom: gap,
               }}
             >
