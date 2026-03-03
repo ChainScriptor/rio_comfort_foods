@@ -142,8 +142,8 @@ const CartScreen = () => {
           selectedUnit: item.selectedUnit || undefined,
         }));
 
-      // Create order directly without payment
-      await api.post("/orders", {
+      // Create order directly without payment and verify server response
+      const response = await api.post("/orders", {
         orderItems,
         shippingAddress: {
           storeLocation,
@@ -158,6 +158,11 @@ const CartScreen = () => {
         deliveryDate: deliveryDate ? deliveryDate.toISOString() : undefined,
         comments: comments || undefined,
       });
+
+      // Extra safety: make sure backend actually created/returned an order
+      if (!response?.data?.order?._id) {
+        throw new Error("Η παραγγελία δεν επιβεβαιώθηκε από τον διακομιστή. Δοκιμάστε ξανά.");
+      }
 
       Sentry.logger.info("Order created successfully", {
         total: total.toFixed(2),
