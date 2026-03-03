@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router";
 import LoginPage from "./pages/LoginPage";
-import { useAuth } from "@clerk/clerk-react";
+import { useAuth, useUser } from "@clerk/clerk-react";
 import DashboardPage from "./pages/DashboardPage";
 import ProductsPage from "./pages/ProductsPage";
 import CategoriesPage from "./pages/CategoriesPage";
@@ -14,14 +14,29 @@ import PageLoader from "./components/PageLoader";
 
 function App() {
   const { isSignedIn, isLoaded } = useAuth();
+  const { user, isLoaded: isUserLoaded } = useUser();
 
-  if (!isLoaded) return <PageLoader />;
+  if (!isLoaded || !isUserLoaded) return <PageLoader />;
+
+  const isAdmin = user?.publicMetadata?.role === "admin";
 
   return (
     <Routes>
-      <Route path="/login" element={isSignedIn ? <Navigate to={"/dashboard"} /> : <LoginPage />} />
+      <Route
+        path="/login"
+        element={isSignedIn && isAdmin ? <Navigate to={"/dashboard"} /> : <LoginPage />}
+      />
 
-      <Route path="/" element={isSignedIn ? <DashboardLayout /> : <Navigate to={"/login"} />}>
+      <Route
+        path="/"
+        element={
+          isSignedIn && isAdmin ? (
+            <DashboardLayout />
+          ) : (
+            <Navigate to={"/login"} replace />
+          )
+        }
+      >
         <Route index element={<Navigate to={"dashboard"} />} />
         <Route path="dashboard" element={<DashboardPage />} />
         <Route path="products" element={<ProductsPage />} />
