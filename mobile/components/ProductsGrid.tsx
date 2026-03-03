@@ -24,7 +24,6 @@ import { FlashList } from "@shopify/flash-list";
 const PADDING = 24;
 const GAP_MOBILE = 16;
 const GAP_WEB = 24;
-const MIN_COLUMN_WIDTH = 140;
 const WEB_BREAKPOINT = 768;
 const WEB_BREAKPOINT_LG = 1024;
 
@@ -131,12 +130,25 @@ const ProductGridItem = React.memo(function ProductGridItem({
 const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
   const { width: windowWidth } = useWindowDimensions();
   const isWeb = Platform.OS === "web";
-  // Full-width layout on all screens (desktop & mobile), with side padding
-  const contentWidth = windowWidth - PADDING * 2;
   const gap = isWeb ? GAP_WEB : GAP_MOBILE;
-  // Ζητούμενο: 2 προϊόντα ανά σειρά στο PWA (web).
-  // Σε mobile κρατάμε επίσης 2 στήλες.
-  const cols = 2;
+
+  // Υπολογίζουμε το πραγματικό πλάτος του app:
+  // - Σε mobile: όλο το πλάτος της οθόνης
+  // - Σε web: μέχρι 1200px (όπως το container στο RootLayout)
+  const appWidth = isWeb ? Math.min(windowWidth, 1200) : windowWidth;
+
+  // Αφαιρούμε τα padding (`px-6`) από το parent container στο `ShopScreen`
+  const contentWidth = appWidth - PADDING * 2;
+
+  // Κινητό (PWA & native): πάντα 2 προϊόντα ανά σειρά, όπως σήμερα.
+  // Για web σε μεγαλύτερες αναλύσεις αυξάνουμε τις στήλες για να είναι responsive.
+  let cols = 2;
+  if (isWeb && windowWidth >= WEB_BREAKPOINT && windowWidth < WEB_BREAKPOINT_LG) {
+    cols = 3;
+  } else if (isWeb && windowWidth >= WEB_BREAKPOINT_LG) {
+    cols = 4;
+  }
+
   const itemWidth = (contentWidth - gap * (cols - 1)) / cols;
   const imageHeight = isWeb ? Math.round(itemWidth * 0.85) : 176;
 
@@ -207,20 +219,20 @@ const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
 
   const estimatedRowHeight = imageHeight + 140;
 
-  // On web (PWA) χρησιμοποιούμε απλό View grid ώστε τα scroll gestures
-  // να περνάνε στο εξωτερικό ScrollView, με σταθερά 2 προϊόντα ανά σειρά.
+  // On web (PWA & desktop) χρησιμοποιούμε απλό View grid ώστε τα scroll gestures
+  // να περνάνε στο εξωτερικό ScrollView. Οι στήλες προσαρμόζονται ανάλογα
+  // με το πλάτος της οθόνης, αλλά σε στενά πλάτη (κινητό) παραμένουν 2.
   if (isWeb) {
-    const webCols = 2;
     return (
       <View style={{ flexDirection: "row", flexWrap: "wrap", paddingBottom: 24 }}>
         {products.map((product, index) => {
-          const isLastInRow = (index % webCols) === webCols - 1;
+          const isLastInRow = (index % cols) === cols - 1;
           return (
             <View
               key={product._id}
               style={{
-                width: "48%",
-                marginRight: isLastInRow ? 0 : "4%",
+                width: itemWidth,
+                marginRight: isLastInRow ? 0 : gap,
                 marginBottom: gap,
               }}
             >
