@@ -76,7 +76,7 @@ export async function getAllProducts(req, res) {
 export async function updateProduct(req, res) {
   try {
     const { id } = req.params;
-    const { name, description, price, category, unitType, unitOptions, showPrice } = req.body;
+    const { name, description, price, category, unitType, unitOptions, showPrice, existingImages } = req.body;
 
     const product = await Product.findById(id);
     if (!product) {
@@ -105,9 +105,25 @@ export async function updateProduct(req, res) {
       product.showPrice = showPrice === "true" || showPrice === true;
     }
 
-    // handle image updates if new images are uploaded
+    // Parse existing images order coming from admin (JSON string or array)
+    let existingImagesArray;
+    if (existingImages !== undefined) {
+      try {
+        existingImagesArray =
+          typeof existingImages === "string" ? JSON.parse(existingImages) : existingImages;
+      } catch (e) {
+        existingImagesArray = [];
+      }
+    }
+
+    // handle image updates: combine remaining existing images (after delete/reorder)
+    // with any newly uploaded images, keeping total <= 3
     if (req.files && req.files.length > 0) {
-      if (req.files.length > 3) {
+      const currentExistingCount = Array.isArray(existingImagesArray)
+        ? existingImagesArray.length
+        : product.images?.length || 0;
+
+      if (currentExistingCount + req.files.length > 3) {
         return res.status(400).json({ message: "Maximum 3 images allowed" });
       }
 
@@ -118,7 +134,16 @@ export async function updateProduct(req, res) {
       });
 
       const uploadResults = await Promise.all(uploadPromises);
-      product.images = uploadResults.map((result) => result.secure_url);
+      const newImageUrls = uploadResults.map((result) => result.secure_url);
+
+      if (Array.isArray(existingImagesArray)) {
+        product.images = [...existingImagesArray, ...newImageUrls];
+      } else {
+        product.images = newImageUrls;
+      }
+    } else if (Array.isArray(existingImagesArray)) {
+      // Μόνο διαγραφή/αναδιάταξη εικόνων, χωρίς νέες uploads
+      product.images = existingImagesArray;
     }
 
     await product.save();

@@ -1,5 +1,14 @@
 import { useState, useMemo } from "react";
-import { PlusIcon, PencilIcon, Trash2Icon, XIcon, ImageIcon, SearchIcon, FilterIcon } from "lucide-react";
+import {
+  PlusIcon,
+  PencilIcon,
+  Trash2Icon,
+  XIcon,
+  ImageIcon,
+  SearchIcon,
+  FilterIcon,
+  GripVerticalIcon,
+} from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { productApi, categoryApi } from "../lib/api";
 
@@ -20,6 +29,8 @@ function ProductsPage() {
   const [unitOptionInput, setUnitOptionInput] = useState("");
   const [images, setImages] = useState([]);
   const [imagePreviews, setImagePreviews] = useState([]);
+  const [existingImages, setExistingImages] = useState([]);
+  const [draggedImageIndex, setDraggedImageIndex] = useState(null);
 
   const queryClient = useQueryClient();
 
@@ -76,6 +87,8 @@ function ProductsPage() {
     setUnitOptionInput("");
     setImages([]);
     setImagePreviews([]);
+    setExistingImages([]);
+    setDraggedImageIndex(null);
   };
 
   const handleEdit = (product) => {
@@ -89,13 +102,16 @@ function ProductsPage() {
       unitOptions: product.unitOptions || [],
       showPrice: product.showPrice !== undefined ? product.showPrice : true,
     });
-    setImagePreviews(product.images);
+    setExistingImages(product.images || []);
+    setImagePreviews([]);
     setShowModal(true);
   };
 
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
-    if (files.length > 3) return alert("Επιτρέπονται μέχρι 3 εικόνες");
+    if (existingImages.length + files.length > 3) {
+      return alert("Επιτρέπονται μέχρι 3 εικόνες συνολικά ανά προϊόν");
+    }
 
     // revoke previous blob URLs to free memory
     imagePreviews.forEach((url) => {
@@ -106,10 +122,49 @@ function ProductsPage() {
     setImagePreviews(files.map((file) => URL.createObjectURL(file)));
   };
 
+  const handleExistingImageRemove = (index) => {
+    setExistingImages((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleExistingImageDragStart = (index) => {
+    setDraggedImageIndex(index);
+  };
+
+  const handleExistingImageDrop = (index) => {
+    if (draggedImageIndex === null || draggedImageIndex === index) return;
+    setExistingImages((prev) => {
+      const updated = [...prev];
+      const [moved] = updated.splice(draggedImageIndex, 1);
+      updated.splice(index, 0, moved);
+      return updated;
+    });
+    setDraggedImageIndex(null);
+  };
+
+  const handleExistingImageDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  const handleNewImageRemove = (index) => {
+    setImages((prev) => {
+      const updated = [...prev];
+      updated.splice(index, 1);
+      return updated;
+    });
+    setImagePreviews((prev) => {
+      const updated = [...prev];
+      const [removedUrl] = updated.splice(index, 1);
+      if (removedUrl?.startsWith("blob:")) {
+        URL.revokeObjectURL(removedUrl);
+      }
+      return updated;
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // for new products, require images
+    // for new products, require at least one image
     if (!editingProduct && imagePreviews.length === 0) {
       return alert("Παρακαλώ ανεβάστε τουλάχιστον μία εικόνα");
     }
@@ -127,6 +182,11 @@ function ProductsPage() {
 
     // only append new images if they were selected
     if (images.length > 0) images.forEach((image) => formDataToSend.append("images", image));
+
+    // Για edit: στέλνουμε τη λίστα με τις υπάρχουσες εικόνες (με τη νέα σειρά / μετά από διαγραφές)
+    if (editingProduct) {
+      formDataToSend.append("existingImages", JSON.stringify(existingImages));
+    }
 
     if (editingProduct) {
       updateProductMutation.mutate({ id: editingProduct._id, formData: formDataToSend });
@@ -513,20 +573,71 @@ function ProductsPage() {
 
                 {editingProduct && (
                   <p className="text-xs text-base-content/60 mt-2 text-center">
-                    Αφήστε κενό για να διατηρήσετε τις τρέχουσες εικόνες
+                    Μπορείτε να διαγράψετε ή να αλλάξετε τη σειρά των υπαρχουσών εικόνων με drag &amp; drop.
                   </p>
                 )}
               </div>
 
-              {imagePreviews.length > 0 && (
-                <div className="flex gap-2 mt-2">
-                  {imagePreviews.map((preview, index) => (
-                    <div key={index} className="avatar">
-                      <div className="w-20 rounded-lg">
-                        <img src={preview} alt={`Προεπισκόπηση ${index + 1}`} />
+              {editingProduct && existingImages.length > 0 && (
+                <div className="mt-3">
+                  <p className="text-xs font-semibold text-base-content/70 mb-1">
+                    Τρέχουσες εικόνες (σύρετε για αλλαγή σειράς)
+                  </p>
+                  <div className="flex gap-3 flex-wrap">
+                    {existingImages.map((url, index) => (
+                      <div
+                        key={url}
+                        className="relative group cursor-move"
+                        draggable
+                        onDragStart={() => handleExistingImageDragStart(index)}
+                        onDragOver={handleExistingImageDragOver}
+                        onDrop={() => handleExistingImageDrop(index)}
+                      >
+                        <div className="w-24 h-24 rounded-lg overflow-hidden border border-base-300">
+                          <img src={url} alt={`Εικόνα ${index + 1}`} className="w-full h-full object-cover" />
+                        </div>
+                        {index === 0 && (
+                          <span className="absolute -bottom-5 left-0 text-[10px] font-semibold text-primary">
+                            Κύρια εικόνα στο PWA
+                          </span>
+                        )}
+                        <button
+                          type="button"
+                          className="btn btn-xs btn-circle btn-error absolute -top-2 -right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                          onClick={() => handleExistingImageRemove(index)}
+                        >
+                          <XIcon className="w-3 h-3" />
+                        </button>
+                        <div className="absolute inset-y-0 -left-2 flex items-center opacity-0 group-hover:opacity-100">
+                          <GripVerticalIcon className="w-4 h-4 text-base-content/60" />
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {imagePreviews.length > 0 && (
+                <div className="mt-3">
+                  <p className="text-xs font-semibold text-base-content/70 mb-1">
+                    Νέες εικόνες (θα προστεθούν μετά την αποθήκευση)
+                  </p>
+                  <div className="flex gap-3 flex-wrap">
+                    {imagePreviews.map((preview, index) => (
+                      <div key={preview} className="relative group">
+                        <div className="w-24 h-24 rounded-lg overflow-hidden border border-base-300">
+                          <img src={preview} alt={`Προεπισκόπηση ${index + 1}`} className="w-full h-full object-cover" />
+                        </div>
+                        <button
+                          type="button"
+                          className="btn btn-xs btn-circle btn-error absolute -top-2 -right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                          onClick={() => handleNewImageRemove(index)}
+                        >
+                          <XIcon className="w-3 h-3" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
