@@ -25,15 +25,16 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
+// Επιτρέπουμε έως 15MB ανά εικόνα προϊόντος/κατηγορίας/banner
 export const upload = multer({
   storage,
   fileFilter,
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
+  limits: { fileSize: 15 * 1024 * 1024 }, // 15MB per file
 });
 
 /** Για profile image: memory storage ώστε να δουλεύει και σε environments χωρίς disk (π.χ. container) */
 export const uploadMemory = multer({
   storage: memoryStorage,
   fileFilter,
-  limits: { fileSize: 5 * 1024 * 1024 },
+  limits: { fileSize: 15 * 1024 * 1024 },
 });
