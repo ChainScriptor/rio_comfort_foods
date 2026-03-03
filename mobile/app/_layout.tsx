@@ -148,17 +148,8 @@ export default Sentry.wrap(function RootLayout() {
           <View
             style={{
               flex: 1,
-              maxWidth: 1200,
               width: "100%",
-              alignSelf: "center",
               backgroundColor: "#121212",
-              shadowColor: "#000",
-              shadowOffset: { width: 0, height: 4 },
-              shadowOpacity: 0.3,
-              shadowRadius: 12,
-              borderLeftWidth: 1,
-              borderRightWidth: 1,
-              borderColor: "rgba(255,255,255,0.06)",
             }}
           >
             {content}

@@ -24,8 +24,6 @@ import { FlashList } from "@shopify/flash-list";
 const PADDING = 24;
 const GAP_MOBILE = 16;
 const GAP_WEB = 24;
-const WEB_BREAKPOINT = 768;
-const WEB_BREAKPOINT_LG = 1024;
 
 interface ProductsGridProps {
   isLoading: boolean;
@@ -132,20 +130,14 @@ const ProductsGrid = ({ products, isLoading, isError }: ProductsGridProps) => {
   const isWeb = Platform.OS === "web";
   const gap = isWeb ? GAP_WEB : GAP_MOBILE;
 
-  // Υπολογίζουμε το πραγματικό πλάτος του app:
-  // - Σε mobile: όλο το πλάτος της οθόνης
-  // - Σε web: μέχρι 1200px (όπως το container στο RootLayout)
-  const appWidth = isWeb ? Math.min(windowWidth, 1200) : windowWidth;
+  // Υπολογίζουμε το πλάτος περιεχομένου αφαιρώντας τα οριζόντια padding (`px-6`)
+  // από το parent container στο `ShopScreen`.
+  const contentWidth = windowWidth - PADDING * 2;
 
-  // Αφαιρούμε τα padding (`px-6`) από το parent container στο `ShopScreen`
-  const contentWidth = appWidth - PADDING * 2;
-
-  // Κινητό (PWA & native): πάντα 2 προϊόντα ανά σειρά, όπως σήμερα.
-  // Για web σε μεγαλύτερες αναλύσεις αυξάνουμε τις στήλες για να είναι responsive.
+  // Κινητό (native + web): 2 προϊόντα ανά σειρά.
+  // Desktop web (μεγάλη οθόνη): 4 προϊόντα ανά σειρά.
   let cols = 2;
-  if (isWeb && windowWidth >= WEB_BREAKPOINT && windowWidth < WEB_BREAKPOINT_LG) {
-    cols = 3;
-  } else if (isWeb && windowWidth >= WEB_BREAKPOINT_LG) {
+  if (isWeb && windowWidth >= 1024) {
     cols = 4;
   }
 
