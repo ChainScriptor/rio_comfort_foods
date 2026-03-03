@@ -208,6 +208,15 @@ function OrdersPage() {
                   margin: 0;
                   padding: 0;
                 }
+                /* Αρίθμηση σελίδων κάτω δεξιά (μόνο ο αριθμός) */
+                .print-only::after {
+                  content: counter(page);
+                  position: fixed;
+                  right: 0.7cm;
+                  bottom: 0.5cm;
+                  font-size: 10pt;
+                  color: #000000;
+                }
                 .print-order-line {
                   page-break-inside: avoid;
                   break-inside: avoid;
