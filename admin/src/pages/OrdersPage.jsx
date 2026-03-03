@@ -187,7 +187,14 @@ function OrdersPage() {
               @media print {
                 @page {
                   margin: 0.5cm;
+                  margin-bottom: 1.2cm;
                   size: A4;
+                  /* Αριθμός σελίδας κάτω δεξιά (1, 2, 3...) - λειτουργεί ανά σελίδα */
+                  @bottom-right {
+                    content: counter(page);
+                    font-size: 10pt;
+                    color: #000;
+                  }
                 }
                 * {
                   -webkit-print-color-adjust: exact;
@@ -208,7 +215,7 @@ function OrdersPage() {
                   margin: 0;
                   padding: 0;
                 }
-                /* Αρίθμηση σελίδων κάτω δεξιά (μόνο ο αριθμός) */
+                /* Fallback αρίθμηση αν το browser δεν υποστηρίζει @page @bottom-right */
                 .print-only::after {
                   content: counter(page);
                   position: fixed;
