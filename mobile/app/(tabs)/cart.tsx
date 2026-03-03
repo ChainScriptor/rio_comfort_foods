@@ -169,6 +169,10 @@ const CartScreen = () => {
         itemCount: cartItems.length,
       });
 
+      // Πρώτα καθαρίζουμε το καλάθι ώστε ο χρήστης να βλέπει άμεσα ότι η παραγγελία έφυγε
+      clearCart();
+
+      // Και μετά εμφανίζουμε το μήνυμα επιτυχίας
       if (Platform.OS === "web") {
         window.alert("Επιτυχής παραγγελία! Η παραγγελία σας ολοκληρώθηκε. Ο διαχειριστής θα την επεξεργαστεί σύντομα.");
       } else {
@@ -176,7 +180,6 @@ const CartScreen = () => {
           { text: "Εντάξει", onPress: () => {} },
         ]);
       }
-      clearCart();
     } catch (error: any) {
       Sentry.logger.error("Order creation failed", {
         error: error instanceof Error ? error.message : "Unknown error",

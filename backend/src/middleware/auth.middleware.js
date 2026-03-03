@@ -58,7 +58,18 @@ export const adminOnly = (req, res, next) => {
     return res.status(401).json({ message: "Unauthorized - user not found" });
   }
 
-  if (req.user.email !== ENV.ADMIN_EMAIL) {
+  // Υποστήριξη πολλαπλών admin emails:
+  // - Αν υπάρχει ENV.ADMIN_EMAILS, το διαβάζουμε σαν λίστα χωρισμένη με κόμμα
+  // - Διαφορετικά, πέφτουμε πίσω στο παλιό ENV.ADMIN_EMAIL
+  const rawList = (ENV.ADMIN_EMAILS || ENV.ADMIN_EMAIL || "").toString();
+  const allowedEmails = rawList
+    .split(",")
+    .map((email) => email.trim().toLowerCase())
+    .filter(Boolean);
+
+  const userEmail = (req.user.email || "").toLowerCase();
+
+  if (!allowedEmails.includes(userEmail)) {
     return res.status(403).json({ message: "Forbidden - admin access only" });
   }
 
