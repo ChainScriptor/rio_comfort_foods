@@ -206,8 +206,12 @@ const ShopScreen = () => {
 
         <View className="px-6 mb-6">
           <View className="flex-row items-center justify-between mb-4">
-            <Text className="text-text-primary text-lg font-bold">Προϊόντα</Text>
-            <Text className="text-text-secondary text-sm">{filteredProducts.length} {filteredProducts.length === 1 ? "προϊόν" : "προϊόντα"}</Text>
+            <Text className="text-text-primary text-lg font-bold">
+              {selectedCategory === "Όλα" ? "Προϊόντα" : selectedCategory}
+            </Text>
+            <Text className="text-text-secondary text-sm">
+              {filteredProducts.length} {filteredProducts.length === 1 ? "προϊόν" : "προϊόντα"}
+            </Text>
           </View>
 
           {/* PRODUCTS GRID */}
