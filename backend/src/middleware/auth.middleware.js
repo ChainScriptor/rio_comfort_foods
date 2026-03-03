@@ -53,32 +53,14 @@ export const protectRoute = [
   },
 ];
 
-export const adminOnly = async (req, res, next) => {
-  try {
-    if (!req.user) {
-      return res.status(401).json({ message: "Unauthorized - user not found" });
-    }
-
-    // Fallback: allow ENV.ADMIN_EMAIL as super-admin for backwards compatibility
-    const isEnvAdmin = req.user.email === ENV.ADMIN_EMAIL;
-
-    // Check Clerk publicMetadata.role === "admin"
-    let isMetadataAdmin = false;
-    try {
-      const clerkUser = await clerkClient.users.getUser(req.user.clerkId);
-      const role = clerkUser?.publicMetadata?.role;
-      isMetadataAdmin = role === "admin";
-    } catch (error) {
-      // If Clerk lookup fails, we fall back to ENV.ADMIN_EMAIL only
-      console.error("Error fetching Clerk user in adminOnly:", error);
-    }
-
-    if (!isEnvAdmin && !isMetadataAdmin) {
-      return res.status(403).json({ message: "Forbidden - admin access only" });
-    }
-
-    next();
-  } catch (error) {
-    return res.status(500).json({ message: "Internal server error" });
+export const adminOnly = (req, res, next) => {
+  if (!req.user) {
+    return res.status(401).json({ message: "Unauthorized - user not found" });
   }
+
+  if (req.user.email !== ENV.ADMIN_EMAIL) {
+    return res.status(403).json({ message: "Forbidden - admin access only" });
+  }
+
+  next();
 };
