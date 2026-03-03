@@ -25,6 +25,12 @@ const useCategories = () => {
         throw error;
       }
     },
+    // Θέλουμε η σειρά/λίστα κατηγοριών να ανανεώνεται αυτόματα όταν αλλάζει ο admin
+    staleTime: 0, // αμέσως stale
+    refetchOnWindowFocus: true,
+    refetchOnReconnect: true,
+    refetchInterval: 15 * 1000, // κάθε 15s για αλλαγές σε σειρά/νέες κατηγορίες
+    refetchIntervalInBackground: false,
     retry: 2,
   });
 

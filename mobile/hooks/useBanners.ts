@@ -25,7 +25,12 @@ const useBanners = () => {
         return [];
       }
     },
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    // Θέλουμε τα banners να ανανεώνονται χωρίς χειροκίνητο refresh
+    staleTime: 0, // τα δεδομένα γίνονται αμέσως stale
+    refetchOnWindowFocus: true, // όταν επανέρχεται το PWA στο προσκήνιο
+    refetchOnReconnect: true,
+    refetchInterval: 15 * 1000, // κάθε 15s ελέγχουμε για νέες αλλαγές
+    refetchIntervalInBackground: false,
     retry: 1, // Only retry once
     retryOnMount: false, // Don't retry on mount if it failed
   });
