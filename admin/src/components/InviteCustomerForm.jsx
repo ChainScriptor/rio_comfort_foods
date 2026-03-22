@@ -12,7 +12,12 @@ function InviteCustomerForm() {
   const inviteMutation = useMutation({
     mutationFn: inviteApi.inviteCustomer,
     onSuccess: (data) => {
-      setSuccessMessage(`Η πρόσκληση στάλθηκε επιτυχώς στο ${data.invitation.emailAddress}`);
+      const to = data.invitation?.emailAddress || data.email || "";
+      setSuccessMessage(
+        to
+          ? `Η πρόσκληση στάλθηκε (Clerk) στο ${to}`
+          : data.message || "Η ενέργεια ολοκληρώθηκε επιτυχώς"
+      );
       setErrorMessage("");
       setEmail("");
       setCustomerId("");

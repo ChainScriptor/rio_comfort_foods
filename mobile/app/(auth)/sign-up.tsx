@@ -1,68 +1,126 @@
-import { useEffect } from "react";
-import { View, Text, ActivityIndicator } from "react-native";
+import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  Platform,
+  ImageBackground,
+} from "react-native";
 import { useAuth, useSignUp } from "@clerk/clerk-expo";
 import { useRouter, useLocalSearchParams } from "expo-router";
-import { ImageBackground } from "react-native";
+
+function firstParam(
+  raw: string | string[] | undefined
+): string | undefined {
+  if (typeof raw === "string" && raw.length > 0) return raw;
+  if (Array.isArray(raw) && raw[0]) return raw[0];
+  return undefined;
+}
+
+/** Clerk προσθέτει `__clerk_ticket` στο redirectUrl μετά το κλικ στο email πρόσκλησης. */
+function readWebInvitationTicketFromLocation(): string | undefined {
+  if (typeof window === "undefined") return undefined;
+  try {
+    const q = new URLSearchParams(window.location.search);
+    return (
+      q.get("__clerk_ticket") ||
+      q.get("__clerk_invitation_ticket") ||
+      undefined
+    );
+  } catch {
+    return undefined;
+  }
+}
 
 /**
- * Sign-up screen that handles invitation acceptance redirects
- * 
- * When a user accepts an invitation via email, Clerk redirects them to this screen.
- * The web page redirects to mobile://sign-up?__clerk_ticket=XXX
- * This screen handles the ticket and completes the sign-up flow.
+ * Αποδοχή πρόσκλησης (Native Invitations API): το Clerk στέλνει τον χρήστη στο /sign-up?__clerk_ticket=...
  */
 export default function SignUpScreen() {
-  const { isSignedIn, isLoaded } = useAuth();
-  const { signUp, setActive } = useSignUp();
+  const { isSignedIn, isLoaded: authLoaded } = useAuth();
+  const { signUp, setActive, isLoaded: signUpLoaded } = useSignUp();
   const router = useRouter();
   const params = useLocalSearchParams();
 
-  useEffect(() => {
-    if (!isLoaded) return;
+  const [webTicket, setWebTicket] = useState<string | undefined>(undefined);
+  /** Στο web περιμένουμε ένα tick ώστε να διαβάσουμε το `?__clerk_ticket=` από το location (PWA / static export). */
+  const [webQueryReady, setWebQueryReady] = useState(() => Platform.OS !== "web");
 
-    // If user is already signed in (completed invitation acceptance), redirect to main app
+  const ticketFromRouter = firstParam(
+    params.__clerk_ticket as string | string[] | undefined
+  );
+  const invitationTicket = ticketFromRouter || webTicket;
+
+  const processedTicketRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (Platform.OS !== "web") return;
+    const t = readWebInvitationTicketFromLocation();
+    if (t) setWebTicket(t);
+    setWebQueryReady(true);
+  }, []);
+
+  const completeInvitation = useCallback(
+    async (ticket: string) => {
+      if (!signUp || !setActive) return;
+
+      try {
+        const result = await signUp.create({
+          strategy: "ticket",
+          ticket,
+        });
+
+        if (result.status === "complete" && result.createdSessionId) {
+          await setActive({ session: result.createdSessionId });
+          if (Platform.OS === "web" && typeof window !== "undefined") {
+            window.history.replaceState({}, "", "/sign-up");
+            router.replace("/(tabs)" as never);
+          } else {
+            router.replace("/(tabs)" as never);
+          }
+          return;
+        }
+
+        console.warn("[sign-up] Invitation sign-up not complete:", result.status);
+        router.replace("/(auth)" as never);
+      } catch (error: unknown) {
+        console.error("[sign-up] Error accepting invitation:", error);
+        router.replace("/(auth)" as never);
+      }
+    },
+    [signUp, setActive, router]
+  );
+
+  useEffect(() => {
+    if (!authLoaded) return;
+
     if (isSignedIn) {
-      router.replace("/(tabs)");
+      router.replace("/(tabs)" as never);
       return;
     }
 
-    // Handle invitation ticket if present
-    const ticket = params.__clerk_ticket as string | undefined;
-    
-    if (ticket && signUp) {
-      // User came from invitation link, complete sign-up with ticket
-      handleInvitationTicket(ticket);
-    } else {
-      // No ticket, redirect to regular auth screen
-      router.replace("/(auth)");
+    if (!webQueryReady) return;
+
+    if (!invitationTicket) {
+      router.replace("/(auth)" as never);
+      return;
     }
-  }, [isLoaded, isSignedIn, signUp, setActive, router, params]);
 
-  const handleInvitationTicket = async (ticket: string) => {
-    if (!signUp) return;
+    if (!signUpLoaded || !signUp) return;
 
-    try {
-      // Create sign-up with the invitation ticket
-      const result = await signUp.create({
-        strategy: "ticket",
-        ticket: ticket,
-      });
+    if (processedTicketRef.current === invitationTicket) return;
+    processedTicketRef.current = invitationTicket;
 
-      // If sign-up is complete, set the session and redirect
-      if (result.status === "complete" && setActive) {
-        await setActive({ session: result.createdSessionId });
-        router.replace("/(tabs)");
-      } else {
-        // Sign-up needs more steps (e.g., email verification)
-        // Redirect to auth screen to complete the flow
-        router.replace("/(auth)");
-      }
-    } catch (error: any) {
-      console.error("Error accepting invitation:", error);
-      // On error, redirect to auth screen
-      router.replace("/(auth)");
-    }
-  };
+    void completeInvitation(invitationTicket);
+  }, [
+    authLoaded,
+    isSignedIn,
+    webQueryReady,
+    invitationTicket,
+    signUpLoaded,
+    signUp,
+    router,
+    completeInvitation,
+  ]);
 
   return (
     <ImageBackground
@@ -73,7 +131,14 @@ export default function SignUpScreen() {
     >
       <View className="flex-1 justify-center items-center">
         <ActivityIndicator size="large" color="#FFD700" />
-        <Text className="text-white text-lg mt-4" style={{ textShadowColor: 'rgba(0, 0, 0, 0.75)', textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 3 }}>
+        <Text
+          className="text-white text-lg mt-4"
+          style={{
+            textShadowColor: "rgba(0, 0, 0, 0.75)",
+            textShadowOffset: { width: 0, height: 1 },
+            textShadowRadius: 3,
+          }}
+        >
           Επεξεργασία πρόσκλησης...
         </Text>
       </View>

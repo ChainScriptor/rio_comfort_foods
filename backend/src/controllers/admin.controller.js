@@ -639,53 +639,48 @@ export async function inviteCustomer(req, res) {
       return res.status(400).json({ error: "Email and customerId are required" });
     }
 
-    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({ error: "Invalid email format" });
     }
 
-    // Check for existing pending invitations for this email
+    const normalizedEmail = String(email).trim().toLowerCase();
+
+    // Revoke pending invitations for this email so Clerk can send a fresh native invite email
     try {
       const existingInvitations = await clerkClient.invitations.getInvitationList({
         status: "pending",
         limit: 100,
       });
-
-      // Find pending invitations for this email
       const pendingInvitations = existingInvitations.data?.filter(
-        (inv) => inv.emailAddress === email
+        (inv) => inv.emailAddress?.toLowerCase() === normalizedEmail
       );
-
-      // Revoke all pending invitations for this email
-      if (pendingInvitations && pendingInvitations.length > 0) {
+      if (pendingInvitations?.length) {
         for (const pendingInv of pendingInvitations) {
           try {
             await clerkClient.invitations.revokeInvitation({
               invitationId: pendingInv.id,
             });
-          } catch (revokeError) {
-            // Continue with other invitations even if one fails
+          } catch {
+            /* ignore */
           }
         }
       }
-    } catch (checkError) {
-      // Continue with creating new invitation even if check fails
+    } catch {
+      /* ignore */
     }
 
-    // Create invitation using Clerk
-    // redirectUrl: customer PWA sign-up page that accepts invitation token (must match Clerk allowed URLs)
     const customerAppBase = (ENV.CLIENT_URL || "https://www.comfortfoods.store").replace(/\/$/, "");
     const redirectUrl = `${customerAppBase}/sign-up`;
 
     const invitation = await clerkClient.invitations.createInvitation({
-      emailAddress: email,
+      emailAddress: normalizedEmail,
       publicMetadata: {
-        customerId: customerId,
+        role: "admin",
+        customerId: String(customerId),
       },
-      redirectUrl: redirectUrl,
+      redirectUrl,
     });
-
 
     res.status(201).json({
       message: "Invitation sent successfully",
@@ -696,24 +691,21 @@ export async function inviteCustomer(req, res) {
       },
     });
   } catch (error) {
-
-    // Handle Clerk-specific errors
     if (error.errors) {
       const clerkError = error.errors[0];
-      const errorMessage =
-        clerkError?.message || "Failed to create invitation";
+      const errorMessage = clerkError?.message || "Failed to create invitation";
 
-      // Provide more helpful error message for duplicate invitations
       if (clerkError?.code === "duplicate_record") {
         return res.status(400).json({
           error:
-            "Υπάρχει ήδη pending invitation για αυτό το email. Παρακαλώ δοκιμάστε ξανά σε λίγα δευτερόλεπτα ή revoke την προηγούμενη πρόσκληση από το Clerk Dashboard.",
+            "Υπάρχει ήδη pending invitation για αυτό το email. Δοκιμάστε ξανά σε λίγα δευτερόλεπτα ή ανακαλέστε την προηγούμενη από το Clerk Dashboard.",
         });
       }
 
       return res.status(400).json({ error: errorMessage });
     }
 
+    console.error("[inviteCustomer]", error);
     res.status(500).json({ error: "Internal server error" });
   }
 }

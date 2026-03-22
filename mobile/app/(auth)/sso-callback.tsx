@@ -16,9 +16,7 @@ const RedirectCallbackComponent =
     : null;
 
 /**
- * SSO callback route for Clerk OAuth (Google, Apple, etc.).
- * Handles the redirect after the user signs in with a provider on Web.
- * On native, startSSOFlow typically doesn't redirect to this URL; this is mainly for web.
+ * SSO callback after OAuth / social redirect (κυρίως Web PWA).
  */
 export default function SSOCallbackScreen() {
   const { isSignedIn, isLoaded } = useAuth();
@@ -30,16 +28,14 @@ export default function SSOCallbackScreen() {
     if (hasRedirected.current) return;
     hasRedirected.current = true;
 
-    // Web/PWA: full navigation replace so the document reloads with a clean session
     if (Platform.OS === "web" && typeof window !== "undefined") {
       window.location.replace("/");
       return;
     }
 
-    router.replace("/(tabs)" as any);
+    router.replace("/(tabs)" as never);
   }, [isLoaded, isSignedIn, router]);
 
-  // Only run the redirect callback UI on web (OAuth redirect flow)
   if (Platform.OS === "web") {
     return (
       <View
@@ -80,6 +76,5 @@ export default function SSOCallbackScreen() {
     );
   }
 
-  // On native, if we land here by mistake, redirect to auth
   return null;
 }
