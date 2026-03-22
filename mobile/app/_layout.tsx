@@ -24,10 +24,10 @@ if (typeof window !== "undefined") {
   });
 }
 
-// Get Clerk publishable key from environment variables
-const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
+// Clerk publishable key — only from process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY (inlined by Expo at build)
+const clerkPublishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY?.trim() ?? "";
 
-if (!CLERK_PUBLISHABLE_KEY) {
+if (!clerkPublishableKey) {
   console.error("Missing EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY environment variable");
 }
 
@@ -117,7 +117,7 @@ export default Sentry.wrap(function RootLayout() {
     if (typeof window !== "undefined") window.location.reload();
   };
 
-  if (!CLERK_PUBLISHABLE_KEY) {
+  if (!clerkPublishableKey) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center", padding: 20, backgroundColor: "#000" }}>
         <Text style={{ color: "#ef4444", fontSize: 18, fontWeight: "bold", marginBottom: 10, textAlign: "center" }}>
@@ -142,7 +142,7 @@ export default Sentry.wrap(function RootLayout() {
   );
 
   return (
-    <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY} tokenCache={tokenCache}>
+    <ClerkProvider publishableKey={clerkPublishableKey} tokenCache={tokenCache}>
       <QueryClientProvider client={queryClient}>
         {Platform.OS === "web" ? (
           <View
