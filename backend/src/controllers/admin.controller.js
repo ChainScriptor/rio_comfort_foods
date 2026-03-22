@@ -674,14 +674,9 @@ export async function inviteCustomer(req, res) {
     }
 
     // Create invitation using Clerk
-    // redirectUrl: Web sign-up page that accepts invitation token
-    // After sign-up, user will be redirected to /welcome page
-    const backendUrl =
-      process.env.BACKEND_URL ||
-      (ENV.NODE_ENV === "production"
-        ? "https://riocomfortfoods-production.up.railway.app"
-        : `http://localhost:${ENV.PORT || 3000}`);
-    const redirectUrl = `${backendUrl}/sign-up`;
+    // redirectUrl: customer PWA sign-up page that accepts invitation token (must match Clerk allowed URLs)
+    const customerAppBase = (ENV.CLIENT_URL || "https://www.comfortfoods.store").replace(/\/$/, "");
+    const redirectUrl = `${customerAppBase}/sign-up`;
 
     const invitation = await clerkClient.invitations.createInvitation({
       emailAddress: email,

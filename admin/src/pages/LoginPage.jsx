@@ -2,6 +2,12 @@ import { useSignIn } from "@clerk/clerk-react";
 import { SignInPage } from "../components/ui/sign-in.jsx";
 import { useNavigate } from "react-router";
 
+/** Origin for Clerk OAuth redirects (must be listed in Clerk Dashboard). Override with VITE_APP_ORIGIN. */
+const CLERK_APP_ORIGIN = (
+  typeof import.meta !== "undefined" && import.meta.env?.VITE_APP_ORIGIN
+    ? String(import.meta.env.VITE_APP_ORIGIN).replace(/\/$/, "")
+    : "https://www.comfortfoods.store"
+);
 
 function LoginPage() {
   const { signIn, setActive } = useSignIn();
@@ -37,8 +43,8 @@ function LoginPage() {
     try {
       await signIn.authenticateWithRedirect({
         strategy: "oauth_google",
-        redirectUrl: "/dashboard",
-        redirectUrlComplete: "/dashboard",
+        redirectUrl: `${CLERK_APP_ORIGIN}/dashboard`,
+        redirectUrlComplete: `${CLERK_APP_ORIGIN}/dashboard`,
       });
     } catch (error) {
       console.error("Google sign in error:", error);
@@ -52,8 +58,8 @@ function LoginPage() {
     try {
       await signIn.authenticateWithRedirect({
         strategy: "oauth_apple",
-        redirectUrl: "/dashboard",
-        redirectUrlComplete: "/dashboard",
+        redirectUrl: `${CLERK_APP_ORIGIN}/dashboard`,
+        redirectUrlComplete: `${CLERK_APP_ORIGIN}/dashboard`,
       });
     } catch (error) {
       console.error("Apple sign in error:", error);

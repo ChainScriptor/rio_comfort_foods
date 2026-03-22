@@ -4,11 +4,11 @@ import { Alert, Platform } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import * as AuthSession from "expo-auth-session";
 
-// Base URL for PWA (redirect flow). Override with EXPO_PUBLIC_APP_URL if needed.
+// Base URL for PWA (Clerk OAuth redirect flow). Override with EXPO_PUBLIC_APP_URL if needed.
 const PWA_BASE_URL =
   typeof process !== "undefined" && process.env?.EXPO_PUBLIC_APP_URL
     ? process.env.EXPO_PUBLIC_APP_URL.replace(/\/$/, "")
-    : "https://riocomfortfoods-production.up.railway.app";
+    : "https://www.comfortfoods.store";
 
 // Handle any pending authentication sessions (needed for web/PWA + native)
 WebBrowser.maybeCompleteAuthSession();
