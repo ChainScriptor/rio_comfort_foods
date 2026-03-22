@@ -6,3 +6,4 @@ build/
 
 # Clerk keyless dev artifacts (must not contain committed API keys)
 web-client/.clerk/
+mobile/dist/
