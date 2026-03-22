@@ -31,24 +31,27 @@ if (!clerkPublishableKey) {
   console.error("Missing EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY environment variable");
 }
 
-Sentry.init({
-  dsn: "https://fb6731b90610cc08333e6c16ffac5724@o4509813037137920.ingest.de.sentry.io/4510451611205712",
+const sentryDsn = process.env.EXPO_PUBLIC_SENTRY_DSN?.trim() ?? "";
+if (sentryDsn) {
+  Sentry.init({
+    dsn: sentryDsn,
 
-  // Adds more context data to events (IP address, cookies, user, etc.)
-  // For more information, visit: https://docs.sentry.io/platforms/react-native/data-management/data-collected/
-  sendDefaultPii: true,
+    // Adds more context data to events (IP address, cookies, user, etc.)
+    // For more information, visit: https://docs.sentry.io/platforms/react-native/data-management/data-collected/
+    sendDefaultPii: true,
 
-  // Enable Logs
-  enableLogs: true,
+    // Enable Logs
+    enableLogs: true,
 
-  // Configure Session Replay
-  replaysSessionSampleRate: 1.0,
-  replaysOnErrorSampleRate: 1,
-  integrations: [Sentry.mobileReplayIntegration()],
+    // Configure Session Replay
+    replaysSessionSampleRate: 1.0,
+    replaysOnErrorSampleRate: 1,
+    integrations: [Sentry.mobileReplayIntegration()],
 
-  // uncomment the line below to enable Spotlight (https://spotlightjs.com)
-  // spotlight: __DEV__,
-});
+    // uncomment the line below to enable Spotlight (https://spotlightjs.com)
+    // spotlight: __DEV__,
+  });
+}
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache({
@@ -102,7 +105,7 @@ function ClerkLoadErrorFallback({ onRetry }: { onRetry: () => void }) {
   );
 }
 
-export default Sentry.wrap(function RootLayout() {
+function RootLayout() {
   const [clerkLoadError, setClerkLoadError] = useState(false);
 
   useEffect(() => {
@@ -160,4 +163,6 @@ export default Sentry.wrap(function RootLayout() {
       </QueryClientProvider>
     </ClerkProvider>
   );
-});
+}
+
+export default sentryDsn ? Sentry.wrap(RootLayout) : RootLayout;
