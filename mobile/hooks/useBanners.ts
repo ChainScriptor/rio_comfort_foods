@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { getExpoApiBaseUrl } from "@/lib/api";
 
 export interface Banner {
   _id: string;
@@ -8,15 +9,13 @@ export interface Banner {
   order: number;
 }
 
-// Public endpoint - no auth required
-const API_URL = "https://riocomfortfoods-production.up.railway.app/api";
-
 const useBanners = () => {
   const result = useQuery({
     queryKey: ["banners"],
     queryFn: async () => {
       try {
-        const { data } = await axios.get<Banner[]>(`${API_URL}/products/banners`);
+        const apiBase = getExpoApiBaseUrl();
+        const { data } = await axios.get<Banner[]>(`${apiBase}/products/banners`);
         return data || [];
       } catch (error) {
         // Silently fail - if there's an error, just return empty array

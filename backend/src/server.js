@@ -47,14 +47,8 @@ app.use((req, res, next) => {
 
 app.use(clerkMiddleware()); // adds auth object under the req => req.auth
 
-// CORS: credentials + headers for Admin (Authorization, cookies)
-const allowedOrigins = [
-  // Production PWA / API hosts
-  "https://riocomfortfoods-production.up.railway.app",
-  "https://rio-comfort-foods-production.up.railway.app",
-  "https://rio-comfort-foods.up.railway.app",
-  ...(ENV.ALLOWED_ORIGINS ? ENV.ALLOWED_ORIGINS.split(",").map((o) => o.trim()).filter(Boolean) : []),
-];
+// CORS: credentials + headers for Admin (Authorization, cookies).
+// Configure browser origins via CLIENT_URL and ALLOWED_ORIGINS (comma-separated) in env — do not hardcode deploy URLs.
 const corsOptions = {
   origin: (origin, callback) => {
     if (origin) console.log("[CORS] Request from origin:", origin);

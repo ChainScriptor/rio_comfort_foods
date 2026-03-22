@@ -3,11 +3,13 @@ import axios from "axios";
 import { useEffect } from "react";
 import * as SecureStore from "expo-secure-store";
 
-// Live backend API on production; override with EXPO_PUBLIC_API_URL if needed (e.g. local dev)
-const API_HOST =
-  process.env.EXPO_PUBLIC_API_URL?.replace(/\/$/, "") ||
-  "https://riocomfortfoods-production.up.railway.app";
-const BASE_URL = API_HOST.endsWith("/api") ? API_HOST : `${API_HOST}/api`;
+/** Backend API base including `/api`. Set `EXPO_PUBLIC_API_URL` (host or full `.../api`) in `.env`. */
+export function getExpoApiBaseUrl(): string {
+  const raw = process.env.EXPO_PUBLIC_API_URL?.replace(/\/$/, "") || "https://www.comfortfoods.store";
+  return raw.endsWith("/api") ? raw : `${raw}/api`;
+}
+
+const BASE_URL = getExpoApiBaseUrl();
 
 const api = axios.create({
   baseURL: BASE_URL,

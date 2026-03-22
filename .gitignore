@@ -3,3 +3,6 @@ node_modules/
 
 build/
 .expo/
+
+# Clerk keyless dev artifacts (must not contain committed API keys)
+web-client/.clerk/

@@ -15,7 +15,7 @@ export const ENV = {
   ADMIN_EMAIL: process.env.ADMIN_EMAIL,
   // Προαιρετικά: λίστα admin emails, χωρισμένα με κόμμα (π.χ. "a@test.com,b@test.com")
   ADMIN_EMAILS: process.env.ADMIN_EMAILS,
-  /** Hostname of the admin dashboard (e.g. riocomfortfoods-production.up.railway.app). When request host matches, server sends admin SPA index.html instead of PWA. */
+  /** Hostname of the admin dashboard (e.g. admin.comfortfoods.store). When request host matches, server can serve admin SPA instead of PWA. */
   ADMIN_APP_HOST: process.env.ADMIN_APP_HOST || "",
   /** Customer PWA / storefront origin (no trailing slash). Used e.g. for Clerk invitation redirect. Default in controller: https://www.comfortfoods.store */
   CLIENT_URL: process.env.CLIENT_URL,

@@ -19,7 +19,7 @@ import {
 import * as ImagePicker from "expo-image-picker";
 import { Image } from "expo-image";
 import { getOptimizedUrl } from "@/lib/utils";
-import { useApi } from "@/lib/api";
+import { useApi, getExpoApiBaseUrl } from "@/lib/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useProfile } from "@/hooks/useProfile";
 
@@ -103,10 +103,7 @@ export default function EditProfileScreen() {
 
       const token = await getToken();
       const apiBase =
-        (typeof api.defaults.baseURL === "string" && api.defaults.baseURL) ||
-        (typeof process !== "undefined" && process.env?.EXPO_PUBLIC_API_URL
-          ? `${process.env.EXPO_PUBLIC_API_URL.replace(/\/$/, "")}/api`
-          : "https://riocomfortfoods-production.up.railway.app/api");
+        (typeof api.defaults.baseURL === "string" && api.defaults.baseURL) || getExpoApiBaseUrl();
       const response = await fetch(`${apiBase.replace(/\/$/, "")}/users/profile/image`, {
         method: "POST",
         body: formData,
