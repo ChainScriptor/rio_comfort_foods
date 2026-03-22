@@ -146,7 +146,10 @@ function RootLayout() {
   );
 
   return (
-    <ClerkProvider publishableKey={clerkPublishableKey} tokenCache={tokenCache}>
+    <ClerkProvider
+      publishableKey={clerkPublishableKey}
+      tokenCache={Platform.OS === "web" ? undefined : tokenCache}
+    >
       <QueryClientProvider client={queryClient}>
         {Platform.OS === "web" ? (
           <View

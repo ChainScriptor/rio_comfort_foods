@@ -2,10 +2,32 @@ import { Redirect, Tabs } from "expo-router";
 import { useAuth } from "@clerk/clerk-expo";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BlurView } from "expo-blur";
-import { Platform, StyleSheet } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { Platform, StyleSheet, View } from "react-native";
 import HomeIcon from "@/assets/icons/HomeIcon.svg";
 import CartIcon from "@/assets/icons/CartIcon.svg";
 import ProfileIcon from "@/assets/icons/ProfileIcon.svg";
+
+/** BlurView relies on a native view manager — on web it can be invalid and trigger React #130. */
+function TabBarBackground() {
+  if (Platform.OS === "web") {
+    return (
+      <View
+        style={[
+          StyleSheet.absoluteFill,
+          { backgroundColor: "rgba(24, 24, 24, 0.92)" },
+        ]}
+      />
+    );
+  }
+  return (
+    <BlurView
+      intensity={80}
+      tint="dark"
+      style={StyleSheet.absoluteFill}
+    />
+  );
+}
 
 // Ύψος ζώνης εικονίδιο + λεζάντα (αρκετό ώστε να μην κόβονται ούτε τα γράμματα)
 const TAB_BAR_CONTENT_HEIGHT = 76;
@@ -40,15 +62,7 @@ const TabsLayout = () => {
           overflow: "hidden",
         },
         tabBarShowLabel: true,
-        tabBarBackground: () => (
-          <BlurView
-            intensity={80}
-            tint="dark"
-            style={StyleSheet.absoluteFill}
-            // StyleSheet.absoluteFill is equal to this 👇
-            // { position: "absolute", top: 0, right: 0, left: 0, bottom: 0 }
-          />
-        ),
+        tabBarBackground: () => <TabBarBackground />,
         tabBarLabelStyle: {
           fontSize: 11,
           fontWeight: "600",
@@ -66,27 +80,36 @@ const TabsLayout = () => {
         name="index"
         options={{
           title: "Κατάστημα",
-          tabBarIcon: ({ color, size }) => (
-            <HomeIcon width={size} height={size} stroke={color} color={color} />
-          ),
+          tabBarIcon: ({ color, size }) =>
+            Platform.OS === "web" ? (
+              <Ionicons name="home-outline" size={size} color={color} />
+            ) : (
+              <HomeIcon width={size} height={size} stroke={color} color={color} />
+            ),
         }}
       />
       <Tabs.Screen
         name="cart"
         options={{
           title: "Καλάθι",
-          tabBarIcon: ({ color, size }) => (
-            <CartIcon width={size} height={size} stroke={color} color={color} />
-          ),
+          tabBarIcon: ({ color, size }) =>
+            Platform.OS === "web" ? (
+              <Ionicons name="cart-outline" size={size} color={color} />
+            ) : (
+              <CartIcon width={size} height={size} stroke={color} color={color} />
+            ),
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           title: "Προφίλ",
-          tabBarIcon: ({ color, size }) => (
-            <ProfileIcon width={size} height={size} stroke={color} color={color} />
-          ),
+          tabBarIcon: ({ color, size }) =>
+            Platform.OS === "web" ? (
+              <Ionicons name="person-outline" size={size} color={color} />
+            ) : (
+              <ProfileIcon width={size} height={size} stroke={color} color={color} />
+            ),
         }}
       />
     </Tabs>
