@@ -24,7 +24,7 @@ if (typeof window !== "undefined") {
   });
 }
 
-// Clerk publishable key — only from process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY (inlined by Expo at build)
+// Public client config: use only process.env.EXPO_PUBLIC_* (Expo inlines at build)
 const clerkPublishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY?.trim() ?? "";
 
 if (!clerkPublishableKey) {
@@ -33,6 +33,7 @@ if (!clerkPublishableKey) {
 
 const sentryDsn = process.env.EXPO_PUBLIC_SENTRY_DSN?.trim() ?? "";
 if (sentryDsn) {
+  const isWeb = Platform.OS === "web";
   Sentry.init({
     dsn: sentryDsn,
 
@@ -43,10 +44,10 @@ if (sentryDsn) {
     // Enable Logs
     enableLogs: true,
 
-    // Configure Session Replay
-    replaysSessionSampleRate: 1.0,
-    replaysOnErrorSampleRate: 1,
-    integrations: [Sentry.mobileReplayIntegration()],
+    // Session Replay is mobile-only; including mobileReplayIntegration on Web PWA crashes
+    replaysSessionSampleRate: isWeb ? 0 : 1.0,
+    replaysOnErrorSampleRate: isWeb ? 0 : 1,
+    integrations: Platform.OS !== "web" ? [Sentry.mobileReplayIntegration()] : [],
 
     // uncomment the line below to enable Spotlight (https://spotlightjs.com)
     // spotlight: __DEV__,
@@ -165,4 +166,4 @@ function RootLayout() {
   );
 }
 
-export default sentryDsn ? Sentry.wrap(RootLayout) : RootLayout;
+export default RootLayout;
