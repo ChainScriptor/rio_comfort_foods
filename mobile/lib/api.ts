@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import * as SecureStore from "expo-secure-store";
 
+<<<<<<< HEAD
 /** Backend API base including `/api`. Set `EXPO_PUBLIC_API_URL` (host or full `.../api`) in `.env`. */
 export function getExpoApiBaseUrl(): string {
   const raw = process.env.EXPO_PUBLIC_API_URL?.replace(/\/$/, "") || "https://www.comfortfoods.store";
@@ -10,6 +11,13 @@ export function getExpoApiBaseUrl(): string {
 }
 
 const BASE_URL = getExpoApiBaseUrl();
+=======
+// Live backend API on Sevalla; override with EXPO_PUBLIC_API_URL if needed (e.g. local dev)
+const API_HOST =
+  process.env.EXPO_PUBLIC_API_URL?.replace(/\/$/, "") ||
+  "https://www.comfortfoods.store/api";
+const BASE_URL = API_HOST.endsWith("/api") ? API_HOST : `${API_HOST}/api`;
+>>>>>>> ecf9470 (fix: use www comfortfoods API host)
 
 const api = axios.create({
   baseURL: BASE_URL,
