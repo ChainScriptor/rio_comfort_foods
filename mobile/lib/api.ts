@@ -3,28 +3,25 @@ import axios from "axios";
 import { useEffect } from "react";
 import * as SecureStore from "expo-secure-store";
 
-<<<<<<< HEAD
-/** Backend API base including `/api`. Set `EXPO_PUBLIC_API_URL` (host or full `.../api`) in `.env`. */
+/** * Επιστρέφει τη βασική διεύθυνση του API.
+ * Χρησιμοποιεί την EXPO_PUBLIC_API_URL αν υπάρχει, αλλιώς το production URL με www.
+ */
 export function getExpoApiBaseUrl(): string {
-  const raw = process.env.EXPO_PUBLIC_API_URL?.replace(/\/$/, "") || "https://www.comfortfoods.store";
+  const raw = process.env.EXPO_PUBLIC_API_URL?.replace(/\/$/, "") || "https://www.comfortfoods.store/api";
+  
+  // Διασφαλίζουμε ότι το URL τελειώνει σε /api
   return raw.endsWith("/api") ? raw : `${raw}/api`;
 }
 
+// Μία και μοναδική δήλωση του BASE_URL
 const BASE_URL = getExpoApiBaseUrl();
-=======
-// Live backend API on Sevalla; override with EXPO_PUBLIC_API_URL if needed (e.g. local dev)
-const API_HOST =
-  process.env.EXPO_PUBLIC_API_URL?.replace(/\/$/, "") ||
-  "https://www.comfortfoods.store/api";
-const BASE_URL = API_HOST.endsWith("/api") ? API_HOST : `${API_HOST}/api`;
->>>>>>> ecf9470 (fix: use www comfortfoods API host)
 
 const api = axios.create({
   baseURL: BASE_URL,
   headers: {
     "Content-Type": "application/json",
   },
-  timeout: 30000, // 30 seconds timeout
+  timeout: 30000, // 30 δευτερόλεπτα timeout
 });
 
 export const useApi = () => {
@@ -32,19 +29,18 @@ export const useApi = () => {
 
   useEffect(() => {
     const interceptor = api.interceptors.request.use(async (config) => {
-      // Try to get Clerk token first (for social auth users)
       let token: string | null = null;
       
       try {
+        // 1. Προσπάθεια λήψης Clerk Token (για social login)
         if (isSignedIn) {
           token = await getToken();
         }
       } catch (error) {
-        // If Clerk token fails, try JWT token
         console.log("Clerk token not available, trying JWT token");
       }
 
-      // If no Clerk token, try to get JWT token from SecureStore (for username/password login)
+      // 2. Αν δεν υπάρχει Clerk token, έλεγχος στο SecureStore (για email/password login)
       if (!token) {
         try {
           const jwtToken = await SecureStore.getItemAsync("auth_token");
@@ -63,7 +59,7 @@ export const useApi = () => {
       return config;
     });
 
-    // cleanup: remove interceptor when component unmounts
+    // Καθαρισμός interceptor κατά το unmount
     return () => {
       api.interceptors.request.eject(interceptor);
     };
@@ -72,5 +68,4 @@ export const useApi = () => {
   return api;
 };
 
-// on every single req, we would like have an auth token so that our backend knows that we're authenticated
-// we're including the auth token under the auth headers
+export default api;
